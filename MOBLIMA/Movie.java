@@ -3,6 +3,8 @@ package MOBLIMA;
 import java.util.ArrayList;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.LocalDateTime;
+import java.time.Duration;
 
 public class Movie {
     private String Title;
@@ -11,18 +13,31 @@ public class Movie {
     private ArrayList<String> directorList;
     private ArrayList<String> genreList;
     private ArrayList<Review_Ratings> review_rating_List;
-    private LocalDate ReleaseDate;
-    private LocalTime Duration;
+    private LocalDateTime ReleaseDate;
+    private String ShowingStatus;
+    private LocalTime MovieDuration;
 
     public Movie(String Title, String Description, ArrayList<String> actorList, ArrayList<String> directorList,
-            ArrayList<String> genreList, LocalDate ReleaseDate, LocalTime Duration) {
+            ArrayList<String> genreList, LocalDateTime ReleaseDate, LocalTime MovieDuration) {
         this.Title = Title;
         this.Description = Description;
         this.actorList = actorList;
         this.directorList = directorList;
         this.review_rating_List = new ArrayList<Review_Ratings>();
         this.ReleaseDate = ReleaseDate;
-        this.Duration = Duration;
+        this.MovieDuration = MovieDuration;
+
+        Duration releaseCheck = Duration.between(LocalDate.now(), this.ReleaseDate);
+        // if movie is older a month stop showing
+        if (releaseCheck.toDays() <= -30) {
+            this.ShowingStatus = "End Of Showing";
+        } else if (releaseCheck.toDays() > -30) {
+            this.ShowingStatus = "Now Showing";
+        } else if (releaseCheck.toDays() <= 2) {
+            this.ShowingStatus = "Preview";
+        } else {
+            this.ShowingStatus = "Coming Soon";
+        }
     }
 
     public void setTitle(String title) {
@@ -104,12 +119,27 @@ public class Movie {
         this.review_rating_List.remove(index);
     }
 
-    public void setReleaseDate(LocalDate newDate) {
+    public void setShowingStatus() {
+        Duration releaseCheck = Duration.between(LocalDate.now(), this.ReleaseDate);
+        // if movie is older a month stop showing
+        if (releaseCheck.toDays() <= -30) {
+            this.ShowingStatus = "End Of Showing";
+        } else if (releaseCheck.toDays() > -30) {
+            this.ShowingStatus = "Now Showing";
+        } else if (releaseCheck.toDays() <= 2) {
+            this.ShowingStatus = "Preview";
+        } else {
+            this.ShowingStatus = "Coming Soon";
+        }
+    }
+
+    public void setReleaseDate(LocalDateTime newDate) {
         this.ReleaseDate = newDate;
+        setShowingStatus();
     }
 
     public void setDuration(LocalTime newTime) {
-        this.Duration = newTime;
+        this.MovieDuration = newTime;
     }
 
     public String getTitle() {
@@ -136,11 +166,15 @@ public class Movie {
         return this.review_rating_List;
     }
 
-    public LocalDate getReleaseDate() {
+    public LocalDateTime getReleaseDate() {
         return this.ReleaseDate;
     }
 
+    public String getShowingStatus() {
+        return this.ShowingStatus;
+    }
+
     public LocalTime getDuration() {
-        return this.Duration;
+        return this.MovieDuration;
     }
 }
