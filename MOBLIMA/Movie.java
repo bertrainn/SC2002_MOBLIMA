@@ -166,6 +166,15 @@ public class Movie {
         return this.review_rating_List;
     }
 
+    public double getOverallRating() {
+        double total = 0;
+        for (int i = 0; i < this.review_rating_List.size(); i++) {
+            total += review_rating_List.get(i).getRating();
+        }
+
+        return total / review_rating_List.size();
+    }
+
     public LocalDateTime getReleaseDate() {
         return this.ReleaseDate;
     }
