@@ -37,7 +37,7 @@ public class Constants {
      */
 
     /**
-     * Create age ratings for the movie.
+     * Age ratings for the movie.
      */
     public enum Classification {
         /**
@@ -79,5 +79,17 @@ public class Constants {
         public String toString() {
             return this.Classification;
         }
+    }
+
+    /**
+     * Status for our seats
+     */
+    public enum Status {
+        /**
+         * Occupied -> Seat cannot be booked
+         * Vacant -> Seat can be booked
+         */
+        Occupied,
+        Vacant
     }
 }

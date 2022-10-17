@@ -6,10 +6,6 @@ import java.time.Duration;
 
 /**
  * Represents an instance of a movie used in the system.
- * 
- * @author ??
- * @version 1.0
- * @since 2022-11-13
  */
 
 public class Movie {

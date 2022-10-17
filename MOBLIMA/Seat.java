@@ -2,19 +2,14 @@ package MOBLIMA;
 
 public class Seat {
 
-    public enum Status {
-        Occupied,
-        Vacant
-    }
-
     private int SeatID;
     private Ticket Ticket;
-    private Status SeatStatus;
+    private Constants.Status SeatStatus;
 
     public Seat(int SeatID) {
         this.SeatID = SeatID;
         this.Ticket = null;
-        this.SeatStatus = Status.Vacant;
+        this.SeatStatus = Constants.Status.Vacant;
     }
 
     public int getSeatID() {
@@ -29,11 +24,11 @@ public class Seat {
         return this.Ticket;
     }
 
-    public void setSeatStatus(Status s) {
+    public void setSeatStatus(Constants.Status s) {
         this.SeatStatus = s;
     }
 
-    public Status getSeatStatus() {
+    public Constants.Status getSeatStatus() {
         return this.SeatStatus;
     }
 }
