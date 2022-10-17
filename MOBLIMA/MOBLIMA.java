@@ -2,29 +2,32 @@ package MOBLIMA;
 
 import java.time.LocalDateTime;
 import java.time.Duration;
+import java.util.ArrayList;
 
 public class MOBLIMA {
     public static void main(String[] args) {
-        LocalDateTime from = LocalDateTime.of(2020, 10, 10,
-                10, 20, 55);
-        LocalDateTime to = LocalDateTime.of(2020, 10, 7,
-                10, 21, 1);
+        String title = "MOBLIMA";
+        String description = "Test";
 
-        Duration duration = Duration.between(from, to);
+        ArrayList<String> actors = new ArrayList<String>();
+        actors.add("jim");
 
-        System.out.println(-10 > -9);
+        ArrayList<String> director = new ArrayList<String>();
+        director.add("jim");
 
-        // days between from and to
-        System.out.println(duration.toDays() + " days");
+        ArrayList<String> genre = new ArrayList<String>();
+        genre.add("yes");
 
-        // hours between from and to
-        System.out.println(duration.toHours() + " hours");
+        Review_Ratings test = new Review_Ratings(5.0, "Pretty Good");
+        ArrayList<Review_Ratings> reviews = new ArrayList<Review_Ratings>();
+        reviews.add(test);
 
-        // minutes between from and to
-        System.out.println(duration.toMinutes() + " minutes");
+        LocalDateTime releasedate = LocalDateTime.now();
 
-        // seconds between from and to
-        System.out.println(duration.toSeconds() + " seconds");
-        System.out.println(duration.getSeconds() + " seconds");
+        Duration current = Duration.ofMinutes(84);
+
+        Movie movie = new Movie(title, description, actors, director, genre, releasedate, current);
+
+        System.out.println(movie.getShowingStatus());
     }
 }

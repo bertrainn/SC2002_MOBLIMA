@@ -15,10 +15,10 @@ public class Movie {
     private ArrayList<Review_Ratings> review_rating_List;
     private LocalDateTime ReleaseDate;
     private String ShowingStatus;
-    private LocalTime MovieDuration;
+    private Duration MovieDuration;
 
     public Movie(String Title, String Description, ArrayList<String> actorList, ArrayList<String> directorList,
-            ArrayList<String> genreList, LocalDateTime ReleaseDate, LocalTime MovieDuration) {
+            ArrayList<String> genreList, LocalDateTime ReleaseDate, Duration MovieDuration) {
         this.Title = Title;
         this.Description = Description;
         this.actorList = actorList;
@@ -27,7 +27,9 @@ public class Movie {
         this.ReleaseDate = ReleaseDate;
         this.MovieDuration = MovieDuration;
 
-        Duration releaseCheck = Duration.between(LocalDate.now(), this.ReleaseDate);
+        LocalDateTime today = LocalDateTime.now();
+
+        Duration releaseCheck = Duration.between(today, this.ReleaseDate);
         // if movie is older a month stop showing
         if (releaseCheck.toDays() <= -30) {
             this.ShowingStatus = "End Of Showing";
@@ -138,7 +140,7 @@ public class Movie {
         setShowingStatus();
     }
 
-    public void setDuration(LocalTime newTime) {
+    public void setDuration(Duration newTime) {
         this.MovieDuration = newTime;
     }
 
@@ -183,7 +185,7 @@ public class Movie {
         return this.ShowingStatus;
     }
 
-    public LocalTime getDuration() {
+    public Duration getDuration() {
         return this.MovieDuration;
     }
 }
