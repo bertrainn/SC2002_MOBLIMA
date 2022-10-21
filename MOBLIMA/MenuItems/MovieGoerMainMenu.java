@@ -1,22 +1,15 @@
 package MOBLIMA.MenuItems;
 
-import java.util.ArrayList;
-import java.util.Scanner;
+import static MOBLIMA.MenuItems.MenuMethods.*;
 
 public class MovieGoerMainMenu {
 	
-	private ArrayList<String> choices = new ArrayList<>();
-	
-	private void addChoices() {
-		choices.add("Search for movies");
-		choices.add("All movies");
-		choices.add("Back");
-	}
-	
 	public void showMenu() {
-		System.out.println("Booking Page");
-		addChoices();
+		printHeader("Movie Goer");
+		printMenu("Choose from one of the following options:", 
+				  "1. Search for a movie",
+				  "2. Show all movies",
+				  "3. Go back", "");
 	}
 	
-
 }
