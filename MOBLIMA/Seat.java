@@ -7,7 +7,7 @@ public class Seat {
     private Constants.Status SeatStatus;
 
     /**
-    * Constructor for Seats
+    * Constructor for the Seats class
     */
     public Seat(int SeatID) {
         this.SeatID = SeatID;
@@ -17,7 +17,9 @@ public class Seat {
     
     
     /**
-     * Returns SeatID.
+     * This method returns the seat ID of the seat
+     * 
+     * @return the seatID of the seat 
      */
     public int getSeatID() {
         return SeatID;
@@ -33,7 +35,9 @@ public class Seat {
     }
 
     /**
-     * Returns ticket number.
+     * This method returns the ticket of the movie
+     * 
+     * @return the ticket of the movie
      */
     public Ticket getTicket() {
         return this.Ticket;
