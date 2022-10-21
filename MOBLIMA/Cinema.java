@@ -10,6 +10,10 @@ public class Cinema {
      */
     private String cinemaName;
     
+    
+    /**
+    * Constructor for the Cinema class
+    */
     public Cinema (String Name) {
         this.CinemaName = Name;
     }
