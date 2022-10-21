@@ -6,11 +6,20 @@ public class Movie_Controller {
     private ArrayList<Movie> movieList;
     private int movieCount;
 
+    /**
+    * Constructor for the Movie Controller class
+    */
     public Movie_Controller() {
         this.movieList = new ArrayList<Movie>();
         this.movieCount = 0;
     }
 
+    
+    /**
+     * This method adds a new movie to the movie list of the cinema
+     * 
+     * @param movie is the new movie to be added to the movie list
+     */
     public void addMovie(Movie movie) {
         String title = movie.getTitle();
 
@@ -25,10 +34,22 @@ public class Movie_Controller {
         System.out.println("Movie successfully added.");
     }
 
+    
+    /**
+     * This method returns the movie list of the cinema
+     * 
+     * @return the movie list of the cinema
+     */
     public ArrayList<Movie> getMovieList() {
         return movieList;
     }
 
+    
+    /**
+     * This method returns the movie count of the cinema
+     * 
+     * @return the movie count of the cinema
+     */
     public int getMovieCount() {
         return movieCount;
     }
