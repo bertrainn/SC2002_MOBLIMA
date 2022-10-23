@@ -4,6 +4,12 @@ import java.time.LocalDate;
 import java.time.Duration;
 import java.util.ArrayList;
 
+/**
+ * TODO: 
+ * - Implement a controller which combines the multiple entity classes into one; 
+ *      - Booking Controller - Combines Ticket, Movie, Cinema Class Etc
+ * 
+ */
 public class MOBLIMA {
     public static void main(String[] args) {
         String title = "MOBLIMA";

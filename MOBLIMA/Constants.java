@@ -37,6 +37,50 @@ public class Constants {
      */
 
     /**
+     * Ticket types
+     */
+    public enum TicketType {
+        MON_TO_THU("Monday to Thursday"),
+        FRI_WEEKEND_PH("Friday, Weekends & Public Holidays"),
+        MON_TO_THU_OPENING("Monday to Thursday (Sneak Preview)"),
+        FRI_WEEKEND_PH_OPENING("Friday, Weekends & Public Holidays (Sneak Preview)"),
+        SENIOR("Senior Citizen"),
+        STUDENT("Student");
+
+        private String type;
+
+        TicketType(String type) {
+            this.type = type;
+        }
+
+        @Override
+        public String toString() {
+            return this.type;
+        }
+    }
+
+    /**
+     * Movie Types
+     */
+
+    public enum MovieType {
+        TWO_D("2D Movies"),
+        THREE_D("3D Movies"),
+        PLAT("Platium Movie Suite");
+
+        private String type;
+
+        MovieType(String type) {
+            this.type = type;
+        }
+
+        @Override
+        public String toString() {
+            return this.type;
+        }
+    }
+
+    /**
      * Age ratings for the movie.
      */
     public enum Classification {

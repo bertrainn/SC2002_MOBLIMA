@@ -2,19 +2,22 @@ package MOBLIMA;
 
 import java.util.ArrayList;
 
+/**
+ * This class is used to store all the movies that each Cineplex is showing
+ */
+
 public class Movie_Controller {
     private ArrayList<Movie> movieList;
     private int movieCount;
 
     /**
-    * Constructor for the Movie Controller class
-    */
+     * Constructor for the Movie Controller class
+     */
     public Movie_Controller() {
         this.movieList = new ArrayList<Movie>();
         this.movieCount = 0;
     }
 
-    
     /**
      * This method adds a new movie to the movie list of the cinema
      * 
@@ -34,7 +37,6 @@ public class Movie_Controller {
         System.out.println("Movie successfully added.");
     }
 
-    
     /**
      * This method returns the movie list of the cinema
      * 
@@ -44,7 +46,6 @@ public class Movie_Controller {
         return movieList;
     }
 
-    
     /**
      * This method returns the movie count of the cinema
      * 
