@@ -1,7 +1,7 @@
 package MOBLIMA.Entity;
 
 import java.io.Serializable;
-
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.time.LocalDate;
 import java.time.Duration;
@@ -369,13 +369,17 @@ public class Movie implements Serializable {
         return this.review_rating_List;
     }
 
-    public double getOverallRating() {
+    public String getOverallRating() {
+        if (this.review_rating_List.size() == 0)
+            return "N/A";
+
         double total = 0;
+
         for (int i = 0; i < this.review_rating_List.size(); i++) {
             total = total + this.review_rating_List.get(i).getRating();
         }
-
-        return total / review_rating_List.size();
+        DecimalFormat df = new DecimalFormat("#.##");
+        return df.format(total / review_rating_List.size());
     }
 
     public LocalDate getOpeningDate() {

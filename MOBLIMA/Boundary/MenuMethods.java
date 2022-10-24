@@ -1,4 +1,4 @@
-package MOBLIMA.MenuItems;
+package MOBLIMA.Boundary;
 
 public class MenuMethods {
 	

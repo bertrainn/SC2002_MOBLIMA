@@ -1,6 +1,6 @@
-package MOBLIMA.MenuItems;
+package MOBLIMA.Boundary;
 
-import static MOBLIMA.MenuItems.MenuMethods.*;
+import static MOBLIMA.Boundary.MenuMethods.*;
 
 public class AdminMainMenu {
 	
