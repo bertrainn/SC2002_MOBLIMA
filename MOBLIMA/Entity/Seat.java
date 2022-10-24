@@ -4,7 +4,7 @@ public class Seat {
 
     private int SeatID;
     private int col, row;
-    private Constants.Status SeatStatus;
+    private Constants.SEAT_STATUS SeatStatus;
 
     /**
      * Constructor for the Seats class
@@ -13,7 +13,7 @@ public class Seat {
         this.SeatID = SeatID;
         this.col = col;
         this.row = row;
-        this.SeatStatus = Constants.Status.Vacant;
+        this.SeatStatus = Constants.SEAT_STATUS.Vacant;
     }
 
     /**
@@ -55,14 +55,14 @@ public class Seat {
      * 
      * @param title is the new title for the movie
      */
-    public void setSeatStatus(Constants.Status s) {
+    public void setSeatStatus(Constants.SEAT_STATUS s) {
         this.SeatStatus = s;
     }
 
     /**
      * Returns seat status.
      */
-    public Constants.Status getSeatStatus() {
+    public Constants.SEAT_STATUS getSeatStatus() {
         return this.SeatStatus;
     }
 }

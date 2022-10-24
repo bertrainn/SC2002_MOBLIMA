@@ -20,31 +20,40 @@ public class Movie_Controller {
     }
 
     /**
-     * This method adds a new movie to the movie list of the cinema
-     * 
-     * @param movie is the new movie to be added to the movie list
-     */
-    public void addMovie(Movie movie) {
-        String title = movie.getTitle();
-
-        for (int i = 0; i < movieList.size(); i++) {
-            if (movieList.get(i).getTitle().toLowerCase() == title.toLowerCase()) {
-                System.out.println("Movie exist in the system.");
-                return;
-            }
-        }
-        movieList.add(movie);
-        movieCount++;
-        System.out.println("Movie successfully added.");
-    }
-
-    /**
      * This method returns the movie list of the cinema
      * 
      * @return the movie list of the cinema
      */
     public ArrayList<Movie> getMovieList() {
-        return movieList;
+        return this.movieList;
+    }
+
+    public void setMovieList(ArrayList<Movie> movieList) {
+        this.movieList = movieList;
+    }
+
+    /**
+     * This method adds a new movie to the movie list of the cinema
+     * 
+     * @param movie is the new movie to be added to the movie list
+     */
+    public void addMovie(Movie movie) {
+        if (this.movieList.contains(movie)) {
+            System.out.println("This movie already exists.");
+            return;
+        } else {
+            this.movieList.add(movie);
+            System.out.println("This movie has been successfully added.");
+        }
+    }
+
+    public void removeMovie(Movie movie) {
+        if (this.movieList.contains(movie)) {
+            this.movieList.remove(movie);
+            System.out.println("This movie has been successfully removed.");
+        } else {
+            System.out.println("This movie does not exist.");
+        }
     }
 
     /**

@@ -14,11 +14,11 @@ package MOBLIMA.Entity;
  */
 public class Ticket {
     private double price;
-    private Constants.TicketType TicketType;
-    private Constants.MovieType MovieType;
+    private Constants.TICKET_TYPE TicketType;
+    private Constants.MOVIE_TYPE MovieType;
     private Seat seat;
 
-    public Ticket(Constants.TicketType TicketType, Constants.MovieType MovieType, Seat seat) {
+    public Ticket(Constants.TICKET_TYPE TicketType, Constants.MOVIE_TYPE MovieType, Seat seat) {
         this.TicketType = TicketType;
         this.MovieType = MovieType;
         this.seat = seat;
@@ -30,16 +30,16 @@ public class Ticket {
      * MovieType
      */
     public void calculatePrice() {
-        if (this.TicketType == Constants.TicketType.SENIOR) {
+        if (this.TicketType == Constants.TICKET_TYPE.SENIOR) {
             this.price = 5.00;
             return;
         }
-        if (this.TicketType == Constants.TicketType.STUDENT) {
+        if (this.TicketType == Constants.TICKET_TYPE.STUDENT) {
             this.price = 7.00;
             return;
         }
 
-        if (this.TicketType == Constants.TicketType.MON_TO_THU_OPENING) {
+        if (this.TicketType == Constants.TICKET_TYPE.MON_TO_THU_OPENING) {
             switch (this.MovieType) {
                 case TWO_D:
                     this.price = 10.50;
@@ -50,7 +50,7 @@ public class Ticket {
                     return;
 
             }
-        } else if (this.TicketType == Constants.TicketType.MON_TO_THU) {
+        } else if (this.TicketType == Constants.TICKET_TYPE.MON_TO_THU) {
             switch (this.MovieType) {
                 case TWO_D:
                     this.price = 10.00;
@@ -81,19 +81,19 @@ public class Ticket {
         return this.price;
     }
 
-    public void setTicketType(Constants.TicketType ticketType) {
+    public void setTicketType(Constants.TICKET_TYPE ticketType) {
         this.TicketType = ticketType;
     }
 
-    public Constants.TicketType getTicketType() {
+    public Constants.TICKET_TYPE getTicketType() {
         return this.TicketType;
     }
 
-    public void setMovieType(Constants.MovieType movieType) {
+    public void setMovieType(Constants.MOVIE_TYPE movieType) {
         this.MovieType = movieType;
     }
 
-    public Constants.MovieType getMovieType() {
+    public Constants.MOVIE_TYPE getMovieType() {
         return this.MovieType;
     }
 

@@ -23,7 +23,7 @@ public class Movie {
     /**
      * Describes the age rating of the movie accroding to the classifcation above.
      */
-    private Constants.Classification AgeRating;
+    private Constants.AGE_CLASSIFICATION AgeRating;
 
     /**
      * The list of actors who are in the movie.
@@ -51,9 +51,14 @@ public class Movie {
     private LocalDate ReleaseDate;
 
     /**
+     * The when the movie is not showing anymore
+     */
+    private LocalDate ClosingDate;
+
+    /**
      * The showing status of the movie
      */
-    private String ShowingStatus;
+    private Constants.SHOWING_STATUS ShowingStatus;
 
     /**
      * The duration of the movie
@@ -70,20 +75,23 @@ public class Movie {
      * @param genreList     list of genres that the movie falls into
      * @param reviewList    list of reviews and ratings that the movie have
      * @param ReleaseDate   release date of the movie
+     * @param ClosingDate   closing date of the movie
      * @param MovieDuration how long the movie lasts in minutes???
      */
-    public Movie(String Title, String Description, ArrayList<String> actorList,
+    public Movie(String Title, String Description, Constants.AGE_CLASSIFICATION AgeRating, ArrayList<String> actorList,
             ArrayList<String> directorList,
             ArrayList<String> genreList, ArrayList<Review_Ratings> reviewList, LocalDate ReleaseDate,
+            LocalDate ClosingDate,
             Duration MovieDuration) {
 
         this.Title = Title;
         this.Description = Description;
-        this.AgeRating = Constants.Classification.G;
+        this.AgeRating = AgeRating;
         this.actorList = actorList;
         this.directorList = directorList;
         this.review_rating_List = reviewList;
         this.ReleaseDate = ReleaseDate;
+        this.ClosingDate = ClosingDate;
         this.MovieDuration = MovieDuration;
 
         /**
@@ -102,6 +110,10 @@ public class Movie {
          * The movie is 2 days till release -> preview
          * Anything more than 2 days till release -> Coming soon
          */
+
+        if (today.isAfter(this.ClosingDate)) {
+            this.ShowingStatus = Constants.SHOWING_STATUS.EOS;
+        }
         if (releaseCheck > 30) {
             this.ShowingStatus = "End of Showing";
         } else if (releaseCheck > 0) {
@@ -136,7 +148,7 @@ public class Movie {
      * 
      * @param classification is the new age rating for the movie
      */
-    public void setAgeRating(Constants.Classification classification) {
+    public void setAgeRating(Constants.AGE_CLASSIFICATION classification) {
         this.AgeRating = classification;
     }
 
@@ -337,7 +349,7 @@ public class Movie {
      * 
      * @return the age rating of the movie
      */
-    public Constants.Classification getAgeRating() {
+    public Constants.AGE_CLASSIFICATION getAgeRating() {
         return this.AgeRating;
     }
 
@@ -375,7 +387,7 @@ public class Movie {
         return this.ReleaseDate;
     }
 
-    public String getShowingStatus() {
+    public Constants.SHOWING_STATUS getShowingStatus() {
         return this.ShowingStatus;
     }
 

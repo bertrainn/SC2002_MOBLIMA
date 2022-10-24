@@ -39,7 +39,7 @@ public class Constants {
     /**
      * Ticket types
      */
-    public enum TicketType {
+    public enum TICKET_TYPE {
         MON_TO_THU("Monday to Thursday"),
         FRI_WEEKEND_PH("Friday, Weekends & Public Holidays"),
         MON_TO_THU_OPENING("Monday to Thursday (Sneak Preview & Mega Blockbusters)"),
@@ -48,7 +48,7 @@ public class Constants {
 
         private String type;
 
-        TicketType(String type) {
+        TICKET_TYPE(String type) {
             this.type = type;
         }
 
@@ -62,7 +62,7 @@ public class Constants {
      * Movie Types
      */
 
-    public enum MovieType {
+    public enum MOVIE_TYPE {
         TWO_D("2D Movies"),
         DOLBY_ATMOS_TWO_D("Dolby Atmos 2D"),
         ULTIMA_TWO_D("Ultima 2D @ JEM & West Mall"),
@@ -70,7 +70,7 @@ public class Constants {
 
         private String type;
 
-        MovieType(String type) {
+        MOVIE_TYPE(String type) {
             this.type = type;
         }
 
@@ -83,7 +83,7 @@ public class Constants {
     /**
      * Age ratings for the movie.
      */
-    public enum Classification {
+    public enum AGE_CLASSIFICATION {
         /**
          * General.
          */
@@ -116,19 +116,38 @@ public class Constants {
 
         private String Classification;
 
-        Classification(String data) {
+        AGE_CLASSIFICATION(String data) {
             this.Classification = data;
         }
 
+        @Override
         public String toString() {
             return this.Classification;
+        }
+    }
+
+    public enum SHOWING_STATUS {
+        EOS("End Of Showing"),
+        NS("Now Showing"),
+        P("Preview"),
+        CS("Coming Soon");
+
+        private String status;
+
+        SHOWING_STATUS(String status) {
+            this.status = status;
+        }
+
+        @Override
+        public String toString() {
+            return this.status;
         }
     }
 
     /**
      * Status for our seats
      */
-    public enum Status {
+    public enum SEAT_STATUS {
         /**
          * Occupied -> Seat cannot be booked
          * Vacant -> Seat can be booked

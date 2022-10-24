@@ -10,15 +10,17 @@ public class Booking {
     private Cinema cinema;
     private Movie movie;
     private ArrayList<Ticket> TicketList = new ArrayList<Ticket>();
+    private MovieGoer user;
 
     public Booking(String TID, LocalDateTime Timestamp, double TotalAmount, Cinema cinema, Movie movie,
-            ArrayList<Ticket> ticketList) {
+            ArrayList<Ticket> ticketList, MovieGoer user) {
         this.TID = TID;
         this.Timestamp = Timestamp;
         this.TotalAmount = TotalAmount;
         this.cinema = cinema;
         this.movie = movie;
         this.TicketList = ticketList;
+        this.user = user;
     }
 
     public String getTID() {
@@ -70,15 +72,31 @@ public class Booking {
     }
 
     public void addTicket(Ticket Ticket) {
-        this.TicketList.add(Ticket);
+        if (!this.TicketList.contains(Ticket)) {
+            this.TicketList.add(Ticket);
+            System.out.println("This ticket has been successfully added.");
+            return;
+        } else {
+            System.out.println("This ticket already exists.");
+        }
     }
 
     public void removeTicket(Ticket Ticket) {
-        for (int i = 0; i < this.TicketList.size(); i++) {
-            if (this.TicketList.get(i) == Ticket) {
-                this.TicketList.remove(i);
-                return;
-            }
+        if (this.TicketList.contains(Ticket)) {
+            this.TicketList.remove(Ticket);
+            System.out.println("This ticket has been successfully removed.");
+            return;
+        } else {
+            System.out.println("This ticket does not exist.");
+            return;
         }
+    }
+
+    public MovieGoer getMovieGoer() {
+        return this.user;
+    }
+
+    public void setMovieGoer(MovieGoer movieGoer) {
+        this.user = movieGoer;
     }
 }
