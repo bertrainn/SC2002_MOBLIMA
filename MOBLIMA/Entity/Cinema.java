@@ -1,4 +1,4 @@
-package MOBLIMA;
+package MOBLIMA.Entity;
 
 import java.util.ArrayList;
 

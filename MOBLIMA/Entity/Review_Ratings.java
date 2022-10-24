@@ -1,4 +1,4 @@
-package MOBLIMA;
+package MOBLIMA.Entity;
 
 public class Review_Ratings {
     private double Rating;

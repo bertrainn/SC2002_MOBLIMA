@@ -1,17 +1,18 @@
-package MOBLIMA;
+package MOBLIMA.Entity;
 
 public class Seat {
 
     private int SeatID;
-    private Ticket Ticket;
+    private int col, row;
     private Constants.Status SeatStatus;
 
     /**
      * Constructor for the Seats class
      */
-    public Seat(int SeatID) {
+    public Seat(int SeatID, int col, int row) {
         this.SeatID = SeatID;
-        this.Ticket = null;
+        this.col = col;
+        this.row = row;
         this.SeatStatus = Constants.Status.Vacant;
     }
 
@@ -33,22 +34,20 @@ public class Seat {
         this.SeatID = seatID;
     }
 
-    /**
-     * This method sets a new ticket for the seats of the movie
-     * 
-     * @param Ticket is the new Ticket for the seats
-     */
-    public void setTicket(Ticket Ticket) {
-        this.Ticket = Ticket;
+    public int getCol() {
+        return this.col;
     }
 
-    /**
-     * This method returns the ticket of the movie
-     * 
-     * @return the ticket of the movie
-     */
-    public Ticket getTicket() {
-        return this.Ticket;
+    public void setCol(int col) {
+        this.col = col;
+    }
+
+    public int getRow() {
+        return this.row;
+    }
+
+    public void setRow(int row) {
+        this.row = row;
     }
 
     /**

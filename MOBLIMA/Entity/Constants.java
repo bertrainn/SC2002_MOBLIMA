@@ -1,7 +1,7 @@
-package MOBLIMA;
+package MOBLIMA.Entity;
 
 import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 
 /**
  * This class contains all the constant values, enum classes, date and time
@@ -20,14 +20,14 @@ public class Constants {
     public static final String FORMAT_BOOKING_ID = "yyyyMMddHHmm";
     public static final String FORMAT_HOLIDAY = "dd MMM";
 
-    public static SimpleDateFormat dateFormatShort = new SimpleDateFormat(FORMAT_DATE_SHORT);
-    public static SimpleDateFormat dateFormatLong = new SimpleDateFormat(FORMAT_DATE_LONG);
-    public static SimpleDateFormat clockFormat = new SimpleDateFormat(FORMAT_TIME_CLOCK);
-    public static SimpleDateFormat timeFormat = new SimpleDateFormat(FORMAT_TIME_HOUR);
+    public static DateTimeFormatter dateFormatLong = DateTimeFormatter.ofPattern(FORMAT_DATE_LONG);
+    public static DateTimeFormatter dateFormatShort = DateTimeFormatter.ofPattern(FORMAT_DATE_SHORT);
+    public static DateTimeFormatter clockFormat = DateTimeFormatter.ofPattern(FORMAT_TIME_CLOCK);
+    public static DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern(FORMAT_TIME_HOUR);
 
-    public static SimpleDateFormat bookingFormat = new SimpleDateFormat(FORMAT_BOOKING_ID);
-    public static SimpleDateFormat holidayFormat = new SimpleDateFormat(FORMAT_HOLIDAY);
-    public static SimpleDateFormat datetimeFormat = new SimpleDateFormat("dd MMM yyyy, hh:mma");
+    public static DateTimeFormatter bookingFormat = DateTimeFormatter.ofPattern(FORMAT_BOOKING_ID);
+    public static DateTimeFormatter holidayFormat = DateTimeFormatter.ofPattern(FORMAT_HOLIDAY);
+    public static DateTimeFormatter datetimeFormat = DateTimeFormatter.ofPattern("dd MMM yyyy, hh:mma");
 
     // Date Time format : DD/MM/YY hh:mm PM
     public static DateFormat dateTimeFormat = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT);

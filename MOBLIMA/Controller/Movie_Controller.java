@@ -1,5 +1,6 @@
-package MOBLIMA;
+package MOBLIMA.Controller;
 
+import MOBLIMA.Entity.Movie;
 import java.util.ArrayList;
 
 /**
