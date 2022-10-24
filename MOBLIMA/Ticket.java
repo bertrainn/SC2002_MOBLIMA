@@ -1,11 +1,107 @@
 package MOBLIMA;
 
 /**
- * TODO: 
+ * TODO:
  * 
  * - Implement Ticket Class
- * - Funcion that calulates the price of the ticket based on the movie + ticket type 
+ * - Funcion that calulates the price of the ticket based on the movie + ticket
+ * type
+ * - Validation will be done at point of entry for the ticket type: i.e. if
+ * student/ elderly they are only allowed 2D movies (non-atmos): smth like
+ * please enter movie, at that point take the info for the movie, if the movie
+ * is after 6pm on friday and they aren't a student then tickettype =
+ * Fri_Weekend_PH
  */
 public class Ticket {
-    
+    private double price;
+    private Constants.TicketType TicketType;
+    private Constants.MovieType MovieType;
+    private Seat seat;
+
+    public Ticket(Constants.TicketType TicketType, Constants.MovieType MovieType, Seat seat) {
+        this.TicketType = TicketType;
+        this.MovieType = MovieType;
+        this.seat = seat;
+        calculatePrice();
+    }
+
+    /**
+     * This method calculates the price of the tickets based on the TicketType and
+     * MovieType
+     */
+    public void calculatePrice() {
+        if (this.TicketType == Constants.TicketType.SENIOR) {
+            this.price = 5.00;
+            return;
+        }
+        if (this.TicketType == Constants.TicketType.STUDENT) {
+            this.price = 7.00;
+            return;
+        }
+
+        if (this.TicketType == Constants.TicketType.MON_TO_THU_OPENING) {
+            switch (this.MovieType) {
+                case TWO_D:
+                    this.price = 10.50;
+                    return;
+
+                default:
+                    this.price = 14.50;
+                    return;
+
+            }
+        } else if (this.TicketType == Constants.TicketType.MON_TO_THU) {
+            switch (this.MovieType) {
+                case TWO_D:
+                    this.price = 10.00;
+                    return;
+
+                default:
+                    this.price = 14.00;
+                    return;
+            }
+        } else {
+            switch (this.MovieType) {
+                case TWO_D:
+                    this.price = 14.50;
+                    return;
+
+                default:
+                    this.price = 15.50;
+                    return;
+            }
+        }
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public double getPrice() {
+        return this.price;
+    }
+
+    public void setTicketType(Constants.TicketType ticketType) {
+        this.TicketType = ticketType;
+    }
+
+    public Constants.TicketType getTicketType() {
+        return this.TicketType;
+    }
+
+    public void setMovieType(Constants.MovieType movieType) {
+        this.MovieType = movieType;
+    }
+
+    public Constants.MovieType getMovieType() {
+        return this.MovieType;
+    }
+
+    public void setSeat(Seat s) {
+        this.seat = s;
+    }
+
+    public Seat getSeat() {
+        return this.seat;
+    }
 }

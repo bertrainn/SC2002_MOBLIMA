@@ -7,24 +7,32 @@ public class Seat {
     private Constants.Status SeatStatus;
 
     /**
-    * Constructor for the Seats class
-    */
+     * Constructor for the Seats class
+     */
     public Seat(int SeatID) {
         this.SeatID = SeatID;
         this.Ticket = null;
         this.SeatStatus = Constants.Status.Vacant;
     }
-    
-    
+
     /**
      * This method returns the seat ID of the seat
      * 
-     * @return the seatID of the seat 
+     * @return the seatID of the seat
      */
     public int getSeatID() {
         return SeatID;
     }
-    
+
+    /**
+     * This method changes the ID of a seat
+     * 
+     * @param seatID the new ID of the seat
+     */
+    public void setSeatID(int seatID) {
+        this.SeatID = seatID;
+    }
+
     /**
      * This method sets a new ticket for the seats of the movie
      * 

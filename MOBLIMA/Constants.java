@@ -42,10 +42,9 @@ public class Constants {
     public enum TicketType {
         MON_TO_THU("Monday to Thursday"),
         FRI_WEEKEND_PH("Friday, Weekends & Public Holidays"),
-        MON_TO_THU_OPENING("Monday to Thursday (Sneak Preview)"),
-        FRI_WEEKEND_PH_OPENING("Friday, Weekends & Public Holidays (Sneak Preview)"),
-        SENIOR("Senior Citizen"),
-        STUDENT("Student");
+        MON_TO_THU_OPENING("Monday to Thursday (Sneak Preview & Mega Blockbusters)"),
+        SENIOR("Senior Citizen (Mon - Fri, Before 6PM)"),
+        STUDENT("Student (Mon - Fri, Before 6PM)");
 
         private String type;
 
@@ -65,8 +64,9 @@ public class Constants {
 
     public enum MovieType {
         TWO_D("2D Movies"),
-        THREE_D("3D Movies"),
-        PLAT("Platium Movie Suite");
+        DOLBY_ATMOS_TWO_D("Dolby Atmos 2D"),
+        ULTIMA_TWO_D("Ultima 2D @ JEM & West Mall"),
+        ELITE_CLUB_2D("Elite Club 2D@West Mall");
 
         private String type;
 
