@@ -45,22 +45,23 @@ public class MOBLIMA {
         Movie movie = new Movie(title, description, AgeRating, actors, director, genre, reviews, releasedate,
                 closingdate,
                 current);
-        System.out.println(movie.getAgeRating());
+        // System.out.println(movie.getAgeRating());
         String text = movie.getOpeningDate().atStartOfDay().format(Constants.bookingFormat);
-        System.out.println(movie.getOverallRating());
-        System.out.println(movie.getShowingStatus());
-        System.out.println(movie.getAgeRating());
+        // System.out.println(movie.getOverallRating());
+        // System.out.println(movie.getShowingStatus());
+        // System.out.println(movie.getAgeRating());
 
         Seat s = new Seat(0, 5, 5);
 
         Ticket t = new Ticket(Constants.TICKET_TYPE.MON_TO_THU, Constants.MOVIE_TYPE.ULTIMA_TWO_D, s);
 
-        System.out.println(t.getPrice());
-        System.out.println(text);
+        // System.out.println(t.getPrice());
+        // System.out.println(text);
+        Movie_Controller mc = new Movie_Controller();
+        ArrayList<Movie> movies = mc.readFile();
 
-        Movie_Controller controller = new Movie_Controller();
-        controller.addMovie(movie);
-        controller.addMovie(movie);
-        System.out.println(controller.getMovieCount());
+        for (int i = 0; i < movies.size(); i++) {
+            System.out.println(movies.get(i).getTitle());
+        }
     }
 }
