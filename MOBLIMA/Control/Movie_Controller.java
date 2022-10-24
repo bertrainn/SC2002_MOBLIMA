@@ -1,4 +1,4 @@
-package MOBLIMA.Controller;
+package MOBLIMA.Control;
 
 import MOBLIMA.Entity.Movie;
 import MOBLIMA.Entity.Review_Ratings;
@@ -18,6 +18,8 @@ import java.time.LocalDate;
 
 public class Movie_Controller {
     public final static String FILENAME = "MOBLIMA/Data/Movie.txt";
+
+    
 
     public Movie_Controller() {
     }
@@ -45,7 +47,9 @@ public class Movie_Controller {
 
         FileOutputStream fos = null;
         ObjectOutputStream oos = null;
-        Movie movie = new Movie(Title, Description, Age, DirectorList, ActorList, GenreList, reviewList, OpeningDate,
+        Movie movie = new Movie(getLastID() + 1, Title, Description, Age, DirectorList, ActorList, GenreList,
+                reviewList,
+                OpeningDate,
                 ClosingDate, Duration);
 
         ArrayList<Movie> DataBase = new ArrayList<Movie>();
@@ -61,9 +65,24 @@ public class Movie_Controller {
             oos.flush();
             oos.close();
         } catch (IOException e) {
-
         }
+    }
 
+    public void updateMovie(int index, int id, Object obj) {
+
+    }
+
+    public int getLastID() {
+        int lastID = -1;
+        int MovieID;
+        ArrayList<Movie> Data = readFile();
+        for (int i = 0; i < Data.size(); i++) {
+            MovieID = Data.get(i).getId();
+            if (MovieID > lastID) {
+                lastID = MovieID;
+            }
+        }
+        return lastID;
     }
 
 }

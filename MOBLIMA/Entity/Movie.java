@@ -12,6 +12,7 @@ import java.time.Duration;
 
 public class Movie implements Serializable {
 
+    private int id;
     /**
      * Title of the movie.
      */
@@ -80,12 +81,13 @@ public class Movie implements Serializable {
      * @param ClosingDate   closing date of the movie
      * @param MovieDuration how long the movie lasts in minutes???
      */
-    public Movie(String Title, String Description, Constants.AGE_CLASSIFICATION AgeRating, ArrayList<String> actorList,
+    public Movie(int id, String Title, String Description, Constants.AGE_CLASSIFICATION AgeRating,
+            ArrayList<String> actorList,
             ArrayList<String> directorList,
             ArrayList<String> genreList, ArrayList<Review_Ratings> reviewList, LocalDate OpeningDate,
             LocalDate ClosingDate,
             Duration MovieDuration) {
-
+        this.id = id;
         this.Title = Title;
         this.Description = Description;
         this.AgeRating = AgeRating;
@@ -120,6 +122,23 @@ public class Movie implements Serializable {
         }
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    /**
+     * This method returns the title of the movie
+     * 
+     * @return the title of the movie
+     */
+    public String getTitle() {
+        return this.Title;
+    }
+
     /**
      * This method sets a new title for the movie
      * 
@@ -127,6 +146,15 @@ public class Movie implements Serializable {
      */
     public void setTitle(String title) {
         this.Title = title;
+    }
+
+    /**
+     * This method returns the description of the movie
+     * 
+     * @return the description of the movie
+     */
+    public String getDescription() {
+        return this.Description;
     }
 
     /**
@@ -139,12 +167,30 @@ public class Movie implements Serializable {
     }
 
     /**
+     * This method returns the age rating of the movie
+     * 
+     * @return the age rating of the movie
+     */
+    public Constants.AGE_CLASSIFICATION getAgeRating() {
+        return this.AgeRating;
+    }
+
+    /**
      * This method sets a new age rating for the movie
      * 
      * @param classification is the new age rating for the movie
      */
     public void setAgeRating(Constants.AGE_CLASSIFICATION classification) {
         this.AgeRating = classification;
+    }
+
+    /**
+     * This method returns the list of actors of the movie
+     * 
+     * @return the actor list of the movie
+     */
+    public ArrayList<String> getActors() {
+        return this.actorList;
     }
 
     /**
@@ -186,6 +232,10 @@ public class Movie implements Serializable {
         System.out.println("This actor does not exist in the list.");
     }
 
+    public ArrayList<String> getDirectors() {
+        return this.directorList;
+    }
+
     /**
      * This method adds a new director to the directorList
      * Firstly it does a search on the current directorList to find if they exist in
@@ -223,6 +273,10 @@ public class Movie implements Serializable {
             }
         }
         System.out.println("This actor does not exist in the list.");
+    }
+
+    public ArrayList<String> getGenre() {
+        return this.genreList;
     }
 
     /**
@@ -264,6 +318,23 @@ public class Movie implements Serializable {
         System.out.println("This actor does not exist in the list.");
     }
 
+    public ArrayList<Review_Ratings> getReviewList() {
+        return this.review_rating_List;
+    }
+
+    public String getOverallRating() {
+        if (this.review_rating_List.size() == 0)
+            return "N/A";
+
+        double total = 0;
+
+        for (int i = 0; i < this.review_rating_List.size(); i++) {
+            total = total + this.review_rating_List.get(i).getRating();
+        }
+        DecimalFormat df = new DecimalFormat("#.##");
+        return df.format(total / review_rating_List.size());
+    }
+
     /**
      * This method adds a new review to the review_rating_List
      * 
@@ -281,6 +352,10 @@ public class Movie implements Serializable {
      */
     public void removeReview(int index) {
         this.review_rating_List.remove(index);
+    }
+
+    public Constants.SHOWING_STATUS getShowingStatus() {
+        return this.ShowingStatus;
     }
 
     /**
@@ -301,6 +376,10 @@ public class Movie implements Serializable {
         }
     }
 
+    public LocalDate getOpeningDate() {
+        return this.OpeningDate;
+    }
+
     /**
      * This method changes the release date of the movie a new value and updates the
      * showing status as well to reflect this new change
@@ -312,6 +391,18 @@ public class Movie implements Serializable {
         setShowingStatus();
     }
 
+    public LocalDate getClosingDate() {
+        return ClosingDate;
+    }
+
+    public void setClosingDate(LocalDate closingDate) {
+        ClosingDate = closingDate;
+    }
+
+    public Duration getDuration() {
+        return this.MovieDuration;
+    }
+
     /**
      * This method changes the duration of the movie to a new value
      * 
@@ -321,76 +412,4 @@ public class Movie implements Serializable {
         this.MovieDuration = newTime;
     }
 
-    /**
-     * This method returns the title of the movie
-     * 
-     * @return the title of the movie
-     */
-    public String getTitle() {
-        return this.Title;
-    }
-
-    /**
-     * This method returns the description of the movie
-     * 
-     * @return the description of the movie
-     */
-    public String getDescription() {
-        return this.Description;
-    }
-
-    /**
-     * This method returns the age rating of the movie
-     * 
-     * @return the age rating of the movie
-     */
-    public Constants.AGE_CLASSIFICATION getAgeRating() {
-        return this.AgeRating;
-    }
-
-    /**
-     * This method returns the list of actors of the movie
-     * 
-     * @return the actor list of the movie
-     */
-    public ArrayList<String> getActors() {
-        return this.actorList;
-    }
-
-    public ArrayList<String> getDirectors() {
-        return this.directorList;
-    }
-
-    public ArrayList<String> getGenre() {
-        return this.genreList;
-    }
-
-    public ArrayList<Review_Ratings> getReviewList() {
-        return this.review_rating_List;
-    }
-
-    public String getOverallRating() {
-        if (this.review_rating_List.size() == 0)
-            return "N/A";
-
-        double total = 0;
-
-        for (int i = 0; i < this.review_rating_List.size(); i++) {
-            total = total + this.review_rating_List.get(i).getRating();
-        }
-        DecimalFormat df = new DecimalFormat("#.##");
-        return df.format(total / review_rating_List.size());
-    }
-
-    public LocalDate getOpeningDate() {
-        return this.OpeningDate;
-    }
-
-    public Constants.SHOWING_STATUS getShowingStatus() {
-        return this.ShowingStatus;
-    }
-
-    public Duration getDuration() {
-        return this.MovieDuration;
-    }
 }

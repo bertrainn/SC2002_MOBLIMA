@@ -1,8 +1,9 @@
 package MOBLIMA;
 
+import MOBLIMA.Control.*;
 import MOBLIMA.Entity.*;
 import MOBLIMA.Entity.Constants;
-import MOBLIMA.Controller.*;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Duration;
@@ -16,49 +17,45 @@ import java.util.ArrayList;
  */
 public class MOBLIMA {
     public static void main(String[] args) {
-
-        String title = "MOBLIMA";
-        String description = "Test";
+        String title = "Top Gun";
+        String description = "After thirty years, Maverick is still pushing the envelope as a top naval aviator, but  must confront ghosts of his past when he leads TOP GUN’s elite graduates on a mission that demands the ultimate  sacrifice  from those chosen to fly it.";
         Constants.AGE_CLASSIFICATION AgeRating = Constants.AGE_CLASSIFICATION.PG13;
 
         ArrayList<String> actors = new ArrayList<String>();
-        actors.add("jim");
+        actors.add("Tom Cruise");
+        actors.add("Jennifer Connelly");
 
         ArrayList<String> director = new ArrayList<String>();
-        director.add("jim");
+        director.add("Joseph Kosinski");
 
         ArrayList<String> genre = new ArrayList<String>();
-        genre.add("yes");
+        genre.add("Action");
+        genre.add("Adventure");
 
         ArrayList<Review_Ratings> reviews = new ArrayList<Review_Ratings>();
 
-        Review_Ratings test = new Review_Ratings(5.0, "Pretty Good");
-        reviews.add(test);
+        Review_Ratings review_1 = new Review_Ratings(5,
+                "Brings Maverick’s story full circle in a satisfying manner that adds depth and dimension to its predecessor, but still tells a story that’s all its own.");
+        reviews.add(review_1);
 
-        Review_Ratings test2 = new Review_Ratings(4.0, "Pretty okay");
-        reviews.add(test2);
+        Review_Ratings review_2 = new Review_Ratings(4,
+                "It helps that the filmmaking is pretty much impeccable, with director Joseph Kosinski providing the kind of clear, streamlined action sequences that make blockbuster spectacle feel fun instead of mandatory.");
+        reviews.add(review_2);
 
-        LocalDate releasedate = LocalDate.of(2022, 10, 25);
-        LocalDate closingdate = LocalDate.of(2022, 11, 30);
-        Duration current = Duration.ofMinutes(84);
+        Review_Ratings review_3 = new Review_Ratings(5,
+                "Somehow Cruise's foray back into the danger zone will be remembered more than the original, setting a new standard in the era of reboots.");
+        reviews.add(review_3);
 
-        Movie movie = new Movie(title, description, AgeRating, actors, director, genre, reviews, releasedate,
-                closingdate,
-                current);
-        // System.out.println(movie.getAgeRating());
-        String text = movie.getOpeningDate().atStartOfDay().format(Constants.bookingFormat);
-        // System.out.println(movie.getOverallRating());
-        // System.out.println(movie.getShowingStatus());
-        // System.out.println(movie.getAgeRating());
+        LocalDate releasedate = LocalDate.of(2022, 5, 27);
+        LocalDate closingdate = releasedate.plusDays(30);
+        Duration current = Duration.ofMinutes(131);
 
-        Seat s = new Seat(0, 5, 5);
-
-        Ticket t = new Ticket(Constants.TICKET_TYPE.MON_TO_THU, Constants.MOVIE_TYPE.ULTIMA_TWO_D, s);
-
-        // System.out.println(t.getPrice());
-        // System.out.println(text);
         Movie_Controller mc = new Movie_Controller();
         ArrayList<Movie> movies = mc.readFile();
+
+        mc.addMovie(title, description, AgeRating, actors, director, genre, reviews, releasedate,
+                closingdate,
+                current);
 
         for (int i = 0; i < movies.size(); i++) {
             System.out.println(movies.get(i).getTitle());
