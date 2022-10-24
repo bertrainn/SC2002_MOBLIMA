@@ -9,14 +9,12 @@ import java.util.ArrayList;
 
 public class Movie_Controller {
     private ArrayList<Movie> movieList;
-    private int movieCount;
 
     /**
      * Constructor for the Movie Controller class
      */
     public Movie_Controller() {
         this.movieList = new ArrayList<Movie>();
-        this.movieCount = 0;
     }
 
     /**
@@ -32,28 +30,28 @@ public class Movie_Controller {
         this.movieList = movieList;
     }
 
+    public boolean doesMovieExist(String Title) {
+        for (int i = 0; i < movieList.size(); i++) {
+            if (movieList.get(i).getTitle().compareToIgnoreCase(Title) == 0) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     /**
      * This method adds a new movie to the movie list of the cinema
      * 
      * @param movie is the new movie to be added to the movie list
      */
     public void addMovie(Movie movie) {
-        if (this.movieList.contains(movie)) {
-            System.out.println("This movie already exists.");
-            return;
-        } else {
-            this.movieList.add(movie);
-            System.out.println("This movie has been successfully added.");
-        }
+        this.movieList.add(movie);
+        System.out.println("This movie has been successfully added.");
     }
 
     public void removeMovie(Movie movie) {
-        if (this.movieList.contains(movie)) {
-            this.movieList.remove(movie);
-            System.out.println("This movie has been successfully removed.");
-        } else {
-            System.out.println("This movie does not exist.");
-        }
+        this.movieList.remove(movie);
+        System.out.println("This movie has been successfully removed.");
     }
 
     /**
@@ -62,6 +60,6 @@ public class Movie_Controller {
      * @return the movie count of the cinema
      */
     public int getMovieCount() {
-        return movieCount;
+        return movieList.size();
     }
 }

@@ -1,6 +1,7 @@
 package MOBLIMA.Entity;
+import java.io.Serializable;
 
-public class Review_Ratings {
+public class Review_Ratings implements Serializable{
     private double Rating;
     private String Review;
 

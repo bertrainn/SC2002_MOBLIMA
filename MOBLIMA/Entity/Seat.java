@@ -1,6 +1,8 @@
 package MOBLIMA.Entity;
 
-public class Seat {
+import java.io.Serializable;
+
+public class Seat implements Serializable{
 
     private int SeatID;
     private int col, row;

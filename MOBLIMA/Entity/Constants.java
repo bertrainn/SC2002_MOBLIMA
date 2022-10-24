@@ -33,6 +33,11 @@ public class Constants {
     public static DateFormat dateTimeFormat = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT);
 
     /**
+     * Separator to read in files.
+     */
+    public static final String SEPARATOR = "|";
+
+    /**
      * Enums Values
      */
 

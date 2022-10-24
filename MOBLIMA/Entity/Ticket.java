@@ -1,5 +1,7 @@
 package MOBLIMA.Entity;
 
+import java.io.Serializable;
+
 /**
  * TODO:
  * 
@@ -12,7 +14,7 @@ package MOBLIMA.Entity;
  * is after 6pm on friday and they aren't a student then tickettype =
  * Fri_Weekend_PH
  */
-public class Ticket {
+public class Ticket implements Serializable {
     private double price;
     private Constants.TICKET_TYPE TicketType;
     private Constants.MOVIE_TYPE MovieType;

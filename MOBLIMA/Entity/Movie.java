@@ -1,5 +1,7 @@
 package MOBLIMA.Entity;
 
+import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.time.LocalDate;
 import java.time.Duration;
@@ -8,7 +10,7 @@ import java.time.Duration;
  * Represents an instance of a movie used in the system.
  */
 
-public class Movie {
+public class Movie implements Serializable {
 
     /**
      * Title of the movie.
@@ -48,7 +50,7 @@ public class Movie {
     /**
      * The release date of this movie
      */
-    private LocalDate ReleaseDate;
+    private LocalDate OpeningDate;
 
     /**
      * The when the movie is not showing anymore
@@ -74,13 +76,13 @@ public class Movie {
      * @param directorList  list of directors who worked on the movie
      * @param genreList     list of genres that the movie falls into
      * @param reviewList    list of reviews and ratings that the movie have
-     * @param ReleaseDate   release date of the movie
+     * @param OpeningDate   Opening date of the movie
      * @param ClosingDate   closing date of the movie
      * @param MovieDuration how long the movie lasts in minutes???
      */
     public Movie(String Title, String Description, Constants.AGE_CLASSIFICATION AgeRating, ArrayList<String> actorList,
             ArrayList<String> directorList,
-            ArrayList<String> genreList, ArrayList<Review_Ratings> reviewList, LocalDate ReleaseDate,
+            ArrayList<String> genreList, ArrayList<Review_Ratings> reviewList, LocalDate OpeningDate,
             LocalDate ClosingDate,
             Duration MovieDuration) {
 
@@ -90,7 +92,7 @@ public class Movie {
         this.actorList = actorList;
         this.directorList = directorList;
         this.review_rating_List = reviewList;
-        this.ReleaseDate = ReleaseDate;
+        this.OpeningDate = OpeningDate;
         this.ClosingDate = ClosingDate;
         this.MovieDuration = MovieDuration;
 
@@ -100,11 +102,6 @@ public class Movie {
         LocalDate today = LocalDate.now();
 
         /**
-         * releaseCheck is the number of dates difference between today and the movie's
-         * release date
-         */
-        long releaseCheck = Duration.between(this.ReleaseDate.atStartOfDay(), today.atStartOfDay()).toDays();
-        /**
          * If the movie is out for more than 30 days ~ a months -> End of showings
          * movie is out from between 0 and 30 days -> Now Showing
          * The movie is 2 days till release -> preview
@@ -113,15 +110,13 @@ public class Movie {
 
         if (today.isAfter(this.ClosingDate)) {
             this.ShowingStatus = Constants.SHOWING_STATUS.EOS;
-        }
-        if (releaseCheck > 30) {
-            this.ShowingStatus = "End of Showing";
-        } else if (releaseCheck > 0) {
-            this.ShowingStatus = "Now Showing";
-        } else if (releaseCheck >= -2) {
-            this.ShowingStatus = "Preview";
+        } else if (today.isEqual(this.ClosingDate) || today.isEqual(this.OpeningDate)
+                || (today.isBefore(this.ClosingDate) && today.isAfter(this.OpeningDate))) {
+            this.ShowingStatus = Constants.SHOWING_STATUS.NS;
+        } else if (Duration.between(this.OpeningDate.atStartOfDay(), today.atStartOfDay()).toDays() >= -2) {
+            this.ShowingStatus = Constants.SHOWING_STATUS.P;
         } else {
-            this.ShowingStatus = "Coming Soon";
+            this.ShowingStatus = Constants.SHOWING_STATUS.CS;
         }
     }
 
@@ -294,15 +289,15 @@ public class Movie {
      */
     public void setShowingStatus() {
         LocalDate today = LocalDate.now();
-        long releaseCheck = Duration.between(this.ReleaseDate.atStartOfDay(), today.atStartOfDay()).toDays();
-        if (releaseCheck > 30) {
-            this.ShowingStatus = "End of Showing";
-        } else if (releaseCheck > 0) {
-            this.ShowingStatus = "Now Showing";
-        } else if (releaseCheck <= -2) {
-            this.ShowingStatus = "Preview";
+        if (today.isAfter(this.ClosingDate)) {
+            this.ShowingStatus = Constants.SHOWING_STATUS.EOS;
+        } else if (today.isEqual(this.ClosingDate) || today.isEqual(this.OpeningDate)
+                || (today.isBefore(this.ClosingDate) && today.isAfter(this.OpeningDate))) {
+            this.ShowingStatus = Constants.SHOWING_STATUS.NS;
+        } else if (Duration.between(this.OpeningDate.atStartOfDay(), today.atStartOfDay()).toDays() >= -2) {
+            this.ShowingStatus = Constants.SHOWING_STATUS.P;
         } else {
-            this.ShowingStatus = "Coming Soon";
+            this.ShowingStatus = Constants.SHOWING_STATUS.CS;
         }
     }
 
@@ -312,8 +307,8 @@ public class Movie {
      * 
      * @param newDate is the new release date of the movie
      */
-    public void setReleaseDate(LocalDate newDate) {
-        this.ReleaseDate = newDate;
+    public void setOpeningDate(LocalDate newDate) {
+        this.OpeningDate = newDate;
         setShowingStatus();
     }
 
@@ -383,8 +378,8 @@ public class Movie {
         return total / review_rating_List.size();
     }
 
-    public LocalDate getReleaseDate() {
-        return this.ReleaseDate;
+    public LocalDate getOpeningDate() {
+        return this.OpeningDate;
     }
 
     public Constants.SHOWING_STATUS getShowingStatus() {

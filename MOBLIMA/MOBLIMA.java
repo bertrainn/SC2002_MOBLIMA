@@ -19,7 +19,7 @@ public class MOBLIMA {
 
         String title = "MOBLIMA";
         String description = "Test";
-        Constants.Classification AgeRating = Constants.Classification.PG13;
+        Constants.AGE_CLASSIFICATION AgeRating = Constants.AGE_CLASSIFICATION.PG13;
 
         ArrayList<String> actors = new ArrayList<String>();
         actors.add("jim");
@@ -38,22 +38,22 @@ public class MOBLIMA {
         Review_Ratings test2 = new Review_Ratings(4.0, "Pretty okay");
         reviews.add(test2);
 
-        LocalDate releasedate = LocalDate.of(2022, 1, 1);
-        LocalDate closingdate = LocalDate.of(2022, 1, 30);
+        LocalDate releasedate = LocalDate.of(2022, 10, 25);
+        LocalDate closingdate = LocalDate.of(2022, 11, 30);
         Duration current = Duration.ofMinutes(84);
 
         Movie movie = new Movie(title, description, AgeRating, actors, director, genre, reviews, releasedate,
                 closingdate,
                 current);
         System.out.println(movie.getAgeRating());
-        String text = movie.getReleaseDate().atStartOfDay().format(Constants.bookingFormat);
+        String text = movie.getOpeningDate().atStartOfDay().format(Constants.bookingFormat);
         System.out.println(movie.getOverallRating());
         System.out.println(movie.getShowingStatus());
         System.out.println(movie.getAgeRating());
 
         Seat s = new Seat(0, 5, 5);
 
-        Ticket t = new Ticket(Constants.TicketType.MON_TO_THU, Constants.MovieType.ULTIMA_TWO_D, s);
+        Ticket t = new Ticket(Constants.TICKET_TYPE.MON_TO_THU, Constants.MOVIE_TYPE.ULTIMA_TWO_D, s);
 
         System.out.println(t.getPrice());
         System.out.println(text);
@@ -61,5 +61,6 @@ public class MOBLIMA {
         Movie_Controller controller = new Movie_Controller();
         controller.addMovie(movie);
         controller.addMovie(movie);
+        System.out.println(controller.getMovieCount());
     }
 }

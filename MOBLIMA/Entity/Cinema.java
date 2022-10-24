@@ -1,11 +1,13 @@
 package MOBLIMA.Entity;
 
+import java.io.Serializable;
+
 import java.util.ArrayList;
 
 /**
  * The entity class to contain cinema informtaion
  */
-public class Cinema {
+public class Cinema implements Serializable{
 
     /**
      * Name of cinema.

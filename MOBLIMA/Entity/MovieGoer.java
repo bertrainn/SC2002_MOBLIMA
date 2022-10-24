@@ -1,9 +1,11 @@
 package MOBLIMA.Entity;
 
+import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class MovieGoer {
+public class MovieGoer implements Serializable{
     private String Username;
     private String Password;
     private String Name;

@@ -1,9 +1,11 @@
 package MOBLIMA.Entity;
 
+import java.io.Serializable;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-public class Booking {
+public class Booking implements Serializable{
     private String TID;
     private LocalDateTime Timestamp;
     private double TotalAmount;
