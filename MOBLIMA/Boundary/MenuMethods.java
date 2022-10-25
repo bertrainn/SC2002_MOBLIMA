@@ -23,5 +23,15 @@ public class MenuMethods {
 			System.out.println(s);
 		}
 	}
+	
+	public static int userInput() {
+		System.out.print("Enter choice: ");
+		int choice;
+		Scanner sc = new Scanner(System.in);
+		choice = sc.nextInt();
+		
+		
+		return choice;
+	}
 
 }
