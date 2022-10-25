@@ -33,5 +33,20 @@ public class MenuMethods {
 		
 		return choice;
 	}
-
+	
+	public static bool adminAuthorise() {
+		String _user = "GV";
+		String _pw = '123456';
+		System.out.print("Enter username: ");
+		Scanner sc = new Scanner(System.in);
+		String user = sc.nextLine();
+		System.out.print("Enter password: ");
+		String pw = sc.nextLine();
+		
+		if (_user == user && _pw == pw)
+			return True;
+		else	
+			return False;
+		
+		
 }
