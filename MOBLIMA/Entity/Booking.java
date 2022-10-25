@@ -5,19 +5,24 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-public class Booking implements Serializable{
+public class Booking implements Serializable {
+
+    /**
+     * Transaction ID of the Booking
+     * Format of TID = XXXYYYYMMDDhhmmm (Y: Year, M: Month, D: Day, h: Hour, m:
+     * Minute, XXX: Cinema Code)
+     */
     private String TID;
-    private LocalDateTime Timestamp;
     private double TotalAmount;
     private Cinema cinema;
     private Movie movie;
     private ArrayList<Ticket> TicketList = new ArrayList<Ticket>();
     private MovieGoer user;
 
-    public Booking(String TID, LocalDateTime Timestamp, double TotalAmount, Cinema cinema, Movie movie,
+    public Booking(double TotalAmount, Cinema cinema, Movie movie,
             ArrayList<Ticket> ticketList, MovieGoer user) {
-        this.TID = TID;
-        this.Timestamp = Timestamp;
+        String TimeStamp = LocalDateTime.now().format(Constants.bookingFormat);
+        this.TID = cinema.getcinemaCode() + TimeStamp;
         this.TotalAmount = TotalAmount;
         this.cinema = cinema;
         this.movie = movie;
@@ -31,14 +36,6 @@ public class Booking implements Serializable{
 
     public void setTID(String TID) {
         this.TID = TID;
-    }
-
-    public LocalDateTime getTimeStamp() {
-        return this.Timestamp;
-    }
-
-    public void setTimeStamp(LocalDateTime Timestamp) {
-        this.Timestamp = Timestamp;
     }
 
     public double getTotalAmount() {

@@ -94,7 +94,6 @@ public class Movie_Controller {
             } catch (IOException e) {
             }
         }
-
     }
 
     public void updateMovie(int choice, int id, Object obj) {

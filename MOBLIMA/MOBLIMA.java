@@ -56,7 +56,7 @@ public class MOBLIMA {
         // }
         // sl.printLayout();
 
-        Admin_Controller ac = new Admin_Controller();
+        Movie_Controller mc = new Movie_Controller();
 
         ArrayList<Admin> al = ac.readFile();
 
