@@ -19,18 +19,18 @@ import java.time.LocalDate;
 public class Movie_Controller {
     public final static String FILENAME = "MOBLIMA/Data/Movie.txt";
 
-    public final static int ID_CHOICE = 0;
-    public final static int TITLE_CHOICE = 1;
-    public final static int DESC_CHOICE = 2;
-    public final static int AGERATING_CHOICE = 3;
-    public final static int ACTOR_CHOICE = 4;
-    public final static int DIRECTOR_CHOICE = 5;
-    public final static int GENRE_CHOICE = 6;
-    public final static int REVIEW_CHOICE = 7;
-    public final static int OPENING_CHOICE = 8;
-    public final static int CLOSING_CHOICE = 9;
-    public final static int SHOWING_CHOICE = 10;
-    public final static int DURATION_CHOICE = 11;
+    public final static int CHOICE_ID = 0;
+    public final static int CHOICE_TITLE = 1;
+    public final static int CHOICE_DESC = 2;
+    public final static int CHOICE_AGERATING = 3;
+    public final static int CHOICE_ACTOR = 4;
+    public final static int CHOICE_DIRECTOR = 5;
+    public final static int CHOICE_GENRE = 6;
+    public final static int CHOICE_REVIEW = 7;
+    public final static int CHOICE_OPENING = 8;
+    public final static int CHOICE_CLOSING = 9;
+    public final static int CHOICE_SHOWING = 10;
+    public final static int CHOICE_DURATION = 11;
 
     public Movie_Controller() {
     }
@@ -106,40 +106,40 @@ public class Movie_Controller {
             m = Data.get(i);
             if (m.getId() == id) {
                 switch (choice) {
-                    case ID_CHOICE:
+                    case CHOICE_ID:
                         m.setId((int) obj);
                         break;
-                    case TITLE_CHOICE:
+                    case CHOICE_TITLE:
                         m.setTitle((String) obj);
                         break;
-                    case DESC_CHOICE:
+                    case CHOICE_DESC:
                         m.setDescription((String) obj);
                         break;
-                    case AGERATING_CHOICE:
+                    case CHOICE_AGERATING:
                         m.setAgeRating((Constants.AGE_CLASSIFICATION) obj);
                         break;
-                    case ACTOR_CHOICE:
+                    case CHOICE_ACTOR:
                         m.setActor((ArrayList<String>) obj);
                         break;
-                    case DIRECTOR_CHOICE:
+                    case CHOICE_DIRECTOR:
                         m.setDirector((ArrayList<String>) obj);
                         break;
-                    case GENRE_CHOICE:
+                    case CHOICE_GENRE:
                         m.setGenre((ArrayList<String>) obj);
                         break;
-                    case REVIEW_CHOICE:
+                    case CHOICE_REVIEW:
                         m.setReview((ArrayList<Review_Ratings>) obj);
                         break;
-                    case OPENING_CHOICE:
+                    case CHOICE_OPENING:
                         m.setOpeningDate((LocalDate) obj);
                         break;
-                    case CLOSING_CHOICE:
+                    case CHOICE_CLOSING:
                         m.setClosingDate((LocalDate) obj);
                         break;
-                    case SHOWING_CHOICE:
+                    case CHOICE_SHOWING:
                         m.setShowingStatus();
                         break;
-                    case DURATION_CHOICE:
+                    case CHOICE_DURATION:
                         m.setDuration((Duration) obj);
                         break;
                     default:

@@ -7,32 +7,37 @@ import java.util.ArrayList;
 /**
  * The entity class to contain cinema informtaion
  */
-public class Cinema implements Serializable{
+public class Cinema implements Serializable {
 
     /**
      * Name of cinema.
      */
+    private String cinemaCode;
     private String cinemaName;
     private boolean isPlat;
-    private ArrayList<Seat> seatList;
-    private int col, row;
-    private String cinemaCode;
-    private String cineplex;
+    private SeatLayout SeatPlan;
+    private ArrayList<MovieSession> MovieSessions;
 
     /**
      * Constructor for the Cinema class
      * 
      * @param name Name of the Cinema
      */
-    public Cinema(String cinemaName, boolean isPlat, ArrayList<Seat> SeatList, int col, int row, String cinemaCode,
-            String cineplex) {
+    public Cinema(String cinemaCode, String cinemaName, boolean isPlat, SeatLayout SeatPlan,
+            ArrayList<MovieSession> MovieSessions) {
+        this.cinemaCode = cinemaCode;
         this.cinemaName = cinemaName;
         this.isPlat = isPlat;
-        this.seatList = SeatList;
-        this.row = row;
-        this.col = col;
+        this.SeatPlan = SeatPlan;
+        this.MovieSessions = MovieSessions;
+    }
+
+    public String getcinemaCode() {
+        return this.cinemaCode;
+    }
+
+    public void setcinemaCode(String cinemaCode) {
         this.cinemaCode = cinemaCode;
-        this.cineplex = cineplex;
     }
 
     /**
@@ -53,7 +58,7 @@ public class Cinema implements Serializable{
         return cinemaName;
     }
 
-    public boolean isPlat() {
+    public boolean getisPlat() {
         return this.isPlat;
     }
 
@@ -61,43 +66,19 @@ public class Cinema implements Serializable{
         this.isPlat = isPlat;
     }
 
-    public ArrayList<Seat> getseatList() {
-        return this.seatList;
+    public SeatLayout getSeatPlan() {
+        return SeatPlan;
     }
 
-    public void setseatList(ArrayList<Seat> seatList) {
-        this.seatList = seatList;
+    public void setSeatPlan(SeatLayout seatPlan) {
+        SeatPlan = seatPlan;
     }
 
-    public int getRow() {
-        return this.row;
+    public ArrayList<MovieSession> getMovieSessions() {
+        return this.MovieSessions;
     }
 
-    public void setRow(int row) {
-        this.row = row;
-    }
-
-    public int getCol() {
-        return this.col;
-    }
-
-    public void setCol(int col) {
-        this.col = col;
-    }
-
-    public String getcinemaCode() {
-        return this.cinemaCode;
-    }
-
-    public void setcinemaCode(String cinemaCode) {
-        this.cinemaCode = cinemaCode;
-    }
-
-    public String getCinplex() {
-        return this.cineplex;
-    }
-
-    public void setcineplex(String cineplex) {
-        this.cineplex = cineplex;
+    public void setMovieSessions(ArrayList<MovieSession> MovieSessions) {
+        this.MovieSessions = MovieSessions;
     }
 }
