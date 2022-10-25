@@ -4,10 +4,21 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 public class Holiday implements Serializable {
+    private String name;
     private LocalDate date;
 
-    public Holiday(LocalDate date) {
+    public Holiday(String name, LocalDate date) {
+        this.name = name;
         this.date = date;
+
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public LocalDate getDate() {
@@ -24,7 +35,7 @@ public class Holiday implements Serializable {
 
     @Override
     public String toString() {
-        return String.format("The holiday is on %S", this.getDateString());
+        return String.format("%S is on %S", this.name, this.getDateString());
     }
 
 }

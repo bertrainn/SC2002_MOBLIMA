@@ -50,10 +50,18 @@ public class MOBLIMA {
         // System.out.println(movies.get(i).getId());
         // }
 
-        SeatLayout sl = new SeatLayout(6, 6);
-        for (int i = 0; i < 6 * 6; i += 2) {
-            sl.assignSeats(i);
+        // SeatLayout sl = new SeatLayout(6, 6);
+        // for (int i = 0; i < 6 * 6; i += 2) {
+        // sl.assignSeats(i);
+        // }
+        // sl.printLayout();
+
+        Admin_Controller ac = new Admin_Controller();
+
+        ArrayList<Admin> al = ac.readFile();
+
+        for (int i = 0; i < al.size(); i++) {
+            System.out.println(al.get(i).getUsername());
         }
-        sl.printLayout();
     }
 }

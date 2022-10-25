@@ -36,9 +36,4 @@ public class Cineplex implements Serializable {
         this.CinemaList.remove(Cinema);
     }
 
-    @Override
-    public String toString() {
-        return "Cineplex [Name=" + Name + ", CinemaList=" + CinemaList + "]";
-    }
-
 }
