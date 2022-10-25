@@ -193,6 +193,10 @@ public class Movie implements Serializable {
         return this.actorList;
     }
 
+    public void setActor(ArrayList<String> actorList) {
+        this.actorList = actorList;
+    }
+
     /**
      * This method adds a new actor to the ArrayList
      * Firstly it does a search on the current actorList to find if they exist in
@@ -234,6 +238,10 @@ public class Movie implements Serializable {
 
     public ArrayList<String> getDirectors() {
         return this.directorList;
+    }
+
+    public void setDirector(ArrayList<String> directorList) {
+        this.directorList = directorList;
     }
 
     /**
@@ -279,6 +287,10 @@ public class Movie implements Serializable {
         return this.genreList;
     }
 
+    public void setGenre(ArrayList<String> genreList) {
+        this.genreList = genreList;
+    }
+
     /**
      * This method adds a new genre to the genreList
      * Firstly it does a search on the current genreList to find if they exist in
@@ -320,6 +332,10 @@ public class Movie implements Serializable {
 
     public ArrayList<Review_Ratings> getReviewList() {
         return this.review_rating_List;
+    }
+
+    public void setReview(ArrayList<Review_Ratings> review_rating_List) {
+        this.review_rating_List = review_rating_List;
     }
 
     public String getOverallRating() {

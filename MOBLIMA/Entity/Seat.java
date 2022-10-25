@@ -2,20 +2,18 @@ package MOBLIMA.Entity;
 
 import java.io.Serializable;
 
-public class Seat implements Serializable{
+public class Seat implements Serializable {
 
     private int SeatID;
-    private int col, row;
-    private Constants.SEAT_STATUS SeatStatus;
+
+    private boolean IsOccupied;
 
     /**
      * Constructor for the Seats class
      */
-    public Seat(int SeatID, int col, int row) {
+    public Seat(int SeatID) {
         this.SeatID = SeatID;
-        this.col = col;
-        this.row = row;
-        this.SeatStatus = Constants.SEAT_STATUS.Vacant;
+        this.IsOccupied = false;
     }
 
     /**
@@ -36,35 +34,20 @@ public class Seat implements Serializable{
         this.SeatID = seatID;
     }
 
-    public int getCol() {
-        return this.col;
+    public boolean isIsOccupied() {
+        return IsOccupied;
     }
 
-    public void setCol(int col) {
-        this.col = col;
+    public void setIsOccupied(boolean isOccupied) {
+        IsOccupied = isOccupied;
     }
 
-    public int getRow() {
-        return this.row;
+    public void book() {
+        this.IsOccupied = true;
     }
 
-    public void setRow(int row) {
-        this.row = row;
+    public void unbook() {
+        this.IsOccupied = false;
     }
 
-    /**
-     * This method sets a new title for the movie
-     * 
-     * @param title is the new title for the movie
-     */
-    public void setSeatStatus(Constants.SEAT_STATUS s) {
-        this.SeatStatus = s;
-    }
-
-    /**
-     * Returns seat status.
-     */
-    public Constants.SEAT_STATUS getSeatStatus() {
-        return this.SeatStatus;
-    }
 }

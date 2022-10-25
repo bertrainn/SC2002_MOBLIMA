@@ -148,16 +148,4 @@ public class Constants {
             return this.status;
         }
     }
-
-    /**
-     * Status for our seats
-     */
-    public enum SEAT_STATUS {
-        /**
-         * Occupied -> Seat cannot be booked
-         * Vacant -> Seat can be booked
-         */
-        Occupied,
-        Vacant
-    }
 }
