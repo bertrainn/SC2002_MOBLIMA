@@ -2,18 +2,6 @@ package MOBLIMA.Entity;
 
 import java.io.Serializable;
 
-/**
- * TODO:
- * 
- * - Implement Ticket Class
- * - Funcion that calulates the price of the ticket based on the movie + ticket
- * type
- * - Validation will be done at point of entry for the ticket type: i.e. if
- * student/ elderly they are only allowed 2D movies (non-atmos): smth like
- * please enter movie, at that point take the info for the movie, if the movie
- * is after 6pm on friday and they aren't a student then tickettype =
- * Fri_Weekend_PH
- */
 public class Ticket implements Serializable {
     private double price;
     private Constants.TICKET_TYPE TicketType;
