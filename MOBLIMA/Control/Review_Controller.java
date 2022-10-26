@@ -8,44 +8,44 @@ import MOBLIMA.Entity.Movie;
 import MOBLIMA.Entity.MovieGoer;
 
 public class Review_Controller {
-    private Movie_Controller MC;
-    private String FILENAME_MOVIE;
+    private Movie_Controller MovieController;
+    public String FILENAME_MOVIE;
 
-    private MovieGoer_Controller MGC;
-    private String FILENAME_MOVIEGOER;
+    private MovieGoer_Controller MovieGoerController;
+    public String FILENAME_MOVIEGOER;
 
-    public Review_Controller(Movie_Controller MC, MovieGoer_Controller MGC) {
-        this.MC = MC;
-        this.FILENAME_MOVIE = MC.FILENAME;
+    public Review_Controller(Movie_Controller MovieController, MovieGoer_Controller MovieGoerController) {
+        this.MovieController = MovieController;
+        this.FILENAME_MOVIE = MovieController.FILENAME;
 
-        this.MGC = MGC;
-        this.FILENAME_MOVIEGOER = MGC.FILENAME;
+        this.MovieGoerController = MovieGoerController;
+        this.FILENAME_MOVIEGOER = MovieGoerController.FILENAME;
     }
 
-    public Movie_Controller getMC() {
-        return this.MC;
+    public Movie_Controller getMovieController() {
+        return this.MovieController;
     }
 
-    public void setMC(Movie_Controller mC) {
-        this.MC = mC;
+    public void setMovieController(Movie_Controller MovieController) {
+        this.MovieController = MovieController;
     }
 
-    public MovieGoer_Controller getMGC() {
-        return this.MGC;
+    public MovieGoer_Controller getMovieGoerController() {
+        return this.MovieGoerController;
     }
 
-    public void setMGC(MovieGoer_Controller MGC) {
-        this.MGC = MGC;
+    public void setMovieGoerController(MovieGoer_Controller MovieGoerController) {
+        this.MovieGoerController = MovieGoerController;
     }
 
     public void createReview(Movie movie, String username, double rating, String Review) {
         int i;
         Review_Ratings review_ratings = new Review_Ratings(rating, Review);
 
-        ArrayList<Movie> MovieData = this.MC.readFile();
+        ArrayList<Movie> MovieData = this.MovieController.readFile();
         ArrayList<Movie> MovieData_Updated = new ArrayList<Movie>();
 
-        ArrayList<MovieGoer> MovieGoerData = this.MGC.readFile();
+        ArrayList<MovieGoer> MovieGoerData = this.MovieGoerController.readFile();
         ArrayList<MovieGoer> MovieGoerData_Updated = new ArrayList<MovieGoer>();
 
         for (i = 0; i < MovieData.size(); i++) {
@@ -68,7 +68,7 @@ public class Review_Controller {
             MovieGoerData_Updated.add(mg);
         }
 
-        this.MC.replaceFile(MovieData_Updated, FILENAME_MOVIE);
-        this.MGC.replaceFile(MovieGoerData_Updated, FILENAME_MOVIEGOER);
+        this.MovieController.replaceFile(MovieData_Updated, FILENAME_MOVIE);
+        this.MovieGoerController.replaceFile(MovieGoerData_Updated, FILENAME_MOVIEGOER);
     }
 }
