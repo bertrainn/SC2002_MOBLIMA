@@ -1,5 +1,6 @@
 package MOBLIMA.Boundary;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class MenuMethods {
@@ -30,10 +31,23 @@ public class MenuMethods {
 		System.out.println();
 	}
 
-	public static int userInput() {
-		System.out.print("Enter choice: ");
+	public static int userInput(int i, int j) {
 		int choice;
-		choice = sc.nextInt();
+		
+		System.out.print("Enter choice: ");
+		
+		try {
+			choice = sc.nextInt();
+		} catch (InputMismatchException ex) {
+			System.out.println("Invalid selection, please try again.");
+			sc.nextLine();
+			return userInput(i, j);
+		}
+		
+		if (choice < i || choice > j) {
+			System.out.println("Invalid selection, please try again.");
+			return userInput(i, j);
+		}
 
 		return choice;
 	}

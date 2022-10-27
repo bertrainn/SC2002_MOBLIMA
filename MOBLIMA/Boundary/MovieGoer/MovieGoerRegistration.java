@@ -28,7 +28,7 @@ public class MovieGoerRegistration extends BaseMenu {
 			if (username.equals(mg.getUsername())) {
 				flag = 1;
 				System.out.println("Username taken, press 0 to return to main menu, press any other number to try again.");
-				choice = userInput();
+				choice = userInput(0, 9);
 				break;
 			}
 		}
@@ -45,9 +45,9 @@ public class MovieGoerRegistration extends BaseMenu {
 			BoundaryTest.mgc.addMovieGoer(username, pw, name, email, num, null, null);
 			BoundaryTest.movieGoerList = BoundaryTest.mgc.readFile();
 			
-			System.out.println("Registration success, logging in now");
+			System.out.println("Registration success, logging in now...");
 			try {
-				Thread.sleep(1000);
+				Thread.sleep(500);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

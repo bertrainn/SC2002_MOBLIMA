@@ -30,11 +30,18 @@ public class MovieGoerLogin extends BaseMenu{
 				flag = 1;
 				if (pw.equals(mg.getPassword())) {
 					next = new MovieGoerMainMenu();
+					BoundaryTest.customer = BoundaryTest.movieGoerList.get(i);
+					System.out.println("Logging in...");
+					try {
+						Thread.sleep(500);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
 					break;
 				}
 				else {
 					System.out.println("Incorrect password, press 0 to return to main menu, press any other number to try again.");
-					choice = userInput();
+					choice = userInput(0, 9);
 					break;
 				}
 			}
@@ -43,17 +50,14 @@ public class MovieGoerLogin extends BaseMenu{
 		
 		if (flag == 0) {
 			System.out.println("Username does not exist, press 0 to return to main menu, press any other number to try again.");
-			choice = userInput();
+			choice = userInput(0, 9);
 		}
 		
 		if (choice == 0)
 			navigate(this, new MainMenu());
 		
 		else {
-			BoundaryTest.customer = BoundaryTest.movieGoerList.get(i);
 			navigate(this, next);
 		}
-		
 	}
-
 }

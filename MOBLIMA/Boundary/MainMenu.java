@@ -16,7 +16,7 @@ public class MainMenu extends BaseMenu {
 				  "3. Admin Login",
 				  "4. Exit");
 		
-		int choice = userInput();
+		int choice = userInput(1, 4);
 		
 		switch(choice) {
 			case 1:

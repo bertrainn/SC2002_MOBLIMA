@@ -18,7 +18,7 @@ public class MovieGoerMainMenu extends BaseMenu {
 				"2. Show all movies",
 				"3. Logout");
 		
-		int choice = userInput();
+		int choice = userInput(1, 3);
 		
 		switch(choice) {
 			case 1:
