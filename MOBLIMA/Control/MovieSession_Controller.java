@@ -93,11 +93,47 @@ public class MovieSession_Controller {
     }
 
     public void deleteByID(int id) {
+        ArrayList<Cinema> allCinemas = CinemaControl.getCinema();
+        ArrayList<MovieSession> allMovieSessions = new ArrayList<MovieSession>();
+        ArrayList<MovieSession> updatedList = new ArrayList<MovieSession>();
+        Cinema c;
+        MovieSession ms;
 
+        for (int i = 0; i < allCinemas.size(); i++) {
+            c = allCinemas.get(i);
+            allMovieSessions = c.getMovieSessions();
+            updatedList.clear();
+
+            for (int j = 0; j < allMovieSessions.size(); j++) {
+                ms = allMovieSessions.get(j);
+                if (!(ms.getSessionId() == id)) {
+                    updatedList.add(ms);
+                }
+            }
+            this.CinemaControl.updateCinema(CinemaControl.CHOICE_MOVIESESS, c.getcinemaCode(), updatedList);
+        }
     }
 
-    public void deleteByMovie(int Movieid) {
+    public void deleteByMovie(int movieId) {
+        ArrayList<Cinema> allCinemas = CinemaControl.getCinema();
+        ArrayList<MovieSession> allMovieSessions = new ArrayList<MovieSession>();
+        ArrayList<MovieSession> updatedList = new ArrayList<MovieSession>();
+        Cinema c;
+        MovieSession ms;
 
+        for (int i = 0; i < allCinemas.size(); i++) {
+            c = allCinemas.get(i);
+            allMovieSessions = c.getMovieSessions();
+            updatedList.clear();
+
+            for (int j = 0; j < allMovieSessions.size(); j++) {
+                ms = allMovieSessions.get(j);
+                if (!(ms.getShownMovie().getId() == movieId)) {
+                    updatedList.add(ms);
+                }
+            }
+            this.CinemaControl.updateCinema(CinemaControl.CHOICE_MOVIESESS, c.getcinemaCode(), updatedList);
+        }
     }
 
     public int getLastID() {
