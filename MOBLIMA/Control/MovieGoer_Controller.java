@@ -24,7 +24,7 @@ public class MovieGoer_Controller {
     public final static int CHOICE_EMAIL = 3;
     public final static int CHOICE_PHONE = 4;
     public final static int CHOICE_REVIEW = 5;
-    public final static int CHOICE_BOOKING = 7;
+    public final static int CHOICE_BOOKING = 6;
 
     public MovieGoer_Controller() {
     }
