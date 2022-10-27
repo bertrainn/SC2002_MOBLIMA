@@ -1,4 +1,4 @@
-package MOBLIMA.Boundary;
+package MOBLIMA.Boundary.Admin;
 
 import static MOBLIMA.Boundary.MenuMethods.*;
 
