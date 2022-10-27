@@ -82,7 +82,7 @@ public class Cinema_Controller {
         return OutputList;
     }
 
-    public ArrayList<Cinema> getCinemaByCode(String cineplexCode) {
+    public ArrayList<Cinema> getCinemaByCode(String cineplexName) {
         ArrayList<Cinema> OutputList = new ArrayList<Cinema>();
         ArrayList<Cineplex> cineplexList = CineplexController.readFile();
         Cineplex c;
