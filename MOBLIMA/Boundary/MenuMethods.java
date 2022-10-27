@@ -3,6 +3,8 @@ package MOBLIMA.Boundary;
 import java.util.Scanner;
 
 public class MenuMethods {
+	
+	static Scanner sc = new Scanner(System.in);
 
 	public static void printHeader(String header) {
 		int length = 65;
@@ -25,22 +27,27 @@ public class MenuMethods {
 		for (String s : menu) {
 			System.out.println(s);
 		}
+		System.out.println();
 	}
 
 	public static int userInput() {
 		System.out.print("Enter choice: ");
 		int choice;
-		Scanner sc = new Scanner(System.in);
 		choice = sc.nextInt();
 
 		return choice;
+	}
+	
+	public static String getStringInput(String message) {
+		System.out.print(message);
+		String input = sc.next();
+		return input;
 	}
 
 	public static boolean adminAuthorise() {
 		String _user = "GV";
 		String _pw = "123456";
 		System.out.print("Enter username: ");
-		Scanner sc = new Scanner(System.in);
 		String user = sc.nextLine();
 		System.out.print("Enter password: ");
 		String pw = sc.nextLine();
