@@ -18,13 +18,11 @@ import java.util.HashMap;
 public class MovieGoer_Controller {
 
     public final static String FILENAME = "MOBLIMA/Data/MovieGoer.txt";
-    public final static int CHOICE_USERNAME = 0;
-    public final static int CHOICE_PASSWORD = 1;
-    public final static int CHOICE_NAME = 2;
-    public final static int CHOICE_EMAIL = 3;
-    public final static int CHOICE_PHONE = 4;
-    public final static int CHOICE_REVIEW = 5;
-    public final static int CHOICE_BOOKING = 6;
+    public final static int CHOICE_NAME = 0;
+    public final static int CHOICE_EMAIL = 1;
+    public final static int CHOICE_PHONE = 2;
+    public final static int CHOICE_REVIEW = 3;
+    public final static int CHOICE_BOOKING = 4;
 
     public MovieGoer_Controller() {
     }
