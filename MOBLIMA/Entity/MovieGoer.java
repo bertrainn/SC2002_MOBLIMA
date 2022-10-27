@@ -1,13 +1,9 @@
 package MOBLIMA.Entity;
 
-import java.io.Serializable;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class MovieGoer implements Serializable{
-    private String Username;
-    private String Password;
+public class MovieGoer extends User {
     private String Name;
     private String Email;
     private String Phone;
@@ -17,29 +13,12 @@ public class MovieGoer implements Serializable{
     public MovieGoer(String Username, String Password, String Name, String Email, String Phone,
             HashMap<Movie, Review_Ratings> PostedReviewsList,
             ArrayList<Booking> BookingList) {
-        this.Username = Username;
-        this.Password = Password;
+        super(Username, Password);
         this.Name = Name;
         this.Email = Email;
         this.Phone = Phone;
         this.BookingList = BookingList;
         this.PostedReviewsList = PostedReviewsList;
-    }
-
-    public String getUsername() {
-        return this.Username;
-    }
-
-    public void setUsername(String Username) {
-        this.Username = Username;
-    }
-
-    public String getPassword() {
-        return this.Password;
-    }
-
-    public void setPassword(String Password) {
-        this.Password = Password;
     }
 
     public String getName() {
