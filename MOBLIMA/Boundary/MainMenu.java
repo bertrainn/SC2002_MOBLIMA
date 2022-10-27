@@ -29,7 +29,7 @@ public class MainMenu extends BaseMenu {
 				break;
 			case 4:
 				System.out.println("Exitting application...");
-				back();
+				System.exit(1);
 				break;
 			default:
 				System.out.println("Invalid selection, please try again.");

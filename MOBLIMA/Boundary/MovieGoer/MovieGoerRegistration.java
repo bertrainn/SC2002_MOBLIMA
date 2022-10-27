@@ -52,7 +52,7 @@ public class MovieGoerRegistration extends BaseMenu {
 				e.printStackTrace();
 			}
 			
-			MovieGoer m = new MovieGoer(username, pw, name, email, num, null, null);
+			BoundaryTest.customer = new MovieGoer(username, pw, name, email, num, null, null);
 			navigate(this, new MovieGoerMainMenu());
 		}
 	}

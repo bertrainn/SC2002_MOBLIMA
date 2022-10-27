@@ -50,7 +50,7 @@ public class MovieGoerLogin extends BaseMenu{
 			navigate(this, new MainMenu());
 		
 		else {
-			MovieGoer m = BoundaryTest.movieGoerList.get(i);
+			BoundaryTest.customer = BoundaryTest.movieGoerList.get(i);
 			navigate(this, next);
 		}
 		
