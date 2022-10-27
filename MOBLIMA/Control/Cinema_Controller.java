@@ -89,7 +89,7 @@ public class Cinema_Controller {
         Cinema cinema;
         for (int i = 0; i < cineplexList.size(); i++) {
             c = cineplexList.get(i);
-            if (c.getName().equals(cinepleCode)) {
+            if (c.getName().equals(cineplexName)) {
                 ArrayList<Cinema> temp = c.getCinemaList();
                 for (int j = 0; j < temp.size(); j++) {
                     cinema = temp.get(j);
