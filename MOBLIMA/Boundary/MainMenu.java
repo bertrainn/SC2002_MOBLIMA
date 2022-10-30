@@ -11,14 +11,14 @@ public class MainMenu extends BaseMenu {
 	public void load() {
 		printHeader("Welcome to MOBLIMA");
 		printMenu("Please make a selection: ",
-				  "1. Movie Goer Login",
-				  "2. Movie Goer Registration",
-				  "3. Admin Login",
-				  "4. Exit");
-		
+				"1. Movie Goer Login",
+				"2. Movie Goer Registration",
+				"3. Admin Login",
+				"4. Exit");
+
 		int choice = userInput(1, 4);
-		
-		switch(choice) {
+
+		switch (choice) {
 			case 1:
 				navigate(this, new MovieGoerLogin());
 				break;

@@ -1,9 +1,9 @@
 package MOBLIMA.Boundary.Admin;
 
-import static MOBLIMA.Entity.Movie.*;
+import static MOBLIMA.Entity.Movie;
 
 public class editMovie {
-	
+
 	public static void main(String[] args) {
 		Movie mov = new Movie();
 		System.out.println("Movie title is %s and movie id is %s", mov.getTitle(), mov.getId());
@@ -44,21 +44,5 @@ public class editMovie {
 		} while (choice < 4);
 		sc.close();
 	}
-	
-	
-	
 
-	
-	
-	
-        
-        
-        
-	
-	
-	
-	
-	
-	
-	
 }
