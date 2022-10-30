@@ -10,7 +10,7 @@ public class AdminMainMenu {
 				"1. Create/Update/Remove Movie Listing",
 				"2. Create/Update/Remove cinema showtimes and movies to be shown",
 				"3. Configure system settings",
-				"4. Go back", "");
+				"4. Logout", "");
 	}
 	
 		int choice = userInput(1, 4);
@@ -26,7 +26,8 @@ public class AdminMainMenu {
 					editSettings()
 					break;
 				case 4:
-					
+					BoundaryTest.customer = null;
+					navigate(this, new MainMenu());
 					break;
 			}
 
