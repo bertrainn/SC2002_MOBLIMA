@@ -17,12 +17,16 @@ public class AdminMainMenu {
 
 			switch(choice) {
 				case 1:
+					editMovie();
 					break;
 				case 2:
+					editCinema();
 					break;
 				case 3:
+					editSettings()
 					break;
 				case 4:
+					
 					break;
 			}
 
