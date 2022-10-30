@@ -13,8 +13,6 @@ import java.util.ArrayList;
 public class Admin_Controller {
 
     public final static String FILENAME = "MOBLIMA/Data/Admin.txt";
-    public final static int CHOICE_USERNAME = 0;
-    public final static int CHOICE_PASSWORD = 1;
 
     public Admin_Controller() {
     }
@@ -73,30 +71,6 @@ public class Admin_Controller {
             } catch (IOException e) {
             }
         }
-    }
-
-    public void updateAdmin(int choice, String Username, Object obj) {
-        ArrayList<Admin> Data = readFile();
-        ArrayList<Admin> UpdateData = new ArrayList<Admin>();
-        Admin m;
-
-        for (int i = 0; i < Data.size(); i++) {
-            m = Data.get(i);
-            if (m.getUsername() == Username) {
-                switch (choice) {
-                    case CHOICE_USERNAME:
-                        m.setUsername((String) obj);
-                        break;
-                    case CHOICE_PASSWORD:
-                        m.setPassword((String) obj);
-                        break;
-                    default:
-                        break;
-                }
-            }
-            UpdateData.add(m);
-        }
-        replaceFile(UpdateData, FILENAME);
     }
 
     public void deleteAdmin(String Username) {

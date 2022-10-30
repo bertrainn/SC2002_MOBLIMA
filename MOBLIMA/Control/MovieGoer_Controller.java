@@ -92,12 +92,6 @@ public class MovieGoer_Controller {
             m = Data.get(i);
             if (m.getUsername() == Username) {
                 switch (choice) {
-                    case CHOICE_USERNAME:
-                        m.setUsername((String) obj);
-                        break;
-                    case CHOICE_PASSWORD:
-                        m.setPassword((String) obj);
-                        break;
                     case CHOICE_NAME:
                         m.setName((String) obj);
                         break;
