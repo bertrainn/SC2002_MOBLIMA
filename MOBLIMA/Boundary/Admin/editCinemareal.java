@@ -2,7 +2,7 @@ package MOBLIMA.Boundary.Admin;
 
 import static MOBLIMA.Entity.Cinema.*;
 
-public class editMovie {
+public class editCinema {
 
 	System.out.println("Movie code is %s and movie name is %s", getcinemaCode(), getCinemaName());
 	
