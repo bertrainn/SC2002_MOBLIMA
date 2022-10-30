@@ -12,5 +12,18 @@ public class AdminMainMenu {
 				"3. Configure system settings",
 				"4. Go back", "");
 	}
+	
+		int choice = userInput(1, 4);
+
+			switch(choice) {
+				case 1:
+					break;
+				case 2:
+					break;
+				case 3:
+					break;
+				case 4:
+					break;
+			}
 
 }
