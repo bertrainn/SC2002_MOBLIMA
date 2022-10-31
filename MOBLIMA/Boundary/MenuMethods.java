@@ -30,6 +30,12 @@ public class MenuMethods {
 		}
 		System.out.println();
 	}
+	
+	public static void printMenuWithoutSpace(String... menu) {
+		for (String s : menu) {
+			System.out.println(s);
+		}
+	}
 
 	public static int userInput(int i, int j) {
 		int choice;
@@ -48,6 +54,8 @@ public class MenuMethods {
 			System.out.println("Invalid selection, please try again.");
 			return userInput(i, j);
 		}
+		
+		System.out.println("");
 
 		return choice;
 	}
