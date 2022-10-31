@@ -4,6 +4,7 @@ import static MOBLIMA.Boundary.MenuMethods.*;
 
 import MOBLIMA.Boundary.MovieGoer.MovieGoerLogin;
 import MOBLIMA.Boundary.MovieGoer.MovieGoerRegistration;
+import MOBLIMA.Boundary.Admin.AdminLogin;
 
 public class MainMenu extends BaseMenu {
 
@@ -26,6 +27,7 @@ public class MainMenu extends BaseMenu {
 				navigate(this, new MovieGoerRegistration());
 				break;
 			case 3:
+				navigate(this, new AdminLogin());
 				break;
 			case 4:
 				System.out.println("Exitting application...");

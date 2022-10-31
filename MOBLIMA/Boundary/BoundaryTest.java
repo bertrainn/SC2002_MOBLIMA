@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import MOBLIMA.Control.MovieGoer_Controller;
 import MOBLIMA.Entity.MovieGoer;
+import MOBLIMA.Entity.Admin;
 
 public class BoundaryTest {
 	
@@ -11,7 +12,7 @@ public class BoundaryTest {
 	public static ArrayList<MovieGoer> movieGoerList = mgc.readFile();
 	
 	public static MovieGoer customer;
-	
+	public static Admin adminUser;
 	
 	public static void main(String[] args) {	
 		new MainMenu().load();

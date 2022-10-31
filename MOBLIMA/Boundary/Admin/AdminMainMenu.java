@@ -2,7 +2,9 @@ package MOBLIMA.Boundary.Admin;
 
 import static MOBLIMA.Boundary.MenuMethods.*;
 
-public class AdminMainMenu {
+import MOBLIMA.Boundary.BaseMenu;
+
+public class AdminMainMenu extends BaseMenu  {
 
 	public void showMenu() {
 		printHeader("Admin");

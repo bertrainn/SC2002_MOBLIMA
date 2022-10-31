@@ -34,7 +34,7 @@ public class editMovie {
 				case 5:
 					ArrayList genre = getStringInput("Please enter movie genres: ");
         				mov.setGenre(genre);
-					break
+					break;
 				case 6:
 					ArrayList rev = getStringInput("Please enter movie reviews: ");
        					mov.setReview(rev);	

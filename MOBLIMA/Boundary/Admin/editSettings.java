@@ -1,3 +1,9 @@
+/**
+ * TODO: Implement
+ * Holiday
+ * Ticket price
+ * Edit account details
+ */
 
 package MOBLIMA.Boundary.Admin;
 
@@ -24,6 +30,6 @@ public class editSettings {
 				case 2:
 	                pw = getStringInput("Please enter new password: ");
                     setUsername(pw);
-					break;
-			
+					break;}
+
 }
