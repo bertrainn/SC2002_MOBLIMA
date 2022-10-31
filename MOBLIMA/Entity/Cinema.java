@@ -13,34 +13,34 @@ public class Cinema implements Serializable {
      * Cinema code.
      */
     private String cinemaCode;
-    
+
     /**
      * Name of cinema.
      */
     private String cinemaName;
-    
+
     /**
      * Determine if cinema is 'Platinum'.
      */
     private boolean isPlat;
-    
+
     /**
      * Contains the seating plan.
      */
     private SeatLayout SeatPlan;
-    
+
     /**
-     * The list of movie sessions. 
+     * The list of movie sessions.
      */
     private ArrayList<MovieSession> MovieSessions;
 
     /**
      * Constructor for the Cinema class
      * 
-     * @param cinemaCode Code of Cinema
-     * @param cinemaName Name of the Cinema
-     * @param isPlat Whether Cinema is 'Platinum'
-     * @param SeatPlan Seating layout of the Cinema
+     * @param cinemaCode    Code of Cinema
+     * @param cinemaName    Name of the Cinema
+     * @param isPlat        Whether Cinema is 'Platinum'
+     * @param SeatPlan      Seating layout of the Cinema
      * @param MovieSessions Movie sessions shown in the Cinema
      */
     public Cinema(String cinemaCode, String cinemaName, boolean isPlat, SeatLayout SeatPlan,
@@ -52,7 +52,7 @@ public class Cinema implements Serializable {
         this.MovieSessions = MovieSessions;
     }
 
-     /**
+    /**
      * This method returns the code for the cinema
      * 
      * @return the code of the cinema
@@ -100,7 +100,8 @@ public class Cinema implements Serializable {
     /**
      * This method sets whether Cinema is 'Platinum'
      * 
-     * @param isPlat is either True of False which determines if Cinema is 'Platinum'
+     * @param isPlat is either True of False which determines if Cinema is
+     *               'Platinum'
      */
     public void setisPlat(boolean isPlat) {
         this.isPlat = isPlat;
@@ -135,7 +136,7 @@ public class Cinema implements Serializable {
 
     /**
      * This method sets the movie sessions in the Cinema
-      * 
+     * 
      * @param MovieSessions is the new list of movie sessions in the Cinema
      */
     public void setMovieSessions(ArrayList<MovieSession> MovieSessions) {

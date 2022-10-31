@@ -112,4 +112,14 @@ public class Holiday_Controller {
         }
         replaceFile(UpdateData, FILENAME);
     }
+
+    public boolean isHoliday(LocalDate value) {
+        ArrayList<Holiday> Data = readFile();
+        for (int i = 0; i < Data.size(); i++) {
+            if (Data.get(i).getDate().equals(value)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
