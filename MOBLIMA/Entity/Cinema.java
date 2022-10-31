@@ -10,18 +10,38 @@ import java.util.ArrayList;
 public class Cinema implements Serializable {
 
     /**
-     * Name of cinema.
+     * Cinema code.
      */
     private String cinemaCode;
+    
+    /**
+     * Name of cinema.
+     */
     private String cinemaName;
+    
+    /**
+     * Determine if cinema is 'Platinum'.
+     */
     private boolean isPlat;
+    
+    /**
+     * Contains the seating plan.
+     */
     private SeatLayout SeatPlan;
+    
+    /**
+     * The list of movie sessions. 
+     */
     private ArrayList<MovieSession> MovieSessions;
 
     /**
      * Constructor for the Cinema class
      * 
-     * @param name Name of the Cinema
+     * @param cinemaCode Code of Cinema
+     * @param cinemaName Name of the Cinema
+     * @param isPlat Whether Cinema is 'Platinum'
+     * @param SeatPlan Seating layout of the Cinema
+     * @param MovieSessions Movie sessions shown in the Cinema
      */
     public Cinema(String cinemaCode, String cinemaName, boolean isPlat, SeatLayout SeatPlan,
             ArrayList<MovieSession> MovieSessions) {
@@ -32,10 +52,16 @@ public class Cinema implements Serializable {
         this.MovieSessions = MovieSessions;
     }
 
+     /**
+     * This method returns the code for the cinema
+     */
     public String getcinemaCode() {
         return this.cinemaCode;
     }
 
+    /**
+     * This method sets the code for the cinema
+     */
     public void setcinemaCode(String cinemaCode) {
         this.cinemaCode = cinemaCode;
     }
@@ -58,26 +84,44 @@ public class Cinema implements Serializable {
         return cinemaName;
     }
 
+    /**
+     * This method returns whether Cinema is 'Platinum'
+     */
     public boolean getisPlat() {
         return this.isPlat;
     }
 
+    /**
+     * This method sets whether Cinema is 'Platinum'
+     */
     public void setisPlat(boolean isPlat) {
         this.isPlat = isPlat;
     }
 
+    /**
+     * This method returns the seating plan of the Cinema
+     */
     public SeatLayout getSeatPlan() {
         return SeatPlan;
     }
 
+    /**
+     * This method sets the seating plan of the Cinema
+     */
     public void setSeatPlan(SeatLayout seatPlan) {
         SeatPlan = seatPlan;
     }
 
+    /**
+     * This method returns the movie sessions in the Cinema
+     */
     public ArrayList<MovieSession> getMovieSessions() {
         return this.MovieSessions;
     }
 
+    /**
+     * This method sets the movie sessions in the Cinema
+     */
     public void setMovieSessions(ArrayList<MovieSession> MovieSessions) {
         this.MovieSessions = MovieSessions;
     }
