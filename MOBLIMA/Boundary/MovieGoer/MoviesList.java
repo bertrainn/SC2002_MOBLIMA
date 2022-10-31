@@ -10,6 +10,7 @@ import MOBLIMA.Entity.Movie;
 import MOBLIMA.Entity.MovieGoer;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class MoviesList extends BaseMenu {
 	
@@ -42,6 +43,7 @@ public class MoviesList extends BaseMenu {
 				break;
 			case 3: 
 				topFive = true;
+				showAllMovies();
 				break;
 			case 4: 
 				back();
@@ -54,36 +56,44 @@ public class MoviesList extends BaseMenu {
 		ArrayList<Movie> searchResults = getMovieByTitle(searchInput.toUpperCase());
 		
 		if (searchResults.isEmpty()) {
-			getStringInput("No movies found, press any key to go back");
+			printMenuWithoutSpace("No movies found, enter any number to go back");
+			userInput(0, 9);
 			showMenu();
 		}
 		
 		else {
 			int i = 0;
 			
-			printMenu(searchResults.size() + "results found: ");
+			printMenu(searchResults.size() + " result(s) found: ");
 			for (Movie movie : searchResults)
-				printMenu(++i + "." + movie.getTitle());
+				printMenuWithoutSpace(++i + ". " + movie.getTitle());
 			printMenu(++i + ". Back");
 			
 			int choice = userInput(1, i);
 			
 			if (choice == i)
 				load();
-			else
-				//show the movie details, delete load() when done
-				load();
+			else {
+				Movie m = searchResults.get(choice-1);
+				movieDetails(m);
+			}
+			
 		}
 	}
 	
 	private void showAllMovies() {
 		ArrayList<Movie> movies = null;
 		
-		if (topFive) {}
-		else
+		if (topFive) {
+			printHeader("Top 5 Movies");
+			movies = getTop5Movies();
+		}
+		else {
+			printHeader("All Movies");
 			movies = movieList;
+		}
 		
-		printHeader("Movies");
+		
 		
 		if(movies.isEmpty()) {
 			printMenu("There are no movies");
@@ -94,7 +104,7 @@ public class MoviesList extends BaseMenu {
 		
 		for (Movie m : movies) {
 			if (m.getShowingStatus().equals(Constants.SHOWING_STATUS.EOS)) continue;
-			printMenu(++i + ". " + m.getTitle());
+			printMenuWithoutSpace(++i + ". " + m.getTitle());
 		}
 		
 		printMenu(++i + ". Back");
@@ -105,9 +115,28 @@ public class MoviesList extends BaseMenu {
 			load();
 		else {
 			Movie m = movies.get(choice-1);
-			//show movie details
+			movieDetails(m);
 		}
 		
+	}
+	
+	private void movieDetails(Movie m) {
+		printHeader("Movie Details: " + m.getTitle());
+		printMenu("1. Showtimes",
+				  "2. Reviews",
+				  "3. Back");
+		
+		int choice = userInput(1, 3);
+		switch(choice) {
+			case 1:
+				//navigate to showtimes view
+				break;
+			case 2:
+				//navigate to reviews view
+				break;
+			case 3:
+				showAllMovies();
+		}
 	}
 	
 	private ArrayList<Movie> getMovieByTitle(String searchInput) {
@@ -122,5 +151,19 @@ public class MoviesList extends BaseMenu {
 		
 		return searchResults;
 	}
+	
+	private ArrayList<Movie> getTop5Movies() {
+		ArrayList<Movie> top5 = new ArrayList<>();
+		for (Movie m : movieList)
+			if (!m.getShowingStatus().equals(Constants.SHOWING_STATUS.EOS)) top5.add(m);
+		
+		Collections.sort(top5, (o1 ,o2) -> Double.compare(Double.parseDouble(o1.getOverallRating()), Double.parseDouble(o2.getOverallRating())));
+		
+		while (top5.size() > 5)
+			top5.remove(5);
+		
+		return top5;
+	}
 
 }
+ 
