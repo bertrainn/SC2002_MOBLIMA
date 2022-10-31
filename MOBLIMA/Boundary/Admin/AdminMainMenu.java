@@ -6,6 +6,7 @@ import MOBLIMA.Boundary.BaseMenu;
 import MOBLIMA.Entity.Admin;
 
 import MOBLIMA.Boundary.BoundaryTest;
+import MOBLIMA.Boundary.MainMenu;
 
 public class AdminMainMenu extends BaseMenu {
 
@@ -23,12 +24,16 @@ public class AdminMainMenu extends BaseMenu {
 
 		switch (choice) {
 			case 1:
+				navigate(this, new editMovie());
 				break;
 			case 2:
+				navigate(this, new editCineplex());
 				break;
 			case 3:
+				navigate(this, new editSettings());
 				break;
 			case 4:
+				navigate(this, new MainMenu());
 				break;
 		}
 
