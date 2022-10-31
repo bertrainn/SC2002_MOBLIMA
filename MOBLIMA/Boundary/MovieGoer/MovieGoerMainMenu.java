@@ -14,14 +14,15 @@ public class MovieGoerMainMenu extends BaseMenu {
 		MovieGoer cust = BoundaryTest.customer;
 		printHeader("Welcome to customer main menu, " + cust.getName());
 		printMenu("Choose from one of the following options:",
-				"1. Search for a movie",
-				"2. Show all movies",
+				"1. View Movies",
+				"2. View Booking History",
 				"3. Logout");
 		
 		int choice = userInput(1, 3);
 		
 		switch(choice) {
 			case 1:
+				navigate(this, new MoviesList());
 				break;
 			case 2:
 				break;
