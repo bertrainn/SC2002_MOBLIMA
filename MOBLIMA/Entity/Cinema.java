@@ -54,6 +54,8 @@ public class Cinema implements Serializable {
 
      /**
      * This method returns the code for the cinema
+     * 
+     * @return the code of the cinema
      */
     public String getcinemaCode() {
         return this.cinemaCode;
@@ -61,6 +63,8 @@ public class Cinema implements Serializable {
 
     /**
      * This method sets the code for the cinema
+     * 
+     * @param cinemaCode is the new code for the cinema
      */
     public void setcinemaCode(String cinemaCode) {
         this.cinemaCode = cinemaCode;
@@ -86,6 +90,8 @@ public class Cinema implements Serializable {
 
     /**
      * This method returns whether Cinema is 'Platinum'
+     * 
+     * @return whether Cinema is 'Platinum'
      */
     public boolean getisPlat() {
         return this.isPlat;
@@ -93,6 +99,8 @@ public class Cinema implements Serializable {
 
     /**
      * This method sets whether Cinema is 'Platinum'
+     * 
+     * @param isPlat is either True of False which determines if Cinema is 'Platinum'
      */
     public void setisPlat(boolean isPlat) {
         this.isPlat = isPlat;
@@ -100,6 +108,8 @@ public class Cinema implements Serializable {
 
     /**
      * This method returns the seating plan of the Cinema
+     * 
+     * @return the seating plan of the Cinema
      */
     public SeatLayout getSeatPlan() {
         return SeatPlan;
@@ -107,6 +117,8 @@ public class Cinema implements Serializable {
 
     /**
      * This method sets the seating plan of the Cinema
+     * 
+     * @param seatPlan is the new seating plan for the cinema
      */
     public void setSeatPlan(SeatLayout seatPlan) {
         SeatPlan = seatPlan;
@@ -114,6 +126,8 @@ public class Cinema implements Serializable {
 
     /**
      * This method returns the movie sessions in the Cinema
+     * 
+     * @return the movie sessions of the Cinema
      */
     public ArrayList<MovieSession> getMovieSessions() {
         return this.MovieSessions;
@@ -121,6 +135,8 @@ public class Cinema implements Serializable {
 
     /**
      * This method sets the movie sessions in the Cinema
+      * 
+     * @param MovieSessions is the new list of movie sessions in the Cinema
      */
     public void setMovieSessions(ArrayList<MovieSession> MovieSessions) {
         this.MovieSessions = MovieSessions;
