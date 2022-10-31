@@ -3,34 +3,35 @@ package MOBLIMA.Boundary.Admin;
 import static MOBLIMA.Boundary.MenuMethods.*;
 
 import MOBLIMA.Boundary.BaseMenu;
+import MOBLIMA.Entity.Admin;
 
-public class AdminMainMenu extends BaseMenu  {
+import MOBLIMA.Boundary.BoundaryTest;
 
-	public void showMenu() {
-		printHeader("Admin");
+public class AdminMainMenu extends BaseMenu {
+
+	@Override
+	public void load() {
+		Admin adminUser = BoundaryTest.adminUser;
+		printHeader("Welcome to Admin main menu, " + adminUser.getUsername());
 		printMenu("Choose from one of the following options:",
-				"1. Create/Update/Remove Movie Listing",
-				"2. Create/Update/Remove cinema showtimes and movies to be shown",
-				"3. Configure system settings",
-				"4. Logout", "");
-	}
-	
+				"1. Movie Options",
+				"2. Cinemplex Settings",
+				"3. Edit System Settings",
+				"4. Logout");
+
 		int choice = userInput(1, 4);
 
-			switch(choice) {
-				case 1:
-					editMovie();
-					break;
-				case 2:
-					editCinema();
-					break;
-				case 3:
-					editSettings()
-					break;
-				case 4:
-					BoundaryTest.customer = null;
-					navigate(this, new MainMenu());
-					break;
-			}
+		switch (choice) {
+			case 1:
+				break;
+			case 2:
+				break;
+			case 3:
+				break;
+			case 4:
+				break;
+		}
+
+	}
 
 }
