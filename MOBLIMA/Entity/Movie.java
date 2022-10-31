@@ -122,10 +122,20 @@ public class Movie implements Serializable {
         }
     }
 
+    /**
+     * This method returns the id
+     * 
+     * @return the id
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     * This method sets the id
+     * 
+     * @param id is the new id
+     */
     public void setId(int id) {
         this.id = id;
     }
@@ -193,6 +203,11 @@ public class Movie implements Serializable {
         return this.actorList;
     }
 
+    /**
+     * This method sets the list of actors of the movie
+     * 
+     * @param actorList is the new actor list of the movie
+     */
     public void setActor(ArrayList<String> actorList) {
         this.actorList = actorList;
     }
@@ -236,10 +251,20 @@ public class Movie implements Serializable {
         System.out.println("This actor does not exist in the list.");
     }
 
+    /**
+     * This method returns the list of directors of the movie
+     * 
+     * @return the director list of the movie
+     */
     public ArrayList<String> getDirectors() {
         return this.directorList;
     }
 
+   /**
+     * This method sets a list of directors for the movie
+     * 
+     * @param classification is the new list of directors for the movie
+     */
     public void setDirector(ArrayList<String> directorList) {
         this.directorList = directorList;
     }
@@ -283,10 +308,20 @@ public class Movie implements Serializable {
         System.out.println("This actor does not exist in the list.");
     }
 
+     /**
+     * This method returns the list of genres of the movie
+     * 
+     * @return the genre list of the movie
+     */
     public ArrayList<String> getGenre() {
         return this.genreList;
     }
 
+    /**
+     * This method sets the list of genres of the movie
+     * 
+     * @param genreList is the new genre list of the movie
+     */
     public void setGenre(ArrayList<String> genreList) {
         this.genreList = genreList;
     }
@@ -330,14 +365,29 @@ public class Movie implements Serializable {
         System.out.println("This actor does not exist in the list.");
     }
 
+    /**
+     * This method returns the list of review ratings of the movie
+     * 
+     * @return the review rating list of the movie
+     */
     public ArrayList<Review_Ratings> getReviewList() {
         return this.review_rating_List;
     }
 
+    /**
+     * This method sets the list of review ratings of the movie
+     * 
+     * @param genreList is the new review rating list of the movie
+     */
     public void setReview(ArrayList<Review_Ratings> review_rating_List) {
         this.review_rating_List = review_rating_List;
     }
 
+    /**
+     * This method returns the overall rating of the movie
+     * 
+     * @return the overall rating of the movie
+     */
     public String getOverallRating() {
         if (this.review_rating_List.size() == 0)
             return "N/A";
@@ -370,6 +420,11 @@ public class Movie implements Serializable {
         this.review_rating_List.remove(index);
     }
 
+    /**
+     * This method returns the showing status of the movie
+     * 
+     * @return the showing status of the movie
+     */
     public Constants.SHOWING_STATUS getShowingStatus() {
         return this.ShowingStatus;
     }
@@ -392,6 +447,11 @@ public class Movie implements Serializable {
         }
     }
 
+    /**
+     * This method returns the opening date of the movie
+     * 
+     * @return the opening date of the movie
+     */
     public LocalDate getOpeningDate() {
         return this.OpeningDate;
     }
@@ -407,14 +467,29 @@ public class Movie implements Serializable {
         setShowingStatus();
     }
 
+    /**
+     * This method returns the closing date of the movie
+     * 
+     * @return the closing date of the movie
+     */
     public LocalDate getClosingDate() {
         return ClosingDate;
     }
 
+    /**
+     * This method sets the closting date of the movie
+     * 
+     * @param genreList is the new closing date of the movie
+     */
     public void setClosingDate(LocalDate closingDate) {
         ClosingDate = closingDate;
     }
 
+    /**
+     * This method returns the duration of the movie
+     * 
+     * @return the duration of the movie
+     */
     public Duration getDuration() {
         return this.MovieDuration;
     }
