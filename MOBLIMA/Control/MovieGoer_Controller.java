@@ -90,7 +90,7 @@ public class MovieGoer_Controller {
 
         for (int i = 0; i < Data.size(); i++) {
             m = Data.get(i);
-            if (m.getUsername() == Username) {
+            if (m.getUsername().equals(Username)) {
                 switch (choice) {
                     case CHOICE_NAME:
                         m.setName((String) obj);
@@ -123,7 +123,7 @@ public class MovieGoer_Controller {
 
         for (int i = 0; i < Data.size(); i++) {
             a = Data.get(i);
-            if (!(a.getUsername() == Username)) {
+            if (!(a.getUsername().equals(Username))) {
                 UpdateData.add(a);
             }
         }

@@ -84,7 +84,7 @@ public class Cineplex_Controller {
 
         for (int i = 0; i < Data.size(); i++) {
             m = Data.get(i);
-            if (m.getName() == Name) {
+            if (m.getName().equals(Name)) {
                 switch (choice) {
                     case CHOICE_NAME:
                         m.setName((String) obj);
@@ -108,7 +108,7 @@ public class Cineplex_Controller {
 
         for (int i = 0; i < Data.size(); i++) {
             m = Data.get(i);
-            if (!(m.getName() == Name)) {
+            if (!(m.getName().equals(Name))) {
                 UpdateData.add(m);
             }
         }

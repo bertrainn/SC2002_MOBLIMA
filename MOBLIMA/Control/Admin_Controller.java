@@ -80,7 +80,7 @@ public class Admin_Controller {
 
         for (int i = 0; i < Data.size(); i++) {
             a = Data.get(i);
-            if (!(a.getUsername() == Username)) {
+            if (!(a.getUsername().equals(username))) {
                 UpdateData.add(a);
             }
         }
