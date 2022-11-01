@@ -13,6 +13,7 @@ import MOBLIMA.Entity.Cinema;
 import MOBLIMA.Entity.SeatLayout;
 import MOBLIMA.Entity.MovieSession;
 import MOBLIMA.Entity.Cineplex;
+import MOBLIMA.Entity.Constants;
 
 public class Cinema_Controller {
     private Cineplex_Controller CineplexController;
@@ -20,7 +21,7 @@ public class Cinema_Controller {
 
     public final static int CHOICE_CODE = 0;
     public final static int CHOICE_NAME = 1;
-    public final static int CHOICE_ISPLAT = 2;
+    public final static int CHOICE_CINEMATYPE = 2;
     public final static int CHOICE_SEATPLAN = 3;
     public final static int CHOICE_MOVIESESS = 4;
 
@@ -29,13 +30,14 @@ public class Cinema_Controller {
         FILENAME = CineplexController.FILENAME;
     }
 
-    public void createCinema(String cineplexName, String cinemaCode, String CinemaName, boolean isplat, SeatLayout sl,
+    public void createCinema(String cineplexName, String cinemaCode, String CinemaName,
+            Constants.CINEMA_TYPE cinemaType, SeatLayout sl,
             ArrayList<MovieSession> sessions) {
 
         ArrayList<Cineplex> Data = CineplexController.readFile();
         ArrayList<Cineplex> UpdateData = new ArrayList<Cineplex>();
         Cineplex c;
-        Cinema newCinema = new Cinema(cinemaCode, CinemaName, isplat, sl, sessions);
+        Cinema newCinema = new Cinema(cinemaCode, CinemaName, cinemaType, sl, sessions);
 
         for (int i = 0; i < Data.size(); i++) {
             c = Data.get(i);
@@ -122,8 +124,8 @@ public class Cinema_Controller {
                         case CHOICE_NAME:
                             cinema.setCinemaName((String) obj);
                             break;
-                        case CHOICE_ISPLAT:
-                            cinema.setisPlat((boolean) obj);
+                        case CHOICE_CINEMATYPE:
+                            cinema.setCinemaType((Constants.CINEMA_TYPE) obj);
                             break;
                         case CHOICE_SEATPLAN:
                             cinema.setSeatPlan((SeatLayout) obj);
