@@ -22,8 +22,11 @@ public class AdminLogin extends BaseMenu {
 
 		printHeader("Admin Login");
 
-		String user = getStringInput("Enter your admin username: ");
-		String password = getStringInput("Enter your admin password: ");
+		// String user = getStringInput("Enter your admin username: ");
+		// String password = getStringInput("Enter your admin password: ");
+
+		String user = "admin1";
+		String password = "password";
 
 		for (Admin admin : adminList) {
 			if (user.equals(admin.getUsername())) {

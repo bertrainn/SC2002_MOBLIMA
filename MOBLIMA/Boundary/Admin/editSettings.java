@@ -201,11 +201,38 @@ public class editSettings extends BaseMenu {
 	}
 
 	public void changeTop5() {
-		try {
-			String Top5OrderBy = systemsetting_Controller.readSystemSettings().get(0);
-			System.out.println(Top5OrderBy);
-		} catch (IOException e) {
-			System.out.println(e.getMessage());
+
+		String Top5OrderBy = systemsetting_Controller.readSystemSettings().get(0);
+
+		String newOrderBy = Top5OrderBy;
+		ArrayList<String> update = new ArrayList<String>();
+
+		System.out.println("Top 5 for Movie Goers are currently ordered by " + Top5OrderBy);
+
+		printMenu("Choose from one of the following options:",
+				"1. Change to by review",
+				"2. Change to by Ticket Sales",
+				"3. Back");
+
+		int choice = userInput(1, 3);
+
+		switch (choice) {
+			case 1:
+				newOrderBy = "review";
+				update.add(newOrderBy);
+				break;
+			case 2:
+				newOrderBy = "sales";
+				update.add(newOrderBy);
+				break;
+			default:
+				break;
 		}
+
+		if (!update.isEmpty()) {
+			systemsetting_Controller.saveSystemSettings(update);
+		}
+
+		load();
 	}
 }
