@@ -20,9 +20,9 @@ public class MOBLIMA {
 
         ArrayList<Holiday> dates = controller.readFile();
 
-        for (Holiday h : dates) {
-            System.out.println(h.getName());
-        }
+        String s = getStringInput_Sentence("peepee:");
+
+        System.out.println(s);
 
         // controller.addHoliday("Chirstmas", LocalDate.of(2022, 12, 25));
         // controller.addHoliday("Chinese New Year", LocalDate.of(2022, 2, 12));

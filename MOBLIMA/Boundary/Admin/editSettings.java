@@ -75,6 +75,7 @@ public class editSettings extends BaseMenu {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+		load();
 	}
 
 	public void deleteHolidays() {
@@ -85,7 +86,7 @@ public class editSettings extends BaseMenu {
 
 		if (Hol_list.isEmpty()) {
 			printMenu("There are no holidays in the system.");
-			showMenu();
+			load();
 		}
 		for (Holiday h : Hol_list) {
 			printMenu(++i + ". " + h.getDateString() + ": " + h.getName());

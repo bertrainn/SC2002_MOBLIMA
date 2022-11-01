@@ -60,7 +60,7 @@ public class Review_Controller {
 
         for (i = 0; i < MovieGoerData.size(); i++) {
             MovieGoer mg = MovieGoerData.get(i);
-            if (mg.getUsername().equal(username)) {
+            if (mg.getUsername().equals(username)) {
                 HashMap<Movie, Review_Ratings> reviews = mg.getPostedReviews();
                 reviews.put(movie, review_ratings);
                 mg.setPostedReviews(reviews);
