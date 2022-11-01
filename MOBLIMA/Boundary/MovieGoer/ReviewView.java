@@ -41,7 +41,7 @@ public class ReviewView extends BaseMenu {
 		printHeader("Reviews for " + m.getTitle());
 		ArrayList<Review_Ratings> reviewList = m.getReviewList();
 		if (reviewList.isEmpty()) {
-			printMenu("There are currently no reviews for this movie. Enter any key to go back.");
+			printMenu("There are currently no reviews for this movie. Enter any number to go back.");
 			userInput(0,9);
 			back();
 		}

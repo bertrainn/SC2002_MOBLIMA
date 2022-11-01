@@ -6,6 +6,7 @@ import MOBLIMA.Boundary.BaseMenu;
 import MOBLIMA.Control.Cineplex_Controller;
 import MOBLIMA.Control.MovieGoer_Controller;
 import MOBLIMA.Control.Movie_Controller;
+import MOBLIMA.Control.SystemSettings_Controller;
 import MOBLIMA.Entity.Cineplex;
 import MOBLIMA.Entity.Constants;
 import MOBLIMA.Entity.Movie;
@@ -19,6 +20,8 @@ public class MoviesList extends BaseMenu {
 	private Movie_Controller mc = new Movie_Controller();
 	private Cineplex_Controller cc = new Cineplex_Controller();
 	private MovieGoer_Controller mgc = new MovieGoer_Controller();
+	private SystemSettings_Controller ssc = new SystemSettings_Controller();
+	private String orderBy = ssc.readSystemSettings().get(0);
 	
 	@Override
 	public void load() {
@@ -113,8 +116,8 @@ public class MoviesList extends BaseMenu {
 		ArrayList<Movie> movies = null;
 		
 		if (topFive) {
-			printHeader("Top 5 Movies");
-			movies = getTop5Movies();
+			printHeader("Top 5 Movies (" + orderBy + ")");
+			movies = getTop5Movies(orderBy);
 		}
 		else {
 			printHeader("All Movies");
@@ -162,18 +165,39 @@ public class MoviesList extends BaseMenu {
 		return searchResults;
 	}
 	
-	private ArrayList<Movie> getTop5Movies() {
+	private ArrayList<Movie> getTop5Movies(String orderBy) {
 		ArrayList<Movie> movieList = mc.readFile();
 		ArrayList<Movie> top5 = new ArrayList<>();
 		for (Movie m : movieList)
 			if (!m.getShowingStatus().equals(Constants.SHOWING_STATUS.EOS)) top5.add(m);
-		
-		Collections.sort(top5, (o1 ,o2) -> Double.compare(Double.parseDouble(o1.getOverallRating()), Double.parseDouble(o2.getOverallRating())));
+		if (orderBy == "review") {
+			Collections.sort(top5, (o1 ,o2) -> compareRating(o1, o2));
+		}
+		else {
+			//sort by ticket sales (TBD)
+			Collections.sort(top5, (o1 ,o2) -> compareRating(o1, o2));
+		}
 		
 		while (top5.size() > 5)
 			top5.remove(5);
 		
 		return top5;
 	}
+	
+    private int compareRating(Movie m1, Movie m2) {
+    	String r1 = m1.getOverallRating();
+    	String r2 = m2.getOverallRating();
+    	if (r1 == "N/A")
+    		r1 = "0";
+    	if (r2 == "N/A")
+    		r2 = "0";
+    	
+    	if (Double.parseDouble(r1) == Double.parseDouble(r2))
+    		return 0;
+    	else if (Double.parseDouble(r1) < Double.parseDouble(r2))
+    		return 1;
+    	else
+    		return -1;
+    }
 
 }
