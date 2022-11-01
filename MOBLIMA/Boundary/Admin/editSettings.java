@@ -5,19 +5,21 @@ import static MOBLIMA.Boundary.MenuMethods.*;
 import MOBLIMA.Boundary.BaseMenu;
 import MOBLIMA.Control.Holiday_Controller;
 import MOBLIMA.Control.SystemSettings_Controller;
+import MOBLIMA.Control.Admin_Controller;
 import MOBLIMA.Entity.TicketPrice;
 import MOBLIMA.Entity.Holiday;
+import MOBLIMA.Entity.Admin;
 import MOBLIMA.Entity.Constants;
 
 import java.util.ArrayList;
-import java.io.IOException;
 import java.time.LocalDate;
 
 public class editSettings extends BaseMenu {
 
 	private Holiday_Controller hol_Control = new Holiday_Controller();
-	private TicketPrice ticketPrice = new TicketPrice();
+	private Admin_Controller admin_Control = new Admin_Controller();
 	private SystemSettings_Controller systemsetting_Controller = new SystemSettings_Controller();
+	private TicketPrice ticketPrice = new TicketPrice();
 
 	@Override
 	public void load() {
@@ -35,9 +37,10 @@ public class editSettings extends BaseMenu {
 				"6. Change Cinema Type Pricing",
 				"7. Change Top 5 Ranking Option",
 				"8. Add Admin",
-				"8. Back");
+				"9. Delete Admin",
+				"10. Back");
 
-		int choice = userInput(1, 8);
+		int choice = userInput(1, 10);
 
 		switch (choice) {
 			case 1:
@@ -60,6 +63,12 @@ public class editSettings extends BaseMenu {
 				changeTop5();
 				break;
 			case 8:
+				addNewAdmin();
+				break;
+			case 9:
+				deleteAdmin();
+				break;
+			case 10:
 				back();
 				break;
 		}
@@ -197,7 +206,64 @@ public class editSettings extends BaseMenu {
 		if (choice == i) {
 			load();
 		}
+	}
 
+	public void addNewAdmin() {
+		ArrayList<Admin> admin_list = admin_Control.readFile();
+		int choice = -1;
+		String name;
+		String password;
+		Boolean flag = false;
+
+		name = getStringInput("Enter admin's username: ");
+		password = getStringInput("Enter admin's password: ");
+
+		admin_Control.addAdmin(name, password);
+		System.out.println("Addition success, returning to settings menu...");
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		load();
+	}
+
+	public void deleteAdmin() {
+		ArrayList<Admin> admin_list = admin_Control.readFile();
+		Admin temp;
+		int i = 0;
+		int choice;
+
+		if (admin_list.size() <= 1) {
+			System.out
+					.println("There is only 1 admin account left in the system, you're unable to delete this account");
+			load();
+		}
+
+		for (Admin a : admin_list) {
+			printMenu(++i + ". " + a.getUsername());
+		}
+
+		printMenu(++i + ". Back");
+
+		printMenu("Enter the id of admin to remove from the system: ");
+
+		choice = userInput(1, i);
+
+		if (choice == i) {
+			load();
+		}
+
+		temp = admin_list.get(choice - 1);
+		admin_Control.deleteAdmin(temp.getUsername());
+
+		System.out.println("Deletion success, returning to settings menu...");
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		load();
 	}
 
 	public void changeTop5() {
