@@ -2,9 +2,11 @@ package MOBLIMA.Boundary;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.time.LocalDate;
+import MOBLIMA.Entity.Constants;
 
 public class MenuMethods {
-	
+
 	static Scanner sc = new Scanner(System.in);
 
 	public static void printHeader(String header) {
@@ -30,7 +32,7 @@ public class MenuMethods {
 		}
 		System.out.println();
 	}
-	
+
 	public static void printMenuWithoutSpace(String... menu) {
 		for (String s : menu) {
 			System.out.println(s);
@@ -39,9 +41,9 @@ public class MenuMethods {
 
 	public static int userInput(int i, int j) {
 		int choice;
-		
+
 		System.out.print("Enter choice: ");
-		
+
 		try {
 			choice = sc.nextInt();
 		} catch (InputMismatchException ex) {
@@ -49,21 +51,46 @@ public class MenuMethods {
 			sc.nextLine();
 			return userInput(i, j);
 		}
-		
+
 		if (choice < i || choice > j) {
 			System.out.println("Invalid selection, please try again.");
 			return userInput(i, j);
 		}
-		
+
 		System.out.println("");
 
 		return choice;
 	}
-	
+
 	public static String getStringInput(String message) {
 		System.out.print(message);
 		String input = sc.next();
 		return input;
+	}
+
+	public static String getStringInput_Sentence(String message) {
+		System.out.print(message);
+		String input = "";
+		input += sc.nextLine();
+		return input;
+	}
+
+	public static LocalDate getDateInput(String message) {
+		System.out.print(message);
+		String input = "";
+		input += sc.nextLine();
+		LocalDate parsedDate = LocalDate.parse(input, Constants.dateFormatLong);
+		return parsedDate;
+	}
+
+	public static LocalDate getDateInput_NoYear(String message) {
+		System.out.print(message);
+		String input = "";
+		input += sc.nextLine();
+		// Year is arbitrary
+		input += " 2022";
+		LocalDate parsedDate = LocalDate.parse(input, Constants.dateFormatLong);
+		return parsedDate;
 	}
 
 	public static boolean adminAuthorise() {

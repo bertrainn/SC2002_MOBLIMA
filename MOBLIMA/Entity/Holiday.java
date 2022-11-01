@@ -64,7 +64,7 @@ public class Holiday implements Serializable {
      * @return the date in string format
      */
     public String getDateString() {
-        return this.date.format(Constants.dateFormatShort);
+        return this.date.format(Constants.holidayFormat);
     }
 
     /**

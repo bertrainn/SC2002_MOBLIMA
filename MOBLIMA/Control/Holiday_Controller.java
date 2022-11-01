@@ -82,7 +82,7 @@ public class Holiday_Controller {
 
         for (int i = 0; i < Data.size(); i++) {
             m = Data.get(i);
-            if (m.getDate() == Date) {
+            if (m.getDate().equals(Date)) {
                 switch (choice) {
                     case CHOICE_NAME:
                         m.setName((String) obj);
@@ -106,7 +106,7 @@ public class Holiday_Controller {
 
         for (int i = 0; i < Data.size(); i++) {
             a = Data.get(i);
-            if (!(a.getDate() == Date)) {
+            if (!(a.getDate().equals(Date))) {
                 UpdateData.add(a);
             }
         }

@@ -17,10 +17,10 @@ public class MovieGoerMainMenu extends BaseMenu {
 				"1. View Movies",
 				"2. View Booking History",
 				"3. Logout");
-		
+
 		int choice = userInput(1, 3);
-		
-		switch(choice) {
+
+		switch (choice) {
 			case 1:
 				navigate(this, new MoviesList());
 				break;
