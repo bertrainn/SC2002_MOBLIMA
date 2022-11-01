@@ -3,7 +3,7 @@ package MOBLIMA;
 import MOBLIMA.Entity.User;
 import MOBLIMA.Entity.Movie;
 import MOBLIMA.Entity.Review_Ratings;
-import MOBLIMA.Control.Movie_Controller;
+import MOBLIMA.Control.*;
 import MOBLIMA.Entity.Constants;
 import MOBLIMA.Entity.Holiday;
 import MOBLIMA.Control.Holiday_Controller;
@@ -16,15 +16,16 @@ public class MOBLIMA {
 
     public static void main(String[] args) {
 
-        Holiday_Controller controller = new Holiday_Controller();
+        String name = getStringInput("Enter admin's username: ");
+        String password = getStringInput("Enter admin's password: ");
+        System.out.println(name);
+        System.out.println(password);
 
-        ArrayList<Holiday> dates = controller.readFile();
+        Admin_Controller admin_Controller = new Admin_Controller();
+        admin_Controller.addAdmin(name, password);
+        // admin_Control.addAdmin(name, password);
 
-        LocalDate date = getDateInput_NoYear("pee pee: ");
-
-        
-
-        System.out.println(date);
+        // System.out.println(date);
 
         // controller.addHoliday("Chirstmas", LocalDate.of(2022, 12, 25));
         // controller.addHoliday("Chinese New Year", LocalDate.of(2022, 2, 12));

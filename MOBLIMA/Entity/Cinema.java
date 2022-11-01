@@ -22,7 +22,7 @@ public class Cinema implements Serializable {
     /**
      * Determine if cinema is 'Platinum'.
      */
-    private boolean isPlat;
+    private Constants.CINEMA_TYPE cinemaType;
 
     /**
      * Contains the seating plan.
@@ -43,11 +43,11 @@ public class Cinema implements Serializable {
      * @param SeatPlan      Seating layout of the Cinema
      * @param MovieSessions Movie sessions shown in the Cinema
      */
-    public Cinema(String cinemaCode, String cinemaName, boolean isPlat, SeatLayout SeatPlan,
+    public Cinema(String cinemaCode, String cinemaName, Constants.CINEMA_TYPE cinemaType, SeatLayout SeatPlan,
             ArrayList<MovieSession> MovieSessions) {
         this.cinemaCode = cinemaCode;
         this.cinemaName = cinemaName;
-        this.isPlat = isPlat;
+        this.cinemaType = cinemaType;
         this.SeatPlan = SeatPlan;
         this.MovieSessions = MovieSessions;
     }
@@ -88,23 +88,12 @@ public class Cinema implements Serializable {
         return cinemaName;
     }
 
-    /**
-     * This method returns whether Cinema is 'Platinum'
-     * 
-     * @return whether Cinema is 'Platinum'
-     */
-    public boolean getisPlat() {
-        return this.isPlat;
+    public Constants.CINEMA_TYPE getCinemaType() {
+        return cinemaType;
     }
 
-    /**
-     * This method sets whether Cinema is 'Platinum'
-     * 
-     * @param isPlat is either True of False which determines if Cinema is
-     *               'Platinum'
-     */
-    public void setisPlat(boolean isPlat) {
-        this.isPlat = isPlat;
+    public void setCinemaType(Constants.CINEMA_TYPE cinemaType) {
+        this.cinemaType = cinemaType;
     }
 
     /**

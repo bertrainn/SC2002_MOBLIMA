@@ -40,12 +40,11 @@ public class Constants {
     /**
      * Ticket types
      */
-    public enum TICKET_TYPE {
+    public enum TICKET_TYPE implements PriceAdjust {
         MON_TO_THU("Monday to Thursday"),
         FRI_WEEKEND_PH("Friday, Weekends & Public Holidays"),
-        MON_TO_THU_OPENING("Monday to Thursday (Sneak Preview & Mega Blockbusters)"),
-        SENIOR("Senior Citizen (Mon - Fri, Before 6PM)"),
-        STUDENT("Student (Mon - Fri, Before 6PM)");
+        SENIOR("Senior Citizen"),
+        STUDENT("Student");
 
         private String type;
 
@@ -60,14 +59,32 @@ public class Constants {
     }
 
     /**
+     * Ticket types
+     */
+    public enum CINEMA_TYPE implements PriceAdjust {
+        STANDARD("Standard Cinemas"),
+        PLATIUM("Platium");
+
+        private String type;
+
+        CINEMA_TYPE(String type) {
+            this.type = type;
+        }
+
+        @Override
+        public String toString() {
+            return this.type;
+        }
+    }
+
+    /**
      * Movie Types
      */
 
-    public enum MOVIE_TYPE {
+    public enum MOVIE_TYPE implements PriceAdjust {
         TWO_D("2D Movies"),
-        DOLBY_ATMOS_TWO_D("Dolby Atmos 2D"),
-        ULTIMA_TWO_D("Ultima 2D @ JEM & West Mall"),
-        ELITE_CLUB_2D("Elite Club 2D@West Mall");
+        THREE_D("3D Movies"),
+        BLOCKBUSTER("Blockbuster Movies");
 
         private String type;
 
