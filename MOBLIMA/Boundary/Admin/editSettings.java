@@ -66,8 +66,11 @@ public class editSettings extends BaseMenu {
 	}
 
 	public void add_Holiday() {
-		String name = getStringInput_Sentence("Enter holiday name: ");
-		LocalDate date = getDateInput_NoYear("Enter holiday date (dd MMM): ");
+		String name;
+		LocalDate date;
+
+		name = getStringInput_Sentence("Enter holiday name: ");
+		date = getDateInput_NoYear("Enter holiday date (dd MMM): ");
 		hol_Control.addHoliday(name, date);
 		System.out.println("Addition success, returning to settings menu...");
 		try {

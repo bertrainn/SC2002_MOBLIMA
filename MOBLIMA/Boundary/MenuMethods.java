@@ -70,8 +70,8 @@ public class MenuMethods {
 
 	public static String getStringInput_Sentence(String message) {
 		System.out.print(message);
-		String input = "";
-		input += sc.nextLine();
+		String input = sc.nextLine();
+		sc.nextLine();
 		return input;
 	}
 
@@ -85,8 +85,7 @@ public class MenuMethods {
 
 	public static LocalDate getDateInput_NoYear(String message) {
 		System.out.print(message);
-		String input = "";
-		input += sc.nextLine();
+		String input = sc.nextLine();
 		// Year is arbitrary
 		input += " 2022";
 		LocalDate parsedDate = LocalDate.parse(input, Constants.dateFormatLong);
