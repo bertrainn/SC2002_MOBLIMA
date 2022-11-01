@@ -126,6 +126,9 @@ public class Constants {
         }
     }
 
+    /**
+     * Showing status for the movie.
+     */
     public enum SHOWING_STATUS {
         EOS("End Of Showing"),
         NS("Now Showing"),
