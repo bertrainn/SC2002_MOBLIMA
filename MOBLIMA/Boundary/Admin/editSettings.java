@@ -38,9 +38,10 @@ public class editSettings extends BaseMenu {
 				"4. List All Holidays",
 				"5. Change Movie Type Pricing",
 				"6. Change Cinema Type Pricing",
-				"7. Back");
+				"7. Change Top 5 Ranking Option",
+				"8. Back");
 
-		int choice = userInput(1, 7);
+		int choice = userInput(1, 8);
 
 		switch (choice) {
 			case 1:
