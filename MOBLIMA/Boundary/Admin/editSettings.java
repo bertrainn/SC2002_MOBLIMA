@@ -1,27 +1,23 @@
-/**
- * TODO: Implement
- * Holiday
- * Ticket price
- * Edit account details
- */
-
 package MOBLIMA.Boundary.Admin;
 
 import static MOBLIMA.Boundary.MenuMethods.*;
 
 import MOBLIMA.Boundary.BaseMenu;
 import MOBLIMA.Control.Holiday_Controller;
+import MOBLIMA.Control.SystemSettings_Controller;
 import MOBLIMA.Entity.TicketPrice;
 import MOBLIMA.Entity.Holiday;
 import MOBLIMA.Entity.Constants;
 
 import java.util.ArrayList;
+import java.io.IOException;
 import java.time.LocalDate;
 
 public class editSettings extends BaseMenu {
 
 	private Holiday_Controller hol_Control = new Holiday_Controller();
 	private TicketPrice ticketPrice = new TicketPrice();
+	private SystemSettings_Controller systemsetting_Controller = new SystemSettings_Controller();
 
 	@Override
 	public void load() {
@@ -29,7 +25,6 @@ public class editSettings extends BaseMenu {
 	}
 
 	public void showMenu() {
-		// TODO Auto-generated method stub
 		printHeader("Edit Settings");
 		printMenu("Choose from one of the following options:",
 				"1. Add Holiday",
@@ -39,6 +34,7 @@ public class editSettings extends BaseMenu {
 				"5. Change Movie Type Pricing",
 				"6. Change Cinema Type Pricing",
 				"7. Change Top 5 Ranking Option",
+				"8. Add Admin",
 				"8. Back");
 
 		int choice = userInput(1, 8);
@@ -61,6 +57,9 @@ public class editSettings extends BaseMenu {
 			case 6:
 				break;
 			case 7:
+				changeTop5();
+				break;
+			case 8:
 				back();
 				break;
 		}
@@ -199,5 +198,14 @@ public class editSettings extends BaseMenu {
 			load();
 		}
 
+	}
+
+	public void changeTop5() {
+		try {
+			String Top5OrderBy = systemsetting_Controller.readSystemSettings().get(0);
+			System.out.println(Top5OrderBy);
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
+		}
 	}
 }
