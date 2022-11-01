@@ -3,6 +3,9 @@ package MOBLIMA.Boundary.MovieGoer;
 import static MOBLIMA.Boundary.MenuMethods.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Scanner;
 
 import MOBLIMA.Boundary.BaseMenu;
@@ -72,7 +75,16 @@ public class ReviewView extends BaseMenu {
 			}
 		}
 		else {
-			if (BoundaryTest.customer.checkIfReviewed(m) == 1) {
+			int flag = 0;
+			HashMap<Movie, Review_Ratings> reviewList = BoundaryTest.customer.getPostedReviews();
+			for (Map.Entry<Movie, Review_Ratings> movieReview : reviewList.entrySet()) {
+				Movie key = movieReview.getKey();
+				if (key.getTitle().equals(m.getTitle())) {
+					flag = 1;
+					break;
+				}
+			}
+			if (flag == 1) {
 				printMenu("You have already left a review for this movie, enter any number to go back.");
 				userInput(0, 9);
 				back();
