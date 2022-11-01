@@ -180,7 +180,7 @@ public class MovieGoer extends User {
 
     /**
      * This method adds a new review to the PostedReviewsList
-     * Firstly it does a search on the current actorList to find if they exist in
+     * Firstly it does a search on the current PostedReviewsList to find if they exist in
      * the list
      * If they do, the method will terminate.
      * Else, the newReview is added into PostedReviewsList.
@@ -195,7 +195,7 @@ public class MovieGoer extends User {
 
     /**
      * This method removes a review from the PostedReviewsList
-     * Firstly it does a search on the current actorList to find if they exist in
+     * Firstly it does a search on the current PostedReviewsList to find if they exist in
      * the list
      * If they do, they will be removed from the PostedReviewsList.
      * Else, the method terminates.
@@ -208,6 +208,15 @@ public class MovieGoer extends User {
         }
     }
 
+    /**
+     * This method edits a review from the PostedReviewsList
+     * Firstly it does a search on the current PostedReviewsList to find if they exist in
+     * the list
+     * If they do, they will be replaced from the PostedReviewsList.
+     * Else, the method terminates.
+     * 
+     * @param newReview is the review to replace.
+     */
     public void editReview(Movie movie, Review_Ratings newReview) {
         if (this.PostedReviewsList.containsKey(movie)) {
             this.PostedReviewsList.replace(movie, newReview);
