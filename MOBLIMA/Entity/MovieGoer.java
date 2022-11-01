@@ -192,6 +192,22 @@ public class MovieGoer extends User {
             this.PostedReviewsList.put(movie, newReview);
         }
     }
+    
+    /**
+     * This method checks if user has already reviewed a movie
+     * Firstly it does a search on the current PostedReviewsList to find if they exist in
+     * the list
+     * If they do, the method will return 1.
+     * Else, the method returns 0.
+     * 
+     * @param newReview is the new review to be added.
+     */
+    public int checkIfReviewed(Movie movie) {
+    	if(!this.PostedReviewsList.containsKey(movie)) {
+    		return 0;
+    	}
+    	return 1;
+    }
 
     /**
      * This method removes a review from the PostedReviewsList

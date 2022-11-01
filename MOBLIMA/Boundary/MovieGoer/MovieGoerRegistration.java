@@ -2,12 +2,18 @@ package MOBLIMA.Boundary.MovieGoer;
 
 import static MOBLIMA.Boundary.MenuMethods.*;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import MOBLIMA.Boundary.BaseMenu;
 
 //Application class test
 import MOBLIMA.Boundary.BoundaryTest;
 import MOBLIMA.Boundary.MainMenu;
+import MOBLIMA.Entity.Booking;
+import MOBLIMA.Entity.Movie;
 import MOBLIMA.Entity.MovieGoer;
+import MOBLIMA.Entity.Review_Ratings;
 
 public class MovieGoerRegistration extends BaseMenu {
 
@@ -42,7 +48,9 @@ public class MovieGoerRegistration extends BaseMenu {
 		}
 		
 		else {
-			BoundaryTest.mgc.addMovieGoer(username, pw, name, email, num, null, null);
+			HashMap<Movie, Review_Ratings> PostedReviewsList = new HashMap<Movie, Review_Ratings>();
+			ArrayList<Booking> BookingList = new ArrayList<Booking>();
+			BoundaryTest.mgc.addMovieGoer(username, pw, name, email, num, PostedReviewsList, BookingList);
 			BoundaryTest.movieGoerList = BoundaryTest.mgc.readFile();
 			
 			System.out.println("Registration success, logging in now...");
@@ -52,7 +60,7 @@ public class MovieGoerRegistration extends BaseMenu {
 				e.printStackTrace();
 			}
 			
-			BoundaryTest.customer = new MovieGoer(username, pw, name, email, num, null, null);
+			BoundaryTest.customer = new MovieGoer(username, pw, name, email, num, PostedReviewsList, BookingList);
 			navigate(this, new MovieGoerMainMenu());
 		}
 	}

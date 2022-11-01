@@ -1,5 +1,6 @@
 package MOBLIMA.Boundary;
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.time.LocalDate;
@@ -70,6 +71,7 @@ public class MenuMethods {
 
 	public static String getStringInput_Sentence(String message) {
 		System.out.print(message);
+		sc.nextLine();
 		String input = sc.nextLine();
 		sc.nextLine();
 		return input;
@@ -104,6 +106,14 @@ public class MenuMethods {
 			return true;
 		else
 			return false;
+	}
+	
+	public static String listToString(ArrayList<String> a) {
+		String s = null;
+		for (int i=0; i<a.size()-1; i++)
+			s = s + a.get(i) + ", ";
+		s = s + a.get(a.size()-1);
+		return s;
 	}
 
 }

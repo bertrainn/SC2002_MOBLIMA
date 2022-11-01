@@ -50,7 +50,7 @@ public class Review_Controller {
 
         for (i = 0; i < MovieData.size(); i++) {
             Movie m = MovieData.get(i);
-            if (m.equals(movie)) {
+            if (m.getTitle().equals(movie.getTitle())) {
                 ArrayList<Review_Ratings> reviews = m.getReviewList();
                 reviews.add(review_ratings);
                 m.setReview(reviews);

@@ -3,11 +3,12 @@ package MOBLIMA.Boundary.MovieGoer;
 import static MOBLIMA.Boundary.MenuMethods.*;
 
 import MOBLIMA.Boundary.BaseMenu;
-import MOBLIMA.Boundary.BoundaryTest;
+import MOBLIMA.Control.Cineplex_Controller;
+import MOBLIMA.Control.MovieGoer_Controller;
 import MOBLIMA.Control.Movie_Controller;
+import MOBLIMA.Entity.Cineplex;
 import MOBLIMA.Entity.Constants;
 import MOBLIMA.Entity.Movie;
-import MOBLIMA.Entity.MovieGoer;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -16,8 +17,9 @@ public class MoviesList extends BaseMenu {
 	
 	private boolean topFive = false;
 	private Movie_Controller mc = new Movie_Controller();
-	private ArrayList<Movie> movieList = mc.readFile();
-
+	private Cineplex_Controller cc = new Cineplex_Controller();
+	private MovieGoer_Controller mgc = new MovieGoer_Controller();
+	
 	@Override
 	public void load() {
 		showMenu();
@@ -26,29 +28,54 @@ public class MoviesList extends BaseMenu {
 	private void showMenu() {
 		printHeader("View Movies");
 		printMenu("Choose from one of the following options:",
-				  "1. Search for a movie",
-				  "2. List all movies",
-				  "3. List the top 5 movies",
-				  "4. Back");
+				  "1. Make a booking",
+				  "2. Search for a movie",
+				  "3. List all movies",
+				  "4. List the top 5 movies",
+				  "5. Back");
 		
-		int choice = userInput(1, 4);
+		int choice = userInput(1, 5);
 		
 		switch(choice) {
-			case 1:
-				search();
+			case 1: 
+				allShowtimes();
 				break;
 			case 2:
+				search();
+				break;
+			case 3:
 				showAllMovies();
 				topFive = false;
 				break;
-			case 3: 
+			case 4: 
 				topFive = true;
 				showAllMovies();
 				break;
-			case 4: 
+			case 5: 
 				back();
 				break;
 		}
+	}
+	
+	private void allShowtimes() {
+		ArrayList<Cineplex> cineplexList = cc.readFile();
+		int i=0;
+		
+		printMenuWithoutSpace("Choose from one of the following cineplexes:");
+		for (Cineplex cp : cineplexList) {
+			printMenuWithoutSpace(++i + ". " + cp.getName());
+		}
+		printMenu(++i + ". Back");
+		
+		int choice = userInput(1, i);
+		
+		if (choice == i) load();
+		else {
+			Cineplex cp = cineplexList.get(choice-1);
+			navigate(this, new BookingMenu(cp));
+		}
+		
+		
 	}
 	
 	private void search() {
@@ -75,13 +102,14 @@ public class MoviesList extends BaseMenu {
 				load();
 			else {
 				Movie m = searchResults.get(choice-1);
-				movieDetails(m);
+				navigate(this, new MovieDetailsView(m));
 			}
 			
 		}
 	}
 	
 	private void showAllMovies() {
+		ArrayList<Movie> movieList = mc.readFile();
 		ArrayList<Movie> movies = null;
 		
 		if (topFive) {
@@ -115,31 +143,13 @@ public class MoviesList extends BaseMenu {
 			load();
 		else {
 			Movie m = movies.get(choice-1);
-			movieDetails(m);
+			navigate(this, new MovieDetailsView(m));
 		}
 		
-	}
-	
-	private void movieDetails(Movie m) {
-		printHeader("Movie Details: " + m.getTitle());
-		printMenu("1. Showtimes",
-				  "2. Reviews",
-				  "3. Back");
-		
-		int choice = userInput(1, 3);
-		switch(choice) {
-			case 1:
-				//navigate to showtimes view
-				break;
-			case 2:
-				//navigate to reviews view
-				break;
-			case 3:
-				showAllMovies();
-		}
 	}
 	
 	private ArrayList<Movie> getMovieByTitle(String searchInput) {
+		ArrayList<Movie> movieList = mc.readFile();
 		ArrayList<Movie> searchResults = new ArrayList<>();
 		
 		for (Movie m : movieList) {
@@ -153,6 +163,7 @@ public class MoviesList extends BaseMenu {
 	}
 	
 	private ArrayList<Movie> getTop5Movies() {
+		ArrayList<Movie> movieList = mc.readFile();
 		ArrayList<Movie> top5 = new ArrayList<>();
 		for (Movie m : movieList)
 			if (!m.getShowingStatus().equals(Constants.SHOWING_STATUS.EOS)) top5.add(m);
