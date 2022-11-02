@@ -10,15 +10,19 @@ import MOBLIMA.Boundary.BaseMenu;
 //Application class test
 import MOBLIMA.Boundary.BoundaryTest;
 import MOBLIMA.Boundary.MainMenu;
+import MOBLIMA.Control.MovieGoer_Controller;
 import MOBLIMA.Entity.Booking;
 import MOBLIMA.Entity.Movie;
 import MOBLIMA.Entity.MovieGoer;
 import MOBLIMA.Entity.Review_Ratings;
 
 public class MovieGoerRegistration extends BaseMenu {
+	
+	private MovieGoer_Controller mgc = new MovieGoer_Controller();
 
 	@Override
 	public void load() {
+		ArrayList<MovieGoer> movieGoerList = mgc.readFile();
 		String username, pw, name, email, num;
 		int choice = 1, flag = 0;
 		
@@ -30,7 +34,7 @@ public class MovieGoerRegistration extends BaseMenu {
 		email = getStringInput("Enter your email address: ");
 		num = getStringInput("Enter your phone number: ");
 		
-		for (MovieGoer mg : BoundaryTest.movieGoerList) {
+		for (MovieGoer mg : movieGoerList) {
 			if (username.equals(mg.getUsername())) {
 				flag = 1;
 				System.out.println("Username taken, press 0 to return to main menu, press any other number to try again.");
@@ -50,8 +54,8 @@ public class MovieGoerRegistration extends BaseMenu {
 		else {
 			HashMap<Movie, Review_Ratings> PostedReviewsList = new HashMap<Movie, Review_Ratings>();
 			ArrayList<Booking> BookingList = new ArrayList<Booking>();
-			BoundaryTest.mgc.addMovieGoer(username, pw, name, email, num, PostedReviewsList, BookingList);
-			BoundaryTest.movieGoerList = BoundaryTest.mgc.readFile();
+			mgc.addMovieGoer(username, pw, name, email, num, PostedReviewsList, BookingList);
+			movieGoerList = mgc.readFile();
 			
 			System.out.println("Registration success, logging in now...");
 			try {
@@ -60,8 +64,8 @@ public class MovieGoerRegistration extends BaseMenu {
 				e.printStackTrace();
 			}
 			
-			BoundaryTest.customer = new MovieGoer(username, pw, name, email, num, PostedReviewsList, BookingList);
-			navigate(this, new MovieGoerMainMenu());
+			MovieGoer m = new MovieGoer(username, pw, name, email, num, PostedReviewsList, BookingList);
+			navigate(this, new MovieGoerMainMenu(m));
 		}
 	}
 }

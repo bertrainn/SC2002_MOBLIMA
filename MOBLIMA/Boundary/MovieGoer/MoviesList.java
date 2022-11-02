@@ -13,15 +13,13 @@ import MOBLIMA.Entity.Cinema;
 import MOBLIMA.Entity.Cineplex;
 import MOBLIMA.Entity.Constants;
 import MOBLIMA.Entity.Movie;
-import MOBLIMA.Entity.Review_Ratings;
+import MOBLIMA.Entity.MovieGoer;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 
 public class MoviesList extends BaseMenu {
@@ -32,8 +30,13 @@ public class MoviesList extends BaseMenu {
 	private SystemSettings_Controller ssc = new SystemSettings_Controller();
 	private Booking_Controller bc = new Booking_Controller();
 	
+	private MovieGoer cust;
 	private boolean topFive = false;
 	private String orderBy = ssc.readSystemSettings().get(0);
+	
+	public MoviesList(MovieGoer mg) {
+		cust = mg;
+	}
 	
 	@Override
 	public void load() {
@@ -117,7 +120,7 @@ public class MoviesList extends BaseMenu {
 				load();
 			else {
 				Movie m = searchResults.get(choice-1);
-				navigate(this, new MovieDetailsView(m));
+				navigate(this, new MovieDetailsView(m, cust));
 			}
 			
 		}
@@ -136,18 +139,48 @@ public class MoviesList extends BaseMenu {
 			movies = movieList;
 		}
 		
-		
-		
 		if(movies.isEmpty()) {
 			printMenu("There are no movies");
 			showMenu();
 		}
 		
-		int i = 0; 
+		int i = 0;
 		
-		for (Movie m : movies) {
-			if (m.getShowingStatus().equals(Constants.SHOWING_STATUS.EOS)) continue;
-			printMenuWithoutSpace(++i + ". " + m.getTitle());
+		if (!topFive) {
+			for (Movie m : movies) {
+				if (m.getShowingStatus().equals(Constants.SHOWING_STATUS.EOS)) continue;
+				printMenuWithoutSpace(++i + ". " + m.getTitle());
+			}
+		}
+		
+		else if (orderBy.equals("sales")) {
+			HashMap<Movie, Integer> salesList = fakeTopSales(); //topSales();
+			for (Movie m : movies) {
+				Integer sales = null;
+				for (Map.Entry<Movie, Integer> movie : salesList.entrySet()) {
+					String movTitle = movie.getKey().getTitle();
+					if (movTitle.equals(m.getTitle())) {
+						sales = movie.getValue();
+						break;
+					}
+				}
+				
+				if (m.getShowingStatus().equals(Constants.SHOWING_STATUS.EOS)) continue;
+				printMenuWithoutSpace(++i + ". " + m.getTitle() + 
+						generateSpaces(37 - m.getTitle().length()) + sales + " tickets sold");
+			}
+		}
+		
+		else {
+			for (Movie m : movies) {
+				if (m.getShowingStatus().equals(Constants.SHOWING_STATUS.EOS)) continue;
+				if (!m.getOverallRating().equals("N/A")) 
+					printMenuWithoutSpace(++i + ". " + m.getTitle() +
+							generateSpaces(37 - m.getTitle().length()) + m.getOverallRating() + " stars");
+				else
+					printMenuWithoutSpace(++i + ". " + m.getTitle() +
+							generateSpaces(37 - m.getTitle().length()) + m.getOverallRating());
+			}
 		}
 		
 		printMenu(++i + ". Back");
@@ -158,7 +191,7 @@ public class MoviesList extends BaseMenu {
 			load();
 		else {
 			Movie m = movies.get(choice-1);
-			navigate(this, new MovieDetailsView(m));
+			navigate(this, new MovieDetailsView(m, cust));
 		}
 		
 	}

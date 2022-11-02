@@ -13,9 +13,12 @@ import MOBLIMA.Boundary.BoundaryTest;
 import MOBLIMA.Boundary.MainMenu;
 
 public class MovieGoerLogin extends BaseMenu {
+	
+	private MovieGoer_Controller mgc = new MovieGoer_Controller();
 
 	@Override
 	public void load() {
+		ArrayList<MovieGoer> movieGoerList = mgc.readFile();
 		String user, pw;
 		BaseMenu next = new MovieGoerLogin();
 		int flag = 0, choice = 1, i = 0;
@@ -25,12 +28,12 @@ public class MovieGoerLogin extends BaseMenu {
 		user = getStringInput("Enter your username: ");
 		pw = getStringInput("Enter your password: ");
 
-		for (MovieGoer mg : BoundaryTest.movieGoerList) {
+		for (MovieGoer mg : movieGoerList) {
 			if (user.equals(mg.getUsername())) {
 				flag = 1;
 				if (pw.equals(mg.getPassword())) {
-					next = new MovieGoerMainMenu();
-					BoundaryTest.customer = BoundaryTest.movieGoerList.get(i);
+					MovieGoer m = movieGoerList.get(i);
+					next = new MovieGoerMainMenu(m);
 					System.out.println("Logging in...");
 					try {
 						Thread.sleep(500);

@@ -48,6 +48,12 @@ public class MenuMethods {
 			System.out.println(s);
 		}
 	}
+	
+	public static String generateSpaces(int size) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < size; i++) stringBuilder.append(" ");
+        return stringBuilder.toString();
+    }
 
 	public static int userInput(int i, int j) {
 		int choice;

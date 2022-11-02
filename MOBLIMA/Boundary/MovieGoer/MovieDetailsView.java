@@ -6,13 +6,16 @@ import java.util.ArrayList;
 
 import MOBLIMA.Boundary.BaseMenu;
 import MOBLIMA.Entity.Movie;
+import MOBLIMA.Entity.MovieGoer;
 
 public class MovieDetailsView extends BaseMenu {
 
 	private Movie m;
+	private MovieGoer cust;
 	
-	public MovieDetailsView(Movie m) {
+	public MovieDetailsView(Movie m, MovieGoer mg) {
 		this.m = m;
+		cust = mg;
 	}
 	
 	@Override
@@ -31,7 +34,7 @@ public class MovieDetailsView extends BaseMenu {
 		String rating = m.getOverallRating();
 		
 		if (rating != "N/A") {
-			rating = rating + "/5 Stars";
+			rating = rating + " stars";
 		}
 		
 		printHeader("Movie Details: " + m.getTitle());
@@ -52,10 +55,10 @@ public class MovieDetailsView extends BaseMenu {
 		int choice = userInput(1, 3);
 		switch(choice) {
 			case 1:
-				navigate(this, new ReviewView(m, true));
+				navigate(this, new ReviewView(m, cust, true));
 				break;
 			case 2:
-				navigate(this, new ReviewView(m, false));
+				navigate(this, new ReviewView(m, cust, false));
 				break;
 			case 3:
 				back();

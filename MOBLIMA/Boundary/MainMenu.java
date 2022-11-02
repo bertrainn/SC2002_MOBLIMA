@@ -23,7 +23,7 @@ public class MainMenu extends BaseMenu {
 
 		switch (choice) {
 			case 1:
-				navigate(this, new MoviesList());
+				navigate(this, new MoviesList(null));
 				break;
 			case 2:
 				navigate(this, new MovieGoerLogin());

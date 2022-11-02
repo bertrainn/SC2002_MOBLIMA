@@ -8,10 +8,15 @@ import MOBLIMA.Boundary.MainMenu;
 import MOBLIMA.Entity.MovieGoer;
 
 public class MovieGoerMainMenu extends BaseMenu {
+	
+	private MovieGoer cust;
+	
+	public MovieGoerMainMenu(MovieGoer m) {
+		cust = m;
+	}
 
 	@Override
 	public void load() {
-		MovieGoer cust = BoundaryTest.customer;
 		printHeader("Welcome to customer main menu, " + cust.getName());
 		printMenu("Choose from one of the following options:",
 				"1. View Movies",
@@ -22,12 +27,12 @@ public class MovieGoerMainMenu extends BaseMenu {
 
 		switch (choice) {
 			case 1:
-				navigate(this, new MoviesList());
+				navigate(this, new MoviesList(cust));
 				break;
 			case 2:
 				break;
 			case 3:
-				BoundaryTest.customer = null;
+				cust = null;
 				navigate(this, new MainMenu());
 				break;
 		}
