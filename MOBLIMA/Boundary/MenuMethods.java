@@ -98,6 +98,16 @@ public class MenuMethods {
 		return input;
 	}
 
+	public static int getIntInput_Min(String message, int min) {
+		System.out.print(message);
+		int input = Integer.parseInt(sc.nextLine());
+		while (input < min) {
+			System.out.print("Value too low please input again: ");
+			input = Integer.parseInt(sc.nextLine());
+		}
+		return input;
+	}
+
 	public static Double getDoubleInput(String message) {
 		System.out.print(message);
 		Double input = Double.parseDouble(sc.nextLine());

@@ -96,21 +96,21 @@ public class editMovie extends BaseMenu {
 		description = getStringInput_Sentence("Enter movie description: ");
 		age_class = Constants.AGE_CLASSIFICATION.valueOf(getStringInput("Enter the age classification of the movie: "));
 
-		numberofentries = getIntInput("Enter the number of directors: ");
+		numberofentries = getIntInput_Min("Enter the number of directors: ", 1);
 
 		for (i = 0; i < numberofentries; i++) {
 			entries = getStringInput_Sentence("Enter the no." + (i + 1) + " director: ");
 			DirectorList.add(entries);
 		}
 
-		numberofentries = getIntInput("Enter the number of actors (at least 3): ");
+		numberofentries = getIntInput_Min("Enter the number of actors (at least 3): ", 3);
 
 		for (i = 0; i < numberofentries; i++) {
 			entries = getStringInput_Sentence("Enter the no." + (i + 1) + " actor: ");
 			ActorList.add(entries);
 		}
 
-		numberofentries = getIntInput("Enter the number of genres: ");
+		numberofentries = getIntInput_Min("Enter the number of genres: ", 1);
 
 		for (i = 0; i < numberofentries; i++) {
 			entries = getStringInput_Sentence("Enter the no." + (i + 1) + " genre: ");
@@ -120,7 +120,7 @@ public class editMovie extends BaseMenu {
 		OpeningDate = getDateInput("Enter movie's opening date (dd MMM yyyy): ");
 		ClosingDate = OpeningDate.plusDays(30);
 
-		duration = Duration.ofMinutes(getIntInput("Enter the duration of the movie (in minutes): "));
+		duration = Duration.ofMinutes(getIntInput_Min("Enter the duration of the movie (in minutes): ", 0));
 
 		movie_controller.addMovie(title, description, age_class, DirectorList, ActorList, GenreList, null, OpeningDate,
 				ClosingDate, duration);
@@ -160,9 +160,12 @@ public class editMovie extends BaseMenu {
 		ArrayList<Movie> MovieList = movie_controller.readFile();
 		ArrayList<String> list = new ArrayList<String>();
 		Movie temp;
+		int numberofentries;
+		String entries;
+		int i;
 		this.ListMovies();
 
-		int movie_choice = getIntInput("Enter the index of the movie you want to stop showing: ");
+		int movie_choice = getIntInput("Enter the index of the movie you want to edit: ");
 
 		temp = MovieList.get(movie_choice);
 
@@ -173,12 +176,11 @@ public class editMovie extends BaseMenu {
 				"4. Actors List",
 				"5. Director List",
 				"6. Genre List",
-				"7. Reviews",
-				"8. Opening Date",
-				"9. Closing Date",
-				"10. Showing Status",
-				"11. Duration",
-				"12. Back");
+				"7. Opening Date",
+				"8. Closing Date",
+				"9. Showing Status",
+				"10. Duration",
+				"11. Back");
 
 		int choice = userInput(1, 12);
 		switch (choice) {
@@ -191,46 +193,111 @@ public class editMovie extends BaseMenu {
 				movie_controller.updateMovie(movie_controller.CHOICE_DESC, temp.getId(), desc);
 				break;
 			case 3:
-				Constants.AGE_CLASSIFICATION age = Constants.AGE_CLASSIFICATION
-						.valueOf(getStringInput("Enter the new age classification: "));
+				Constants.AGE_CLASSIFICATION age = temp.getAgeRating();
+				printMenu("Select the movie age rating (number):",
+						"1. General(G)",
+						"2. Parental Guidance (PG)",
+						"3. Parental Guidance 13 (PG13)",
+						"4. No Children under 16(NC16)",
+						"5. Mature 18 (M18)",
+						"6. Back");
+
+				int age_choice = userInput(1, 6);
+				switch (age_choice) {
+					case 1:
+						age = Constants.AGE_CLASSIFICATION.G;
+						break;
+					case 2:
+						age = Constants.AGE_CLASSIFICATION.PG;
+						break;
+					case 3:
+						age = Constants.AGE_CLASSIFICATION.PG13;
+						break;
+					case 4:
+						age = Constants.AGE_CLASSIFICATION.NC16;
+						break;
+					case 5:
+						age = Constants.AGE_CLASSIFICATION.M18;
+						break;
+					case 6:
+						load();
+						break;
+
+				}
 				movie_controller.updateMovie(movie_controller.CHOICE_AGERATING, temp.getId(), age);
 				break;
 			case 4:
-				list = temp.getActors();
 
+				numberofentries = getIntInput_Min("Enter the new number of actors: ", 0);
+
+				for (i = 0; i < numberofentries; i++) {
+					entries = getStringInput_Sentence("Enter the no." + (i + 1) + " actor: ");
+					list.add(entries);
+				}
 				movie_controller.updateMovie(movie_controller.CHOICE_ACTOR, temp.getId(), list);
 				break;
 			case 5:
-				list = temp.getDirectors();
+				numberofentries = getIntInput_Min("Enter the new number of director: ", 0);
+				for (i = 0; i < numberofentries; i++) {
+					entries = getStringInput_Sentence("Enter the no." + (i + 1) + " director: ");
+					list.add(entries);
+				}
 				movie_controller.updateMovie(movie_controller.CHOICE_DIRECTOR, temp.getId(), list);
 				break;
 			case 6:
-				list = temp.getGenre();
+				numberofentries = getIntInput_Min("Enter the new number of genres: ", 0);
+				for (i = 0; i < numberofentries; i++) {
+					entries = getStringInput_Sentence("Enter the no." + (i + 1) + " genre: ");
+					list.add(entries);
+				}
 				movie_controller.updateMovie(movie_controller.CHOICE_GENRE, temp.getId(), list);
 				break;
 			case 7:
-				ArrayList<Review_Ratings> reviewList = temp.getReviewList();
-				movie_controller.updateMovie(movie_controller.CHOICE_REVIEW, temp.getId(), reviewList);
-				break;
-			case 8:
 				LocalDate newOPDate = getDateInput("Enter new opening date (dd MMM yyyy): ");
 				movie_controller.updateMovie(movie_controller.CHOICE_OPENING, temp.getId(), newOPDate);
 				break;
-			case 9:
+			case 8:
 				LocalDate newCLDate = getDateInput("Enter new closing date (dd MMM yyyy): ");
 				movie_controller.updateMovie(movie_controller.CHOICE_CLOSING, temp.getId(), newCLDate);
 				break;
-			case 10:
-				Constants.SHOWING_STATUS ShowingStatus = Constants.SHOWING_STATUS
-						.valueOf(getStringInput("Enter the new showing status: "));
-				movie_controller.updateMovie(movie_controller.CHOICE_SHOWING, temp.getId(), ShowingStatus);
+			case 9:
+
+				Constants.SHOWING_STATUS showingStat = temp.getShowingStatus();
+
+				printMenu("Select the movie age rating (number):",
+						"1. Coming Soon(CS)",
+						"2. Preview (P)",
+						"3. Now Showing (NS)",
+						"4. End Of Showing (EOS)",
+						"5. Back");
+
+				int showingstatchoice = userInput(1, 5);
+				switch (showingstatchoice) {
+					case 1:
+						showingStat = Constants.SHOWING_STATUS.CS;
+						break;
+					case 2:
+						showingStat = Constants.SHOWING_STATUS.P;
+						break;
+					case 3:
+						showingStat = Constants.SHOWING_STATUS.NS;
+						break;
+					case 4:
+						showingStat = Constants.SHOWING_STATUS.EOS;
+						break;
+					case 5:
+						load();
+						break;
+				}
+
+				movie_controller.updateMovie(movie_controller.CHOICE_SHOWING, temp.getId(), showingStat);
 				break;
-			case 11:
+			case 10:
 				Duration newDuration = Duration
 						.ofMinutes(getIntInput("Enter the new duration of the movie (in minutes): "));
 				movie_controller.updateMovie(movie_controller.CHOICE_DURATION, temp.getId(), newDuration);
 				break;
-			case 12:
+			case 11:
 				load();
 				break;
 		}
