@@ -77,6 +77,12 @@ public class MenuMethods {
 		return input;
 	}
 
+	public static Double getDoubleInput(String message) {
+		System.out.print(message);
+		Double input = sc.nextDouble();
+		return input;
+	}
+
 	public static LocalDate getDateInput(String message) {
 		System.out.print(message);
 		String input = "";
@@ -107,12 +113,12 @@ public class MenuMethods {
 		else
 			return false;
 	}
-	
+
 	public static String listToString(ArrayList<String> a) {
 		String s = null;
-		for (int i=0; i<a.size()-1; i++)
+		for (int i = 0; i < a.size() - 1; i++)
 			s = s + a.get(i) + ", ";
-		s = s + a.get(a.size()-1);
+		s = s + a.get(a.size() - 1);
 		return s;
 	}
 

@@ -2,63 +2,63 @@ package MOBLIMA.Entity;
 
 import java.io.Serializable;
 
+import MOBLIMA.Control.TicketPrice_Controller;
+
 /**
  * Represents an instance of a ticket used in the system.
  */
 
 public class Ticket implements Serializable {
-    
+
+    private TicketPrice_Controller price_Controller = new TicketPrice_Controller();
+
     /**
      * Price of ticket.
      */
-    private TicketPrice TicketPrice;
-    
+    private double TicketPrice;
+
     /**
      * Type of ticket.
      */
     private Constants.TICKET_TYPE TicketType;
-    
+
     /**
      * Type of movie.
      */
     private Constants.MOVIE_TYPE MovieType;
-    
+
+    /**
+     * Type of Cinema.
+     */
+    private Constants.CINEMA_TYPE CinemaType;
+
     /**
      * Seating position.
      */
     private Seat seat;
 
-    
     /**
      * Constructor for the Ticket class, with additional parameters.
      * 
-     * @param TicketPrice   price of ticket
-     * @param TicketType    type of ticket
-     * @param MovieType     type of movie
-     * @param Seat          seat position
+     * @param TicketType type of ticket
+     * @param MovieType  type of movie
+     * @param CinemaType type of cinema
+     * @param Seat       seat position
      */
-    public Ticket(Constants.TICKET_TYPE TicketType, Constants.MOVIE_TYPE MovieType, Seat seat) {
+    public Ticket(Constants.TICKET_TYPE TicketType, Constants.MOVIE_TYPE MovieType, Constants.CINEMA_TYPE CinemaType,
+            Seat seat) {
         this.TicketType = TicketType;
         this.MovieType = MovieType;
         this.seat = seat;
-        this.TicketPrice = new TicketPrice();
+        this.TicketPrice = price_Controller.calcPrice(MovieType, TicketType, CinemaType);
     }
 
-    /**
-     * This method calculates the price of the tickets based on the TicketType and
-     * MovieType
-     */
-    public TicketPrice getTicketPrice() {
-        return TicketPrice;
+    public double getTicketPrice() {
+        return this.TicketPrice;
     }
 
-    /**
-     * This method sets the price of the tickets based on the TicketType and MovieType
-     * 
-     * @param id is the new price of the tickets based on the TicketType and MovieType
-     */
-    public void setTicketPrice(TicketPrice ticketPrice) {
-        TicketPrice = ticketPrice;
+    public void setTicketPrice(double ticketPrice) {
+        this.TicketPrice = ticketPrice;
     }
 
     /**
@@ -95,6 +95,14 @@ public class Ticket implements Serializable {
      */
     public Constants.MOVIE_TYPE getMovieType() {
         return this.MovieType;
+    }
+
+    public Constants.CINEMA_TYPE getCinemaType() {
+        return this.CinemaType;
+    }
+
+    public void setCinemaType(Constants.CINEMA_TYPE cinemaType) {
+        this.CinemaType = cinemaType;
     }
 
     /**
