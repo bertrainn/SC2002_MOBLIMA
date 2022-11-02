@@ -184,7 +184,7 @@ public class editSettings extends BaseMenu {
 				break;
 		}
 
-		System.out.println("Deletion success, returning to settings menu...");
+		System.out.println("Update success, returning to settings menu...");
 		try {
 			Thread.sleep(500);
 		} catch (InterruptedException e) {
@@ -255,6 +255,13 @@ public class editSettings extends BaseMenu {
 				load();
 				break;
 		}
+		System.out.println("Price update success, returning to settings menu...");
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		load();
 	}
 
 	public void changeMoviePrice() {
@@ -289,6 +296,13 @@ public class editSettings extends BaseMenu {
 				load();
 				break;
 		}
+		System.out.println("Price update success, returning to settings menu...");
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		load();
 	}
 
 	public void changeCinemaPrice() {
@@ -320,6 +334,13 @@ public class editSettings extends BaseMenu {
 				load();
 				break;
 		}
+		System.out.println("Price update success, returning to settings menu...");
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		load();
 	}
 
 	// Top 5
@@ -366,7 +387,6 @@ public class editSettings extends BaseMenu {
 		String name;
 		String password;
 		Boolean flag = false;
-		// still need to check if the user exists
 
 		name = getStringInput("Enter admin's username: ");
 		password = getStringInput("Enter admin's password: ");

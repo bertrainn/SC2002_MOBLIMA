@@ -33,9 +33,10 @@ public class MenuMethods {
 			String firstHalf;
 			while (s.length() > 65) {
 				int i = 65;
-				while (s.charAt(i) != ' ') i--;
+				while (s.charAt(i) != ' ')
+					i--;
 				firstHalf = s.substring(0, i);
-				s = s.substring(i+1);
+				s = s.substring(i + 1);
 				System.out.println(firstHalf);
 			}
 			System.out.println(s);
@@ -48,12 +49,13 @@ public class MenuMethods {
 			System.out.println(s);
 		}
 	}
-	
+
 	public static String generateSpaces(int size) {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < size; i++) stringBuilder.append(" ");
-        return stringBuilder.toString();
-    }
+		StringBuilder stringBuilder = new StringBuilder();
+		for (int i = 0; i < size; i++)
+			stringBuilder.append(" ");
+		return stringBuilder.toString();
+	}
 
 	public static int userInput(int i, int j) {
 		int choice;
@@ -61,7 +63,7 @@ public class MenuMethods {
 		System.out.print("Enter choice: ");
 
 		try {
-			choice = sc.nextInt();
+			choice = Integer.parseInt(sc.nextLine());
 		} catch (InputMismatchException ex) {
 			System.out.println("Invalid selection, please try again.");
 			sc.nextLine();
@@ -80,21 +82,25 @@ public class MenuMethods {
 
 	public static String getStringInput(String message) {
 		System.out.print(message);
-		String input = sc.next();
+		String input = sc.nextLine();
 		return input;
 	}
 
 	public static String getStringInput_Sentence(String message) {
 		System.out.print(message);
-		sc.nextLine();
 		String input = sc.nextLine();
-		sc.nextLine();
+		return input;
+	}
+
+	public static int getIntInput(String message) {
+		System.out.print(message);
+		int input = Integer.parseInt(sc.nextLine());
 		return input;
 	}
 
 	public static Double getDoubleInput(String message) {
 		System.out.print(message);
-		Double input = sc.nextDouble();
+		Double input = Double.parseDouble(sc.nextLine());
 		return input;
 	}
 
@@ -131,7 +137,7 @@ public class MenuMethods {
 
 	public static String listToString(ArrayList<String> a) {
 		String s = "";
-		for (int i=0; i<a.size()-1; i++)
+		for (int i = 0; i < a.size() - 1; i++)
 			s = s + a.get(i) + ", ";
 		s = s + a.get(a.size() - 1);
 		return s;
