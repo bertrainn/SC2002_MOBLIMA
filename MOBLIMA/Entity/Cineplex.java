@@ -21,7 +21,7 @@ public class Cineplex implements Serializable {
 
     
     /**
-     * Constructor for the Table class, with additional parameters.
+     * Constructor for the Cinema class.
      * 
      * @param Name         Name of Cineplex
      * @param CinemaList   List of Cinemas
