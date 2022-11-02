@@ -1,13 +1,27 @@
 package MOBLIMA.Entity;
 import java.io.Serializable;
 
+/**
+ * Represents an instance of a review rating used in the system.
+ */
+
 public class Review_Ratings implements Serializable{
+    /**
+     * Rating given.
+     */
     private double Rating;
+    
+    /**
+     * Review given.
+     */
     private String Review;
 
     
     /**
-     * Constructor for the Review Rating class
+     * Constructor for the Review Rating class.
+     * 
+     * @param Rating   rating given
+     * @param Review   review given
      */
     public Review_Ratings(double Rating, String Review) {
         this.Rating = Rating;
