@@ -31,9 +31,14 @@ public class MenuMethods {
 	public static void printMenu(String... menu) {
 		for (String s : menu) {
 			while (s.length() > 65) {
-				String firstHalf = s.substring(0, 65);
-				s = s.substring(65);
-				System.out.println(firstHalf);
+				if (s.charAt(65) == ' ') {
+					String firstHalf = s.substring(0, 65);
+					s = s.substring(65);
+					System.out.println(firstHalf);
+				}
+				else {
+					//TBD
+				}
 			}
 			System.out.println(s);
 		}
