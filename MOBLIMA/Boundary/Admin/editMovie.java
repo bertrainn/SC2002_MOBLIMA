@@ -4,6 +4,7 @@ import static MOBLIMA.Boundary.MenuMethods.*;
 import MOBLIMA.Boundary.BaseMenu;
 import MOBLIMA.Entity.Constants;
 import MOBLIMA.Entity.Movie;
+import MOBLIMA.Entity.Review_Ratings;
 import MOBLIMA.Control.Movie_Controller;
 
 import java.util.ArrayList;
@@ -155,6 +156,92 @@ public class editMovie extends BaseMenu {
 	}
 
 	public void UpdateMovie() {
+
+		ArrayList<Movie> MovieList = movie_controller.readFile();
+		ArrayList<String> list = new ArrayList<String>();
+		Movie temp;
+		this.ListMovies();
+
+		int movie_choice = getIntInput("Enter the index of the movie you want to stop showing: ");
+
+		temp = MovieList.get(movie_choice);
+
+		printMenu("Select which movie attribute you want to edit: ",
+				"1. Title",
+				"2. Description",
+				"3. Age Rating",
+				"4. Actors List",
+				"5. Director List",
+				"6. Genre List",
+				"7. Reviews",
+				"8. Opening Date",
+				"9. Closing Date",
+				"10. Showing Status",
+				"11. Duration",
+				"12. Back");
+
+		int choice = userInput(1, 12);
+		switch (choice) {
+			case 1:
+				String title = getStringInput("Enter the new title: ");
+				movie_controller.updateMovie(movie_controller.CHOICE_TITLE, temp.getId(), title);
+				break;
+			case 2:
+				String desc = getStringInput("Enter the new description: ");
+				movie_controller.updateMovie(movie_controller.CHOICE_DESC, temp.getId(), desc);
+				break;
+			case 3:
+				Constants.AGE_CLASSIFICATION age = Constants.AGE_CLASSIFICATION
+						.valueOf(getStringInput("Enter the new age classification: "));
+				movie_controller.updateMovie(movie_controller.CHOICE_AGERATING, temp.getId(), age);
+				break;
+			case 4:
+				list = temp.getActors();
+
+				movie_controller.updateMovie(movie_controller.CHOICE_ACTOR, temp.getId(), list);
+				break;
+			case 5:
+				list = temp.getDirectors();
+				movie_controller.updateMovie(movie_controller.CHOICE_DIRECTOR, temp.getId(), list);
+				break;
+			case 6:
+				list = temp.getGenre();
+				movie_controller.updateMovie(movie_controller.CHOICE_GENRE, temp.getId(), list);
+				break;
+			case 7:
+				ArrayList<Review_Ratings> reviewList = temp.getReviewList();
+				movie_controller.updateMovie(movie_controller.CHOICE_REVIEW, temp.getId(), reviewList);
+				break;
+			case 8:
+				LocalDate newOPDate = getDateInput("Enter new opening date (dd MMM yyyy): ");
+				movie_controller.updateMovie(movie_controller.CHOICE_OPENING, temp.getId(), newOPDate);
+				break;
+			case 9:
+				LocalDate newCLDate = getDateInput("Enter new closing date (dd MMM yyyy): ");
+				movie_controller.updateMovie(movie_controller.CHOICE_CLOSING, temp.getId(), newCLDate);
+				break;
+			case 10:
+				Constants.SHOWING_STATUS ShowingStatus = Constants.SHOWING_STATUS
+						.valueOf(getStringInput("Enter the new showing status: "));
+				movie_controller.updateMovie(movie_controller.CHOICE_SHOWING, temp.getId(), ShowingStatus);
+				break;
+			case 11:
+				Duration newDuration = Duration
+						.ofMinutes(getIntInput("Enter the new duration of the movie (in minutes): "));
+				movie_controller.updateMovie(movie_controller.CHOICE_DURATION, temp.getId(), newDuration);
+				break;
+			case 12:
+				load();
+				break;
+		}
+
+		System.out.println("Update success, returning to settings menu...");
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		load();
 
 	}
 
