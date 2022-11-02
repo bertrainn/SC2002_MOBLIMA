@@ -14,11 +14,22 @@ import MOBLIMA.Control.MovieGoer_Controller;
 import MOBLIMA.Entity.Booking;
 import MOBLIMA.Entity.Movie;
 import MOBLIMA.Entity.MovieGoer;
+import MOBLIMA.Entity.MovieSession;
 import MOBLIMA.Entity.Review_Ratings;
+import MOBLIMA.Entity.Seat;
 
 public class MovieGoerRegistration extends BaseMenu {
 	
 	private MovieGoer_Controller mgc = new MovieGoer_Controller();
+	private MovieSession ms;
+	private ArrayList<Seat> chosenSeats;
+	
+	public MovieGoerRegistration() {}
+	
+	public MovieGoerRegistration(MovieSession ms, ArrayList<Seat> chosenSeats) {
+		this.ms = ms;
+		this.chosenSeats = chosenSeats;
+	}
 
 	@Override
 	public void load() {
@@ -65,7 +76,10 @@ public class MovieGoerRegistration extends BaseMenu {
 			}
 			
 			MovieGoer m = new MovieGoer(username, pw, name, email, num, PostedReviewsList, BookingList);
-			navigate(this, new MovieGoerMainMenu(m));
+			if (this.getPrevMenu() instanceof BookingConfirmationMenu)
+				navigate(this, new BookingConfirmationMenu(m, ms, chosenSeats));
+			else
+				navigate(this, new MovieGoerMainMenu(m));
 		}
 	}
 }

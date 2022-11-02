@@ -2,6 +2,8 @@ package MOBLIMA.Entity;
 
 import java.io.Serializable;
 
+import static MOBLIMA.Boundary.MenuMethods.*;
+
 /**
  * Represents an instance of a movie used in the system.
  */
@@ -43,10 +45,19 @@ public class SeatLayout implements Serializable {
         System.out.print("\nSelect Your Seats\n");
         System.out.println("([ ] Available [X] Sold)");
         System.out.println();
+        
+        int space;
+        if (row>10) 
+        	space = 27 + (col/2);
+        else if (row > 5)
+        	space = 17 + (col/2);
+        else
+        	space = (13 + col/2);
 
-        System.out.print("\t \t|      Screen       |\n");
+        System.out.print(generateSpaces(space) + "|      Screen       |\n");
         for (int i = 0; i < this.row; i++) {
-            System.out.printf("Seats %d - %d:\t", i * this.col, ((i + 1) * this.col - 1));
+        	String s = "Seats " + (i * this.col) + " - " + ((i + 1) * this.col - 1);
+            System.out.printf(s + generateSpaces(17-s.length()));
             for (int j = 0; j < this.col; j++) {
                 if (layout[i][j].isIsOccupied())
                     System.out.print("[X]");
@@ -54,10 +65,11 @@ public class SeatLayout implements Serializable {
                     System.out.print("[ ]");
 
                 if (j == this.col / 2 - 1)
-                    System.out.print("\t");
+                    System.out.print("  ");
             }
             System.out.print("\n");
         }
+        System.out.print("\n");
     }
 
     /**

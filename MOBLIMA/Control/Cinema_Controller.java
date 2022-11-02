@@ -84,22 +84,19 @@ public class Cinema_Controller {
         return OutputList;
     }
 
-    public ArrayList<Cinema> getCinemaByCode(String cineplexName) {
-        ArrayList<Cinema> OutputList = new ArrayList<Cinema>();
+    public Cinema getCinemaByCode(String cinemaCode) {
         ArrayList<Cineplex> cineplexList = CineplexController.readFile();
         Cineplex c;
         Cinema cinema;
         for (int i = 0; i < cineplexList.size(); i++) {
             c = cineplexList.get(i);
-            if (c.getName().equals(cineplexName)) {
-                ArrayList<Cinema> temp = c.getCinemaList();
-                for (int j = 0; j < temp.size(); j++) {
-                    cinema = temp.get(j);
-                    OutputList.add(cinema);
-                }
+            ArrayList<Cinema> cinemaList = c.getCinemaList();
+            for (Cinema cine : cinemaList) {
+            	if (cine.getcinemaCode().equals(cinemaCode))
+            		return cine;
             }
         }
-        return OutputList;
+        return null;
     }
 
     public void updateCinema(int choice, String cinemaCode, Object obj) {

@@ -90,7 +90,7 @@ public class MoviesList extends BaseMenu {
 		if (choice == i) load();
 		else {
 			Cineplex cp = cineplexList.get(choice-1);
-			navigate(this, new BookingMenu(cp));
+			navigate(this, new BookingMenu(cust, cp));
 		}
 		
 		

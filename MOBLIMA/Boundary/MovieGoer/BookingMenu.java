@@ -10,7 +10,10 @@ import MOBLIMA.Control.Cinema_Controller;
 import MOBLIMA.Control.MovieSession_Controller;
 import MOBLIMA.Entity.Cineplex;
 import MOBLIMA.Entity.Movie;
+import MOBLIMA.Entity.MovieGoer;
 import MOBLIMA.Entity.MovieSession;
+import MOBLIMA.Entity.Seat;
+import MOBLIMA.Entity.SeatLayout;
 
 public class BookingMenu extends BaseMenu {
 	
@@ -18,9 +21,11 @@ public class BookingMenu extends BaseMenu {
 	private Cinema_Controller cc = new Cinema_Controller(cpc);
 	private MovieSession_Controller msc = new MovieSession_Controller(cc);
 	private Cineplex cp;
+	private MovieGoer cust;
 	
 	
-	public BookingMenu(Cineplex cp) {
+	public BookingMenu(MovieGoer m, Cineplex cp) {
+		cust = m;
 		this.cp = cp;
 	}
 
@@ -74,7 +79,7 @@ public class BookingMenu extends BaseMenu {
 		int i=0;
 		ArrayList<MovieSession> sessions = msc.readFileByValues(MovieSession_Controller.CHOICE_MOVIE, m.getId());
 		
-		printMenuWithoutSpace("Showtimes for " + m.getTitle());
+		printMenuWithoutSpace("Showtimes for " + m.getTitle() + ":");
 		for (MovieSession ms : sessions) {
 			printMenuWithoutSpace(++i + ". " + ms.getShowDateTime());
 		}
@@ -85,15 +90,42 @@ public class BookingMenu extends BaseMenu {
 		if (choice == i) load();
 		else {
 			MovieSession ms = sessions.get(choice-1);
-			showSeatingPlan(ms);
+			printMenu("How many tickets would you like to purchase?");
+			int maxSeats = ms.getSeatPlan().getCol() * ms.getSeatPlan().getRow();
+			int noOfSeats = userInput(1, maxSeats);
+			showSeatingPlan(ms, noOfSeats);
 		}
 		
 	}
 	
-	
-	//TBD
-	private void showSeatingPlan(MovieSession ms) {
+	private void showSeatingPlan(MovieSession ms, int noOfSeats) {
+		int flag = 0;
+		ArrayList<Seat> chosenSeats = new ArrayList<Seat>();
+		SeatLayout seatPlan = ms.getSeatPlan();
+		int total = seatPlan.getCol() * seatPlan.getRow();
+		seatPlan.printLayout();
 		
+		for (int i=0; i<noOfSeats; i++) {
+			printMenuWithoutSpace("Choice for seat " + (i+1));
+			int choice = userInput(0, total-1);
+			chosenSeats.add(new Seat(choice));
+		}
+		
+		for (Seat i : chosenSeats) {
+			if (seatPlan.isSeatAssign(i.getSeatID())) {
+				flag = 1;
+				break;
+			}
+		}
+		
+		if (flag == 1) {
+			printMenu("One or more of the seats you have chosen is/are occupied, enter any number to try again.");
+			userInput(0, 9);
+			showSeatingPlan(ms, noOfSeats);
+		}
+		else {
+			navigate(this, new BookingConfirmationMenu(cust, ms, chosenSeats));
+		}
 	}
-
+	
 }
