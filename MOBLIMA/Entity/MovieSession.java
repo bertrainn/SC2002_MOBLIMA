@@ -31,7 +31,7 @@ public class MovieSession implements Serializable {
 
     
     /**
-     * Constructor for the Table class, with additional parameters.
+     * Constructor for the MovieSeesion class, with additional parameters.
      * 
      * @param sessionId      identification number of session
      * @param shownMovie     movie to be shown
