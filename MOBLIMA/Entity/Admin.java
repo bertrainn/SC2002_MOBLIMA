@@ -7,7 +7,7 @@ package MOBLIMA.Entity;
 public class Admin extends User {
     
     /**
-     * Constructor for the Table class, with additional parameters.
+     * Constructor for the Admin class.
      * 
      * @param Username      name of administrator
      * @param Password      password for administrator
