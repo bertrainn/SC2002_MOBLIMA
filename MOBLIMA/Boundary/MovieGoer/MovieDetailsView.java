@@ -27,7 +27,7 @@ public class MovieDetailsView extends BaseMenu {
 		
 		String actorsString = listToString(actorList);
 		String directorsString = listToString(directorList);
-		String genreString = "Action, Adventure, Fantasy"; //listToString(genreList);
+		String genreString = listToString(genreList);
 		String rating = m.getOverallRating();
 		
 		if (rating != "N/A") {

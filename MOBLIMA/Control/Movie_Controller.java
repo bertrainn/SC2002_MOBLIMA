@@ -58,7 +58,7 @@ public class Movie_Controller {
 
         FileOutputStream fos = null;
         ObjectOutputStream oos = null;
-        Movie movie = new Movie(getLastID() + 1, Title, Description, Age, DirectorList, ActorList, GenreList,
+        Movie movie = new Movie(getLastID() + 1, Title, Description, Age, ActorList, DirectorList, GenreList,
                 reviewList,
                 OpeningDate,
                 ClosingDate, Duration);
