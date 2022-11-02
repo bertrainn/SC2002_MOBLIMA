@@ -30,15 +30,13 @@ public class MenuMethods {
 
 	public static void printMenu(String... menu) {
 		for (String s : menu) {
+			String firstHalf;
 			while (s.length() > 65) {
-				if (s.charAt(65) == ' ') {
-					String firstHalf = s.substring(0, 65);
-					s = s.substring(65);
-					System.out.println(firstHalf);
-				}
-				else {
-					//TBD
-				}
+				int i = 65;
+				while (s.charAt(i) != ' ') i--;
+				firstHalf = s.substring(0, i);
+				s = s.substring(i+1);
+				System.out.println(firstHalf);
 			}
 			System.out.println(s);
 		}
