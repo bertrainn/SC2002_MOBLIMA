@@ -64,7 +64,7 @@ public class editMovie extends BaseMenu {
 
 		String title;
 		String description;
-		Constants.AGE_CLASSIFICATION age_class;
+		Constants.AGE_CLASSIFICATION age_class = Constants.AGE_CLASSIFICATION.G;
 		ArrayList<String> DirectorList = new ArrayList<String>();
 		ArrayList<String> ActorList = new ArrayList<String>();
 		ArrayList<String> GenreList = new ArrayList<String>();
@@ -94,7 +94,37 @@ public class editMovie extends BaseMenu {
 		}
 
 		description = getStringInput_Sentence("Enter movie description: ");
-		age_class = Constants.AGE_CLASSIFICATION.valueOf(getStringInput("Enter the age classification of the movie: "));
+
+		printMenu("Select the movie age rating (number):",
+				"1. General(G)",
+				"2. Parental Guidance (PG)",
+				"3. Parental Guidance 13 (PG13)",
+				"4. No Children under 16(NC16)",
+				"5. Mature 18 (M18)",
+				"6. Back");
+
+		int age_choice = userInput(1, 6);
+		switch (age_choice) {
+			case 1:
+				age_class = Constants.AGE_CLASSIFICATION.G;
+				break;
+			case 2:
+				age_class = Constants.AGE_CLASSIFICATION.PG;
+				break;
+			case 3:
+				age_class = Constants.AGE_CLASSIFICATION.PG13;
+				break;
+			case 4:
+				age_class = Constants.AGE_CLASSIFICATION.NC16;
+				break;
+			case 5:
+				age_class = Constants.AGE_CLASSIFICATION.M18;
+				break;
+			case 6:
+				load();
+				break;
+
+		}
 
 		numberofentries = getIntInput_Min("Enter the number of directors: ", 1);
 
