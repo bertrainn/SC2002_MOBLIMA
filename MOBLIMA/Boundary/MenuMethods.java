@@ -1,6 +1,7 @@
 package MOBLIMA.Boundary;
 
 import java.util.ArrayList;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.time.LocalDate;
@@ -29,6 +30,14 @@ public class MenuMethods {
 
 	public static void printMenu(String... menu) {
 		for (String s : menu) {
+			String firstHalf;
+			while (s.length() > 65) {
+				int i = 65;
+				while (s.charAt(i) != ' ') i--;
+				firstHalf = s.substring(0, i);
+				s = s.substring(i+1);
+				System.out.println(firstHalf);
+			}
 			System.out.println(s);
 		}
 		System.out.println();
@@ -115,8 +124,8 @@ public class MenuMethods {
 	}
 
 	public static String listToString(ArrayList<String> a) {
-		String s = null;
-		for (int i = 0; i < a.size() - 1; i++)
+		String s = "";
+		for (int i=0; i<a.size()-1; i++)
 			s = s + a.get(i) + ", ";
 		s = s + a.get(a.size() - 1);
 		return s;

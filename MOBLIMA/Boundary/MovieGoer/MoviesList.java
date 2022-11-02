@@ -9,6 +9,7 @@ import MOBLIMA.Control.MovieGoer_Controller;
 import MOBLIMA.Control.Movie_Controller;
 import MOBLIMA.Control.SystemSettings_Controller;
 import MOBLIMA.Entity.Booking;
+import MOBLIMA.Entity.Cinema;
 import MOBLIMA.Entity.Cineplex;
 import MOBLIMA.Entity.Constants;
 import MOBLIMA.Entity.Movie;
@@ -186,13 +187,13 @@ public class MoviesList extends BaseMenu {
 			Collections.sort(top5, (o1 ,o2) -> compareRating(o1, o2));
 		}
 		else {
-			HashMap<Movie, Integer> salesList = topSales();
+			HashMap<Movie, Integer> salesList = fakeTopSales(); //topSales();
 			if (salesList.isEmpty()) {
 				System.out.println("There are no sales yet");
 				load();
 			}
 			HashMap<Movie, Integer> sortedSalesList = sortHashMap(salesList);
-			for (Map.Entry<Movie, Integer> sales : salesList.entrySet()) {
+			for (Map.Entry<Movie, Integer> sales : sortedSalesList.entrySet()) {
 				Movie m = sales.getKey();
 				if (!m.getShowingStatus().equals(Constants.SHOWING_STATUS.EOS)) top5.add(m);
 			}
@@ -231,6 +232,32 @@ public class MoviesList extends BaseMenu {
     private HashMap<Movie, Integer> topSales() {
     	ArrayList<Booking> bookingList = bc.readFile();
     	HashMap<Movie, Integer> movieSales = new HashMap<Movie, Integer>();
+    	
+    	for (Booking b : bookingList) {
+    		movieSales.put(b.getMovie(), movieSales.getOrDefault(b.getMovie(), 0) + 1);
+    	}
+    	return movieSales;
+    }
+    
+    //Temporary method to show fake top sales
+    private HashMap<Movie, Integer> fakeTopSales() {
+    	ArrayList<Booking> bookingList = new ArrayList<Booking>();
+    	HashMap<Movie, Integer> movieSales = new HashMap<Movie, Integer>();
+    	ArrayList<Movie> moviesList = mc.readFile();
+    	
+    	Cinema c1 = new Cinema(null, null, null, null, null);
+    	
+    	for (int i=0; i<5; i++) {
+	    	for (Movie m : moviesList) {
+	    		if (i%2 == 0 && m.getTitle().equals("Black Adam"))
+					continue;
+	    		if (i == 3 && m.getTitle().equals("Thor: Love and Thunder"))
+	    			continue;
+	    		
+	    		Booking b1 = new Booking(0, c1, m , null, null);
+	    		bookingList.add(b1);
+	    	}
+    	}
     	
     	for (Booking b : bookingList) {
     		movieSales.put(b.getMovie(), movieSales.getOrDefault(b.getMovie(), 0) + 1);

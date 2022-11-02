@@ -93,6 +93,7 @@ public class Movie implements Serializable {
         this.AgeRating = AgeRating;
         this.actorList = actorList;
         this.directorList = directorList;
+        this.genreList = genreList;
         this.review_rating_List = reviewList;
         this.OpeningDate = OpeningDate;
         this.ClosingDate = ClosingDate;
