@@ -2,10 +2,20 @@ package MOBLIMA.Entity;
 
 import java.io.Serializable;
 
+/**
+ * Represents an instance of a seat.
+ */
+
 public class Seat implements Serializable {
 
+    /**
+     * Identification number for seat.
+     */
     private int SeatID;
 
+    /**
+     * Whether seat is occupied.
+     */
     private boolean IsOccupied;
 
     /**
@@ -34,18 +44,34 @@ public class Seat implements Serializable {
         this.SeatID = seatID;
     }
 
+    /**
+     * This method returns whether seat is occupied
+     * 
+     * @return whether seat is occupied
+     */
     public boolean isIsOccupied() {
         return IsOccupied;
     }
 
+    /**
+     * This method changes whether seat is occupied
+     * 
+     * @param isOccupied returns whether seat is occupied
+     */
     public void setIsOccupied(boolean isOccupied) {
         IsOccupied = isOccupied;
     }
 
+    /**
+     * This method lets a seat to be occupied
+     */
     public void book() {
         this.IsOccupied = true;
     }
 
+    /**
+     * This method lets a seat to be unoccupied
+     */
     public void unbook() {
         this.IsOccupied = false;
     }

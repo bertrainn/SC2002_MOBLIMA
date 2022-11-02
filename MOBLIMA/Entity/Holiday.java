@@ -20,7 +20,7 @@ public class Holiday implements Serializable {
     private LocalDate date;
 
      /**
-     * Constructor for the Table class, with additional parameters.
+     * Constructor for the Holiday class.
      * 
      * @param name   name of holiday
      * @param date   date of holiday

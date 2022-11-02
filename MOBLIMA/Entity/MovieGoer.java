@@ -35,7 +35,7 @@ public class MovieGoer extends User {
 
     
     /**
-     * Constructor for the Table class, with additional parameters.
+     * Constructor for the MovieGoer class, with additional parameters.
      * 
      * @param Username          username of movie goer
      * @param Password          password for movie goer

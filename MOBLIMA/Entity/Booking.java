@@ -45,7 +45,7 @@ public class Booking implements Serializable {
     private MovieGoer user;
 
     /**
-     * Constructor for the Table class, with additional parameters.
+     * Constructor for the Booking class, with additional parameters.
      * 
      * @param TotalAmount     total amount for booking
      * @param cinema          cinema for booking
