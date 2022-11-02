@@ -69,7 +69,7 @@ public class Movie implements Serializable {
     private Duration MovieDuration;
 
     /**
-     * Constructor for the Table class, with additional parameters.
+     * Constructor for the Movie class, with additional parameters.
      * 
      * @param Title         title of the movie
      * @param Description   description of the movie
