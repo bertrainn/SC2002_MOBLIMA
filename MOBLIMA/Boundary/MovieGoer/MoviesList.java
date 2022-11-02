@@ -3,24 +3,35 @@ package MOBLIMA.Boundary.MovieGoer;
 import static MOBLIMA.Boundary.MenuMethods.*;
 
 import MOBLIMA.Boundary.BaseMenu;
+import MOBLIMA.Control.Booking_Controller;
 import MOBLIMA.Control.Cineplex_Controller;
 import MOBLIMA.Control.MovieGoer_Controller;
 import MOBLIMA.Control.Movie_Controller;
 import MOBLIMA.Control.SystemSettings_Controller;
+import MOBLIMA.Entity.Booking;
 import MOBLIMA.Entity.Cineplex;
 import MOBLIMA.Entity.Constants;
 import MOBLIMA.Entity.Movie;
+import MOBLIMA.Entity.Review_Ratings;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 public class MoviesList extends BaseMenu {
 	
-	private boolean topFive = false;
 	private Movie_Controller mc = new Movie_Controller();
 	private Cineplex_Controller cc = new Cineplex_Controller();
 	private MovieGoer_Controller mgc = new MovieGoer_Controller();
 	private SystemSettings_Controller ssc = new SystemSettings_Controller();
+	private Booking_Controller bc = new Booking_Controller();
+	
+	private boolean topFive = false;
 	private String orderBy = ssc.readSystemSettings().get(0);
 	
 	@Override
@@ -166,16 +177,25 @@ public class MoviesList extends BaseMenu {
 	}
 	
 	private ArrayList<Movie> getTop5Movies(String orderBy) {
-		ArrayList<Movie> movieList = mc.readFile();
 		ArrayList<Movie> top5 = new ArrayList<>();
-		for (Movie m : movieList)
-			if (!m.getShowingStatus().equals(Constants.SHOWING_STATUS.EOS)) top5.add(m);
+		
 		if (orderBy == "review") {
+			ArrayList<Movie> movieList = mc.readFile();
+			for (Movie m : movieList)
+				if (!m.getShowingStatus().equals(Constants.SHOWING_STATUS.EOS)) top5.add(m);
 			Collections.sort(top5, (o1 ,o2) -> compareRating(o1, o2));
 		}
 		else {
-			//sort by ticket sales (TBD)
-			Collections.sort(top5, (o1 ,o2) -> compareRating(o1, o2));
+			HashMap<Movie, Integer> salesList = topSales();
+			if (salesList.isEmpty()) {
+				System.out.println("There are no sales yet");
+				load();
+			}
+			HashMap<Movie, Integer> sortedSalesList = sortHashMap(salesList);
+			for (Map.Entry<Movie, Integer> sales : salesList.entrySet()) {
+				Movie m = sales.getKey();
+				if (!m.getShowingStatus().equals(Constants.SHOWING_STATUS.EOS)) top5.add(m);
+			}
 		}
 		
 		while (top5.size() > 5)
@@ -198,6 +218,24 @@ public class MoviesList extends BaseMenu {
     		return 1;
     	else
     		return -1;
+    }
+    
+    private HashMap<Movie, Integer> sortHashMap(HashMap<Movie, Integer> h) {
+		LinkedHashMap<Movie, Integer> sortedMap = new LinkedHashMap<>();
+		h.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+			.forEachOrdered(x -> sortedMap.put(x.getKey(), x.getValue()));
+		   
+		return sortedMap;
+    }
+    
+    private HashMap<Movie, Integer> topSales() {
+    	ArrayList<Booking> bookingList = bc.readFile();
+    	HashMap<Movie, Integer> movieSales = new HashMap<Movie, Integer>();
+    	
+    	for (Booking b : bookingList) {
+    		movieSales.put(b.getMovie(), movieSales.getOrDefault(b.getMovie(), 0) + 1);
+    	}
+    	return movieSales;
     }
 
 }
