@@ -19,13 +19,14 @@ import MOBLIMA.Entity.Review_Ratings;
 import MOBLIMA.Entity.Seat;
 
 public class MovieGoerRegistration extends BaseMenu {
-	
+
 	private MovieGoer_Controller mgc = new MovieGoer_Controller();
 	private MovieSession ms;
 	private ArrayList<Seat> chosenSeats;
-	
-	public MovieGoerRegistration() {}
-	
+
+	public MovieGoerRegistration() {
+	}
+
 	public MovieGoerRegistration(MovieSession ms, ArrayList<Seat> chosenSeats) {
 		this.ms = ms;
 		this.chosenSeats = chosenSeats;
@@ -36,24 +37,25 @@ public class MovieGoerRegistration extends BaseMenu {
 		ArrayList<MovieGoer> movieGoerList = mgc.readFile();
 		String username, pw, name, email, num;
 		int choice = 1, flag = 0;
-		
+
 		printHeader("Registration");
-		
+
 		username = getStringInput("Enter a username: ");
 		pw = getStringInput("Enter a password: ");
 		name = getStringInput("Enter your name: ");
 		email = getStringInput("Enter your email address: ");
 		num = getStringInput("Enter your phone number: ");
-		
+
 		for (MovieGoer mg : movieGoerList) {
 			if (username.equals(mg.getUsername())) {
 				flag = 1;
-				System.out.println("Username taken, press 0 to return to main menu, press any other number to try again.");
+				System.out.println(
+						"Username taken, press 0 to return to main menu, press any other number to try again.");
 				choice = userInput(0, 9);
 				break;
 			}
 		}
-		
+
 		if (flag == 1) {
 			if (choice == 0)
 				navigate(this, new MainMenu());
@@ -61,20 +63,20 @@ public class MovieGoerRegistration extends BaseMenu {
 				navigate(this, new MovieGoerRegistration());
 			}
 		}
-		
+
 		else {
 			HashMap<Movie, Review_Ratings> PostedReviewsList = new HashMap<Movie, Review_Ratings>();
 			ArrayList<Booking> BookingList = new ArrayList<Booking>();
 			mgc.addMovieGoer(username, pw, name, email, num, PostedReviewsList, BookingList);
 			movieGoerList = mgc.readFile();
-			
+
 			System.out.println("Registration success, logging in now...");
 			try {
 				Thread.sleep(500);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			
+
 			MovieGoer m = new MovieGoer(username, pw, name, email, num, PostedReviewsList, BookingList);
 			if (this.getPrevMenu() instanceof BookingConfirmationMenu)
 				navigate(this, new BookingConfirmationMenu(m, ms, chosenSeats));

@@ -14,13 +14,14 @@ import MOBLIMA.Boundary.BoundaryTest;
 import MOBLIMA.Boundary.MainMenu;
 
 public class MovieGoerLogin extends BaseMenu {
-	
+
 	private MovieGoer_Controller mgc = new MovieGoer_Controller();
 	private MovieSession ms;
 	private ArrayList<Seat> chosenSeats;
-	
-	public MovieGoerLogin() {}
-	
+
+	public MovieGoerLogin() {
+	}
+
 	public MovieGoerLogin(MovieSession ms, ArrayList<Seat> chosenSeats) {
 		this.ms = ms;
 		this.chosenSeats = chosenSeats;

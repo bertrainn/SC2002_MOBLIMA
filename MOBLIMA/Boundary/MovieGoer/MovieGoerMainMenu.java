@@ -8,9 +8,9 @@ import MOBLIMA.Boundary.MainMenu;
 import MOBLIMA.Entity.MovieGoer;
 
 public class MovieGoerMainMenu extends BaseMenu {
-	
+
 	private MovieGoer cust;
-	
+
 	public MovieGoerMainMenu(MovieGoer m) {
 		cust = m;
 	}
