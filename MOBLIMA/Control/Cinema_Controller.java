@@ -29,7 +29,7 @@ public class Cinema_Controller {
         FILENAME = CineplexController.FILENAME;
     }
 
-    public void createCinema(String cineplexName, String cinemaCode,
+    public void createCinema(String cineplexCode, String cinemaCode,
             Constants.CINEMA_TYPE cinemaType, SeatLayout sl,
             ArrayList<MovieSession> sessions) {
 
@@ -40,7 +40,7 @@ public class Cinema_Controller {
 
         for (int i = 0; i < Data.size(); i++) {
             c = Data.get(i);
-            if (c.getName().equals(cineplexName)) {
+            if (c.getCineplexCode().equals(cineplexCode)) {
                 ArrayList<Cinema> cinemas = c.getCinemaList();
                 cinemas.add(newCinema);
             }
@@ -187,5 +187,16 @@ public class Cinema_Controller {
         }
 
         return lastID;
+    }
+
+    public boolean doesCinemaExist(String cinemaCode) {
+        ArrayList<Cinema> Data = readFile();
+
+        for (Cinema c : Data) {
+            if (c.getcinemaCode().equals(cinemaCode)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

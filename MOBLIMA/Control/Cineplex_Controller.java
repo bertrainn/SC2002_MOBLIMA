@@ -104,18 +104,28 @@ public class Cineplex_Controller {
         replaceFile(UpdateData, FILENAME);
     }
 
-    public void deleteCineplex(String Name) {
+    public void deleteCineplex(String Code) {
         ArrayList<Cineplex> Data = readFile();
         ArrayList<Cineplex> UpdateData = new ArrayList<Cineplex>();
         Cineplex m;
 
         for (int i = 0; i < Data.size(); i++) {
             m = Data.get(i);
-            if (!(m.getName().equals(Name))) {
+            if (!(m.getCineplexCode().equals(Code))) {
                 UpdateData.add(m);
             }
         }
         replaceFile(UpdateData, FILENAME);
+    }
+
+    public Cineplex getCineplexByCode(String cineplexCode) {
+        ArrayList<Cineplex> cineplexList = CineplexController.readFile();
+        for (Cineplex c : cineplexList) {
+            if (c.getCineplexCode().equals(cineplexCode)) {
+                return c;
+            }
+        }
+        return null;
     }
 
     public boolean CineplexExists(String Name) {

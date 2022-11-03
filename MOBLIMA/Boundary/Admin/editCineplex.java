@@ -22,6 +22,11 @@ public class editCineplex extends BaseMenu {
 	private Cinema_Controller cinema_Controller = new Cinema_Controller(cineplex_Controller);
 	private MovieSession_Controller movie_session_Controller = new MovieSession_Controller(cinema_Controller);
 
+	public static void main(String[] args) {
+		editCineplex eM = new editCineplex();
+		eM.ListCineplex();
+	}
+
 	@Override
 	public void load() {
 		showMenu();
@@ -33,13 +38,12 @@ public class editCineplex extends BaseMenu {
 
 				"1. Add Cineplex",
 				"2. Delete Cineplex",
-				"3. List Cinemas",
-				"4. Add Cinemas",
-				"5. Delete Cinemas",
-				"6. Add Session",
-				"7. Delete Session",
-				"8. Cineplex Ordered By Sales",
-				"9. Back");
+				"3. Add Cinemas",
+				"4. Delete Cinemas",
+				"5. Add Session",
+				"6. Delete Session",
+				"7. Cineplex Ordered By Sales",
+				"8. Back");
 
 		int choice = userInput(1, 10);
 
@@ -48,10 +52,13 @@ public class editCineplex extends BaseMenu {
 				addCineplex();
 				break;
 			case 2:
+				deleteCineplex();
 				break;
 			case 3:
+				addCinema();
 				break;
 			case 4:
+				deleteCinema();
 				break;
 			case 5:
 				break;
@@ -60,8 +67,6 @@ public class editCineplex extends BaseMenu {
 			case 7:
 				break;
 			case 8:
-				break;
-			case 9:
 				back();
 				break;
 		}
@@ -79,11 +84,11 @@ public class editCineplex extends BaseMenu {
 			load();
 		}
 
-		System.out.printf("%-3s %-20s %-15s", "No.", "Cineplex Name", "Cinema Codes");
+		System.out.printf("%-3s %-5s %-20s %-15s", "No.", "Code", "Cineplex Name", "Cinema Codes");
 		System.out.println();
 		for (Cineplex c : cineplexList) {
 			cinemaList = c.getCinemaList();
-			System.out.printf("%-3d %-20s ", ++i, c.getName());
+			System.out.printf("%-3d %-5s %-20s ", ++i, c.getCineplexCode(), c.getName());
 			for (Cinema cinema : cinemaList) {
 				System.out.printf("%-3s ", cinema.getcinemaCode());
 			}
@@ -175,4 +180,124 @@ public class editCineplex extends BaseMenu {
 		load();
 	}
 
+	public void deleteCineplex() {
+		String choice;
+		ListCineplex();
+
+		choice = getStringInput("Enter the code of the cineplex you want to delete:");
+
+		if (!cineplex_Controller.CineplexCodeExist(choice)) {
+			System.out.println("Invalid choice, returning to settings menu...");
+		} else {
+			cineplex_Controller.deleteCineplex(choice);
+			System.out.println("Addition success, returning to settings menu...");
+		}
+
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		load();
+	}
+
+	public void addCinema() {
+		ListCineplex();
+		Cineplex cineplex = null;
+		String Cineplexchoice;
+		String cinemaCode;
+		Constants.CINEMA_TYPE cinemaType = Constants.CINEMA_TYPE.STANDARD;
+		ArrayList<MovieSession> sessions = new ArrayList<MovieSession>();
+
+		Cineplexchoice = getStringInput("Enter the code of the cineplex you want to add a cinema to:");
+
+		if (!cineplex_Controller.CineplexCodeExist(Cineplexchoice)) {
+			System.out.println("Invalid choice, returning to settings menu...");
+			try {
+				Thread.sleep(500);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			load();
+		} else {
+			cineplex = cineplex_Controller.getCineplexByCode(Cineplexchoice);
+		}
+
+		String cinemaCode_int = String.format("%02d", cinema_Controller.getLastCinemaID(Cineplexchoice) + 1);
+		cinemaCode = cineplex.getCineplexCode() + cinemaCode_int;
+		int row = getIntInput_Min("Enter the number of rows this cinema has: ", 0);
+		int col = getIntInput_Min("Enter the number of columns this cinema has: ", 0);
+		SeatLayout seatPlan = new SeatLayout(row, col);
+
+		printMenu("Select the type of Cinema (Number): ",
+				"1. Platinum",
+				"2. Standard");
+
+		int cinemaTypeChoice = userInput(1, 2);
+
+		switch (cinemaTypeChoice) {
+			case 1:
+				cinemaType = Constants.CINEMA_TYPE.PLATIUM;
+				break;
+			case 2:
+				cinemaType = Constants.CINEMA_TYPE.STANDARD;
+				break;
+		}
+
+		cinema_Controller.createCinema(Cineplexchoice, cinemaCode, cinemaType, seatPlan, sessions);
+
+		System.out.println("Addition success, returning to settings menu...");
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		load();
+	}
+
+	public void deleteCinema() {
+		String choice;
+		Cineplex cineplex = null;
+		ListCineplex();
+
+		choice = getStringInput("Enter the code of the cineplex that the cinema belongs to:");
+
+		if (!cineplex_Controller.CineplexCodeExist(choice)) {
+			System.out.println("Invalid choice, returning to settings menu...");
+			try {
+				Thread.sleep(500);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			load();
+		} else {
+			cineplex = cineplex_Controller.getCineplexByCode(choice);
+		}
+
+		if (cineplex.getCinemaList().size() < 3) {
+			System.out.println("This cineplex has 3 cinemas, unable to delete anymore, returning to settings menu...");
+			try {
+				Thread.sleep(500);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			load();
+		}
+
+		choice = getStringInput("Enter the code of the cinema you want to delete:");
+
+		if (cinema_Controller.doesCinemaExist(choice)) {
+			cinema_Controller.deleteCinema(choice);
+			System.out.println("Deletion success, returning to settings menu...");
+		} else {
+			System.out.println("Invalid choice, returning to settings menu...");
+		}
+
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		load();
+	}
 }
