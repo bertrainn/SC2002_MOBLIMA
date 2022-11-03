@@ -87,11 +87,24 @@ public class editSettings extends BaseMenu {
 	public void add_Holiday() {
 		String name;
 		LocalDate date;
+		boolean flag = false;
+		int choice = 0;
 
 		date = getDateInput_NoYear("Enter holiday date (e.g. 10 Aug): ");
 
 		if (hol_Control.isHoliday(date)) {
+			flag = true;
+			System.out.println(
+					"Holiday already exist, press 0 to return to settings menu, press any other number to try again.");
+			choice = userInput(0, 9);
+		}
 
+		if (flag == true) {
+			if (choice == 0) {
+				load();
+			} else {
+				add_Holiday();
+			}
 		}
 
 		name = getStringInput_Sentence("Enter holiday name: ");
@@ -388,7 +401,6 @@ public class editSettings extends BaseMenu {
 
 	// Admin Functions
 	public void addNewAdmin() {
-		ArrayList<Admin> admin_list = admin_Control.readFile();
 		int choice = -1;
 		String name;
 		String password;

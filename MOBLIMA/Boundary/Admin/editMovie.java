@@ -4,16 +4,24 @@ import static MOBLIMA.Boundary.MenuMethods.*;
 import MOBLIMA.Boundary.BaseMenu;
 import MOBLIMA.Entity.Constants;
 import MOBLIMA.Entity.Movie;
+import MOBLIMA.Entity.Booking;
 import MOBLIMA.Entity.Review_Ratings;
 import MOBLIMA.Control.Movie_Controller;
+import MOBLIMA.Control.Booking_Controller;
 
 import java.util.ArrayList;
 import java.time.LocalDate;
 import java.time.Duration;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class editMovie extends BaseMenu {
 
 	Movie_Controller movie_controller = new Movie_Controller();
+	Booking_Controller booking_controller = new Booking_Controller();
 
 	@Override
 	public void load() {
@@ -343,11 +351,93 @@ public class editMovie extends BaseMenu {
 	}
 
 	public void ListMoviesBySales() {
+		ArrayList<Movie> top5 = new ArrayList<Movie>();
+		HashMap<Movie, Integer> movieSales = topSales();
+		if (movieSales.isEmpty()) {
+			System.out.println("There are no sales yet");
+			load();
+		}
+		HashMap<Movie, Integer> sortedSalesList = sortHashMap(movieSales);
+
+		printMenu("Select the movie which you want to list (number):",
+				"1. All movies in the system",
+				"2. Movies that are showing and going to be shown",
+				"3. Back");
+
+		int choice = userInput(1, 3);
+
+		switch (choice) {
+			case 1:
+				for (Map.Entry<Movie, Integer> sales : sortedSalesList.entrySet()) {
+					Movie m = sales.getKey();
+					top5.add(m);
+				}
+
+				break;
+			case 2:
+				for (Map.Entry<Movie, Integer> sales : sortedSalesList.entrySet()) {
+					Movie m = sales.getKey();
+					if (!m.getShowingStatus().equals(Constants.SHOWING_STATUS.EOS))
+						top5.add(m);
+				}
+				break;
+			case 3:
+				load();
+				break;
+		}
+
+		while (top5.size() > 5)
+			top5.remove(5);
+
+		int i = 0;
+		System.out.printf("%-3s %-4s %-25s %-15s", "No.", "ID", "Name", "Number of Sales");
+		System.out.println();
+		for (Movie m : top5) {
+			System.out.printf("%-3d %-4d %-25s %-15d", ++i, m.getId(), m.getTitle(), movieSales.get(m));
+			System.out.println();
+		}
 
 	}
 
 	public void ListMoviesByRating() {
-		
+		ArrayList<Movie> top5 = new ArrayList<Movie>();
+		ArrayList<Movie> movieList = movie_controller.readFile();
+
+		printMenu("Select the movie which you want to list (number):",
+				"1. All movies in the system",
+				"2. Movies that are showing and going to be shown",
+				"3. Back");
+
+		int choice = userInput(1, 3);
+
+		switch (choice) {
+			case 1:
+				for (Movie m : movieList)
+					top5.add(m);
+				Collections.sort(top5, (o1, o2) -> compareRating(o1, o2));
+				break;
+			case 2:
+				for (Movie m : movieList)
+					if (!m.getShowingStatus().equals(Constants.SHOWING_STATUS.EOS))
+						top5.add(m);
+				Collections.sort(top5, (o1, o2) -> compareRating(o1, o2));
+				break;
+			case 3:
+				load();
+				break;
+		}
+
+		while (top5.size() > 5)
+			top5.remove(5);
+
+		int i = 0;
+		System.out.printf("%-3s %-4s %-25s %-15s", "No.", "ID", "Name", "Overall Review");
+		System.out.println();
+		for (Movie m : top5) {
+			System.out.printf("%-3d %-4d %-25s %-15.2f", ++i, m.getId(), m.getTitle(), m.getOverallRating());
+			System.out.println();
+		}
+
 	}
 
 	private int compareRating(Movie m1, Movie m2) {
@@ -364,6 +454,24 @@ public class editMovie extends BaseMenu {
 			return 1;
 		else
 			return -1;
+	}
+
+	private HashMap<Movie, Integer> topSales() {
+		ArrayList<Booking> bookingList = booking_controller.readFile();
+		HashMap<Movie, Integer> movieSales = new HashMap<Movie, Integer>();
+
+		for (Booking b : bookingList) {
+			movieSales.put(b.getMovie(), movieSales.getOrDefault(b.getMovie(), 0) + 1);
+		}
+		return movieSales;
+	}
+
+	private HashMap<Movie, Integer> sortHashMap(HashMap<Movie, Integer> h) {
+		LinkedHashMap<Movie, Integer> sortedMap = new LinkedHashMap<>();
+		h.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+				.forEachOrdered(x -> sortedMap.put(x.getKey(), x.getValue()));
+
+		return sortedMap;
 	}
 
 	public void ListMovies() {
