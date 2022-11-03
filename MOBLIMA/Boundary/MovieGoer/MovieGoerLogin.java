@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import MOBLIMA.Boundary.BaseMenu;
 import MOBLIMA.Control.MovieGoer_Controller;
+import MOBLIMA.Entity.Cineplex;
 import MOBLIMA.Entity.MovieGoer;
 import MOBLIMA.Entity.MovieSession;
 import MOBLIMA.Entity.Seat;
@@ -18,13 +19,15 @@ public class MovieGoerLogin extends BaseMenu {
 	private MovieGoer_Controller mgc = new MovieGoer_Controller();
 	private MovieSession ms;
 	private ArrayList<Seat> chosenSeats;
+	private Cineplex cp;
 
 	public MovieGoerLogin() {
 	}
 
-	public MovieGoerLogin(MovieSession ms, ArrayList<Seat> chosenSeats) {
+	public MovieGoerLogin(MovieSession ms, ArrayList<Seat> chosenSeats, Cineplex cp) {
 		this.ms = ms;
 		this.chosenSeats = chosenSeats;
+		this.cp = cp;
 	}
 
 	@Override
@@ -32,43 +35,37 @@ public class MovieGoerLogin extends BaseMenu {
 		ArrayList<MovieGoer> movieGoerList = mgc.readFile();
 		String user, pw;
 		BaseMenu next = new MovieGoerLogin();
-		int flag = 0, choice = 1, i = 0;
+		int choice = 1, i = 0;
 
 		printHeader("Login");
 
 		user = getStringInput("Enter your username: ");
 		pw = getStringInput("Enter your password: ");
-
-		for (MovieGoer mg : movieGoerList) {
-			if (user.equals(mg.getUsername())) {
-				flag = 1;
-				if (pw.equals(mg.getPassword())) {
-					MovieGoer m = movieGoerList.get(i);
-					if (this.getPrevMenu() instanceof BookingConfirmationMenu)
-						next = new BookingConfirmationMenu(m, ms, chosenSeats);
-					else
-						next = new MovieGoerMainMenu(m);
-					System.out.println("Logging in...");
-					try {
-						Thread.sleep(500);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-					break;
-				} else {
-					System.out.println(
-							"Incorrect password, press 0 to return to main menu, press any other number to try again.");
-					choice = userInput(0, 9);
-					break;
-				}
-			}
-			i++;
-		}
-
-		if (flag == 0) {
-			System.out.println(
+		
+		if (!mgc.MovieGoerExist(user)) {
+			printMenu(
 					"Username does not exist, press 0 to return to main menu, press any other number to try again.");
 			choice = userInput(0, 9);
+		}
+		else {
+			MovieGoer cust = mgc.getMovieGoerByUsername(user);
+			if (cust.getPassword().equals(pw)) {
+				if (this.getPrevMenu() instanceof BookingConfirmationMenu)
+					next = new BookingConfirmationMenu(cust, ms, chosenSeats, cp);
+				else
+					next = new MovieGoerMainMenu(cust);
+				System.out.println("Logging in...");
+				try {
+					Thread.sleep(500);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+			else {
+				System.out.println(
+						"Incorrect password, press 0 to return to main menu, press any other number to try again.");
+				choice = userInput(0, 9);
+			}
 		}
 
 		if (choice == 0)

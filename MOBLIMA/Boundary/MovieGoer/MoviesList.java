@@ -98,7 +98,7 @@ public class MoviesList extends BaseMenu {
 
 	private void search() {
 		String searchInput = getStringInput("Enter the movie title: ");
-		ArrayList<Movie> searchResults = getMovieByTitle(searchInput.toUpperCase());
+		ArrayList<Movie> searchResults = mc.getMoviesByTitle(searchInput.toUpperCase());
 
 		if (searchResults.isEmpty()) {
 			printMenuWithoutSpace("No movies found, enter any number to go back");
@@ -154,7 +154,7 @@ public class MoviesList extends BaseMenu {
 		}
 
 		else if (orderBy.equals("sales")) {
-			HashMap<Movie, Integer> salesList = fakeTopSales(); // topSales();
+			HashMap<Movie, Integer> salesList = topSales(); // fakeTopSales();
 			for (Movie m : movies) {
 				Integer sales = null;
 				for (Map.Entry<Movie, Integer> movie : salesList.entrySet()) {
@@ -198,20 +198,6 @@ public class MoviesList extends BaseMenu {
 
 	}
 
-	private ArrayList<Movie> getMovieByTitle(String searchInput) {
-		ArrayList<Movie> movieList = mc.readFile();
-		ArrayList<Movie> searchResults = new ArrayList<>();
-
-		for (Movie m : movieList) {
-			String title = m.getTitle().toUpperCase();
-			if (title.contains(searchInput)) {
-				searchResults.add(m);
-			}
-		}
-
-		return searchResults;
-	}
-
 	private ArrayList<Movie> getTop5Movies(String orderBy) {
 		ArrayList<Movie> top5 = new ArrayList<>();
 
@@ -222,7 +208,7 @@ public class MoviesList extends BaseMenu {
 					top5.add(m);
 			Collections.sort(top5, (o1, o2) -> compareRating(o1, o2));
 		} else {
-			HashMap<Movie, Integer> salesList = fakeTopSales(); // topSales();
+			HashMap<Movie, Integer> salesList = topSales(); // fakeTopSales();
 			if (salesList.isEmpty()) {
 				System.out.println("There are no sales yet");
 				load();
@@ -268,9 +254,20 @@ public class MoviesList extends BaseMenu {
 	private HashMap<Movie, Integer> topSales() {
 		ArrayList<Booking> bookingList = bc.readFile();
 		HashMap<Movie, Integer> movieSales = new HashMap<Movie, Integer>();
-
 		for (Booking b : bookingList) {
-			movieSales.put(b.getMovie(), movieSales.getOrDefault(b.getMovie(), 0) + 1);
+			int flag = 0;
+			Movie m = b.getMovie();
+			int count = b.getTicketList().size();
+			for (Map.Entry<Movie, Integer> mov : movieSales.entrySet()) {
+				String movTitle = mov.getKey().getTitle();
+				if (movTitle.equals(m.getTitle())) {
+					flag = 1;
+					movieSales.put(mov.getKey(), mov.getValue()+count);
+					break;
+				}
+			}
+			if (flag == 0)
+				movieSales.put(b.getMovie(), count);
 		}
 		return movieSales;
 	}
@@ -290,7 +287,7 @@ public class MoviesList extends BaseMenu {
 				if (i == 3 && m.getTitle().equals("Thor: Love and Thunder"))
 					continue;
 
-				Booking b1 = new Booking(0, c1, m, null, null);
+				Booking b1 = new Booking(0, c1, m, null, null, null);
 				bookingList.add(b1);
 			}
 		}

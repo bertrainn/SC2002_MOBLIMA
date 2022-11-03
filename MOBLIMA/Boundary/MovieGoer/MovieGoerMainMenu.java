@@ -30,6 +30,7 @@ public class MovieGoerMainMenu extends BaseMenu {
 				navigate(this, new MoviesList(cust));
 				break;
 			case 2:
+				navigate(this, new BookingHistory(cust));
 				break;
 			case 3:
 				cust = null;

@@ -4,12 +4,15 @@ import java.util.ArrayList;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import MOBLIMA.Entity.Constants;
 
 public class MenuMethods {
 
 	static Scanner sc = new Scanner(System.in);
+	
+	public static final DecimalFormat df = new DecimalFormat("0.00");
 
 	public static void printHeader(String header) {
 		int length = 65;

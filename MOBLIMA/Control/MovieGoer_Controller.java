@@ -140,4 +140,15 @@ public class MovieGoer_Controller {
         }
         return false;
     }
+    
+    public MovieGoer getMovieGoerByUsername(String Username) {
+        ArrayList<MovieGoer> Data = readFile();
+
+        for (MovieGoer mg : Data) {
+            if (mg.getUsername().equals(Username)) {
+                return mg;
+            }
+        }
+        return null;
+    }
 }
