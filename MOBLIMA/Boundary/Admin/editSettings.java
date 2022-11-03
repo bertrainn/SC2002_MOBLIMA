@@ -1,7 +1,5 @@
 package MOBLIMA.Boundary.Admin;
 
-import static MOBLIMA.Boundary.MenuMethods.*;
-
 import MOBLIMA.Boundary.BaseMenu;
 import MOBLIMA.Control.Holiday_Controller;
 import MOBLIMA.Control.SystemSettings_Controller;
@@ -13,6 +11,9 @@ import MOBLIMA.Entity.Admin;
 import MOBLIMA.Entity.Constants;
 
 import java.util.ArrayList;
+
+import static MOBLIMA.Control.UserInput_Controller.*;
+
 import java.time.LocalDate;
 import java.util.HashMap;
 

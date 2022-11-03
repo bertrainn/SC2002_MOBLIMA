@@ -1,10 +1,11 @@
 package MOBLIMA.Boundary;
 
-import static MOBLIMA.Boundary.MenuMethods.*;
-
 import MOBLIMA.Boundary.MovieGoer.MovieGoerLogin;
 import MOBLIMA.Boundary.MovieGoer.MovieGoerRegistration;
 import MOBLIMA.Boundary.MovieGoer.MoviesList;
+
+import static MOBLIMA.Control.UserInput_Controller.*;
+
 import MOBLIMA.Boundary.Admin.AdminLogin;
 
 public class MainMenu extends BaseMenu {

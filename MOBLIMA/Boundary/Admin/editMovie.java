@@ -1,6 +1,5 @@
 package MOBLIMA.Boundary.Admin;
 
-import static MOBLIMA.Boundary.MenuMethods.*;
 import MOBLIMA.Boundary.BaseMenu;
 import MOBLIMA.Entity.Constants;
 import MOBLIMA.Entity.Movie;
@@ -11,6 +10,9 @@ import MOBLIMA.Control.Booking_Controller;
 
 import java.util.ArrayList;
 import java.time.LocalDate;
+
+import static MOBLIMA.Control.UserInput_Controller.*;
+
 import java.time.Duration;
 import java.util.Collections;
 import java.util.Comparator;

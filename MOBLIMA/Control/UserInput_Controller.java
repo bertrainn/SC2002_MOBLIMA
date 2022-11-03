@@ -1,4 +1,4 @@
-package MOBLIMA.Boundary;
+package MOBLIMA.Control;
 
 import java.util.ArrayList;
 
@@ -8,7 +8,7 @@ import java.text.DecimalFormat;
 import java.time.LocalDate;
 import MOBLIMA.Entity.Constants;
 
-public class MenuMethods {
+public class UserInput_Controller {
 
 	static Scanner sc = new Scanner(System.in);
 	

@@ -10,11 +10,14 @@ import MOBLIMA.Entity.Cinema;
 import MOBLIMA.Entity.Constants;
 import MOBLIMA.Entity.Holiday;
 import MOBLIMA.Control.Holiday_Controller;
-import static MOBLIMA.Boundary.MenuMethods.*;
+
 import java.util.ArrayList;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+
+import static MOBLIMA.Control.UserInput_Controller.*;
+
 import java.time.Duration;
 
 public class MOBLIMA {

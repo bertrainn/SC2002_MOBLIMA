@@ -1,6 +1,6 @@
 package MOBLIMA.Boundary.MovieGoer;
 
-import static MOBLIMA.Boundary.MenuMethods.*;
+import static MOBLIMA.Control.UserInput_Controller.*;
 
 import java.time.LocalDate;
 import java.time.LocalTime;

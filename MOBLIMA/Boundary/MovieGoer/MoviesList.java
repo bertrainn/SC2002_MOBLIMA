@@ -1,7 +1,5 @@
 package MOBLIMA.Boundary.MovieGoer;
 
-import static MOBLIMA.Boundary.MenuMethods.*;
-
 import MOBLIMA.Boundary.BaseMenu;
 import MOBLIMA.Control.Booking_Controller;
 import MOBLIMA.Control.Cineplex_Controller;
@@ -14,6 +12,8 @@ import MOBLIMA.Entity.Cineplex;
 import MOBLIMA.Entity.Constants;
 import MOBLIMA.Entity.Movie;
 import MOBLIMA.Entity.MovieGoer;
+
+import static MOBLIMA.Control.UserInput_Controller.*;
 
 import java.util.ArrayList;
 import java.util.Collections;

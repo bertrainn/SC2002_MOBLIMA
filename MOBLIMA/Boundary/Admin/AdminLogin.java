@@ -1,10 +1,11 @@
 package MOBLIMA.Boundary.Admin;
 
+import static MOBLIMA.Control.UserInput_Controller.*;
+
 import java.util.ArrayList;
 
 import javax.swing.plaf.basic.BasicSplitPaneUI.KeyboardDownRightHandler;
 
-import static MOBLIMA.Boundary.MenuMethods.*;
 import MOBLIMA.Boundary.BaseMenu;
 import MOBLIMA.Boundary.MainMenu;
 import MOBLIMA.Control.Admin_Controller;

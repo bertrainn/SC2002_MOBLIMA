@@ -1,7 +1,5 @@
 package MOBLIMA.Boundary.Admin;
 
-import static MOBLIMA.Boundary.MenuMethods.*;
-
 import MOBLIMA.Boundary.BaseMenu;
 
 import MOBLIMA.Control.Cineplex_Controller;
@@ -10,6 +8,8 @@ import MOBLIMA.Control.MovieSession_Controller;
 
 import MOBLIMA.Entity.Cineplex;
 import MOBLIMA.Entity.Cinema;
+
+import static MOBLIMA.Control.UserInput_Controller.*;
 
 import java.util.ArrayList;
 
@@ -90,7 +90,7 @@ public class editCineplex extends BaseMenu {
 		// auto build 3 Cinemas
 		String cineplexName = getStringInput_Sentence("Enter the name of the new cineplex: ");
 
-		
+
 	}
 
 }

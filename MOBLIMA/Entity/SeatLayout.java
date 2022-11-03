@@ -1,20 +1,20 @@
 package MOBLIMA.Entity;
 
-import java.io.Serializable;
+import static MOBLIMA.Control.UserInput_Controller.*;
 
-import static MOBLIMA.Boundary.MenuMethods.*;
+import java.io.Serializable;
 
 /**
  * Represents an instance of a movie used in the system.
  */
 
 public class SeatLayout implements Serializable {
-    
+
     /**
      * Seating layout.
      */
     private Seat[][] layout;
-    
+
     /**
      * Row and column of seating layout.
      */
@@ -23,8 +23,8 @@ public class SeatLayout implements Serializable {
     /**
      * Constructor for the SeatLayout class.
      * 
-     * @param row   row of seating layout
-     * @param col   column of seating layout
+     * @param row row of seating layout
+     * @param col column of seating layout
      */
     public SeatLayout(int row, int col) {
         this.row = row;
@@ -45,19 +45,19 @@ public class SeatLayout implements Serializable {
         System.out.print("\nSelect Your Seats\n");
         System.out.println("([ ] Available [X] Sold)");
         System.out.println();
-        
+
         int space;
-        if (row>10) 
-        	space = 27 + (col/2);
+        if (row > 10)
+            space = 27 + (col / 2);
         else if (row > 5)
-        	space = 17 + (col/2);
+            space = 17 + (col / 2);
         else
-        	space = (13 + col/2);
+            space = (13 + col / 2);
 
         System.out.print(generateSpaces(space) + "|      Screen       |\n");
         for (int i = 0; i < this.row; i++) {
-        	String s = "Seats " + (i * this.col) + " - " + ((i + 1) * this.col - 1);
-            System.out.printf(s + generateSpaces(17-s.length()));
+            String s = "Seats " + (i * this.col) + " - " + ((i + 1) * this.col - 1);
+            System.out.printf(s + generateSpaces(17 - s.length()));
             for (int j = 0; j < this.col; j++) {
                 if (layout[i][j].isIsOccupied())
                     System.out.print("[X]");
@@ -91,7 +91,7 @@ public class SeatLayout implements Serializable {
     }
 
     /**
-     * This method returns the row 
+     * This method returns the row
      * 
      * @return the row
      */

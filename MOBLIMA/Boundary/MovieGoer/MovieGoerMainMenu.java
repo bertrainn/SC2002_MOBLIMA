@@ -1,6 +1,6 @@
 package MOBLIMA.Boundary.MovieGoer;
 
-import static MOBLIMA.Boundary.MenuMethods.*;
+import static MOBLIMA.Control.UserInput_Controller.*;
 
 import MOBLIMA.Boundary.BaseMenu;
 import MOBLIMA.Boundary.BoundaryTest;
