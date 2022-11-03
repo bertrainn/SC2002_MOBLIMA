@@ -114,4 +114,15 @@ public class Cineplex_Controller {
         }
         replaceFile(UpdateData, FILENAME);
     }
+
+    public boolean CineplexExists(String Name) {
+        ArrayList<Cineplex> Data = readFile();
+
+        for (Cineplex c : Data) {
+            if (c.getName().equals(Name)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

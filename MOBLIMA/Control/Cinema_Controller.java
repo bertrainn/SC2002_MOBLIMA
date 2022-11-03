@@ -92,8 +92,8 @@ public class Cinema_Controller {
             c = cineplexList.get(i);
             ArrayList<Cinema> cinemaList = c.getCinemaList();
             for (Cinema cine : cinemaList) {
-            	if (cine.getcinemaCode().equals(cinemaCode))
-            		return cine;
+                if (cine.getcinemaCode().equals(cinemaCode))
+                    return cine;
             }
         }
         return null;

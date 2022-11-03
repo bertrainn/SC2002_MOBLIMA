@@ -258,7 +258,7 @@ public class editMovie extends BaseMenu {
 						age = Constants.AGE_CLASSIFICATION.M18;
 						break;
 					case 6:
-						load();
+						back();
 						break;
 
 				}
