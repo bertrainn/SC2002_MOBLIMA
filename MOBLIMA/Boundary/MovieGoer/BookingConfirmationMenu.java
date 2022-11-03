@@ -16,6 +16,7 @@ import MOBLIMA.Control.Holiday_Controller;
 import MOBLIMA.Control.MovieGoer_Controller;
 import MOBLIMA.Entity.Booking;
 import MOBLIMA.Entity.Cinema;
+import MOBLIMA.Entity.Cineplex;
 import MOBLIMA.Entity.Constants;
 import MOBLIMA.Entity.MovieGoer;
 import MOBLIMA.Entity.MovieSession;
@@ -27,6 +28,7 @@ public class BookingConfirmationMenu extends BaseMenu {
 
 	private MovieGoer cust;
 	private MovieSession ms;
+	private Cineplex cp;
 	private ArrayList<Seat> chosenSeats;
 	private Cineplex_Controller cpc = new Cineplex_Controller();
 	private Cinema_Controller cc = new Cinema_Controller(cpc);
@@ -35,10 +37,11 @@ public class BookingConfirmationMenu extends BaseMenu {
 	private Booking_Controller bc = new Booking_Controller();
 	private MovieGoer_Controller mgc = new MovieGoer_Controller();
 
-	public BookingConfirmationMenu(MovieGoer cust, MovieSession ms, ArrayList<Seat> chosenSeats) {
+	public BookingConfirmationMenu(MovieGoer cust, MovieSession ms, ArrayList<Seat> chosenSeats, Cineplex cp) {
 		this.cust = cust;
 		this.ms = ms;
 		this.chosenSeats = chosenSeats;
+		this.cp = cp;
 	}
 
 	@Override
@@ -52,10 +55,10 @@ public class BookingConfirmationMenu extends BaseMenu {
 			int choice = userInput(1, 3);
 			switch (choice) {
 				case 1:
-					navigate(this, new MovieGoerLogin(ms, chosenSeats));
+					navigate(this, new MovieGoerLogin(ms, chosenSeats, cp));
 					break;
 				case 2:
-					navigate(this, new MovieGoerRegistration(ms, chosenSeats));
+					navigate(this, new MovieGoerRegistration(ms, chosenSeats, cp));
 			}
 		} else {
 			showConfirmation();
@@ -68,18 +71,17 @@ public class BookingConfirmationMenu extends BaseMenu {
 		for (Seat s : chosenSeats)
 			tixList.add(createTicket(ms, s, i));
 
-		Double totalPrice = 0.0;
+		Double totalPrice = 0.00;
 		for (Ticket t : tixList)
 			totalPrice += t.getTicketPrice();
-		totalPrice = Math.round(totalPrice * 100.0) / 100.0;
-		printMenu("The total price is : $" + totalPrice,
+		printMenu("The total price is : $" + df.format(totalPrice),
 				"1. Confirm booking",
 				"2. Cancel");
 		int choice = userInput(1, 2);
 		if (choice == 2)
 			navigate(this, new MovieGoerMainMenu(cust));
 		else {
-			bc.addBooking(totalPrice, cc.getCinemaByCode(ms.getCinemaCode()), ms.getShownMovie(), tixList, cust);
+			bc.addBooking(totalPrice, cc.getCinemaByCode(ms.getCinemaCode()), ms.getShownMovie(), tixList, cust, cp);
 
 			SeatLayout sl = ms.getSeatPlan();
 			for (Seat s : chosenSeats) {
@@ -90,12 +92,19 @@ public class BookingConfirmationMenu extends BaseMenu {
 
 			ArrayList<Booking> bList = cust.getBookingList();
 			bList.add(
-					new Booking(totalPrice, cc.getCinemaByCode(ms.getCinemaCode()), ms.getShownMovie(), tixList, cust));
+					new Booking(totalPrice, cc.getCinemaByCode(ms.getCinemaCode()), ms.getShownMovie(), tixList, cust, cp));
 			mgc.updateMovieGoer(mgc.CHOICE_BOOKING, cust.getUsername(), bList);
 
-			printMenuWithoutSpace("Booking Confirmed Successfully, enter any number to return to main menu");
-			userInput(0, 9);
-			navigate(this, new MovieGoerMainMenu(cust));
+			printMenu("Your booking has been confirmed",
+					  "1. View booking history",
+					  "2. Main menu");
+			
+			choice = userInput(1, 2);
+			if (choice == 2)
+				navigate(this, new MovieGoerMainMenu(cust));
+			
+			else
+				navigate(this, new BookingHistory(cust));
 		}
 	}
 

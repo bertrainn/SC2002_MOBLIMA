@@ -125,7 +125,7 @@ public class BookingMenu extends BaseMenu {
 			userInput(0, 9);
 			showSeatingPlan(ms, noOfSeats);
 		} else {
-			navigate(this, new BookingConfirmationMenu(cust, ms, chosenSeats));
+			navigate(this, new BookingConfirmationMenu(cust, ms, chosenSeats, cp));
 		}
 	}
 

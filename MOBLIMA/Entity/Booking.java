@@ -43,6 +43,8 @@ public class Booking implements Serializable {
      * The name of movie goer.
      */
     private MovieGoer user;
+    
+    private Cineplex cineplex;
 
     /**
      * Constructor for the Booking class, with additional parameters.
@@ -55,7 +57,7 @@ public class Booking implements Serializable {
      */
     
     public Booking(double TotalAmount, Cinema cinema, Movie movie,
-            ArrayList<Ticket> ticketList, MovieGoer user) {
+            ArrayList<Ticket> ticketList, MovieGoer user, Cineplex cineplex) {
         String TimeStamp = LocalDateTime.now().format(Constants.bookingFormat);
         this.TID = cinema.getcinemaCode() + TimeStamp;
         this.TotalAmount = TotalAmount;
@@ -63,6 +65,7 @@ public class Booking implements Serializable {
         this.movie = movie;
         this.TicketList = ticketList;
         this.user = user;
+        this.cineplex = cineplex;
     }
 
     /**
@@ -117,6 +120,14 @@ public class Booking implements Serializable {
      */
     public void setCinema(Cinema cinema) {
         this.cinema = cinema;
+    }
+    
+    public Cineplex getCineplex() {
+    	return cineplex;
+    }
+    
+    public void setCineplex(Cineplex cineplex) {
+    	this.cineplex = cineplex;
     }
 
     /**

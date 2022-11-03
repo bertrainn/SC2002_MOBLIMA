@@ -174,6 +174,20 @@ public class Movie_Controller {
         }
         return false;
     }
+    
+    public ArrayList<Movie> getMoviesByTitle(String Title) {
+        ArrayList<Movie> Data = readFile();
+        ArrayList<Movie> searchResults = new ArrayList<>();
+
+        for (Movie m : Data) {
+			String title = m.getTitle().toUpperCase();
+			if (title.contains(Title)) {
+				searchResults.add(m);
+			}
+		}
+
+		return searchResults;
+    }
 
     public int getLastID() {
         int lastID = -1;

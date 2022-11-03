@@ -9,6 +9,7 @@ import java.io.ObjectOutputStream;
 
 import MOBLIMA.Entity.Booking;
 import MOBLIMA.Entity.Cinema;
+import MOBLIMA.Entity.Cineplex;
 import MOBLIMA.Entity.Movie;
 import MOBLIMA.Entity.Ticket;
 import MOBLIMA.Entity.MovieGoer;
@@ -38,11 +39,11 @@ public class Booking_Controller {
     }
 
     public void addBooking(double TotalAmount, Cinema cinema, Movie movie, ArrayList<Ticket> ticketList,
-            MovieGoer user) {
+            MovieGoer user, Cineplex cineplex) {
 
         FileOutputStream fos = null;
         ObjectOutputStream oos = null;
-        Booking Booking = new Booking(TotalAmount, cinema, movie, ticketList, user);
+        Booking Booking = new Booking(TotalAmount, cinema, movie, ticketList, user, cineplex);
 
         ArrayList<Booking> Data = new ArrayList<Booking>();
         File temp = new File(FILENAME);

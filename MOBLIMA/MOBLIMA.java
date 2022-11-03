@@ -2,14 +2,19 @@ package MOBLIMA;
 
 import MOBLIMA.Entity.User;
 import MOBLIMA.Entity.Movie;
+import MOBLIMA.Entity.MovieSession;
 import MOBLIMA.Entity.Review_Ratings;
+import MOBLIMA.Entity.SeatLayout;
 import MOBLIMA.Control.*;
+import MOBLIMA.Entity.Cinema;
 import MOBLIMA.Entity.Constants;
 import MOBLIMA.Entity.Holiday;
 import MOBLIMA.Control.Holiday_Controller;
 import static MOBLIMA.Boundary.MenuMethods.*;
 import java.util.ArrayList;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.Duration;
 
 public class MOBLIMA {
@@ -30,9 +35,9 @@ public class MOBLIMA {
 //    	SeatLayout ssl = new SeatLayout(20, 20);
 //    	SeatLayout psl = new SeatLayout(10, 10);
 //   	
-//    	cc.createCinema("Great World City", "A1", "A1", Constants.CINEMA_TYPE.STANDARD, ssl, sessions1);
-//    	cc.createCinema("Great World City", "A2", "A2", Constants.CINEMA_TYPE.STANDARD, ssl, sessions2);
-//    	cc.createCinema("Great World City", "A3", "A3", Constants.CINEMA_TYPE.PLATIUM, psl, sessions3);
+//    	cc.createCinema("Great World City", "001", "A1", Constants.CINEMA_TYPE.STANDARD, ssl, sessions1);
+//    	cc.createCinema("Great World City", "002", "A2", Constants.CINEMA_TYPE.STANDARD, ssl, sessions2);
+//    	cc.createCinema("Great World City", "003", "A3", Constants.CINEMA_TYPE.PLATIUM, psl, sessions3);
 //    	
 //    	ArrayList<Cinema> cinemaList = cc.getCinemaByCineplex("Great World City");
 //    	cpc.updateCineplex(cpc.CHOICE_CINEMALIST, "Great World City", cinemaList);
@@ -47,17 +52,17 @@ public class MOBLIMA {
 //    	LocalTime time2 = LocalTime.of(15, 00);
 //    	LocalDateTime showtime2 = LocalDateTime.of(date2, time2);
 //    	
-//    	msc.createSession("A1", movies.get(0), showtime1, Constants.MOVIE_TYPE.TWO_D);
-//    	msc.createSession("A1", movies.get(1), showtime1, Constants.MOVIE_TYPE.THREE_D);
-//    	msc.createSession("A1", movies.get(2), showtime1, Constants.MOVIE_TYPE.BLOCKBUSTER);
+//    	msc.createSession("001", movies.get(0), showtime1, Constants.MOVIE_TYPE.TWO_D);
+//    	msc.createSession("001", movies.get(1), showtime1, Constants.MOVIE_TYPE.THREE_D);
+//    	msc.createSession("001", movies.get(2), showtime1, Constants.MOVIE_TYPE.BLOCKBUSTER);
 //    	
-//    	msc.createSession("A2", movies.get(0), showtime2, Constants.MOVIE_TYPE.THREE_D);
-//    	msc.createSession("A2", movies.get(1), showtime2, Constants.MOVIE_TYPE.BLOCKBUSTER);
-//    	msc.createSession("A2", movies.get(2), showtime2, Constants.MOVIE_TYPE.TWO_D);
+//    	msc.createSession("002", movies.get(0), showtime2, Constants.MOVIE_TYPE.THREE_D);
+//    	msc.createSession("002", movies.get(1), showtime2, Constants.MOVIE_TYPE.BLOCKBUSTER);
+//    	msc.createSession("002", movies.get(2), showtime2, Constants.MOVIE_TYPE.TWO_D);
 //
-//    	msc.createSession("A3", movies.get(0), showtime, Constants.MOVIE_TYPE.BLOCKBUSTER);
-//    	msc.createSession("A3", movies.get(1), showtime, Constants.MOVIE_TYPE.TWO_D);
-//    	msc.createSession("A3", movies.get(2), showtime, Constants.MOVIE_TYPE.THREE_D);
+//    	msc.createSession("003", movies.get(0), showtime, Constants.MOVIE_TYPE.BLOCKBUSTER);
+//    	msc.createSession("003", movies.get(1), showtime, Constants.MOVIE_TYPE.TWO_D);
+//    	msc.createSession("003", movies.get(2), showtime, Constants.MOVIE_TYPE.THREE_D);
 
         // String name = getStringInput("Enter admin's username: ");
         // String password = getStringInput("Enter admin's password: ");
@@ -74,11 +79,11 @@ public class MOBLIMA {
         // controller.addHoliday("Chinese New Year", LocalDate.of(2022, 2, 12));
         // controller.addHoliday("Chinese New Year", LocalDate.of(2022, 2, 13));
 
-        Movie_Controller mc = new Movie_Controller();
-        ArrayList<Movie> movies = mc.readFile();
-
-        Movie m = movies.get(2);
-        System.out.println(m.getGenre());
+//        Movie_Controller mc = new Movie_Controller();
+//        ArrayList<Movie> movies = mc.readFile();
+//
+//        Movie m = movies.get(2);
+//        System.out.println(m.getGenre());
 
         // String title = "Black Adam";
         // String Description = "Pee pee poo poo";
