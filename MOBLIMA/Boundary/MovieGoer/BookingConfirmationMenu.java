@@ -59,6 +59,9 @@ public class BookingConfirmationMenu extends BaseMenu {
 					break;
 				case 2:
 					navigate(this, new MovieGoerRegistration(ms, chosenSeats, cp));
+					break;
+				case 3:
+					navigate(this, new MovieGoerMainMenu(cust));
 			}
 		} else {
 			showConfirmation();
