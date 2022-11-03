@@ -129,4 +129,15 @@ public class MovieGoer_Controller {
         }
         replaceFile(UpdateData, FILENAME);
     }
+
+    public boolean MovieGoerExist(String Username) {
+        ArrayList<MovieGoer> Data = readFile();
+
+        for (MovieGoer mg : Data) {
+            if (mg.getUsername().equals(Username)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

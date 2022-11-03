@@ -88,8 +88,14 @@ public class editSettings extends BaseMenu {
 		String name;
 		LocalDate date;
 
-		name = getStringInput_Sentence("Enter holiday name: ");
 		date = getDateInput_NoYear("Enter holiday date (e.g. 10 Aug): ");
+
+		if (hol_Control.isHoliday(date)) {
+
+		}
+
+		name = getStringInput_Sentence("Enter holiday name: ");
+
 		hol_Control.addHoliday(name, date);
 		System.out.println("Addition success, returning to settings menu...");
 		try {
@@ -389,16 +395,12 @@ public class editSettings extends BaseMenu {
 		Boolean flag = false;
 
 		name = getStringInput("Enter admin's username: ");
-		password = getStringInput("Enter admin's password: ");
 
-		for (Admin admin : admin_list) {
-			if (admin.getUsername().equals(name)) {
-				flag = true;
-				System.out.println(
-						"Username taken, press 0 to return to settings menu, press any other number to try again.");
-				choice = userInput(0, 9);
-				break;
-			}
+		if (admin_Control.AdminExists(name)) {
+			flag = true;
+			System.out.println(
+					"Username taken, press 0 to return to settings menu, press any other number to try again.");
+			choice = userInput(0, 9);
 		}
 
 		if (flag == true) {
@@ -409,6 +411,7 @@ public class editSettings extends BaseMenu {
 			}
 		}
 
+		password = getStringInput("Enter admin's password: ");
 		admin_Control.addAdmin(name, password);
 		System.out.println("Addition success, returning to settings menu...");
 		try {

@@ -347,7 +347,23 @@ public class editMovie extends BaseMenu {
 	}
 
 	public void ListMoviesByRating() {
+		
+	}
 
+	private int compareRating(Movie m1, Movie m2) {
+		String r1 = m1.getOverallRating();
+		String r2 = m2.getOverallRating();
+		if (r1 == "N/A")
+			r1 = "0";
+		if (r2 == "N/A")
+			r2 = "0";
+
+		if (Double.parseDouble(r1) == Double.parseDouble(r2))
+			return 0;
+		else if (Double.parseDouble(r1) < Double.parseDouble(r2))
+			return 1;
+		else
+			return -1;
 	}
 
 	public void ListMovies() {

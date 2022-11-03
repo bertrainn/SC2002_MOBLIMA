@@ -86,4 +86,15 @@ public class Admin_Controller {
         }
         replaceFile(UpdateData, FILENAME);
     }
+
+    public boolean AdminExists(String Username) {
+        ArrayList<Admin> Data = readFile();
+
+        for (Admin a : Data) {
+            if (a.getUsername().equals(Username)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

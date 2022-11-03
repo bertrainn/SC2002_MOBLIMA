@@ -164,6 +164,17 @@ public class Movie_Controller {
         replaceFile(UpdateData, FILENAME);
     }
 
+    public boolean MovieExists(String Title) {
+        ArrayList<Movie> Data = readFile();
+
+        for (Movie m : Data) {
+            if (m.getTitle().equals(Title)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public int getLastID() {
         int lastID = -1;
         int MovieID;
