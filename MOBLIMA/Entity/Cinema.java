@@ -10,14 +10,10 @@ import java.util.ArrayList;
 public class Cinema implements Serializable {
 
     /**
-     * Cinema code.
+     * Cinema code. is a concatenation of cinplexCode + the ID of the cinema that is generated at the time of creation of the Cinema. 
+     * Format = A00, A = Cineplex Code and 00 is the ID of the cinema. 
      */
     private String cinemaCode;
-
-    /**
-     * Name of cinema.
-     */
-    private String cinemaName;
 
     /**
      * Determine if cinema is 'Platinum'.
@@ -38,15 +34,13 @@ public class Cinema implements Serializable {
      * Constructor for the Cinema class
      * 
      * @param cinemaCode    Code of Cinema
-     * @param cinemaName    Name of the Cinema
      * @param isPlat        Whether Cinema is 'Platinum'
      * @param SeatPlan      Seating layout of the Cinema
      * @param MovieSessions Movie sessions shown in the Cinema
      */
-    public Cinema(String cinemaCode, String cinemaName, Constants.CINEMA_TYPE cinemaType, SeatLayout SeatPlan,
+    public Cinema(String cinemaCode, Constants.CINEMA_TYPE cinemaType, SeatLayout SeatPlan,
             ArrayList<MovieSession> MovieSessions) {
         this.cinemaCode = cinemaCode;
-        this.cinemaName = cinemaName;
         this.cinemaType = cinemaType;
         this.SeatPlan = SeatPlan;
         this.MovieSessions = MovieSessions;
@@ -68,24 +62,6 @@ public class Cinema implements Serializable {
      */
     public void setcinemaCode(String cinemaCode) {
         this.cinemaCode = cinemaCode;
-    }
-
-    /**
-     * This method sets a new name for the cinema
-     * 
-     * @param cinemaName is the new name for the cinema
-     */
-    public void setCinemaName(String cinemaName) {
-        this.cinemaName = cinemaName;
-    }
-
-    /**
-     * This method returns the name of the cinema
-     * 
-     * @return the name of the cinema
-     */
-    public String getCinemaName() {
-        return cinemaName;
     }
 
     public Constants.CINEMA_TYPE getCinemaType() {

@@ -15,7 +15,8 @@ import java.util.ArrayList;
 public class Cineplex_Controller {
     public final static String FILENAME = "MOBLIMA/Data/Cineplex.txt";
     public final static int CHOICE_NAME = 0;
-    public final static int CHOICE_CINEMALIST = 1;
+    public final static int CHOICE_CODE = 1;
+    public final static int CHOICE_CINEMALIST = 2;
 
     public Cineplex_Controller() {
     }
@@ -37,11 +38,11 @@ public class Cineplex_Controller {
         return new ArrayList<Cineplex>();
     }
 
-    public void addCineplex(String Name, ArrayList<Cinema> CinemaList) {
+    public void addCineplex(String Name, String CineplexCode, ArrayList<Cinema> CinemaList) {
 
         FileOutputStream fos = null;
         ObjectOutputStream oos = null;
-        Cineplex Cineplex = new Cineplex(Name, CinemaList);
+        Cineplex Cineplex = new Cineplex(Name, CineplexCode, CinemaList);
 
         ArrayList<Cineplex> Data = new ArrayList<Cineplex>();
         File temp = new File(FILENAME);
@@ -89,6 +90,8 @@ public class Cineplex_Controller {
                     case CHOICE_NAME:
                         m.setName((String) obj);
                         break;
+                    case CHOICE_CODE:
+                        m.setCineplexCode((String) obj);
                     case CHOICE_CINEMALIST:
                         m.setCinema((ArrayList<Cinema>) obj);
                         break;
@@ -120,6 +123,17 @@ public class Cineplex_Controller {
 
         for (Cineplex c : Data) {
             if (c.getName().equals(Name)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean CineplexCodeExist(String Code) {
+        ArrayList<Cineplex> Data = readFile();
+
+        for (Cineplex c : Data) {
+            if (c.getCineplexCode().equals(Code)) {
                 return true;
             }
         }

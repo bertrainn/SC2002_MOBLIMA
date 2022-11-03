@@ -56,7 +56,7 @@ public class BookingHistory extends BaseMenu {
 			printMenu(i + ". " + "Booking date: " + date + " " + time,
 					generateSpaces(indent) + "Movie: " + b.getMovie().getTitle(),
 					generateSpaces(indent) + "Cineplex: " + b.getCineplex().getName(),
-					generateSpaces(indent) + "Cinema Hall: " + b.getCinema().getCinemaName(),
+					generateSpaces(indent) + "Cinema Hall: " + b.getCinema().getcinemaCode(),
 					generateSpaces(indent) + "No. of tickets: " + tixList.size(),
 					generateSpaces(indent) + "Seats: " + seats,
 					generateSpaces(indent) + "Amount paid: $" + df.format(b.getTotalAmount()));

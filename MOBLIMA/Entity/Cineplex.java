@@ -8,26 +8,31 @@ import java.util.ArrayList;
  */
 
 public class Cineplex implements Serializable {
-    
+
     /**
      * Name of Cineplex.
      */
     private String Name;
-    
+
+    /**
+     * Unique Code of the Cineplex
+     */
+    private String CineplexCode;
+
     /**
      * List of Cinemas.
      */
     private ArrayList<Cinema> CinemaList;
 
-    
     /**
      * Constructor for the Cinema class.
      * 
-     * @param Name         Name of Cineplex
-     * @param CinemaList   List of Cinemas
+     * @param Name       Name of Cineplex
+     * @param CinemaList List of Cinemas
      */
-    public Cineplex(String Name, ArrayList<Cinema> CinemaList) {
+    public Cineplex(String Name, String CineplexCode, ArrayList<Cinema> CinemaList) {
         this.Name = Name;
+        this.CineplexCode = CineplexCode;
         this.CinemaList = CinemaList;
     }
 
@@ -50,6 +55,24 @@ public class Cineplex implements Serializable {
     }
 
     /**
+     * This method returns the name of Cineplex.
+     * 
+     * @return the code of Cineplex.
+     */
+    public String getCineplexCode() {
+        return this.CineplexCode;
+    }
+
+    /**
+     * This method sets the name of Cineplex.
+     * 
+     * @param CineplexCode is the new code of Cineplex.
+     */
+    public void setCineplexCode(String CineplexCode) {
+        this.CineplexCode = CineplexCode;
+    }
+
+    /**
      * This method returns the list of Cinemas.
      * 
      * @return the list Cinemas.
@@ -69,7 +92,7 @@ public class Cineplex implements Serializable {
 
     /**
      * This method adds a new cinema to the Cinemaist
-     * Firstly it does a search on the current CinemaList and if they exist in 
+     * Firstly it does a search on the current CinemaList and if they exist in
      * the list
      * If they do, the method will terminate.
      * Else, the cinema is added into the CinemaList

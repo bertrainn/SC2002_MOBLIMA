@@ -20,7 +20,6 @@ public class Cinema_Controller {
     public String FILENAME;
 
     public final static int CHOICE_CODE = 0;
-    public final static int CHOICE_NAME = 1;
     public final static int CHOICE_CINEMATYPE = 2;
     public final static int CHOICE_SEATPLAN = 3;
     public final static int CHOICE_MOVIESESS = 4;
@@ -30,14 +29,14 @@ public class Cinema_Controller {
         FILENAME = CineplexController.FILENAME;
     }
 
-    public void createCinema(String cineplexName, String cinemaCode, String CinemaName,
+    public void createCinema(String cineplexName, String cinemaCode,
             Constants.CINEMA_TYPE cinemaType, SeatLayout sl,
             ArrayList<MovieSession> sessions) {
 
         ArrayList<Cineplex> Data = CineplexController.readFile();
         ArrayList<Cineplex> UpdateData = new ArrayList<Cineplex>();
         Cineplex c;
-        Cinema newCinema = new Cinema(cinemaCode, CinemaName, cinemaType, sl, sessions);
+        Cinema newCinema = new Cinema(cinemaCode, cinemaType, sl, sessions);
 
         for (int i = 0; i < Data.size(); i++) {
             c = Data.get(i);
@@ -66,14 +65,14 @@ public class Cinema_Controller {
         return OutputList;
     }
 
-    public ArrayList<Cinema> getCinemaByCineplex(String cineplexName) {
+    public ArrayList<Cinema> getCinemaByCineplexCode(String cineplexCode) {
         ArrayList<Cinema> OutputList = new ArrayList<Cinema>();
         ArrayList<Cineplex> cineplexList = CineplexController.readFile();
         Cineplex c;
         Cinema cinema;
         for (int i = 0; i < cineplexList.size(); i++) {
             c = cineplexList.get(i);
-            if (c.getName().equals(cineplexName)) {
+            if (c.getName().equals(cineplexCode)) {
                 ArrayList<Cinema> temp = c.getCinemaList();
                 for (int j = 0; j < temp.size(); j++) {
                     cinema = temp.get(j);
@@ -117,9 +116,6 @@ public class Cinema_Controller {
                     switch (choice) {
                         case CHOICE_CODE:
                             cinema.setcinemaCode((String) obj);
-                            break;
-                        case CHOICE_NAME:
-                            cinema.setCinemaName((String) obj);
                             break;
                         case CHOICE_CINEMATYPE:
                             cinema.setCinemaType((Constants.CINEMA_TYPE) obj);
@@ -166,5 +162,30 @@ public class Cinema_Controller {
             UpdateData.add(cineplex);
         }
         this.CineplexController.replaceFile(UpdateData, FILENAME);
+    }
+
+    /**
+     * This function obtains the last ID for a given list of Cinemas of a given
+     * Cineplex.
+     * 
+     * @return the last ID of a given Cinema List
+     */
+
+    public int getLastCinemaID(String cineplexCode) {
+        int lastID = -1;
+        String cinemaCode;
+        int CinemaID;
+        ArrayList<Cinema> cinemaList = this.getCinemaByCineplexCode(cineplexCode);
+
+        for (int i = 0; i < cinemaList.size(); i++) {
+            cinemaCode = cinemaList.get(i).getcinemaCode();
+            CinemaID = Integer.parseInt(cinemaCode.substring(1));
+
+            if (CinemaID > lastID) {
+                lastID = CinemaID;
+            }
+        }
+
+        return lastID;
     }
 }

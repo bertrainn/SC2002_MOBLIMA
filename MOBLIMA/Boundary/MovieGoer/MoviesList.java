@@ -262,7 +262,7 @@ public class MoviesList extends BaseMenu {
 				String movTitle = mov.getKey().getTitle();
 				if (movTitle.equals(m.getTitle())) {
 					flag = 1;
-					movieSales.put(mov.getKey(), mov.getValue()+count);
+					movieSales.put(mov.getKey(), mov.getValue() + count);
 					break;
 				}
 			}
@@ -278,7 +278,7 @@ public class MoviesList extends BaseMenu {
 		HashMap<Movie, Integer> movieSales = new HashMap<Movie, Integer>();
 		ArrayList<Movie> moviesList = mc.readFile();
 
-		Cinema c1 = new Cinema(null, null, null, null, null);
+		Cinema c1 = new Cinema(null, null, null, null);
 
 		for (int i = 0; i < 5; i++) {
 			for (Movie m : moviesList) {

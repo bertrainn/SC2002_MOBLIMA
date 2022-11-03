@@ -85,14 +85,11 @@ public class editMovie extends BaseMenu {
 
 		title = getStringInput_Sentence("Enter movie's title: ");
 
-		for (Movie movie : movie_list) {
-			if (movie.getTitle().equals(title)) {
-				flag = true;
-				System.out.println(
-						"Movie is already in the database, press 0 to return to settings menu, press any other number to try again.");
-				choice = userInput(0, 9);
-				break;
-			}
+		if (movie_controller.MovieExists(title)) {
+			flag = true;
+			System.out.println(
+					"Movie is already in the database, press 0 to return to settings menu, press any other number to try again.");
+			choice = userInput(0, 9);
 		}
 
 		if (flag == true) {
