@@ -190,7 +190,7 @@ public class Cinema_Controller {
     }
 
     public boolean doesCinemaExist(String cinemaCode) {
-        ArrayList<Cinema> Data = readFile();
+        ArrayList<Cinema> Data = getCinema();
 
         for (Cinema c : Data) {
             if (c.getcinemaCode().equals(cinemaCode)) {

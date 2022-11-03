@@ -119,7 +119,7 @@ public class Cineplex_Controller {
     }
 
     public Cineplex getCineplexByCode(String cineplexCode) {
-        ArrayList<Cineplex> cineplexList = CineplexController.readFile();
+        ArrayList<Cineplex> cineplexList = readFile();
         for (Cineplex c : cineplexList) {
             if (c.getCineplexCode().equals(cineplexCode)) {
                 return c;
