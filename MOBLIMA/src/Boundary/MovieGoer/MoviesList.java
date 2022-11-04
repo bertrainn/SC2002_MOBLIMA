@@ -3,7 +3,6 @@ package Boundary.MovieGoer;
 import Boundary.BaseMenu;
 import Control.Booking_Controller;
 import Control.Cineplex_Controller;
-import Control.MovieGoer_Controller;
 import Control.Movie_Controller;
 import Control.SystemSettings_Controller;
 import Entity.Booking;
@@ -26,7 +25,6 @@ public class MoviesList extends BaseMenu {
 
 	private Movie_Controller mc = new Movie_Controller();
 	private Cineplex_Controller cc = new Cineplex_Controller();
-	private MovieGoer_Controller mgc = new MovieGoer_Controller();
 	private SystemSettings_Controller ssc = new SystemSettings_Controller();
 	private Booking_Controller bc = new Booking_Controller();
 

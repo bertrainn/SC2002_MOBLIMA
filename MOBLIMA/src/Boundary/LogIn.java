@@ -7,13 +7,10 @@ import Boundary.MovieGoer.BookingConfirmationMenu;
 import Boundary.MovieGoer.MovieGoerMainMenu;
 import Control.Admin_Controller;
 import Control.MovieGoer_Controller;
-import Entity.Admin;
-import Entity.MovieGoer;
 import Entity.User;
 import Entity.MovieSession;
 import Entity.Seat;
 import Entity.Cineplex;
-import Entity.Constants;
 
 import java.util.ArrayList;
 
@@ -37,12 +34,10 @@ public class LogIn extends BaseMenu {
 
     @Override
     public void load() {
-        // TODO Auto-generated method stub
-        ArrayList<User> userList = new ArrayList<User>();
         String user, pw;
         User temp;
         BaseMenu next = new LogIn();
-        int choice = 1, i = 0;
+        int choice = 1;
 
         printHeader("Login");
 

@@ -6,7 +6,6 @@ import Control.SystemSettings_Controller;
 import Control.TicketPrice_Controller;
 import Control.Admin_Controller;
 import Entity.Holiday;
-import Entity.PriceAdjust;
 import Entity.Admin;
 import Entity.Constants;
 
@@ -15,7 +14,6 @@ import java.util.ArrayList;
 import static Control.UserInput_Controller.*;
 
 import java.time.LocalDate;
-import java.util.HashMap;
 
 public class editSettings extends BaseMenu {
 
@@ -193,11 +191,11 @@ public class editSettings extends BaseMenu {
 		switch (choice) {
 			case 1:
 				String name = getStringInput_Sentence("Enter holiday name: ");
-				hol_Control.updateHoliday(hol_Control.CHOICE_NAME, holiday_temp.getDate(), name);
+				hol_Control.updateHoliday(Holiday_Controller.CHOICE_NAME, holiday_temp.getDate(), name);
 				break;
 			case 2:
 				LocalDate date = getDateInput("Enter holiday date (e.g. 10 Aug): ");
-				hol_Control.updateHoliday(hol_Control.CHOICE_DATE, holiday_temp.getDate(), date);
+				hol_Control.updateHoliday(Holiday_Controller.CHOICE_DATE, holiday_temp.getDate(), date);
 				break;
 			case 3:
 				load();

@@ -4,7 +4,6 @@ import Boundary.BaseMenu;
 import Entity.Constants;
 import Entity.Movie;
 import Entity.Booking;
-import Entity.Review_Ratings;
 import Control.Movie_Controller;
 import Control.Booking_Controller;
 
@@ -65,8 +64,6 @@ public class editMovie extends BaseMenu {
 	}
 
 	public void AddMovie() {
-
-		ArrayList<Movie> movie_list = movie_controller.readFile();
 		int choice = -1;
 		int i;
 		int numberofentries;
@@ -181,7 +178,7 @@ public class editMovie extends BaseMenu {
 		int movie_choice = getIntInput("Enter the index of the movie you want to stop showing: ");
 
 		temp = MovieList.get(movie_choice);
-		movie_controller.updateMovie(movie_controller.CHOICE_SHOWING, temp.getId(), Constants.SHOWING_STATUS.EOS);
+		movie_controller.updateMovie(Movie_Controller.CHOICE_SHOWING, temp.getId(), Constants.SHOWING_STATUS.EOS);
 
 		System.out.println("Update success, returning to settings menu...");
 		try {
@@ -223,11 +220,11 @@ public class editMovie extends BaseMenu {
 		switch (choice) {
 			case 1:
 				String title = getStringInput("Enter the new title: ");
-				movie_controller.updateMovie(movie_controller.CHOICE_TITLE, temp.getId(), title);
+				movie_controller.updateMovie(Movie_Controller.CHOICE_TITLE, temp.getId(), title);
 				break;
 			case 2:
 				String desc = getStringInput("Enter the new description: ");
-				movie_controller.updateMovie(movie_controller.CHOICE_DESC, temp.getId(), desc);
+				movie_controller.updateMovie(Movie_Controller.CHOICE_DESC, temp.getId(), desc);
 				break;
 			case 3:
 				Constants.AGE_CLASSIFICATION age = temp.getAgeRating();
@@ -261,7 +258,7 @@ public class editMovie extends BaseMenu {
 						break;
 
 				}
-				movie_controller.updateMovie(movie_controller.CHOICE_AGERATING, temp.getId(), age);
+				movie_controller.updateMovie(Movie_Controller.CHOICE_AGERATING, temp.getId(), age);
 				break;
 			case 4:
 
@@ -271,7 +268,7 @@ public class editMovie extends BaseMenu {
 					entries = getStringInput_Sentence("Enter the no." + (i + 1) + " actor: ");
 					list.add(entries);
 				}
-				movie_controller.updateMovie(movie_controller.CHOICE_ACTOR, temp.getId(), list);
+				movie_controller.updateMovie(Movie_Controller.CHOICE_ACTOR, temp.getId(), list);
 				break;
 			case 5:
 				numberofentries = getIntInput_Min("Enter the new number of director: ", 0);
@@ -279,7 +276,7 @@ public class editMovie extends BaseMenu {
 					entries = getStringInput_Sentence("Enter the no." + (i + 1) + " director: ");
 					list.add(entries);
 				}
-				movie_controller.updateMovie(movie_controller.CHOICE_DIRECTOR, temp.getId(), list);
+				movie_controller.updateMovie(Movie_Controller.CHOICE_DIRECTOR, temp.getId(), list);
 				break;
 			case 6:
 				numberofentries = getIntInput_Min("Enter the new number of genres: ", 0);
@@ -287,15 +284,15 @@ public class editMovie extends BaseMenu {
 					entries = getStringInput_Sentence("Enter the no." + (i + 1) + " genre: ");
 					list.add(entries);
 				}
-				movie_controller.updateMovie(movie_controller.CHOICE_GENRE, temp.getId(), list);
+				movie_controller.updateMovie(Movie_Controller.CHOICE_GENRE, temp.getId(), list);
 				break;
 			case 7:
 				LocalDate newOPDate = getDateInput("Enter new opening date (dd MMM yyyy): ");
-				movie_controller.updateMovie(movie_controller.CHOICE_OPENING, temp.getId(), newOPDate);
+				movie_controller.updateMovie(Movie_Controller.CHOICE_OPENING, temp.getId(), newOPDate);
 				break;
 			case 8:
 				LocalDate newCLDate = getDateInput("Enter new closing date (dd MMM yyyy): ");
-				movie_controller.updateMovie(movie_controller.CHOICE_CLOSING, temp.getId(), newCLDate);
+				movie_controller.updateMovie(Movie_Controller.CHOICE_CLOSING, temp.getId(), newCLDate);
 				break;
 			case 9:
 
@@ -327,12 +324,12 @@ public class editMovie extends BaseMenu {
 						break;
 				}
 
-				movie_controller.updateMovie(movie_controller.CHOICE_SHOWING, temp.getId(), showingStat);
+				movie_controller.updateMovie(Movie_Controller.CHOICE_SHOWING, temp.getId(), showingStat);
 				break;
 			case 10:
 				Duration newDuration = Duration
 						.ofMinutes(getIntInput("Enter the new duration of the movie (in minutes): "));
-				movie_controller.updateMovie(movie_controller.CHOICE_DURATION, temp.getId(), newDuration);
+				movie_controller.updateMovie(Movie_Controller.CHOICE_DURATION, temp.getId(), newDuration);
 				break;
 			case 11:
 				load();

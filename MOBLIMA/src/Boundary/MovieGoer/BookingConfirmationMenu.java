@@ -98,7 +98,7 @@ public class BookingConfirmationMenu extends BaseMenu {
 			bList.add(
 					new Booking(totalPrice, cc.getCinemaByCode(ms.getCinemaCode()), ms.getShownMovie(), tixList, cust,
 							cp));
-			mgc.updateMovieGoer(mgc.CHOICE_BOOKING, cust.getUsername(), bList);
+			mgc.updateMovieGoer(MovieGoer_Controller.CHOICE_BOOKING, cust.getUsername(), bList);
 
 			printMenu("Your booking has been confirmed",
 					"1. View booking history",
