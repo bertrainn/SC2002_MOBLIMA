@@ -17,7 +17,7 @@ import java.time.Duration;
 import java.time.LocalDate;
 
 public class Movie_Controller {
-    public final static String FILENAME = "MOBLIMA/Data/Movie.txt";
+    public final static String FILENAME = "database/Movie.txt";
 
     public final static int CHOICE_ID = 0;
     public final static int CHOICE_TITLE = 1;

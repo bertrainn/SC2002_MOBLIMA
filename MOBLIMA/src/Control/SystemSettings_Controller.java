@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 public class SystemSettings_Controller {
-    public final static String FILENAME = "MOBLIMA/Data/SystemSettings.txt";
+    public final static String FILENAME = "database/SystemSettings.txt";
 
     public SystemSettings_Controller() {
 
