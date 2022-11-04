@@ -1,4 +1,4 @@
- package MOBLIMA.Control;
+package Control;
 
 import java.io.IOException;
 import java.io.File;
@@ -7,12 +7,12 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-import MOBLIMA.Entity.Booking;
-import MOBLIMA.Entity.Cinema;
-import MOBLIMA.Entity.Cineplex;
-import MOBLIMA.Entity.Movie;
-import MOBLIMA.Entity.Ticket;
-import MOBLIMA.Entity.MovieGoer;
+import Entity.Booking;
+import Entity.Cinema;
+import Entity.Cineplex;
+import Entity.Movie;
+import Entity.Ticket;
+import Entity.MovieGoer;
 import java.util.ArrayList;
 
 public class Booking_Controller {

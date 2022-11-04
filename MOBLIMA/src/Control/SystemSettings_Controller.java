@@ -1,4 +1,4 @@
-package MOBLIMA.Control;
+package Control;
 
 import java.io.IOException;
 import java.io.FileWriter;

@@ -1,4 +1,4 @@
-package MOBLIMA.Entity;
+package Entity;
 
 import java.util.ArrayList;
 import java.util.HashMap;

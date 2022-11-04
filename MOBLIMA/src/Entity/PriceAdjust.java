@@ -1,4 +1,4 @@
-package MOBLIMA.Entity;
+package Entity;
 
 public interface PriceAdjust {
 

@@ -1,17 +1,17 @@
-package MOBLIMA.Boundary.Admin;
+package Boundary.Admin;
 
-import MOBLIMA.Boundary.BaseMenu;
-import MOBLIMA.Entity.Constants;
-import MOBLIMA.Entity.Movie;
-import MOBLIMA.Entity.Booking;
-import MOBLIMA.Entity.Review_Ratings;
-import MOBLIMA.Control.Movie_Controller;
-import MOBLIMA.Control.Booking_Controller;
+import Boundary.BaseMenu;
+import Entity.Constants;
+import Entity.Movie;
+import Entity.Booking;
+import Entity.Review_Ratings;
+import Control.Movie_Controller;
+import Control.Booking_Controller;
 
 import java.util.ArrayList;
 import java.time.LocalDate;
 
-import static MOBLIMA.Control.UserInput_Controller.*;
+import static Control.UserInput_Controller.*;
 
 import java.time.Duration;
 import java.util.Collections;

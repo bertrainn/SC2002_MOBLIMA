@@ -1,24 +1,12 @@
-package MOBLIMA;
 
-import MOBLIMA.Entity.*;
-import MOBLIMA.Entity.Movie;
-import MOBLIMA.Entity.MovieSession;
-import MOBLIMA.Entity.Review_Ratings;
-import MOBLIMA.Entity.SeatLayout;
-import MOBLIMA.Control.*;
-import MOBLIMA.Entity.Cinema;
-import MOBLIMA.Entity.Constants;
-import MOBLIMA.Entity.Holiday;
-import MOBLIMA.Control.Holiday_Controller;
+import static Control.UserInput_Controller.*;
+import Boundary.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-
-import static MOBLIMA.Control.UserInput_Controller.*;
-import MOBLIMA.Boundary.MainMenu;
 
 import java.io.IOException;
 import java.time.Duration;

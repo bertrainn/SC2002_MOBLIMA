@@ -1,22 +1,22 @@
-package MOBLIMA.Boundary.MovieGoer;
+package Boundary.MovieGoer;
 
-import static MOBLIMA.Control.UserInput_Controller.*;
+import static Control.UserInput_Controller.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import MOBLIMA.Boundary.BaseMenu;
+import Boundary.BaseMenu;
 
 //Application class test
-import MOBLIMA.Boundary.MainMenu;
-import MOBLIMA.Control.MovieGoer_Controller;
-import MOBLIMA.Entity.Booking;
-import MOBLIMA.Entity.Cineplex;
-import MOBLIMA.Entity.Movie;
-import MOBLIMA.Entity.MovieGoer;
-import MOBLIMA.Entity.MovieSession;
-import MOBLIMA.Entity.Review_Ratings;
-import MOBLIMA.Entity.Seat;
+import Boundary.MainMenu;
+import Control.MovieGoer_Controller;
+import Entity.Booking;
+import Entity.Cineplex;
+import Entity.Movie;
+import Entity.MovieGoer;
+import Entity.MovieSession;
+import Entity.Review_Ratings;
+import Entity.Seat;
 
 public class MovieGoerRegistration extends BaseMenu {
 

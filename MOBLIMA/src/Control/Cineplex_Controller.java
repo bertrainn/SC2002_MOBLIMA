@@ -1,7 +1,7 @@
-package MOBLIMA.Control;
+package Control;
 
-import MOBLIMA.Entity.Cineplex;
-import MOBLIMA.Entity.Cinema;
+import Entity.Cineplex;
+import Entity.Cinema;
 
 import java.io.IOException;
 import java.io.File;

@@ -1,16 +1,16 @@
-package MOBLIMA.Boundary.MovieGoer;
+package Boundary.MovieGoer;
 
-import static MOBLIMA.Control.UserInput_Controller.*;
+import static Control.UserInput_Controller.*;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
-import MOBLIMA.Boundary.BaseMenu;
-import MOBLIMA.Control.Booking_Controller;
-import MOBLIMA.Entity.Booking;
-import MOBLIMA.Entity.MovieGoer;
-import MOBLIMA.Entity.Ticket;
+import Boundary.BaseMenu;
+import Control.Booking_Controller;
+import Entity.Booking;
+import Entity.MovieGoer;
+import Entity.Ticket;
 
 public class BookingHistory extends BaseMenu {
 	

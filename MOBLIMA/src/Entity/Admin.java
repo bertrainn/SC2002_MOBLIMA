@@ -1,4 +1,4 @@
-package MOBLIMA.Entity;
+package Entity;
 
 /**
  * Represents an instance of an administrator in the system.

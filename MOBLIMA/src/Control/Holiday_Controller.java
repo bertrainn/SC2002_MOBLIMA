@@ -1,4 +1,4 @@
-package MOBLIMA.Control;
+package Control;
 
 import java.io.IOException;
 import java.io.File;
@@ -7,7 +7,7 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-import MOBLIMA.Entity.Holiday;
+import Entity.Holiday;
 
 import java.util.ArrayList;
 import java.time.LocalDate;

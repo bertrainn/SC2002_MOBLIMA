@@ -1,4 +1,4 @@
-package MOBLIMA.Entity;
+package Entity;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;

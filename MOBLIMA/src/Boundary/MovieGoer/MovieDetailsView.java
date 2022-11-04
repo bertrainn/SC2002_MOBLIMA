@@ -1,12 +1,12 @@
-package MOBLIMA.Boundary.MovieGoer;
+package Boundary.MovieGoer;
 
-import static MOBLIMA.Control.UserInput_Controller.*;
+import static Control.UserInput_Controller.*;
 
 import java.util.ArrayList;
 
-import MOBLIMA.Boundary.BaseMenu;
-import MOBLIMA.Entity.Movie;
-import MOBLIMA.Entity.MovieGoer;
+import Boundary.BaseMenu;
+import Entity.Movie;
+import Entity.MovieGoer;
 
 public class MovieDetailsView extends BaseMenu {
 

@@ -1,10 +1,10 @@
-package MOBLIMA.Boundary.Admin;
+package Boundary.Admin;
 
-import static MOBLIMA.Control.UserInput_Controller.*;
+import static Control.UserInput_Controller.*;
 
-import MOBLIMA.Boundary.BaseMenu;
-import MOBLIMA.Entity.Admin;
-import MOBLIMA.Boundary.MainMenu;
+import Boundary.BaseMenu;
+import Entity.Admin;
+import Boundary.MainMenu;
 
 public class AdminMainMenu extends BaseMenu {
 

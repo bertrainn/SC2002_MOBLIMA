@@ -1,12 +1,12 @@
-package MOBLIMA.Control;
+package Control;
 
 import java.util.HashMap;
 
-import MOBLIMA.Entity.Constants;
-import MOBLIMA.Entity.PriceAdjust;
-import MOBLIMA.Entity.Constants.CINEMA_TYPE;
-import MOBLIMA.Entity.Constants.MOVIE_TYPE;
-import MOBLIMA.Entity.Constants.TICKET_TYPE;
+import Entity.Constants;
+import Entity.PriceAdjust;
+import Entity.Constants.CINEMA_TYPE;
+import Entity.Constants.MOVIE_TYPE;
+import Entity.Constants.TICKET_TYPE;
 
 import java.io.Serializable;
 

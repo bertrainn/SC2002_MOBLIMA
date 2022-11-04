@@ -1,4 +1,4 @@
-package MOBLIMA.Boundary;
+package Boundary;
 
 public abstract class BaseMenu {
 	

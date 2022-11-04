@@ -1,8 +1,7 @@
-package MOBLIMA.Entity;
+package Entity;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-
 
 /**
  * Represents an instance of a holiday used in the system.
@@ -13,17 +12,17 @@ public class Holiday implements Serializable {
      * Name of holiday.
      */
     private String name;
-    
+
     /**
      * Date of holiday.
      */
     private LocalDate date;
 
-     /**
+    /**
      * Constructor for the Holiday class.
      * 
-     * @param name   name of holiday
-     * @param date   date of holiday
+     * @param name name of holiday
+     * @param date date of holiday
      */
     public Holiday(String name, LocalDate date) {
         this.name = name;

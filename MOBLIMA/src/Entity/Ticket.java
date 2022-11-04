@@ -1,8 +1,8 @@
-package MOBLIMA.Entity;
+package Entity;
 
 import java.io.Serializable;
 
-import MOBLIMA.Control.TicketPrice_Controller;
+import Control.TicketPrice_Controller;
 
 /**
  * Represents an instance of a ticket used in the system.

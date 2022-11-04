@@ -1,6 +1,6 @@
-package MOBLIMA.Boundary.MovieGoer;
+package Boundary.MovieGoer;
 
-import static MOBLIMA.Control.UserInput_Controller.*;
+import static Control.UserInput_Controller.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,14 +8,14 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Scanner;
 
-import MOBLIMA.Boundary.BaseMenu;
-import MOBLIMA.Boundary.LogIn;
-import MOBLIMA.Control.MovieGoer_Controller;
-import MOBLIMA.Control.Movie_Controller;
-import MOBLIMA.Control.Review_Controller;
-import MOBLIMA.Entity.Movie;
-import MOBLIMA.Entity.MovieGoer;
-import MOBLIMA.Entity.Review_Ratings;
+import Boundary.BaseMenu;
+import Boundary.LogIn;
+import Control.MovieGoer_Controller;
+import Control.Movie_Controller;
+import Control.Review_Controller;
+import Entity.Movie;
+import Entity.MovieGoer;
+import Entity.Review_Ratings;
 
 public class ReviewView extends BaseMenu {
 

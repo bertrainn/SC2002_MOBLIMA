@@ -1,4 +1,4 @@
-package MOBLIMA.Entity;
+package Entity;
 
 import java.text.DateFormat;
 import java.time.format.DateTimeFormatter;

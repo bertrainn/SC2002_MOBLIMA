@@ -1,8 +1,8 @@
-package MOBLIMA.Control;
+package Control;
 
-import MOBLIMA.Entity.Movie;
-import MOBLIMA.Entity.Review_Ratings;
-import MOBLIMA.Entity.Constants;
+import Entity.Movie;
+import Entity.Review_Ratings;
+import Entity.Constants;
 
 import java.io.IOException;
 import java.io.File;

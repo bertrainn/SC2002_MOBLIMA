@@ -1,4 +1,4 @@
-package MOBLIMA.Control;
+package Control;
 
 import java.io.IOException;
 import java.io.File;
@@ -9,11 +9,11 @@ import java.io.ObjectOutputStream;
 
 import java.util.ArrayList;
 
-import MOBLIMA.Entity.Cinema;
-import MOBLIMA.Entity.SeatLayout;
-import MOBLIMA.Entity.MovieSession;
-import MOBLIMA.Entity.Cineplex;
-import MOBLIMA.Entity.Constants;
+import Entity.Cinema;
+import Entity.SeatLayout;
+import Entity.MovieSession;
+import Entity.Cineplex;
+import Entity.Constants;
 
 public class Cinema_Controller {
     private Cineplex_Controller CineplexController;

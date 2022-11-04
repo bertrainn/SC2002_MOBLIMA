@@ -1,4 +1,4 @@
-package MOBLIMA.Control;
+package Control;
 
 import java.util.ArrayList;
 
@@ -7,7 +7,7 @@ import java.util.Scanner;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import MOBLIMA.Entity.Constants;
+import Entity.Constants;
 
 public class UserInput_Controller {
 

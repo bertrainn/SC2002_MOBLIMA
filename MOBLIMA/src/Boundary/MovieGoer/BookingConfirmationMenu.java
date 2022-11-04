@@ -1,29 +1,29 @@
-package MOBLIMA.Boundary.MovieGoer;
+package Boundary.MovieGoer;
 
-import static MOBLIMA.Control.UserInput_Controller.*;
+import static Control.UserInput_Controller.*;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-import MOBLIMA.Boundary.BaseMenu;
-import MOBLIMA.Boundary.LogIn;
-import MOBLIMA.Control.Booking_Controller;
-import MOBLIMA.Control.Cinema_Controller;
-import MOBLIMA.Control.Cineplex_Controller;
-import MOBLIMA.Control.MovieSession_Controller;
-import MOBLIMA.Control.Holiday_Controller;
-import MOBLIMA.Control.MovieGoer_Controller;
-import MOBLIMA.Entity.Booking;
-import MOBLIMA.Entity.Cinema;
-import MOBLIMA.Entity.Cineplex;
-import MOBLIMA.Entity.Constants;
-import MOBLIMA.Entity.MovieGoer;
-import MOBLIMA.Entity.MovieSession;
-import MOBLIMA.Entity.Seat;
-import MOBLIMA.Entity.SeatLayout;
-import MOBLIMA.Entity.Ticket;
+import Boundary.BaseMenu;
+import Boundary.LogIn;
+import Control.Booking_Controller;
+import Control.Cinema_Controller;
+import Control.Cineplex_Controller;
+import Control.MovieSession_Controller;
+import Control.Holiday_Controller;
+import Control.MovieGoer_Controller;
+import Entity.Booking;
+import Entity.Cinema;
+import Entity.Cineplex;
+import Entity.Constants;
+import Entity.MovieGoer;
+import Entity.MovieSession;
+import Entity.Seat;
+import Entity.SeatLayout;
+import Entity.Ticket;
 
 public class BookingConfirmationMenu extends BaseMenu {
 

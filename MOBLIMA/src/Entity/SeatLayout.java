@@ -1,6 +1,6 @@
-package MOBLIMA.Entity;
+package Entity;
 
-import static MOBLIMA.Control.UserInput_Controller.*;
+import static Control.UserInput_Controller.*;
 
 import java.io.Serializable;
 

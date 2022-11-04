@@ -1,11 +1,11 @@
-package MOBLIMA.Control;
+package Control;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import MOBLIMA.Entity.Review_Ratings;
-import MOBLIMA.Entity.Movie;
-import MOBLIMA.Entity.MovieGoer;
+import Entity.Review_Ratings;
+import Entity.Movie;
+import Entity.MovieGoer;
 
 public class Review_Controller {
     private Movie_Controller MovieController;

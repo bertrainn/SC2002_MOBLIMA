@@ -1,4 +1,4 @@
-package MOBLIMA.Control;
+package Control;
 
 import java.io.IOException;
 import java.io.File;
@@ -7,10 +7,10 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-import MOBLIMA.Entity.Booking;
-import MOBLIMA.Entity.Movie;
-import MOBLIMA.Entity.MovieGoer;
-import MOBLIMA.Entity.Review_Ratings;
+import Entity.Booking;
+import Entity.Movie;
+import Entity.MovieGoer;
+import Entity.Review_Ratings;
 
 import java.util.ArrayList;
 import java.util.HashMap;

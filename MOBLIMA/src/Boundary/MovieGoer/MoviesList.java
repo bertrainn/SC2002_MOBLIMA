@@ -1,19 +1,19 @@
-package MOBLIMA.Boundary.MovieGoer;
+package Boundary.MovieGoer;
 
-import MOBLIMA.Boundary.BaseMenu;
-import MOBLIMA.Control.Booking_Controller;
-import MOBLIMA.Control.Cineplex_Controller;
-import MOBLIMA.Control.MovieGoer_Controller;
-import MOBLIMA.Control.Movie_Controller;
-import MOBLIMA.Control.SystemSettings_Controller;
-import MOBLIMA.Entity.Booking;
-import MOBLIMA.Entity.Cinema;
-import MOBLIMA.Entity.Cineplex;
-import MOBLIMA.Entity.Constants;
-import MOBLIMA.Entity.Movie;
-import MOBLIMA.Entity.MovieGoer;
+import Boundary.BaseMenu;
+import Control.Booking_Controller;
+import Control.Cineplex_Controller;
+import Control.MovieGoer_Controller;
+import Control.Movie_Controller;
+import Control.SystemSettings_Controller;
+import Entity.Booking;
+import Entity.Cinema;
+import Entity.Cineplex;
+import Entity.Constants;
+import Entity.Movie;
+import Entity.MovieGoer;
 
-import static MOBLIMA.Control.UserInput_Controller.*;
+import static Control.UserInput_Controller.*;
 
 import java.util.ArrayList;
 import java.util.Collections;

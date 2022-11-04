@@ -1,18 +1,18 @@
-package MOBLIMA.Boundary.Admin;
+package Boundary.Admin;
 
-import MOBLIMA.Boundary.BaseMenu;
-import MOBLIMA.Control.Holiday_Controller;
-import MOBLIMA.Control.SystemSettings_Controller;
-import MOBLIMA.Control.TicketPrice_Controller;
-import MOBLIMA.Control.Admin_Controller;
-import MOBLIMA.Entity.Holiday;
-import MOBLIMA.Entity.PriceAdjust;
-import MOBLIMA.Entity.Admin;
-import MOBLIMA.Entity.Constants;
+import Boundary.BaseMenu;
+import Control.Holiday_Controller;
+import Control.SystemSettings_Controller;
+import Control.TicketPrice_Controller;
+import Control.Admin_Controller;
+import Entity.Holiday;
+import Entity.PriceAdjust;
+import Entity.Admin;
+import Entity.Constants;
 
 import java.util.ArrayList;
 
-import static MOBLIMA.Control.UserInput_Controller.*;
+import static Control.UserInput_Controller.*;
 
 import java.time.LocalDate;
 import java.util.HashMap;

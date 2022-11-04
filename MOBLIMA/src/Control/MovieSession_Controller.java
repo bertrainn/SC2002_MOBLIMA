@@ -1,4 +1,4 @@
-package MOBLIMA.Control;
+package Control;
 
 import java.io.IOException;
 import java.io.File;
@@ -12,11 +12,11 @@ import java.util.Collections;
 import java.time.LocalDateTime;
 import java.time.Duration;
 
-import MOBLIMA.Entity.Cinema;
-import MOBLIMA.Entity.Constants;
-import MOBLIMA.Entity.Movie;
-import MOBLIMA.Entity.MovieSession;
-import MOBLIMA.Entity.SeatLayout;
+import Entity.Cinema;
+import Entity.Constants;
+import Entity.Movie;
+import Entity.MovieSession;
+import Entity.SeatLayout;
 
 public class MovieSession_Controller {
     private Cinema_Controller CinemaControl;
@@ -221,7 +221,8 @@ public class MovieSession_Controller {
                 LocalDateTime nextSessionStartTime = nextsess.getShowDateTime_NonString();
                 LocalDateTime checkSessionFullTime = showingTime.plusMinutes(shownMovie.getDuration().toMinutes());
 
-                if (showingTime.isBefore(previousSessionEndingTime) && checkSessionFullTime.isAfter(nextSessionStartTime)) {
+                if (showingTime.isBefore(previousSessionEndingTime)
+                        && checkSessionFullTime.isAfter(nextSessionStartTime)) {
                     return false;
                 }
 
