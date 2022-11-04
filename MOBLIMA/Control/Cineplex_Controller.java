@@ -78,14 +78,14 @@ public class Cineplex_Controller {
 
     }
 
-    public void updateCineplex(int choice, String Name, Object obj) {
+    public void updateCineplex(int choice, String Code, Object obj) {
         ArrayList<Cineplex> Data = readFile();
         ArrayList<Cineplex> UpdateData = new ArrayList<Cineplex>();
         Cineplex m;
 
         for (int i = 0; i < Data.size(); i++) {
             m = Data.get(i);
-            if (m.getName().equals(Name)) {
+            if (m.getName().equals(Code)) {
                 switch (choice) {
                     case CHOICE_NAME:
                         m.setName((String) obj);

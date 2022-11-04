@@ -28,7 +28,7 @@ public class Constants {
 
     public static DateTimeFormatter bookingFormat = DateTimeFormatter.ofPattern(FORMAT_BOOKING_ID);
     public static DateTimeFormatter holidayFormat = DateTimeFormatter.ofPattern(FORMAT_HOLIDAY);
-    public static DateTimeFormatter datetimeFormat = DateTimeFormatter.ofPattern("dd MMM yyyy, hh:mma");
+    public static DateTimeFormatter datetimeFormat = DateTimeFormatter.ofPattern("dd MMM yyyy, hh:mm");
 
     // Date Time format : DD/MM/YY hh:mm PM
     public static DateFormat dateTimeFormat = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT);

@@ -6,12 +6,13 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import MOBLIMA.Entity.Constants;
 
 public class UserInput_Controller {
 
 	static Scanner sc = new Scanner(System.in);
-	
+
 	public static final DecimalFormat df = new DecimalFormat("0.00");
 
 	public static void printHeader(String header) {
@@ -131,6 +132,14 @@ public class UserInput_Controller {
 		// Year is arbitrary
 		input += " 2022";
 		LocalDate parsedDate = LocalDate.parse(input, Constants.dateFormatLong);
+		return parsedDate;
+	}
+
+	public static LocalDateTime getDateTimeInput(String message) {
+		System.out.print(message);
+		String input = "";
+		input += sc.nextLine();
+		LocalDateTime parsedDate = LocalDateTime.parse(input, Constants.datetimeFormat);
 		return parsedDate;
 	}
 

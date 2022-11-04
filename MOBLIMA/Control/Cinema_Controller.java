@@ -86,7 +86,6 @@ public class Cinema_Controller {
     public Cinema getCinemaByCode(String cinemaCode) {
         ArrayList<Cineplex> cineplexList = CineplexController.readFile();
         Cineplex c;
-        Cinema cinema;
         for (int i = 0; i < cineplexList.size(); i++) {
             c = cineplexList.get(i);
             ArrayList<Cinema> cinemaList = c.getCinemaList();

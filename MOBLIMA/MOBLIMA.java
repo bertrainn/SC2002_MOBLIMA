@@ -18,6 +18,7 @@ import java.time.LocalTime;
 
 import static MOBLIMA.Control.UserInput_Controller.*;
 
+import java.io.IOException;
 import java.time.Duration;
 
 public class MOBLIMA {
@@ -35,49 +36,51 @@ public class MOBLIMA {
                 ArrayList<MovieSession> sessions1 = new ArrayList<MovieSession>();
                 ArrayList<MovieSession> sessions2 = new ArrayList<MovieSession>();
                 ArrayList<MovieSession> sessions3 = new ArrayList<MovieSession>();
-                SeatLayout ssl = new SeatLayout(20, 20);
+
+                SeatLayout test1 = new SeatLayout(20, 30);
+
                 SeatLayout psl = new SeatLayout(10, 10);
 
                 cc.createCinema("A", "A01",
-                                Constants.CINEMA_TYPE.STANDARD, ssl, sessions1);
+                                Constants.CINEMA_TYPE.STANDARD, test1, sessions1);
                 cc.createCinema("A", "A02",
-                                Constants.CINEMA_TYPE.STANDARD, ssl, sessions2);
+                                Constants.CINEMA_TYPE.STANDARD, test1, sessions2);
                 cc.createCinema("A", "A03",
                                 Constants.CINEMA_TYPE.PLATIUM, psl, sessions3);
 
-                // ArrayList<Cinema> cinemaList = cc.getCinemaByCineplex("Great World City");
-                // cpc.updateCineplex(cpc.CHOICE_CINEMALIST, "Great World City", cinemaList);
-                //
-                // LocalDate date = LocalDate.of(2022, 11, 28);
-                // LocalTime time = LocalTime.of(12, 00);
-                // LocalDateTime showtime = LocalDateTime.of(date, time);
-                // LocalDate date1 = LocalDate.of(2022, 11, 24);
-                // LocalTime time1 = LocalTime.of(11, 00);
-                // LocalDateTime showtime1 = LocalDateTime.of(date1, time1);
-                // LocalDate date2 = LocalDate.of(2022, 11, 19);
-                // LocalTime time2 = LocalTime.of(15, 00);
-                // LocalDateTime showtime2 = LocalDateTime.of(date2, time2);
-                //
-                // msc.createSession("001", movies.get(0), showtime1,
-                // Constants.MOVIE_TYPE.TWO_D);
-                // msc.createSession("001", movies.get(1), showtime1,
-                // Constants.MOVIE_TYPE.THREE_D);
-                // msc.createSession("001", movies.get(2), showtime1,
-                // Constants.MOVIE_TYPE.BLOCKBUSTER);
-                //
-                // msc.createSession("002", movies.get(0), showtime2,
-                // Constants.MOVIE_TYPE.THREE_D);
-                // msc.createSession("002", movies.get(1), showtime2,
-                // Constants.MOVIE_TYPE.BLOCKBUSTER);
-                // msc.createSession("002", movies.get(2), showtime2,
-                // Constants.MOVIE_TYPE.TWO_D);
-                //
-                // msc.createSession("003", movies.get(0), showtime,
-                // Constants.MOVIE_TYPE.BLOCKBUSTER);
-                // msc.createSession("003", movies.get(1), showtime,
-                // Constants.MOVIE_TYPE.TWO_D);
-                // msc.createSession("003", movies.get(2), showtime,
-                // Constants.MOVIE_TYPE.THREE_D);
+                ArrayList<Cinema> cinemaList = cc.getCinemaByCineplexCode("A");
+                cpc.updateCineplex(cpc.CHOICE_CINEMALIST, "A", cinemaList);
+
+                LocalDate date = LocalDate.of(2022, 11, 28);
+                LocalTime time = LocalTime.of(12, 00);
+                LocalDateTime showtime = LocalDateTime.of(date, time);
+                LocalDate date1 = LocalDate.of(2022, 11, 24);
+                LocalTime time1 = LocalTime.of(11, 00);
+                LocalDateTime showtime1 = LocalDateTime.of(date1, time1);
+                LocalDate date2 = LocalDate.of(2022, 11, 19);
+                LocalTime time2 = LocalTime.of(15, 00);
+                LocalDateTime showtime2 = LocalDateTime.of(date2, time2);
+
+                msc.createSession("A01", movies.get(0), showtime1,
+                                Constants.MOVIE_TYPE.TWO_D);
+                msc.createSession("A01", movies.get(1), showtime1,
+                                Constants.MOVIE_TYPE.THREE_D);
+                msc.createSession("A01", movies.get(2), showtime1,
+                                Constants.MOVIE_TYPE.BLOCKBUSTER);
+
+                msc.createSession("A02", movies.get(0), showtime2,
+                                Constants.MOVIE_TYPE.THREE_D);
+                msc.createSession("A02", movies.get(1), showtime2,
+                                Constants.MOVIE_TYPE.BLOCKBUSTER);
+                msc.createSession("A02", movies.get(2), showtime2,
+                                Constants.MOVIE_TYPE.TWO_D);
+
+                msc.createSession("A03", movies.get(0), showtime,
+                                Constants.MOVIE_TYPE.BLOCKBUSTER);
+                msc.createSession("A03", movies.get(1), showtime,
+                                Constants.MOVIE_TYPE.TWO_D);
+                msc.createSession("A03", movies.get(2), showtime,
+                                Constants.MOVIE_TYPE.THREE_D);
 
                 // String name = getStringInput("Enter admin's username: ");
                 // String password = getStringInput("Enter admin's password: ");

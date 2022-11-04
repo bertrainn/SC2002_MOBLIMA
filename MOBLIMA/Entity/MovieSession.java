@@ -13,41 +13,42 @@ public class MovieSession implements Serializable {
      * Identification number of session.
      */
     private int sessionId;
-    
+
     /**
      * Movie to be shown.
      */
     private Movie shownMovie;
-    
+
     /**
      * Date and time.
      */
     private LocalDateTime showDateTime;
-    
+
     /**
      * Seating plan.
      */
     private SeatLayout seatPlan;
-    
+
     private Constants.MOVIE_TYPE movieType;
-    
+
     private String CinemaCode;
-    
+
     /**
      * Constructor for the MovieSeesion class, with additional parameters.
      * 
-     * @param sessionId      identification number of session
-     * @param shownMovie     movie to be shown
-     * @param LocalDateTime  date and time
-     * @param seatPlan       seating plan
+     * @param sessionId     identification number of session
+     * @param shownMovie    movie to be shown
+     * @param LocalDateTime date and time
+     * @param seatPlan      seating plan
      */
-    public MovieSession(int sessionId, Movie shownMovie, LocalDateTime showDateTime, SeatLayout seatPlan, String CinemaCode, Constants.MOVIE_TYPE movieType) {
+    public MovieSession(int sessionId, Movie shownMovie, LocalDateTime showDateTime, SeatLayout seatPlan,
+            Constants.MOVIE_TYPE movieType, String CinemaCode) {
         this.sessionId = sessionId;
         this.shownMovie = shownMovie;
         this.showDateTime = showDateTime;
         this.seatPlan = seatPlan;
-        this.CinemaCode = CinemaCode;
         this.movieType = movieType;
+        this.CinemaCode = CinemaCode;
     }
 
     /**
@@ -94,7 +95,7 @@ public class MovieSession implements Serializable {
     public String getShowDateTime() {
         return showDateTime.format(Constants.datetimeFormat);
     }
-    
+
     public LocalDateTime getShowDateTime_NonString() {
         return showDateTime;
     }
@@ -125,21 +126,21 @@ public class MovieSession implements Serializable {
     public void setSeatPlan(SeatLayout seatPlan) {
         this.seatPlan = seatPlan;
     }
-    
+
     public Constants.MOVIE_TYPE getMovieType() {
-    	return movieType;
+        return movieType;
     }
-    
+
     public void setMovieType(Constants.MOVIE_TYPE type) {
-    	this.movieType = type;
+        this.movieType = type;
     }
-    
+
     public String getCinemaCode() {
-    	return CinemaCode;
+        return CinemaCode;
     }
-    
+
     public void setCinemaCode(String CinemaCode) {
-    	this.CinemaCode = CinemaCode;
+        this.CinemaCode = CinemaCode;
     }
 
 }

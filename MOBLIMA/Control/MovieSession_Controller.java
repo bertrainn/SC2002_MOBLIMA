@@ -10,6 +10,7 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.time.LocalDateTime;
+import java.time.Duration;
 
 import MOBLIMA.Entity.Cinema;
 import MOBLIMA.Entity.Constants;
@@ -23,16 +24,19 @@ public class MovieSession_Controller {
 
     public final static int CHOICE_MOVIE = 1;
     public final static int CHOICE_DATETIME = 2;
+    public final static int CHOICE_CINEMACODE = 5;
 
     public MovieSession_Controller(Cinema_Controller CC) {
         this.CinemaControl = CC;
         this.FILENAME = CC.FILENAME;
     }
 
-    public void createSession(String cinemaCode, Movie shownMovie, LocalDateTime startDateTime, Constants.MOVIE_TYPE movieType) {
+    public void createSession(String cinemaCode, Movie shownMovie, LocalDateTime startDateTime,
+            Constants.MOVIE_TYPE movieType) {
         SeatLayout seatPlan = CinemaControl.getCinemaByCode(cinemaCode).getSeatPlan();
 
-        MovieSession newSess = new MovieSession(this.getLastID() + 1, shownMovie, startDateTime, seatPlan, cinemaCode, movieType);
+        MovieSession newSess = new MovieSession(this.getLastID() + 1, shownMovie, startDateTime, seatPlan,
+                movieType, cinemaCode);
 
         ArrayList<Cinema> Data = CinemaControl.getCinema();
         ArrayList<MovieSession> temp = new ArrayList<MovieSession>();
@@ -50,9 +54,9 @@ public class MovieSession_Controller {
             }
         }
     }
-    
+
     public void updateSession(MovieSession sess) {
-    	this.deleteByID(sess.getSessionId());
+        this.deleteByID(sess.getSessionId());
         ArrayList<Cinema> Data = CinemaControl.getCinema();
         ArrayList<MovieSession> temp = new ArrayList<MovieSession>();
         Cinema c;
@@ -104,6 +108,11 @@ public class MovieSession_Controller {
                     break;
                 case CHOICE_DATETIME:
                     if (ms.getShowDateTime().equals((LocalDateTime) obj)) {
+                        Output.add(ms);
+                    }
+                    break;
+                case CHOICE_CINEMACODE:
+                    if (ms.getCinemaCode().equals((String) obj)) {
                         Output.add(ms);
                     }
                     break;
@@ -169,5 +178,57 @@ public class MovieSession_Controller {
             }
         }
         return lastID;
+    }
+
+    /**
+     * This method returns if the entered session time is valid.
+     * A movie session is considered valid if the cinema isn't showing a movie at
+     * that time or 30 mins after the last movie has ended & it does not overlap
+     * with the next sessions time.
+     * e.g. 1) if the cinema is showing a movie at 1300 and the movie has a duration
+     * of 80 mins. The user inputs 1400 as a session time, the system will return
+     * false
+     * as there is an overlap.
+     * 2) Movie ends at 1300, user inputs the next session to be at 1301, system
+     * will return false as we assume that we need time to clean the cinema after
+     * the previous screening
+     * 
+     * 
+     * @param showingTime The time and date of the new session
+     * @param CinemaCode  The code of the cinema that we want the new screening to
+     *                    be in.
+     * @param shownMovie  The movie being shown at the session
+     * @return true if the session time is valid, false if it is invalid;
+     */
+
+    public boolean checkIfValidTime(LocalDateTime showingTime, String CinemaCode, Movie shownMovie) {
+        ArrayList<MovieSession> sessionList = this.readFileByValues(CHOICE_CINEMACODE, CinemaCode);
+        ArrayList<MovieSession> dateList = new ArrayList<MovieSession>();
+        MovieSession currentCheck = null;
+
+        for (MovieSession session : sessionList) {
+            if (session.getShowDateTime_NonString().toLocalDate().isEqual(showingTime.toLocalDate())) {
+                dateList.add(session);
+            }
+        }
+
+        for (MovieSession nextsess : dateList) {
+            if (currentCheck != null) {
+
+                Long shownMovie_Duration = currentCheck.getShownMovie().getDuration().toMinutes();
+                LocalDateTime previousSessionEndingTime = currentCheck.getShowDateTime_NonString()
+                        .plusMinutes(shownMovie_Duration + 30);
+                LocalDateTime nextSessionStartTime = nextsess.getShowDateTime_NonString();
+                LocalDateTime checkSessionFullTime = showingTime.plusMinutes(shownMovie.getDuration().toMinutes());
+
+                if (showingTime.isBefore(previousSessionEndingTime) && checkSessionFullTime.isAfter(nextSessionStartTime)) {
+                    return false;
+                }
+
+                currentCheck = nextsess;
+            }
+
+        }
+        return true;
     }
 }

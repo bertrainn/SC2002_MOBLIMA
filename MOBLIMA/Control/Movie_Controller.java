@@ -164,6 +164,19 @@ public class Movie_Controller {
         replaceFile(UpdateData, FILENAME);
     }
 
+    public ArrayList<Movie> getShowingMovies() {
+        ArrayList<Movie> Data = readFile();
+        ArrayList<Movie> Output = new ArrayList<Movie>();
+
+        for (Movie m : Data) {
+            if (!m.getShowingStatus().equals(Constants.SHOWING_STATUS.EOS)) {
+                Output.add(m);
+            }
+        }
+
+        return Output;
+    }
+
     public boolean MovieExists(String Title) {
         ArrayList<Movie> Data = readFile();
 
@@ -174,19 +187,19 @@ public class Movie_Controller {
         }
         return false;
     }
-    
+
     public ArrayList<Movie> getMoviesByTitle(String Title) {
         ArrayList<Movie> Data = readFile();
         ArrayList<Movie> searchResults = new ArrayList<>();
 
         for (Movie m : Data) {
-			String title = m.getTitle().toUpperCase();
-			if (title.contains(Title)) {
-				searchResults.add(m);
-			}
-		}
+            String title = m.getTitle().toUpperCase();
+            if (title.contains(Title)) {
+                searchResults.add(m);
+            }
+        }
 
-		return searchResults;
+        return searchResults;
     }
 
     public int getLastID() {

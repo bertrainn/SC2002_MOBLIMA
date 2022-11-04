@@ -5,26 +5,32 @@ import MOBLIMA.Boundary.BaseMenu;
 import MOBLIMA.Control.Cineplex_Controller;
 import MOBLIMA.Control.Cinema_Controller;
 import MOBLIMA.Control.MovieSession_Controller;
+import MOBLIMA.Control.Movie_Controller;
 
 import MOBLIMA.Entity.Cineplex;
 import MOBLIMA.Entity.Constants;
 import MOBLIMA.Entity.Cinema;
 import MOBLIMA.Entity.SeatLayout;
 import MOBLIMA.Entity.MovieSession;
+import MOBLIMA.Entity.Movie;
 
 import static MOBLIMA.Control.UserInput_Controller.*;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.time.LocalDateTime;
 
 public class editCineplex extends BaseMenu {
 	private Cineplex_Controller cineplex_Controller = new Cineplex_Controller();
 	private Cinema_Controller cinema_Controller = new Cinema_Controller(cineplex_Controller);
 	private MovieSession_Controller movie_session_Controller = new MovieSession_Controller(cinema_Controller);
+	private Movie_Controller movie_controller = new Movie_Controller();
 
 	public static void main(String[] args) {
 		editCineplex eM = new editCineplex();
 		eM.ListCineplex();
+		eM.ListCinemaSessions("A02");
+		eM.ListAllSessions();
 	}
 
 	@Override
@@ -42,7 +48,6 @@ public class editCineplex extends BaseMenu {
 				"4. Delete Cinemas",
 				"5. Add Session",
 				"6. Delete Session",
-				"7. Cineplex Ordered By Sales",
 				"8. Back");
 
 		int choice = userInput(1, 10);
@@ -61,12 +66,12 @@ public class editCineplex extends BaseMenu {
 				deleteCinema();
 				break;
 			case 5:
+				addSession();
 				break;
 			case 6:
+				deleteSession();
 				break;
 			case 7:
-				break;
-			case 8:
 				back();
 				break;
 		}
@@ -92,6 +97,32 @@ public class editCineplex extends BaseMenu {
 			for (Cinema cinema : cinemaList) {
 				System.out.printf("%-3s ", cinema.getcinemaCode());
 			}
+			System.out.println();
+		}
+	}
+
+	public void ListCinemaSessions(String cinemaCode) {
+		Cinema cinema = cinema_Controller.getCinemaByCode(cinemaCode);
+		ArrayList<MovieSession> sessionList = cinema.getMovieSessions();
+		int i = 0;
+		System.out.printf("%-3s %-25s %-15s", "No.", "Movie", "Session date & timing");
+		System.out.println();
+
+		for (MovieSession ms : sessionList) {
+			System.out.printf("%-3d %-25s %-15s", i++, ms.getShownMovie().getTitle(), ms.getShowDateTime());
+			System.out.println();
+		}
+	}
+
+	public void ListAllSessions() {
+		ArrayList<MovieSession> sessions = movie_session_Controller.readFile();
+		int i = 0;
+		System.out.printf("%-3s %-15s %-25s %-15s", "No.", "Cinema Code ", "Movie", "Session date & timing");
+		System.out.println();
+
+		for (MovieSession ms : sessions) {
+			System.out.printf("%-3d %-15s %-25s %-15s", i++, ms.getCinemaCode(), ms.getShownMovie().getTitle(),
+					ms.getShowDateTime());
 			System.out.println();
 		}
 	}
@@ -299,5 +330,97 @@ public class editCineplex extends BaseMenu {
 			e.printStackTrace();
 		}
 		load();
+	}
+
+	public void addSession() {
+		ArrayList<Movie> movieList = movie_controller.getShowingMovies();
+		String CinemaCode;
+		Movie shownMovie;
+		LocalDateTime showingDateTime;
+		Constants.MOVIE_TYPE movieType = Constants.MOVIE_TYPE.TWO_D;
+
+		ListCineplex();
+
+		CinemaCode = getStringInput("Enter the cinema code you want to add the session to: ");
+
+		if (cinema_Controller.doesCinemaExist(CinemaCode)) {
+			System.out.println("Invalid cinema code, returning to settings menu...");
+			try {
+				Thread.sleep(500);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			load();
+		}
+
+		int i = 0;
+		System.out.printf("%-3s %-4s %-25s %-15s", "No.", "ID", "Name", "Showing Status");
+		System.out.println();
+		for (Movie m : movieList) {
+			System.out.printf("%-3d %-4d %-25s %-15s", ++i, m.getId(), m.getTitle(),
+					m.getShowingStatus().toString());
+			System.out.println();
+		}
+
+		System.out.println("Select the No. of the movie you want to show: ");
+		int choice = userInput(1, i);
+
+		shownMovie = movieList.get(choice);
+
+		showingDateTime = getDateTimeInput("Enter the date and time of the session (dd MMM yyyy, hh:mm): ");
+
+		if (!movie_session_Controller.checkIfValidTime(showingDateTime, CinemaCode, shownMovie)) {
+			System.out.println("Invalid session time, returning to settings menu...");
+			try {
+				Thread.sleep(500);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			load();
+		}
+
+		printMenu("Enter the movie session type (number):",
+				"1. 2D",
+				"2. 3D",
+				"3. Blockbuster");
+
+		choice = userInput(1, 3);
+
+		switch (choice) {
+			case 1:
+				movieType = Constants.MOVIE_TYPE.TWO_D;
+				break;
+			case 2:
+				movieType = Constants.MOVIE_TYPE.THREE_D;
+				break;
+			case 3:
+				movieType = Constants.MOVIE_TYPE.BLOCKBUSTER;
+				break;
+		}
+
+		movie_session_Controller.createSession(CinemaCode, shownMovie, showingDateTime, movieType);
+
+		System.out.println("Addition success, returning to settings menu...");
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		load();
+	}
+
+	public void deleteSession() {
+		ArrayList<MovieSession> sessions = movie_session_Controller.readFile();
+		MovieSession movieSession;
+		int choice;
+		ListAllSessions();
+
+		System.out.println("Enter the No. of the sessions to delete: ");
+		choice = userInput(0, sessions.size() - 1);
+
+		movieSession = sessions.get(choice);
+
+		movie_session_Controller.deleteByID(movieSession.getSessionId());
+
 	}
 }
