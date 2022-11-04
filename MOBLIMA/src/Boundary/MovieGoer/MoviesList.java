@@ -42,6 +42,7 @@ public class MoviesList extends BaseMenu {
 	}
 
 	private void showMenu() {
+		topFive = false;
 		printHeader("View Movies");
 		printMenu("Choose from one of the following options:",
 				"1. Make a booking",
@@ -61,7 +62,6 @@ public class MoviesList extends BaseMenu {
 				break;
 			case 3:
 				showAllMovies();
-				topFive = false;
 				break;
 			case 4:
 				topFive = true;
@@ -86,7 +86,7 @@ public class MoviesList extends BaseMenu {
 		int choice = userInput(1, i);
 
 		if (choice == i)
-			load();
+			showMenu();
 		else {
 			Cineplex cp = cineplexList.get(choice - 1);
 			navigate(this, new BookingMenu(cust, cp));
@@ -109,13 +109,14 @@ public class MoviesList extends BaseMenu {
 
 			printMenu(searchResults.size() + " result(s) found: ");
 			for (Movie movie : searchResults)
-				printMenuWithoutSpace(++i + ". " + movie.getTitle());
+				printMenuWithoutSpace(++i + ". " + movie.getTitle() + 
+						generateSpaces(20 - movie.getTitle().length()) + movie.getShowingStatus().toString());
 			printMenu(++i + ". Back");
 
 			int choice = userInput(1, i);
 
 			if (choice == i)
-				load();
+				showMenu();
 			else {
 				Movie m = searchResults.get(choice - 1);
 				navigate(this, new MovieDetailsView(m, cust));
@@ -147,7 +148,9 @@ public class MoviesList extends BaseMenu {
 			for (Movie m : movies) {
 				if (m.getShowingStatus().equals(Constants.SHOWING_STATUS.EOS))
 					continue;
-				printMenuWithoutSpace(++i + ". " + m.getTitle());
+				printMenuWithoutSpace(++i + ". " + m.getTitle() + 
+					generateSpaces(20 - m.getTitle().length()) 
+					+ m.getShowingStatus().toString());
 			}
 		}
 
@@ -155,18 +158,29 @@ public class MoviesList extends BaseMenu {
 			HashMap<Movie, Integer> salesList = topSales(); // fakeTopSales();
 			for (Movie m : movies) {
 				Integer sales = null;
-				for (Map.Entry<Movie, Integer> movie : salesList.entrySet()) {
-					String movTitle = movie.getKey().getTitle();
-					if (movTitle.equals(m.getTitle())) {
-						sales = movie.getValue();
-						break;
-					}
+				if (salesList.isEmpty()) {
+					printMenuWithoutSpace(++i + ". " + m.getTitle() 
+						+ generateSpaces(20 - m.getTitle().length())
+						+ m.getShowingStatus().toString() 
+						+ generateSpaces(20 - m.getShowingStatus().toString().length())
+						+ 0 + " tickets sold");
 				}
-
-				if (m.getShowingStatus().equals(Constants.SHOWING_STATUS.EOS))
-					continue;
-				printMenuWithoutSpace(++i + ". " + m.getTitle() +
-						generateSpaces(37 - m.getTitle().length()) + sales + " tickets sold");
+				else {
+					for (Map.Entry<Movie, Integer> movie : salesList.entrySet()) {
+						String movTitle = movie.getKey().getTitle();
+						if (movTitle.equals(m.getTitle())) {
+							sales = movie.getValue();
+							break;
+						}
+					}
+					if (m.getShowingStatus().equals(Constants.SHOWING_STATUS.EOS))
+						continue;
+					printMenuWithoutSpace(++i + ". " + m.getTitle() 
+						+ generateSpaces(20 - m.getTitle().length())
+						+ m.getShowingStatus().toString()
+						+ generateSpaces(20 - m.getShowingStatus().toString().length())
+						+ sales + " tickets sold");
+				}
 			}
 		}
 
@@ -175,11 +189,17 @@ public class MoviesList extends BaseMenu {
 				if (m.getShowingStatus().equals(Constants.SHOWING_STATUS.EOS))
 					continue;
 				if (!m.getOverallRating().equals("N/A"))
-					printMenuWithoutSpace(++i + ". " + m.getTitle() +
-							generateSpaces(37 - m.getTitle().length()) + m.getOverallRating() + " stars");
+					printMenuWithoutSpace(++i + ". " + m.getTitle() 
+						+ generateSpaces(20 - m.getTitle().length())
+						+ m.getShowingStatus().toString() 
+						+ generateSpaces(20 - m.getShowingStatus().toString().length()) 
+						+ m.getOverallRating() + " stars");
 				else
-					printMenuWithoutSpace(++i + ". " + m.getTitle() +
-							generateSpaces(37 - m.getTitle().length()) + m.getOverallRating());
+					printMenuWithoutSpace(++i + ". " + m.getTitle() + 
+							generateSpaces(20 - m.getTitle().length())
+							+  m.getShowingStatus().toString() 
+							+ generateSpaces(20 - m.getShowingStatus().toString().length()) 
+							+ m.getOverallRating());
 			}
 		}
 
@@ -188,7 +208,7 @@ public class MoviesList extends BaseMenu {
 		int choice = userInput(1, i);
 
 		if (choice == i)
-			load();
+			showMenu();
 		else {
 			Movie m = movies.get(choice - 1);
 			navigate(this, new MovieDetailsView(m, cust));
@@ -208,14 +228,18 @@ public class MoviesList extends BaseMenu {
 		} else {
 			HashMap<Movie, Integer> salesList = topSales(); // fakeTopSales();
 			if (salesList.isEmpty()) {
-				System.out.println("There are no sales yet");
-				load();
-			}
-			HashMap<Movie, Integer> sortedSalesList = sortHashMap(salesList);
-			for (Map.Entry<Movie, Integer> sales : sortedSalesList.entrySet()) {
-				Movie m = sales.getKey();
+				ArrayList<Movie> movieList = mc.readFile();
+				for (Movie m : movieList)
 				if (!m.getShowingStatus().equals(Constants.SHOWING_STATUS.EOS))
 					top5.add(m);
+			}
+			else {
+			HashMap<Movie, Integer> sortedSalesList = sortHashMap(salesList);
+				for (Map.Entry<Movie, Integer> sales : sortedSalesList.entrySet()) {
+					Movie m = sales.getKey();
+					if (!m.getShowingStatus().equals(Constants.SHOWING_STATUS.EOS))
+						top5.add(m);
+				}
 			}
 		}
 
