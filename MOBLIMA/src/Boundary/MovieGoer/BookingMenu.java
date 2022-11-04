@@ -50,7 +50,7 @@ public class BookingMenu extends BaseMenu {
 			ArrayList<String> movieNames = new ArrayList<>();
 			printMenuWithoutSpace("Choose one of the following movies:");
 			for (MovieSession ms : allMovieSessions) {
-				String movieName = ms.getShownMovie().getTitle();
+				String movieName = reduceStringLength(ms.getShownMovie().getTitle(), 60);
 				for (String s : movieNames) {
 					if (s.equals(movieName)) {
 						flag = 1;
@@ -79,8 +79,10 @@ public class BookingMenu extends BaseMenu {
 	private void showSessions(Movie m) {
 		int i = 0;
 		ArrayList<MovieSession> sessions = msc.readFileByValues(MovieSession_Controller.CHOICE_MOVIE, m.getId());
+		
+		String movieName = reduceStringLength(m.getTitle(), 40);
 
-		printMenuWithoutSpace("Showtimes for " + m.getTitle() + ":");
+		printMenuWithoutSpace("Showtimes for " + movieName + ":");
 		for (MovieSession ms : sessions) {
 			printMenuWithoutSpace(++i + ". " + ms.getShowDateTime());
 		}

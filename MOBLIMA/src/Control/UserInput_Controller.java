@@ -164,5 +164,14 @@ public class UserInput_Controller {
 		s = s + a.get(a.size() - 1);
 		return s;
 	}
+	
+	public static String reduceStringLength(String input, int maxLen) {
+		String res = input;
+		if (input.length()>maxLen) {
+			res = res.substring(0, maxLen-2);
+			res = res + "...";
+		}
+		return res;
+	}
 
 }

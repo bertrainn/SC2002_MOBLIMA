@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import Boundary.BaseMenu;
 import Boundary.LogIn;
+import Boundary.MainMenu;
 import Control.Booking_Controller;
 import Control.Cinema_Controller;
 import Control.Cineplex_Controller;
@@ -62,7 +63,7 @@ public class BookingConfirmationMenu extends BaseMenu {
 					navigate(this, new MovieGoerRegistration(ms, chosenSeats, cp));
 					break;
 				case 3:
-					navigate(this, new MovieGoerMainMenu(cust));
+					navigate(this, new MainMenu());
 			}
 		} else {
 			showConfirmation();

@@ -52,9 +52,10 @@ public class BookingHistory extends BaseMenu {
 				seats = seats + tixList.get(j).getSeat().getSeatID() + ", ";
 			}
 			seats = seats + tixList.get(tixList.size()-1).getSeat().getSeatID();
+			String tit = reduceStringLength(b.getMovie().getTitle(), 50);
 			
 			printMenu(i + ". " + "Booking date: " + date + " " + time,
-					generateSpaces(indent) + "Movie: " + b.getMovie().getTitle(),
+					generateSpaces(indent) + "Movie: " + tit,
 					generateSpaces(indent) + "Cineplex: " + b.getCineplex().getName(),
 					generateSpaces(indent) + "Cinema Hall: " + b.getCinema().getcinemaCode(),
 					generateSpaces(indent) + "No. of tickets: " + tixList.size(),

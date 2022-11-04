@@ -5,12 +5,14 @@ import static Control.UserInput_Controller.*;
 import Boundary.Admin.AdminMainMenu;
 import Boundary.MovieGoer.BookingConfirmationMenu;
 import Boundary.MovieGoer.MovieGoerMainMenu;
+import Boundary.MovieGoer.ReviewView;
 import Control.Admin_Controller;
 import Control.MovieGoer_Controller;
 import Entity.User;
 import Entity.MovieSession;
 import Entity.Seat;
 import Entity.Cineplex;
+import Entity.Movie;
 
 import java.util.ArrayList;
 
@@ -19,13 +21,21 @@ public class LogIn extends BaseMenu {
     private Admin_Controller adminController = new Admin_Controller();
     private MovieGoer_Controller movieGoerController = new MovieGoer_Controller();
     private MovieSession ms;
+    private Movie m;
     private ArrayList<Seat> chosenSeats;
     private Cineplex cp;
 
+    //Default constructor
     public LogIn() {
 
     }
+    
+    //Constructor to redirect back to review page after login
+    public LogIn(Movie m) {
+    	this.m = m;
+    }
 
+    //Constructor to redirect back to booking page after login
     public LogIn(MovieSession ms, ArrayList<Seat> chosenSeats, Cineplex cp) {
         this.ms = ms;
         this.chosenSeats = chosenSeats;
@@ -67,6 +77,8 @@ public class LogIn extends BaseMenu {
                         if (this.getPrevMenu() instanceof BookingConfirmationMenu)
                             next = new BookingConfirmationMenu(movieGoerController.getMovieGoerByUsername(user), ms,
                                     chosenSeats, cp);
+                        else if (this.getPrevMenu() instanceof ReviewView)
+                        	next = new ReviewView(m, movieGoerController.getMovieGoerByUsername(user), false);
                         else
                             next = new MovieGoerMainMenu(movieGoerController.getMovieGoerByUsername(user));
                         break;

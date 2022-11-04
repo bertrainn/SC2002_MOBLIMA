@@ -41,7 +41,8 @@ public class ReviewView extends BaseMenu {
 	}
 
 	public void viewReviews() {
-		printHeader("Reviews for " + m.getTitle());
+		String tit = reduceStringLength(m.getTitle(), 35);
+		printHeader("Reviews for " + tit);
 		ArrayList<Review_Ratings> reviewList = m.getReviewList();
 		if (reviewList.isEmpty()) {
 			printMenu("There are no reviews for this movie. Enter any number to go back.");
@@ -60,7 +61,8 @@ public class ReviewView extends BaseMenu {
 	}
 
 	private void leaveReview() {
-		printHeader("Leave a Review for " + m.getTitle());
+		String tit = reduceStringLength(m.getTitle(), 35);
+		printHeader("Leave a Review for " + tit);
 
 		if (cust == null) {
 			printMenu("You must be logged in to leave a review, choose one of the following options:",
@@ -69,10 +71,10 @@ public class ReviewView extends BaseMenu {
 			int choice = userInput(1, 2);
 			switch (choice) {
 				case 1:
-					navigate(this, new LogIn());
+					navigate(this, new LogIn(m));
 					break;
 				case 2:
-					navigate(this, new MovieGoerRegistration());
+					navigate(this, new MovieGoerRegistration(m));
 					break;
 			}
 		} else {

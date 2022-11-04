@@ -33,7 +33,7 @@ public class SeatLayout implements Serializable {
 
         for (int i = 0; i < this.row; i++) {
             for (int j = 0; j < this.col; j++) {
-                layout[i][j] = new Seat(i * this.row + j);
+                layout[i][j] = new Seat(i * this.col + j);
             }
         }
     }
@@ -130,23 +130,23 @@ public class SeatLayout implements Serializable {
      * This method assigns an id to a particular seat
      */
     public void assignSeats(int id) {
-        int index = id / row;
-        layout[index][id - row * index].book();
+        int index = id / col;
+        layout[index][id - col * index].book();
     }
 
     /**
      * This method unassigns an id from a particular seat
      */
     public void unassignSeats(int id) {
-        int index = id / row;
-        layout[index][id - row * index].unbook();
+        int index = id / col;
+        layout[index][id - col * index].unbook();
     }
 
     /**
      * This method returns if a seat has been assigned to a id
      */
     public boolean isSeatAssign(int id) {
-        int index = id / row;
-        return layout[index][id - row * index].isIsOccupied();
+        int index = id / col;
+        return layout[index][id - col * index].isIsOccupied();
     }
 }

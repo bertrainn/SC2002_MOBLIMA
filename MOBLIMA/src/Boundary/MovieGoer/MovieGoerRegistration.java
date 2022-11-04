@@ -22,12 +22,21 @@ public class MovieGoerRegistration extends BaseMenu {
 
 	private MovieGoer_Controller mgc = new MovieGoer_Controller();
 	private MovieSession ms;
+	private Movie m;
 	private ArrayList<Seat> chosenSeats;
 	private Cineplex cp;
 
+	//Default constructor
 	public MovieGoerRegistration() {
+		
+	}
+	
+	//Constructor to redirect to review page after registration
+	public MovieGoerRegistration(Movie m) {
+		this.m = m;
 	}
 
+	//Constructor to redirect to booking page after registration
 	public MovieGoerRegistration(MovieSession ms, ArrayList<Seat> chosenSeats, Cineplex cp) {
 		this.ms = ms;
 		this.chosenSeats = chosenSeats;
@@ -69,11 +78,13 @@ public class MovieGoerRegistration extends BaseMenu {
 				e.printStackTrace();
 			}
 
-			MovieGoer m = new MovieGoer(username, pw, name, email, num, PostedReviewsList, BookingList);
+			MovieGoer mg = new MovieGoer(username, pw, name, email, num, PostedReviewsList, BookingList);
 			if (this.getPrevMenu() instanceof BookingConfirmationMenu)
-				navigate(this, new BookingConfirmationMenu(m, ms, chosenSeats, cp));
+				navigate(this, new BookingConfirmationMenu(mg, ms, chosenSeats, cp));
+			else if (this.getPrevMenu() instanceof ReviewView)
+				navigate(this, new ReviewView(m, mg, false));
 			else
-				navigate(this, new MovieGoerMainMenu(m));
+				navigate(this, new MovieGoerMainMenu(mg));
 		}
 	}
 }

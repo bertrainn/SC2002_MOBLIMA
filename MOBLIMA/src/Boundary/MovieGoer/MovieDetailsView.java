@@ -32,12 +32,18 @@ public class MovieDetailsView extends BaseMenu {
 		String directorsString = listToString(directorList);
 		String genreString = listToString(genreList);
 		String rating = m.getOverallRating();
+		int flag = 0;
 
 		if (rating != "N/A") {
 			rating = rating + " stars";
 		}
+		
+		String tit = reduceStringLength(m.getTitle(), 35);
 
-		printHeader("Movie Details: " + m.getTitle());
+		printHeader("Movie Details: " + tit);
+		
+		if (tit.length() != m.getTitle().length())
+			printMenu("Title:", m.getTitle());
 
 		printMenu("Cast:", actorsString, "",
 				"Directors:", directorsString, "",
