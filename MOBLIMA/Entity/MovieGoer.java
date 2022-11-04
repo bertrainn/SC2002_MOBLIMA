@@ -3,7 +3,6 @@ package MOBLIMA.Entity;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-
 /**
  * Represents an instance of a movie goer used in the system.
  */
@@ -12,28 +11,27 @@ public class MovieGoer extends User {
      * Name of movie goer.
      */
     private String Name;
-    
+
     /**
      * Email of movie goer.
      */
     private String Email;
-    
+
     /**
      * Phone number of movie goer.
      */
     private String Phone;
-    
+
     /**
      * List of reviews posted.
      */
     private HashMap<Movie, Review_Ratings> PostedReviewsList = new HashMap<Movie, Review_Ratings>();
-    
+
     /**
      * List of bookings.
      */
     private ArrayList<Booking> BookingList = new ArrayList<Booking>();
 
-    
     /**
      * Constructor for the MovieGoer class, with additional parameters.
      * 
@@ -48,7 +46,7 @@ public class MovieGoer extends User {
     public MovieGoer(String Username, String Password, String Name, String Email, String Phone,
             HashMap<Movie, Review_Ratings> PostedReviewsList,
             ArrayList<Booking> BookingList) {
-        super(Username, Password);
+        super(Username, Password, Constants.ACCOUNT_TYPE.MOVIEGOER);
         this.Name = Name;
         this.Email = Email;
         this.Phone = Phone;
@@ -180,7 +178,8 @@ public class MovieGoer extends User {
 
     /**
      * This method adds a new review to the PostedReviewsList
-     * Firstly it does a search on the current PostedReviewsList to find if they exist in
+     * Firstly it does a search on the current PostedReviewsList to find if they
+     * exist in
      * the list
      * If they do, the method will terminate.
      * Else, the newReview is added into PostedReviewsList.
@@ -192,10 +191,11 @@ public class MovieGoer extends User {
             this.PostedReviewsList.put(movie, newReview);
         }
     }
-    
+
     /**
      * This method checks if user has already reviewed a movie
-     * Firstly it does a search on the current PostedReviewsList to find if they exist in
+     * Firstly it does a search on the current PostedReviewsList to find if they
+     * exist in
      * the list
      * If they do, the method will return 1.
      * Else, the method returns 0.
@@ -203,15 +203,16 @@ public class MovieGoer extends User {
      * @param newReview is the new review to be added.
      */
     public int checkIfReviewed(Movie movie) {
-    	if(!this.PostedReviewsList.containsKey(movie)) {
-    		return 0;
-    	}
-    	return 1;
+        if (!this.PostedReviewsList.containsKey(movie)) {
+            return 0;
+        }
+        return 1;
     }
 
     /**
      * This method removes a review from the PostedReviewsList
-     * Firstly it does a search on the current PostedReviewsList to find if they exist in
+     * Firstly it does a search on the current PostedReviewsList to find if they
+     * exist in
      * the list
      * If they do, they will be removed from the PostedReviewsList.
      * Else, the method terminates.
@@ -226,7 +227,8 @@ public class MovieGoer extends User {
 
     /**
      * This method edits a review from the PostedReviewsList
-     * Firstly it does a search on the current PostedReviewsList to find if they exist in
+     * Firstly it does a search on the current PostedReviewsList to find if they
+     * exist in
      * the list
      * If they do, they will be replaced from the PostedReviewsList.
      * Else, the method terminates.

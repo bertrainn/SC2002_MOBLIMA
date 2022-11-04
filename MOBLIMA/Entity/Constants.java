@@ -37,6 +37,11 @@ public class Constants {
      * Enums Values
      */
 
+    public enum ACCOUNT_TYPE {
+        ADMIN,
+        MOVIEGOER
+    }
+
     /**
      * Ticket types
      */

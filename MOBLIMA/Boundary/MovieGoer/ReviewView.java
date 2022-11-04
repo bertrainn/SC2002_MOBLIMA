@@ -9,7 +9,7 @@ import java.util.Map.Entry;
 import java.util.Scanner;
 
 import MOBLIMA.Boundary.BaseMenu;
-import MOBLIMA.Boundary.BoundaryTest;
+import MOBLIMA.Boundary.LogIn;
 import MOBLIMA.Control.MovieGoer_Controller;
 import MOBLIMA.Control.Movie_Controller;
 import MOBLIMA.Control.Review_Controller;
@@ -69,7 +69,7 @@ public class ReviewView extends BaseMenu {
 			int choice = userInput(1, 2);
 			switch (choice) {
 				case 1:
-					navigate(this, new MovieGoerLogin());
+					navigate(this, new LogIn());
 					break;
 				case 2:
 					navigate(this, new MovieGoerRegistration());

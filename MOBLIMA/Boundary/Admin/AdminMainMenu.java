@@ -4,16 +4,19 @@ import static MOBLIMA.Control.UserInput_Controller.*;
 
 import MOBLIMA.Boundary.BaseMenu;
 import MOBLIMA.Entity.Admin;
-
-import MOBLIMA.Boundary.BoundaryTest;
 import MOBLIMA.Boundary.MainMenu;
 
 public class AdminMainMenu extends BaseMenu {
 
+	private Admin User;
+
+	public AdminMainMenu(Admin user) {
+		this.User = user;
+	}
+
 	@Override
 	public void load() {
-		Admin adminUser = BoundaryTest.adminUser;
-		printHeader("Welcome to Admin main menu, " + adminUser.getUsername());
+		printHeader("Welcome to Admin main menu, " + User.getUsername());
 		printMenu("Choose from one of the following options:",
 				"1. Movie Options",
 				"2. Cinemplex Settings",

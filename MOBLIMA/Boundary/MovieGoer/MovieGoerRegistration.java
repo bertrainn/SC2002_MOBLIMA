@@ -8,7 +8,6 @@ import java.util.HashMap;
 import MOBLIMA.Boundary.BaseMenu;
 
 //Application class test
-import MOBLIMA.Boundary.BoundaryTest;
 import MOBLIMA.Boundary.MainMenu;
 import MOBLIMA.Control.MovieGoer_Controller;
 import MOBLIMA.Entity.Booking;

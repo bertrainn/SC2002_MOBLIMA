@@ -1,12 +1,10 @@
 package MOBLIMA.Boundary;
 
-import MOBLIMA.Boundary.MovieGoer.MovieGoerLogin;
+
 import MOBLIMA.Boundary.MovieGoer.MovieGoerRegistration;
 import MOBLIMA.Boundary.MovieGoer.MoviesList;
 
 import static MOBLIMA.Control.UserInput_Controller.*;
-
-import MOBLIMA.Boundary.Admin.AdminLogin;
 
 public class MainMenu extends BaseMenu {
 
@@ -15,10 +13,9 @@ public class MainMenu extends BaseMenu {
 		printHeader("Welcome to MOBLIMA");
 		printMenu("Please make a selection: ",
 				"1. Now Showing Movies",
-				"2. Movie Goer Login",
+				"2. User Login",
 				"3. Movie Goer Registration",
-				"4. Admin Login",
-				"5. Exit");
+				"4. Exit");
 
 		int choice = userInput(1, 5);
 
@@ -27,15 +24,12 @@ public class MainMenu extends BaseMenu {
 				navigate(this, new MoviesList(null));
 				break;
 			case 2:
-				navigate(this, new MovieGoerLogin());
+				navigate(this, new LogIn());
 				break;
 			case 3:
 				navigate(this, new MovieGoerRegistration());
 				break;
 			case 4:
-				navigate(this, new AdminLogin());
-				break;
-			case 5:
 				System.out.println("Exitting application...");
 				System.exit(1);
 				break;

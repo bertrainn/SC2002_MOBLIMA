@@ -12,11 +12,13 @@ import MOBLIMA.Entity.Holiday;
 import MOBLIMA.Control.Holiday_Controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 import static MOBLIMA.Control.UserInput_Controller.*;
+import MOBLIMA.Boundary.MainMenu;
 
 import java.io.IOException;
 import java.time.Duration;
@@ -25,71 +27,81 @@ public class MOBLIMA {
 
         public static void main(String[] args) {
 
-                Cineplex_Controller cpc = new Cineplex_Controller();
-                Cinema_Controller cc = new Cinema_Controller(cpc);
-                MovieSession_Controller msc = new MovieSession_Controller(cc);
-                Movie_Controller mc = new Movie_Controller();
-                ArrayList<Movie> movies = mc.readFile();
+                MainMenu menu = new MainMenu();
+                menu.load();
 
-                cpc.addCineplex("Great World City", "A", cc.getCinema());
+                // Cineplex_Controller cpc = new Cineplex_Controller();
+                // Cinema_Controller cc = new Cinema_Controller(cpc);
+                // MovieSession_Controller msc = new MovieSession_Controller(cc);
+                // Movie_Controller mc = new Movie_Controller();
+                // ArrayList<Movie> movies = mc.readFile();
 
-                ArrayList<MovieSession> sessions1 = new ArrayList<MovieSession>();
-                ArrayList<MovieSession> sessions2 = new ArrayList<MovieSession>();
-                ArrayList<MovieSession> sessions3 = new ArrayList<MovieSession>();
+                // cpc.addCineplex("Great World City", "A", cc.getCinema());
 
-                SeatLayout test1 = new SeatLayout(20, 30);
+                // ArrayList<MovieSession> sessions1 = new ArrayList<MovieSession>();
+                // ArrayList<MovieSession> sessions2 = new ArrayList<MovieSession>();
+                // ArrayList<MovieSession> sessions3 = new ArrayList<MovieSession>();
 
-                SeatLayout psl = new SeatLayout(10, 10);
+                // SeatLayout test1 = new SeatLayout(20, 30);
 
-                cc.createCinema("A", "A01",
-                                Constants.CINEMA_TYPE.STANDARD, test1, sessions1);
-                cc.createCinema("A", "A02",
-                                Constants.CINEMA_TYPE.STANDARD, test1, sessions2);
-                cc.createCinema("A", "A03",
-                                Constants.CINEMA_TYPE.PLATIUM, psl, sessions3);
+                // SeatLayout psl = new SeatLayout(10, 10);
 
-                ArrayList<Cinema> cinemaList = cc.getCinemaByCineplexCode("A");
-                cpc.updateCineplex(cpc.CHOICE_CINEMALIST, "A", cinemaList);
+                // cc.createCinema("A", "A01",
+                // Constants.CINEMA_TYPE.STANDARD, test1, sessions1);
+                // cc.createCinema("A", "A02",
+                // Constants.CINEMA_TYPE.STANDARD, test1, sessions2);
+                // cc.createCinema("A", "A03",
+                // Constants.CINEMA_TYPE.PLATIUM, psl, sessions3);
 
-                LocalDate date = LocalDate.of(2022, 11, 28);
-                LocalTime time = LocalTime.of(12, 00);
-                LocalDateTime showtime = LocalDateTime.of(date, time);
-                LocalDate date1 = LocalDate.of(2022, 11, 24);
-                LocalTime time1 = LocalTime.of(11, 00);
-                LocalDateTime showtime1 = LocalDateTime.of(date1, time1);
-                LocalDate date2 = LocalDate.of(2022, 11, 19);
-                LocalTime time2 = LocalTime.of(15, 00);
-                LocalDateTime showtime2 = LocalDateTime.of(date2, time2);
+                // ArrayList<Cinema> cinemaList = cc.getCinemaByCineplexCode("A");
+                // cpc.updateCineplex(cpc.CHOICE_CINEMALIST, "A", cinemaList);
 
-                msc.createSession("A01", movies.get(0), showtime1,
-                                Constants.MOVIE_TYPE.TWO_D);
-                msc.createSession("A01", movies.get(1), showtime1,
-                                Constants.MOVIE_TYPE.THREE_D);
-                msc.createSession("A01", movies.get(2), showtime1,
-                                Constants.MOVIE_TYPE.BLOCKBUSTER);
+                // LocalDate date = LocalDate.of(2022, 11, 28);
+                // LocalTime time = LocalTime.of(12, 00);
+                // LocalDateTime showtime = LocalDateTime.of(date, time);
+                // LocalDate date1 = LocalDate.of(2022, 11, 24);
+                // LocalTime time1 = LocalTime.of(11, 00);
+                // LocalDateTime showtime1 = LocalDateTime.of(date1, time1);
+                // LocalDate date2 = LocalDate.of(2022, 11, 19);
+                // LocalTime time2 = LocalTime.of(15, 00);
+                // LocalDateTime showtime2 = LocalDateTime.of(date2, time2);
 
-                msc.createSession("A02", movies.get(0), showtime2,
-                                Constants.MOVIE_TYPE.THREE_D);
-                msc.createSession("A02", movies.get(1), showtime2,
-                                Constants.MOVIE_TYPE.BLOCKBUSTER);
-                msc.createSession("A02", movies.get(2), showtime2,
-                                Constants.MOVIE_TYPE.TWO_D);
+                // msc.createSession("A01", movies.get(0), showtime1,
+                // Constants.MOVIE_TYPE.TWO_D);
+                // msc.createSession("A01", movies.get(1), showtime1,
+                // Constants.MOVIE_TYPE.THREE_D);
+                // msc.createSession("A01", movies.get(2), showtime1,
+                // Constants.MOVIE_TYPE.BLOCKBUSTER);
 
-                msc.createSession("A03", movies.get(0), showtime,
-                                Constants.MOVIE_TYPE.BLOCKBUSTER);
-                msc.createSession("A03", movies.get(1), showtime,
-                                Constants.MOVIE_TYPE.TWO_D);
-                msc.createSession("A03", movies.get(2), showtime,
-                                Constants.MOVIE_TYPE.THREE_D);
+                // msc.createSession("A02", movies.get(0), showtime2,
+                // Constants.MOVIE_TYPE.THREE_D);
+                // msc.createSession("A02", movies.get(1), showtime2,
+                // Constants.MOVIE_TYPE.BLOCKBUSTER);
+                // msc.createSession("A02", movies.get(2), showtime2,
+                // Constants.MOVIE_TYPE.TWO_D);
+
+                // msc.createSession("A03", movies.get(0), showtime,
+                // Constants.MOVIE_TYPE.BLOCKBUSTER);
+                // msc.createSession("A03", movies.get(1), showtime,
+                // Constants.MOVIE_TYPE.TWO_D);
+                // msc.createSession("A03", movies.get(2), showtime,
+                // Constants.MOVIE_TYPE.THREE_D);
 
                 // String name = getStringInput("Enter admin's username: ");
                 // String password = getStringInput("Enter admin's password: ");
                 // System.out.println(name);
                 // System.out.println(password);
                 //
-                // Admin_Controller admin_Controller = new Admin_Controller();
-                // admin_Controller.addAdmin(name, password);
-                // admin_Control.addAdmin(name, password);
+
+                // admin_Controller.addAdmin("a", "a");
+                // admin_Controller.addAdmin("b", "b");
+
+                // MovieGoer_Controller mgc = new MovieGoer_Controller();
+                // HashMap<Movie, Review_Ratings> reviews = new HashMap<Movie,
+                // Review_Ratings>();
+                // ArrayList<Booking> bookingList = new ArrayList<Booking>();
+                // mgc.addMovieGoer("c", "c", "Ceman", "Ceman@gmail.com", "92312232", reviews,
+                // bookingList);
 
                 // System.out.println(date);
 

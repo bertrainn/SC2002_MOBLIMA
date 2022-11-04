@@ -97,4 +97,15 @@ public class Admin_Controller {
         }
         return false;
     }
+
+    public Admin getAdminByUsername(String Username) {
+        ArrayList<Admin> Data = readFile();
+
+        for (Admin a : Data) {
+            if (a.getUsername().equals(Username)) {
+                return a;
+            }
+        }
+        return null;
+    }
 }

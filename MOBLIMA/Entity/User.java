@@ -7,30 +7,31 @@ import java.io.Serializable;
  */
 
 public class User implements Serializable {
-    
+
     /**
      * Username of user.
      */
     private String username;
-    
+
     /**
      * Password of user.
      */
     private String password;
 
-    
+    private Constants.ACCOUNT_TYPE accountType;
+
     /**
      * Constructor for the Ticket class, with additional parameters.
      * 
-     * @param username   username of user
-     * @param password   password of user
+     * @param username username of user
+     * @param password password of user
      */
-    public User(String username, String password) {
+    public User(String username, String password, Constants.ACCOUNT_TYPE AccountType) {
         this.username = username;
         this.password = password;
+        this.accountType = AccountType;
     }
 
-    
     /**
      * This method returns the username of user
      * 
@@ -65,5 +66,13 @@ public class User implements Serializable {
      */
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Constants.ACCOUNT_TYPE getAccountType() {
+        return this.accountType;
+    }
+
+    public void setAccountType(Constants.ACCOUNT_TYPE accountType) {
+        this.accountType = accountType;
     }
 }

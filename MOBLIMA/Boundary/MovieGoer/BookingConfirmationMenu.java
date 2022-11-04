@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import MOBLIMA.Boundary.BaseMenu;
+import MOBLIMA.Boundary.LogIn;
 import MOBLIMA.Control.Booking_Controller;
 import MOBLIMA.Control.Cinema_Controller;
 import MOBLIMA.Control.Cineplex_Controller;
@@ -55,7 +56,7 @@ public class BookingConfirmationMenu extends BaseMenu {
 			int choice = userInput(1, 3);
 			switch (choice) {
 				case 1:
-					navigate(this, new MovieGoerLogin(ms, chosenSeats, cp));
+					navigate(this, new LogIn(ms, chosenSeats, cp));
 					break;
 				case 2:
 					navigate(this, new MovieGoerRegistration(ms, chosenSeats, cp));
@@ -95,17 +96,18 @@ public class BookingConfirmationMenu extends BaseMenu {
 
 			ArrayList<Booking> bList = cust.getBookingList();
 			bList.add(
-					new Booking(totalPrice, cc.getCinemaByCode(ms.getCinemaCode()), ms.getShownMovie(), tixList, cust, cp));
+					new Booking(totalPrice, cc.getCinemaByCode(ms.getCinemaCode()), ms.getShownMovie(), tixList, cust,
+							cp));
 			mgc.updateMovieGoer(mgc.CHOICE_BOOKING, cust.getUsername(), bList);
 
 			printMenu("Your booking has been confirmed",
-					  "1. View booking history",
-					  "2. Main menu");
-			
+					"1. View booking history",
+					"2. Main menu");
+
 			choice = userInput(1, 2);
 			if (choice == 2)
 				navigate(this, new MovieGoerMainMenu(cust));
-			
+
 			else
 				navigate(this, new BookingHistory(cust));
 		}

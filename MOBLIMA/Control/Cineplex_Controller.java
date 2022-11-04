@@ -32,6 +32,7 @@ public class Cineplex_Controller {
             return CineplexList;
         } catch (IOException e) {
             e.printStackTrace();
+            System.out.println(e.getMessage());
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }

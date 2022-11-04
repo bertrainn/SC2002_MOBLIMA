@@ -3,7 +3,6 @@ package MOBLIMA.Boundary.MovieGoer;
 import static MOBLIMA.Control.UserInput_Controller.*;
 
 import MOBLIMA.Boundary.BaseMenu;
-import MOBLIMA.Boundary.BoundaryTest;
 import MOBLIMA.Boundary.MainMenu;
 import MOBLIMA.Entity.MovieGoer;
 

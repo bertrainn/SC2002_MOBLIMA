@@ -5,15 +5,15 @@ package MOBLIMA.Entity;
  */
 
 public class Admin extends User {
-    
+
     /**
      * Constructor for the Admin class.
      * 
-     * @param Username      name of administrator
-     * @param Password      password for administrator
+     * @param Username name of administrator
+     * @param Password password for administrator
      */
-   
+
     public Admin(String Username, String Password) {
-        super(Username, Password);
+        super(Username, Password, Constants.ACCOUNT_TYPE.ADMIN);
     }
 }
