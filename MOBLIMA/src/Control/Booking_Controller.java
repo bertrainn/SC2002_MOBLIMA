@@ -16,7 +16,7 @@ import Entity.MovieGoer;
 import java.util.ArrayList;
 
 public class Booking_Controller {
-    public final static String FILENAME = "database/Booking.txt";
+    public final static String FILENAME = "MOBLIMA/database/Booking.txt";
 
     public Booking_Controller() {
     }

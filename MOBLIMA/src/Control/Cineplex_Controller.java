@@ -13,7 +13,7 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 public class Cineplex_Controller {
-    public final static String FILENAME = "database/Cineplex.txt";
+    public final static String FILENAME = "MOBLIMA/database/Cineplex.txt";
     public final static int CHOICE_NAME = 0;
     public final static int CHOICE_CODE = 1;
     public final static int CHOICE_CINEMALIST = 2;

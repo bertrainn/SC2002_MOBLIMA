@@ -17,7 +17,7 @@ import java.util.HashMap;
 
 public class MovieGoer_Controller {
 
-    public final static String FILENAME = "database/MovieGoer.txt";
+    public final static String FILENAME = "MOBLIMA/database/MovieGoer.txt";
     public final static int CHOICE_NAME = 0;
     public final static int CHOICE_EMAIL = 1;
     public final static int CHOICE_PHONE = 2;
