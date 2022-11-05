@@ -30,7 +30,7 @@ public class Cineplex_Controller {
 
     /**
      * Function to read file. 
-     * @return A new arraylist that has the movie sessions.
+     * @return A new arraylist that has the cineplex.
      * @exception IOException for the file
      * @exception ClassNotFoundException for the file
      */
