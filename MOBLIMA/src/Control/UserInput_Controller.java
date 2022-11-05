@@ -15,6 +15,11 @@ import Entity.Constants;
 public class UserInput_Controller {
 	
 	static Scanner sc = new Scanner(System.in);
+	
+	/**
+	 * The Decimal Format 
+	 */
+	
 	public static final DecimalFormat df = new DecimalFormat("0.00");
 	
 	/**
