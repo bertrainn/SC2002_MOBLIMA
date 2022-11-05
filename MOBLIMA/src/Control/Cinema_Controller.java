@@ -15,20 +15,38 @@ import Entity.MovieSession;
 import Entity.Cineplex;
 import Entity.Constants;
 
+/**
+ * Controller for the Cinema.
+ */
 public class Cinema_Controller {
     private Cineplex_Controller CineplexController;
     public String FILENAME;
 
+    /**
+     * Assigning each choices with a value.
+     */
     public final static int CHOICE_CODE = 0;
     public final static int CHOICE_CINEMATYPE = 2;
     public final static int CHOICE_SEATPLAN = 3;
     public final static int CHOICE_MOVIESESS = 4;
 
+    /**
+     * Creates a new Cinema Controller with the given Cineplex Controller.
+     * @param CC This Cinema Controller's Cineplex Controller.
+     */
     public Cinema_Controller(Cineplex_Controller CineplexController) {
         this.CineplexController = CineplexController;
         FILENAME = CineplexController.FILENAME;
     }
 
+    /**
+     * Function that creates cinema.
+     * @param cineplexCode The cineplex's code.
+     * @param cinemaCode The cinema's code.
+     * @param cinemaType The cinema's Type.
+     * @param s1 The layout of the cinema.
+     * @param sessions The movie sessions.
+     */
     public void createCinema(String cineplexCode, String cinemaCode,
             Constants.CINEMA_TYPE cinemaType, SeatLayout sl,
             ArrayList<MovieSession> sessions) {
@@ -49,6 +67,10 @@ public class Cinema_Controller {
         this.CineplexController.replaceFile(UpdateData, this.FILENAME);
     }
 
+    /**
+     * Function that gets the cinema. 
+     * @return Arraylist that contains the cinema needed.
+     */
     public ArrayList<Cinema> getCinema() {
         ArrayList<Cinema> OutputList = new ArrayList<Cinema>();
         ArrayList<Cineplex> cineplexList = CineplexController.readFile();
@@ -65,6 +87,11 @@ public class Cinema_Controller {
         return OutputList;
     }
 
+    /**
+     * Function that gets the cinema by cineplex code.
+     * @param cineplexCode The cineplex's code.
+     * @return The cinema found by cineplex code.
+     */
     public ArrayList<Cinema> getCinemaByCineplexCode(String cineplexCode) {
         ArrayList<Cinema> OutputList = new ArrayList<Cinema>();
         ArrayList<Cineplex> cineplexList = CineplexController.readFile();
@@ -83,6 +110,11 @@ public class Cinema_Controller {
         return OutputList;
     }
 
+    /**
+     * Function that gets the cinema by cinema code.
+     * @param cinemaCode The cinema's code.
+     * @return The cinema found by cinema code.
+     */
     public Cinema getCinemaByCode(String cinemaCode) {
         ArrayList<Cineplex> cineplexList = CineplexController.readFile();
         Cineplex c;
@@ -97,6 +129,12 @@ public class Cinema_Controller {
         return null;
     }
 
+    /**
+     * Function that updates the cinema details.
+     * @param choice The choice of detail to change in the cinema.
+     * @param cinemaCode The Cinema's code.
+     * @param obj The object that will update the cinema's detail.
+     */
     public void updateCinema(int choice, String cinemaCode, Object obj) {
         ArrayList<Cineplex> Data = CineplexController.readFile();
         ArrayList<Cineplex> UpdateData = new ArrayList<Cineplex>();
@@ -137,6 +175,10 @@ public class Cinema_Controller {
         this.CineplexController.replaceFile(UpdateData, FILENAME);
     }
 
+    /**
+     * Function that will delete the cinema.
+     * @param cinemaCode This cinema's code.
+     */
     public void deleteCinema(String cinemaCode) {
         ArrayList<Cineplex> Data = CineplexController.readFile();
         ArrayList<Cineplex> UpdateData = new ArrayList<Cineplex>();
@@ -166,7 +208,7 @@ public class Cinema_Controller {
     /**
      * This function obtains the last ID for a given list of Cinemas of a given
      * Cineplex.
-     * 
+     * @param cineplexCode the Cinema's cineplex Code
      * @return the last ID of a given Cinema List
      */
 
@@ -188,6 +230,11 @@ public class Cinema_Controller {
         return lastID;
     }
 
+    /**
+     * Function that checks for the cinema existence.
+     * @param cinemaCode This Cinema's code.
+     * @return true if cinema exist otherwise false.
+     */
     public boolean doesCinemaExist(String cinemaCode) {
         ArrayList<Cinema> Data = getCinema();
 
