@@ -5,7 +5,6 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-
 /**
  * Represents an instance of a booking used in the system.
  */
@@ -14,48 +13,48 @@ public class Booking implements Serializable {
 
     /**
      * Transaction ID of the Booking
-     * Format of TID = XXXYYYYMMDDhhmmm (Y: Year, M: Month, D: Day, h: Hour, m:
-     * Minute, XXX: Cinema Code)
+     * Format of TID = xxxYYYYMMDDhhmmm (Y: Year, M: Month, D: Day, h: Hour, m:
+     * Minute, xxx: Cinema Code)
      */
     private String TID;
-    
+
     /**
      * The total amount payable.
      */
     private double TotalAmount;
-    
+
     /**
      * The booked Cinema.
      */
     private Cinema cinema;
-    
+
     /**
      * The booked movie.
      */
     private Movie movie;
-    
+
     /**
      * The list of tickets booked.
      */
     private ArrayList<Ticket> TicketList = new ArrayList<Ticket>();
-    
+
     /**
      * The name of movie goer.
      */
     private MovieGoer user;
-    
+
     private Cineplex cineplex;
 
     /**
      * Constructor for the Booking class, with additional parameters.
      * 
-     * @param TotalAmount     total amount for booking
-     * @param cinema          cinema for booking
-     * @param movie           movie for booking
-     * @param ticketList      list of tickets
-     * @param user            name of movie goer / user
+     * @param TotalAmount total amount for booking
+     * @param cinema      cinema for booking
+     * @param movie       movie for booking
+     * @param ticketList  list of tickets
+     * @param user        name of movie goer / user
      */
-    
+
     public Booking(double TotalAmount, Cinema cinema, Movie movie,
             ArrayList<Ticket> ticketList, MovieGoer user, Cineplex cineplex) {
         String TimeStamp = LocalDateTime.now().format(Constants.bookingFormat);
@@ -121,13 +120,13 @@ public class Booking implements Serializable {
     public void setCinema(Cinema cinema) {
         this.cinema = cinema;
     }
-    
+
     public Cineplex getCineplex() {
-    	return cineplex;
+        return cineplex;
     }
-    
+
     public void setCineplex(Cineplex cineplex) {
-    	this.cineplex = cineplex;
+        this.cineplex = cineplex;
     }
 
     /**
