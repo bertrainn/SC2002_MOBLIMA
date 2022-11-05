@@ -16,6 +16,9 @@ import java.util.ArrayList;
 import java.time.Duration;
 import java.time.LocalDate;
 
+/**
+ * Controller for the Movie.
+ */
 public class Movie_Controller {
     public final static String FILENAME = "MOBLIMA/database/Movie.txt";
     
