@@ -1,11 +1,13 @@
 package Boundary;
 
-
 import Boundary.MovieGoer.MovieGoerRegistration;
 import Boundary.MovieGoer.MoviesList;
 
 import static Control.UserInput_Controller.*;
 
+/**
+ * Main menu initiated at the start of the app.
+ */
 public class MainMenu extends BaseMenu {
 
 	@Override
