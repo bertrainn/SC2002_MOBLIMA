@@ -19,14 +19,12 @@ public class UserInput_Controller {
 	/**
 	 * The Decimal Format 
 	 */
-	
 	public static final DecimalFormat df = new DecimalFormat("0.00");
 	
 	/**
 	 * Function to print header.
 	 * @param header of userinput .
 	 */
-	
 	public static void printHeader(String header) {
 		int length = 65;
 		for (int i = 0; i < length; i++)
@@ -48,7 +46,6 @@ public class UserInput_Controller {
 	 * Function to print Menu .
 	 * @param menu of userinput .
 	 */
-	
 	public static void printMenu(String... menu) {
 		for (String s : menu) {
 			String firstHalf;
@@ -69,7 +66,6 @@ public class UserInput_Controller {
 	 * Function to print Menu without spacing.
 	 * @param menu of userinput.
 	 */
-
 	public static void printMenuWithoutSpace(String... menu) {
 		for (String s : menu) {
 			System.out.println(s);
@@ -81,7 +77,6 @@ public class UserInput_Controller {
 	 * @param size Size of the amount of spaces needed.
 	 * @return the string of spaces.
 	 */
-
 	public static String generateSpaces(int size) {
 		StringBuilder stringBuilder = new StringBuilder();
 		for (int i = 0; i < size; i++)
@@ -98,7 +93,6 @@ public class UserInput_Controller {
 	 * @return Choice of the user. 
 	 * @exception NumberFormatException On input error
 	 */
-
 	public static int userInput(int i, int j) {
 		int choice;
 
@@ -127,8 +121,6 @@ public class UserInput_Controller {
 	 * @param message Message to be printed.
 	 * @return the string of the next input.
 	 */
-	
-
 	public static String getStringInput(String message) {
 		System.out.print(message);
 		String input = sc.nextLine();
@@ -140,7 +132,6 @@ public class UserInput_Controller {
 	 * @param message Message to be printed.
 	 * @return the string of the next input.
 	 */
-	
 	public static String getStringInput_Sentence(String message) {
 		System.out.print(message);
 		String input = sc.nextLine();
@@ -152,7 +143,6 @@ public class UserInput_Controller {
 	 * @param message Message to be printed.
 	 * @return the integer of the next input.
 	 */
-	
 	public static int getIntInput(String message) {
 		System.out.print(message);
 		int input = Integer.parseInt(sc.nextLine());
@@ -166,7 +156,6 @@ public class UserInput_Controller {
 	 * @param min Minimum value that the Input integer have to be higher than.
 	 * @return the int of the next input.
 	 */
-	
 	public static int getIntInput_Min(String message, int min) {
 		System.out.print(message);
 		int input = Integer.parseInt(sc.nextLine());
@@ -182,7 +171,6 @@ public class UserInput_Controller {
 	 * @param message Message to be printed in sentences.
 	 * @return the double of the next input.
 	 */
-
 	public static Double getDoubleInput(String message) {
 		System.out.print(message);
 		Double input = Double.parseDouble(sc.nextLine());
@@ -194,7 +182,6 @@ public class UserInput_Controller {
 	 * @param message Message to be printed.
 	 * @return the parsed date.
 	 */
-
 	public static LocalDate getDateInput(String message) {
 		System.out.print(message);
 		String input = "";
@@ -208,7 +195,6 @@ public class UserInput_Controller {
 	 * @param message Message to be printed.
 	 * @return the parsed date.
 	 */
-
 	public static LocalDate getDateInput_NoYear(String message) {
 		System.out.print(message);
 		String input = sc.nextLine();
@@ -223,7 +209,6 @@ public class UserInput_Controller {
 	 * @param message Message to be printed.
 	 * @return the parsed date.
 	 */
-
 	public static LocalDateTime getDateTimeInput(String message) {
 		System.out.print(message);
 		String input = "";
@@ -231,11 +216,11 @@ public class UserInput_Controller {
 		LocalDateTime parsedDate = LocalDateTime.parse(input, Constants.datetimeFormat);
 		return parsedDate;
 	}
+	
 	/**
 	 * Function to check the user and password of the admin account
 	 * @return Boolean indicating if the login is successful or a failure.
 	 */
-
 	public static boolean adminAuthorise() {
 		String _user = "GV";
 		String _pw = "123456";
@@ -255,7 +240,6 @@ public class UserInput_Controller {
 	 * @param a List of strings to be converted to string.
 	 * @return the string of the converted list.
 	 */
-
 	public static String listToString(ArrayList<String> a) {
 		String s = "";
 		for (int i = 0; i < a.size() - 1; i++)
@@ -270,7 +254,6 @@ public class UserInput_Controller {
 	 * @param maxLen The maximum length of the string allowed.
 	 * @return the reduced string
 	 */
-	
 	public static String reduceStringLength(String input, int maxLen) {
 		String res = input;
 		if (input.length()>maxLen) {
