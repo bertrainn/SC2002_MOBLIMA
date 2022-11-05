@@ -103,7 +103,7 @@ public class BookingMenu extends BaseMenu {
 	}
 
 	private void showSeatingPlan(MovieSession ms, int noOfSeats) {
-		int flag = 0;
+		int flag = 0, count = 0;
 		ArrayList<Seat> chosenSeats = new ArrayList<Seat>();
 		SeatLayout seatPlan = ms.getSeatPlan();
 		int total = seatPlan.getCol() * seatPlan.getRow();
@@ -114,16 +114,26 @@ public class BookingMenu extends BaseMenu {
 			int choice = userInput(0, total - 1);
 			chosenSeats.add(new Seat(choice));
 		}
-
-		for (Seat i : chosenSeats) {
-			if (seatPlan.isSeatAssign(i.getSeatID())) {
+		
+		for (int i=0; i<chosenSeats.size(); i++) {
+			if (seatPlan.isSeatAssign(chosenSeats.get(i).getSeatID()))
 				flag = 1;
-				break;
+			for (int j=i+1; j<chosenSeats.size(); j++) {
+				if (chosenSeats.get(i).getSeatID() == chosenSeats.get(j).getSeatID()) {
+					flag = 2;
+					break;
+				}
 			}
+			if (flag != 0)
+				break;
 		}
 
 		if (flag == 1) {
 			printMenu("One or more of the seats you have chosen is/are occupied, enter any number to try again.");
+			userInput(0, 9);
+			showSeatingPlan(ms, noOfSeats);
+		} else if (flag == 2) {
+			printMenu("Two or more of the seats you have chosen are duplicates, enter any number to try again.");
 			userInput(0, 9);
 			showSeatingPlan(ms, noOfSeats);
 		} else {

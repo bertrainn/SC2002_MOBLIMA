@@ -68,8 +68,8 @@ public class UserInput_Controller {
 
 		try {
 			choice = Integer.parseInt(sc.nextLine());
-		} catch (InputMismatchException ex) {
-			System.out.println("Invalid selection, please try again.");
+		} catch (NumberFormatException ex) {
+			System.out.println("Invalid selection, press enter to try again.");
 			sc.nextLine();
 			return userInput(i, j);
 		}

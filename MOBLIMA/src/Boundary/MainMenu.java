@@ -17,7 +17,7 @@ public class MainMenu extends BaseMenu {
 				"3. Movie Goer Registration",
 				"4. Exit");
 
-		int choice = userInput(1, 5);
+		int choice = userInput(1, 4);
 
 		switch (choice) {
 			case 1:
@@ -30,11 +30,9 @@ public class MainMenu extends BaseMenu {
 				navigate(this, new MovieGoerRegistration());
 				break;
 			case 4:
-				System.out.println("Exitting application...");
+				printMenu("Exitting application...");
 				System.exit(1);
 				break;
-			default:
-				System.out.println("Invalid selection, please try again.");
 		}
 	}
 

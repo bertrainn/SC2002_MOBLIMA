@@ -1,1 +1,4 @@
 *.class
+/Entity/
+/Boundary/
+/Control/
