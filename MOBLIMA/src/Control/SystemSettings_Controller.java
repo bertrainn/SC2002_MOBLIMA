@@ -18,9 +18,9 @@ public class SystemSettings_Controller {
     }
     
     /**
-	 * Function to read the file.
+     * Function to read the file.
      * @exception IOException on the input data of the file.
-	 */
+     */
     public ArrayList<String> read() {
         ArrayList<String> data = new ArrayList<String>();
 
@@ -47,9 +47,9 @@ public class SystemSettings_Controller {
     }
 
     /**
-	 * Function to write out data on the file.
-	 * @param data Data to be written. 
-	 */
+     * Function to write out data on the file.
+     * @param data Data to be written. 
+     */
     public void write(List data) {
         PrintWriter out;
 
@@ -72,9 +72,9 @@ public class SystemSettings_Controller {
     }
 
     /**
-	 * Function to read the system settings.
+     * Function to read the system settings.
      * @return ArrayList that have the system settings.
-	 */
+     */
     public ArrayList<String> readSystemSettings() {
 
         ArrayList<String> stringArray = this.read();
@@ -87,9 +87,9 @@ public class SystemSettings_Controller {
     }
 
     /**
-	 * Function that allows to save the currernt System Settings
-	 * @param al The Settings to be saved into the system.
-	 */
+     * Function that allows to save the currernt System Settings
+     * @param al The Settings to be saved into the system.
+     */
     public void saveSystemSettings(ArrayList<String> al) {
         ArrayList<String> alw = new ArrayList();// to store Professors data
 
