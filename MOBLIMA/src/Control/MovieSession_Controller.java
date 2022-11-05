@@ -120,7 +120,7 @@ public class MovieSession_Controller {
     /**
      * Function to read files by its values.
      * @param choice The Choice of what to be read and added into the arraylist.
-     * @param obj The Object [ this one idk ]
+     * @param obj The Object that is selected.
      * @return A new arraylist that has been read by values.
      */
     public ArrayList<MovieSession> readFileByValues(int choice, Object obj) {
