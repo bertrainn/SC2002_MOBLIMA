@@ -18,6 +18,9 @@ import Entity.Movie;
 import Entity.MovieSession;
 import Entity.SeatLayout;
 
+/**
+ * Controller for the Movie Sessions.
+ */
 public class MovieSession_Controller {
     private Cinema_Controller CinemaControl;
     public String FILENAME;
