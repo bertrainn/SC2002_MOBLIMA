@@ -12,7 +12,11 @@ import java.time.Duration;
 
 public class Movie implements Serializable {
 
+    /**
+	 * The ID of the movie.
+	 */
     private int id;
+    
     /**
      * Title of the movie.
      */
