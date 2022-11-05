@@ -1,13 +1,18 @@
 package Control;
 
 import java.util.ArrayList;
-
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import Entity.Constants;
+
+/** 
+ * Controller for User Input
+ * @author Anon
+ *
+ */
 
 public class UserInput_Controller {
 
