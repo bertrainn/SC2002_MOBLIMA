@@ -18,7 +18,10 @@ import java.time.LocalDate;
 
 public class Movie_Controller {
     public final static String FILENAME = "MOBLIMA/database/Movie.txt";
-
+    
+    /**
+     * Indicating each choices to link them to a value.
+     */
     public final static int CHOICE_ID = 0;
     public final static int CHOICE_TITLE = 1;
     public final static int CHOICE_DESC = 2;
@@ -35,6 +38,12 @@ public class Movie_Controller {
     public Movie_Controller() {
     }
 
+    /**
+     * Function to read file and make sure that there are no errors.
+     * @return A new arraylist that is error free.
+     * @exception IOException for the file
+     * @exception ClassNotFoundException for the file.
+     */
     public ArrayList<Movie> readFile() {
         FileInputStream fis = null;
         ObjectInputStream ois = null;
@@ -54,6 +63,12 @@ public class Movie_Controller {
         return new ArrayList<Movie>();
     }
 
+    /**
+     * Function that adds movie.
+     * @param Title The movie's title.
+     * @param Description The movie's description.
+     * @param Age The movie's age restriction.
+     */
     public void addMovie(String Title, String Description, Constants.AGE_CLASSIFICATION Age,
             ArrayList<String> DirectorList, ArrayList<String> ActorList, ArrayList<String> GenreList,
             ArrayList<Review_Ratings> reviewList, LocalDate OpeningDate, LocalDate ClosingDate, Duration Duration) {
@@ -81,6 +96,12 @@ public class Movie_Controller {
         }
     }
 
+    /**
+     * Function that replaces the content in the file.
+     * @param data ArrayList that replaces the current data in the File.
+     * @param filename Name of the file.
+     * @exception IOException If there is any error within the file.
+     */
     public void replaceFile(ArrayList<Movie> data, String filename) {
         FileOutputStream fos = null;
         ObjectOutputStream oos = null;
@@ -98,6 +119,12 @@ public class Movie_Controller {
         }
     }
 
+    /**
+     * Function that updates the selected movie
+     * @param choice The choice of content to be updated.
+     * @param id ID of the movie.
+     * @param obj Object to be updated with.
+     */
     public void updateMovie(int choice, int id, Object obj) {
         ArrayList<Movie> Data = readFile();
         ArrayList<Movie> UpdateData = new ArrayList<Movie>();
@@ -151,7 +178,11 @@ public class Movie_Controller {
         }
         replaceFile(UpdateData, FILENAME);
     }
-
+    
+    /**
+     * Function that deletes the selected movie.
+     * @param id ID of the movie to be deleted.
+     */
     public void deleteMovie(int id) {
         ArrayList<Movie> Data = readFile();
         ArrayList<Movie> UpdateData = new ArrayList<Movie>();
@@ -166,6 +197,10 @@ public class Movie_Controller {
         replaceFile(UpdateData, FILENAME);
     }
 
+    /**
+     * Function that gets the movie that are currently showing.
+     * @return the Array List of movies that are currently showing
+     */
     public ArrayList<Movie> getShowingMovies() {
         ArrayList<Movie> Data = readFile();
         ArrayList<Movie> Output = new ArrayList<Movie>();
@@ -179,6 +214,11 @@ public class Movie_Controller {
         return Output;
     }
 
+    /**
+     * Function to check if the movie still exists
+     * @param Title The movie's title.
+     * @return Boolean indicating the movie's existence.
+     */
     public boolean MovieExists(String Title) {
         ArrayList<Movie> Data = readFile();
 
@@ -189,7 +229,12 @@ public class Movie_Controller {
         }
         return false;
     }
-
+    
+    /**
+     * Function that gets the movie by its title.
+     * @param Title The movie's title.
+     * @return the list of search results.
+     */
     public ArrayList<Movie> getMoviesByTitle(String Title) {
         ArrayList<Movie> Data = readFile();
         ArrayList<Movie> searchResults = new ArrayList<>();
@@ -204,6 +249,10 @@ public class Movie_Controller {
         return searchResults;
     }
 
+    /**
+     * Function that gets the last ID of the movie ID in the file.
+     * @returns the last ID of the movie ID in the file.
+     */
     public int getLastID() {
         int lastID = -1;
         int MovieID;
