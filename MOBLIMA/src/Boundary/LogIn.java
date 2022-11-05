@@ -16,6 +16,9 @@ import Entity.Movie;
 
 import java.util.ArrayList;
 
+/**
+ * This class helps to log in both admin and moviegoer .
+ */
 public class LogIn extends BaseMenu {
 
     private Admin_Controller adminController = new Admin_Controller();
