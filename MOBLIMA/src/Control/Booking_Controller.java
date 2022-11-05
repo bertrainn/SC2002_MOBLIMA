@@ -15,12 +15,21 @@ import Entity.Ticket;
 import Entity.MovieGoer;
 import java.util.ArrayList;
 
+/**
+ * Controller for the booking of movies.
+ */
 public class Booking_Controller {
     public final static String FILENAME = "MOBLIMA/database/Booking.txt";
 
     public Booking_Controller() {
     }
 
+    /**
+     * Function to read file. 
+     * @return A new arraylist that has the bookings of movies.
+     * @exception IOException for the file
+     * @exception ClassNotFoundException for the file
+     */
     public ArrayList<Booking> readFile() {
         FileInputStream fis = null;
         ObjectInputStream ois = null;
@@ -38,6 +47,16 @@ public class Booking_Controller {
         return new ArrayList<Booking>();
     }
 
+    /**
+     * Function to add in a new booking.
+     * @param TotalAmount The booking's total amount.
+     * @param cinema The booking's cinema.
+     * @param movie The booking's movie.
+     * @param ticketlist TThe booking's ticketlist.
+     * @param user The booking's user.
+     * @param cineplex The booking's cineplex.
+     * @exception IOException for the reading the file
+     */
     public void addBooking(double TotalAmount, Cinema cinema, Movie movie, ArrayList<Ticket> ticketList,
             MovieGoer user, Cineplex cineplex) {
 
@@ -61,6 +80,11 @@ public class Booking_Controller {
         }
     }
 
+    /**
+     * Function to retrieve booking by TID
+     * @param TID The booking's TID
+     * @return Arraylist that contains the booking linked to the TID
+     */
     public ArrayList<Booking> retrieveByTID(String TID) {
         ArrayList<Booking> Data = readFile();
         ArrayList<Booking> ReturnData = new ArrayList<Booking>();
@@ -75,6 +99,11 @@ public class Booking_Controller {
         return ReturnData;
     }
 
+    /**
+     * Function to retrieve booking by User
+     * @param Username The username of the booking
+     * @return Arraylist that contains the booking linked to the username
+     */
     public ArrayList<Booking> retrieveByUser(String Username) {
         ArrayList<Booking> Data = readFile();
         ArrayList<Booking> ReturnData = new ArrayList<Booking>();
@@ -93,6 +122,10 @@ public class Booking_Controller {
         return ReturnData;
     }
 
+    /**
+     * Function that will delete the booking.
+     * @param TID This booking's TID.
+     */
     public void deleteBooking(String TID) {
         ArrayList<Booking> Data = readFile();
         ArrayList<Booking> UpdateData = new ArrayList<Booking>();
@@ -107,6 +140,12 @@ public class Booking_Controller {
         replaceFile(UpdateData, FILENAME);
     }
 
+    /**
+     * Function that replaces the content in the file.
+     * @param data ArrayList that replaces the current data in the File.
+     * @param filename Name of the file.
+     * @exception IOException If there is any error within the file.
+     */
     public void replaceFile(ArrayList<Booking> data, String filename) {
         FileOutputStream fos = null;
         ObjectOutputStream oos = null;
