@@ -10,6 +10,9 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
+/**
+ * Controller for the System Settings.
+ */
 public class SystemSettings_Controller {
     public final static String FILENAME = "MOBLIMA/database/SystemSettings.txt";
 
