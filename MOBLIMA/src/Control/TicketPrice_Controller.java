@@ -21,9 +21,9 @@ public class TicketPrice_Controller implements Serializable {
     }
 
     /**
-	 * Function to set the different prices out on the ticket price map.
-	 * @param TicketPriceMap HashMap holds the ticket price
-	 */
+     * Function to set the different prices out on the ticket price map.
+     * @param TicketPriceMap HashMap holds the ticket price
+     */
     private void populatePriceMap(HashMap<PriceAdjust, Double> TicketPriceMap) {
         TicketPriceMap.put(Constants.TICKET_TYPE.MON_TO_THU, 9.50);
         TicketPriceMap.put(Constants.TICKET_TYPE.FRI_WEEKEND_PH, 11.00);
@@ -45,28 +45,28 @@ public class TicketPrice_Controller implements Serializable {
     }
 
     /**
-	 * Function to get price of the movie. 
-	 * @param key Movie object.
+     * Function to get price of the movie. 
+     * @param key Movie object.
      * @return Double value of the ticket price.
-	 */
+     */
     public double getPrice(PriceAdjust key) {
         return this.TicketPriceMap.getOrDefault(key, 0.00);
     }
 
     /**
-	 * Function to add the ticket price.
-	 * @param newKey The new movie to be added into the hash table.
+     * Function to add the ticket price.
+     * @param newKey The new movie to be added into the hash table.
      * @param price Price of the new movie to be added into the hash table.
-	 */
+     */
     public void addTicketPriceItem(PriceAdjust newKey, double price) {
         this.TicketPriceMap.put(newKey, price);
     }
 
     /**
-	 * Function to update the ticket price.
-	 * @param key Movie that is to be updated.
+     * Function to update the ticket price.
+     * @param key Movie that is to be updated.
      * @param newprice The new price that is to be updated into the hash table.
-	 */
+     */
     public void updateTicketPriceItem(PriceAdjust key, double newprice) {
         if (this.TicketPriceMap.containsKey(key)) {
             this.TicketPriceMap.replace(key, newprice);
@@ -74,10 +74,10 @@ public class TicketPrice_Controller implements Serializable {
     }
     
     /**
-	 * Function to remove the ticket price.
-	 * @param key Movie object.
-	 * @return the string of the next input.
-	 */
+     * Function to remove the ticket price.
+     * @param key Movie object.
+     * @return the string of the next input.
+     */
     public void removeTicketPriceItem(PriceAdjust key) {
         this.TicketPriceMap.remove(key);
     }
