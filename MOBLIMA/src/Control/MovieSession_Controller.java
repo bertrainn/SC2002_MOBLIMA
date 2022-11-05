@@ -22,15 +22,28 @@ public class MovieSession_Controller {
     private Cinema_Controller CinemaControl;
     public String FILENAME;
 
+    /**
+     * Assigning each choices with a value.
+     */
     public final static int CHOICE_MOVIE = 1;
     public final static int CHOICE_DATETIME = 2;
     public final static int CHOICE_CINEMACODE = 5;
-
+    
+    /**
+     * Creates a new MovieSession Controller with the given Cinema Controller.
+     * @param CC This MovieSession Controller's Cinema Controller.
+     */
     public MovieSession_Controller(Cinema_Controller CC) {
         this.CinemaControl = CC;
         this.FILENAME = CC.FILENAME;
     }
 
+    /**
+     * Function that creates movie session.
+     * @param cinemaCode The cinema's code.
+     * @param shownMovie The movies that are currently showing.
+     * @param startDateTime The data and time for the session to start.
+     */
     public void createSession(String cinemaCode, Movie shownMovie, LocalDateTime startDateTime,
             Constants.MOVIE_TYPE movieType) {
         SeatLayout seatPlan = CinemaControl.getCinemaByCode(cinemaCode).getSeatPlan();
@@ -55,6 +68,10 @@ public class MovieSession_Controller {
         }
     }
 
+    /**
+     * Function that updates the movie session.
+     * @param sess The movie session that is going to be updated.
+     */
     public void updateSession(MovieSession sess) {
         this.deleteByID(sess.getSessionId());
         ArrayList<Cinema> Data = CinemaControl.getCinema();
@@ -75,6 +92,10 @@ public class MovieSession_Controller {
         }
     }
 
+    /**
+     * Function to read file. 
+     * @return A new arraylist that has the movie sessions.
+     */
     public ArrayList<MovieSession> readFile() {
         ArrayList<Cinema> allCinemas = this.CinemaControl.getCinema();
         ArrayList<MovieSession> allMovieSessions = new ArrayList<MovieSession>();
@@ -92,7 +113,13 @@ public class MovieSession_Controller {
 
         return allMovieSessions;
     }
-
+    
+    /**
+     * Function to read files by its values.
+     * @param choice The Choice of what to be read and added into the arraylist.
+     * @param obj The Object [ this one idk ]
+     * @return A new arraylist that has been read by values.
+     */
     public ArrayList<MovieSession> readFileByValues(int choice, Object obj) {
         ArrayList<MovieSession> allMovieSessions = readFile();
         ArrayList<MovieSession> Output = new ArrayList<MovieSession>();
@@ -123,6 +150,10 @@ public class MovieSession_Controller {
         return Output;
     }
 
+    /**
+     * Function that deletes the movie by ID.
+     * @param id The session ID.
+     */
     public void deleteByID(int id) {
         ArrayList<Cinema> allCinemas = CinemaControl.getCinema();
         ArrayList<MovieSession> allMovieSessions = new ArrayList<MovieSession>();
@@ -145,6 +176,10 @@ public class MovieSession_Controller {
         }
     }
 
+    /**
+     * Function that deletes the movie by MovieID.
+     * @param movieId The movie's ID.
+     */
     public void deleteByMovie(int movieId) {
         ArrayList<Cinema> allCinemas = CinemaControl.getCinema();
         ArrayList<MovieSession> allMovieSessions = new ArrayList<MovieSession>();
@@ -167,6 +202,10 @@ public class MovieSession_Controller {
         }
     }
 
+    /**
+     * Function that gets the last ID.
+     * @returns the last ID on the file.
+     */
     public int getLastID() {
         int lastID = -1;
         int MovieSessionID;
