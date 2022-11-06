@@ -21,7 +21,7 @@ import java.util.ArrayList;
 public class Booking_Controller {
     
     /**
-     * File name of the booking.txt file in the database to acces.
+     * File name of the booking.txt file in the database to access.
      */
     public final static String FILENAME = "MOBLIMA/database/Booking.txt";
 
@@ -54,11 +54,11 @@ public class Booking_Controller {
      * Function to add in a new booking.
      *
      * @param TotalAmount The booking's total amount.
-     * @param cinema The booking's cinema.
-     * @param movie The booking's movie.
-     * @param ticketlist TThe booking's ticketlist.
-     * @param user The booking's user.
-     * @param cineplex The booking's cineplex.
+     * @param cinema      The booking's cinema.
+     * @param movie       The booking's movie.
+     * @param ticketlist  The booking's ticketlist.
+     * @param user        The booking's MovieGoer.
+     * @param cineplex    The booking's cineplex.
      */
     public void addBooking(double TotalAmount, Cinema cinema, Movie movie, ArrayList<Ticket> ticketList,
             MovieGoer user, Cineplex cineplex) {
@@ -84,10 +84,10 @@ public class Booking_Controller {
     }
 
     /**
-     * Function to retrieve booking by TID
+     * Function to retrieve booking by TID.
      *
-     * @param TID The booking's TID
-     * @return Arraylist that contains the booking linked to the TID
+     * @param TID The booking's TID.
+     * @return Arraylist that contains the booking linked to the TID.
      */
     public ArrayList<Booking> retrieveByTID(String TID) {
         ArrayList<Booking> Data = readFile();
@@ -104,10 +104,10 @@ public class Booking_Controller {
     }
 
     /**
-     * Function to retrieve booking by User
+     * Function to retrieve booking by User.
      *
-     * @param Username The username of the booking
-     * @return Arraylist that contains the booking linked to the username
+     * @param Username The username of the booking.
+     * @return Arraylist that contains the booking linked to the username.
      */
     public ArrayList<Booking> retrieveByUser(String Username) {
         ArrayList<Booking> Data = readFile();
