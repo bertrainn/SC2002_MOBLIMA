@@ -6,14 +6,27 @@ import Boundary.BaseMenu;
 import Entity.Admin;
 import Boundary.MainMenu;
 
+/**
+ * This shows the Admin's Main menu.
+ */
 public class AdminMainMenu extends BaseMenu {
 
+	/**
+	 * The Admin User that is able to access the Admin main menu.
+	 */
 	private Admin User;
 
+	/**
+     	 * Creates a new Admin Main Menu with the given Admin user.
+     	 * @param User This AdminMainMenu's User.
+     	 */
 	public AdminMainMenu(Admin user) {
 		this.User = user;
 	}
 
+	/**
+         * Loads the Booking Confirmation Menu.
+         */
 	@Override
 	public void load() {
 		printHeader("Welcome to Admin main menu, " + User.getUsername());

@@ -20,18 +20,32 @@ import static Control.UserInput_Controller.*;
 import java.util.ArrayList;
 import java.time.LocalDateTime;
 
+/**
+ * This allows the admin to access to the editCineplex menu.
+ */
 public class editCineplex extends BaseMenu {
+
+	/**
+	 * Intialising the controllers for the confirmed booking menu.
+	 */
 	private Cineplex_Controller cineplex_Controller = new Cineplex_Controller();
 	private Cinema_Controller cinema_Controller = new Cinema_Controller(cineplex_Controller);
 	private MovieSession_Controller movie_session_Controller = new MovieSession_Controller(cinema_Controller);
 	private Movie_Controller movie_controller = new Movie_Controller();
 	private editMovie editMovies = new editMovie();
 
+	/**
+	 * Loads the Edit Cineplex Menu.
+	 */
 	@Override
 	public void load() {
 		showMenu();
 	}
 
+	/**
+	 * Shows the content of the Menu that will be loaded into the edit cineplex
+	 * menu.
+	 */
 	public void showMenu() {
 		printHeader("Cineplex & Session Options");
 		printMenu("Choose from one of the following options:",
@@ -75,8 +89,11 @@ public class editCineplex extends BaseMenu {
 		}
 	}
 
+	/**
+	 * Function shows the count of how many cinemas is in which cinplex
+	 * also shows the id of the cineplex as well.
+	 */
 	public void ListCineplex() {
-		// show a count of how many cinemas is in which cineplex, show the id as well.
 		ArrayList<Cineplex> cineplexList = cineplex_Controller.readFile();
 		ArrayList<Cinema> cinemaList;
 		int i = 0;
@@ -99,6 +116,9 @@ public class editCineplex extends BaseMenu {
 		}
 	}
 
+	/**
+	 * Function shows the list of movie sessions in the cinema.
+	 */
 	public void ListCinemaSessions(String cinemaCode) {
 		Cinema cinema = cinema_Controller.getCinemaByCode(cinemaCode);
 		ArrayList<MovieSession> sessionList = cinema.getMovieSessions();
@@ -112,6 +132,9 @@ public class editCineplex extends BaseMenu {
 		}
 	}
 
+	/**
+	 * Function shows the list of all the movie sessions.
+	 */
 	public void ListAllSessions() {
 		ArrayList<MovieSession> sessions = movie_session_Controller.readFile();
 		int i = 0;
@@ -125,8 +148,11 @@ public class editCineplex extends BaseMenu {
 		}
 	}
 
+	/**
+	 * Function to add cineplex.
+	 */
 	public void addCineplex() {
-		// auto build 3 Cinemas
+		// function to auto add 3 cinema
 		boolean flag = false;
 		int choice = -1;
 		String cinemaCode;
@@ -209,6 +235,9 @@ public class editCineplex extends BaseMenu {
 		load();
 	}
 
+	/**
+	 * Function delete the cineplex.
+	 */
 	public void deleteCineplex() {
 		String choice;
 		ListCineplex();
@@ -230,6 +259,9 @@ public class editCineplex extends BaseMenu {
 		load();
 	}
 
+	/**
+	 * Function to add cinema.
+	 */
 	public void addCinema() {
 		ListCineplex();
 		Cineplex cineplex = null;
@@ -284,6 +316,9 @@ public class editCineplex extends BaseMenu {
 		load();
 	}
 
+	/**
+	 * Function to delete cinema.
+	 */
 	public void deleteCinema() {
 		String choice;
 		Cineplex cineplex = null;
@@ -330,6 +365,9 @@ public class editCineplex extends BaseMenu {
 		load();
 	}
 
+	/**
+	 * Function to add movie session.
+	 */
 	public void addSession() {
 		ArrayList<Movie> movieList = movie_controller.getShowingMovies();
 		String CinemaCode;
@@ -407,6 +445,9 @@ public class editCineplex extends BaseMenu {
 		load();
 	}
 
+	/**
+	 * Function to edit the details of the movie session.
+	 */
 	public void editSession() {
 		ArrayList<MovieSession> sessions = movie_session_Controller.readFile();
 		MovieSession movieSession;
@@ -465,6 +506,9 @@ public class editCineplex extends BaseMenu {
 		load();
 	}
 
+	/**
+	 * Function to delete movie session.
+	 */
 	public void deleteSession() {
 		ArrayList<MovieSession> sessions = movie_session_Controller.readFile();
 		MovieSession movieSession;

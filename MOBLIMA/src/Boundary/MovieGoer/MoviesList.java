@@ -21,26 +21,54 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+/**
+ * This shows the movieslist that contains all the movies.
+ */
 public class MoviesList extends BaseMenu {
 
+	/**
+	 * Intialising the controllers for the confirmed booking menu.
+	 */
 	private Movie_Controller mc = new Movie_Controller();
 	private Cineplex_Controller cc = new Cineplex_Controller();
 	private SystemSettings_Controller ssc = new SystemSettings_Controller();
 	private Booking_Controller bc = new Booking_Controller();
 
+	/**
+	 * The MovieGoer who selected the Movies List.
+	 */
 	private MovieGoer cust;
+	
+	/**
+	 * The indicator on whether the MovieGoer would like 
+	 * to see the top5 movies or not.
+	 */
 	private boolean topFive = false;
+	
+	/**
+	 * 
+	 */
 	private String orderBy = ssc.readSystemSettings().get(0);
 
+	/**
+         * Creates a new MoviesList with the given parameters.
+         * @param mg This MoviesList's MovieGoer.
+	 */
 	public MoviesList(MovieGoer mg) {
 		cust = mg;
 	}
 
+	/**
+         * Loads the Movies List Menu.
+         */
 	@Override
 	public void load() {
 		showMenu();
 	}
 
+	/**
+         * Shows the Details of the movie that will be loaded into the load method.
+         */
 	private void showMenu() {
 		topFive = false;
 		orderBy = ssc.readSystemSettings().get(0);
@@ -111,6 +139,9 @@ public class MoviesList extends BaseMenu {
 		}
 	}
 
+	/**
+         * Shows all the showtimes of each cineplex.
+         */
 	private void allShowtimes() {
 		ArrayList<Cineplex> cineplexList = cc.readFile();
 		int i = 0;
@@ -132,6 +163,9 @@ public class MoviesList extends BaseMenu {
 
 	}
 
+	/**
+         * Function allows user to search for any Movies by movie title.
+         */
 	private void search() {
 		String searchInput = getStringInput("Enter the movie title: ");
 		ArrayList<Movie> searchResults = mc.getMoviesByTitle(searchInput.toUpperCase());
@@ -165,6 +199,10 @@ public class MoviesList extends BaseMenu {
 		}
 	}
 
+	/**
+         * Function show all current movies that is showing and
+	 * top 5 movies as well.
+         */
 	private void showAllMovies() {
 		ArrayList<Movie> movieList = mc.readFile();
 		ArrayList<Movie> movies = null;
@@ -262,6 +300,11 @@ public class MoviesList extends BaseMenu {
 
 	}
 
+	/**
+         * Function that gets the current top 5 movies based on reviews or sales.
+	 * @param orderBy The Filter based on how the movies is ranked based on review or sales.
+	 * @return a arrayList of top5 movies.
+         */
 	private ArrayList<Movie> getTop5Movies(String orderBy) {
 		ArrayList<Movie> top5 = new ArrayList<>();
 
@@ -309,6 +352,12 @@ public class MoviesList extends BaseMenu {
 		return top5;
 	}
 
+	/**
+         * Function that compares the movie ratings.
+	 * @param m1 The first Movie to be compared.
+	 * @param m2 The second Movie to be compared.
+	 * @return a value which indicates which movie is the better rating.
+         */
 	private int compareRating(Movie m1, Movie m2) {
 		String r1 = m1.getOverallRating();
 		String r2 = m2.getOverallRating();
@@ -333,6 +382,9 @@ public class MoviesList extends BaseMenu {
 		return sortedMap;
 	}
 
+	/**
+         * idk
+         */
 	private HashMap<Movie, Integer> topSales() {
 		ArrayList<Booking> bookingList = bc.readFile();
 		HashMap<Movie, Integer> movieSales = new HashMap<Movie, Integer>();
@@ -353,8 +405,10 @@ public class MoviesList extends BaseMenu {
 		}
 		return movieSales;
 	}
-
-	// Temporary method to show fake top sales, remove before submit
+	
+	/**
+         * idk
+         */
 	private HashMap<Movie, Integer> fakeTopSales() {
 		ArrayList<Booking> bookingList = new ArrayList<Booking>();
 		HashMap<Movie, Integer> movieSales = new HashMap<Movie, Integer>();
