@@ -15,24 +15,49 @@ import Entity.MovieSession;
 import Entity.Seat;
 import Entity.SeatLayout;
 
+/**
+ * This shows the booking menu.
+ */
 public class BookingMenu extends BaseMenu {
 
+	/**
+	 * Intialising the controllers for the booking menu.
+	 */
 	private Cineplex_Controller cpc = new Cineplex_Controller();
 	private Cinema_Controller cc = new Cinema_Controller(cpc);
 	private MovieSession_Controller msc = new MovieSession_Controller(cc);
+	
+	/**
+	 * The Cineplex that was chosen by the moviegoer.
+	 */
 	private Cineplex cp;
+	
+	/**
+	 * The MovieGoer who booked the tickets.
+	 */
 	private MovieGoer cust;
 
+	/**
+         * Creates a new Booking Menu with the given parameters.
+         * @param m This BookingMenu's MovieGoer.
+	 * @param cp This BookingMenu's cineplex.
+         */
 	public BookingMenu(MovieGoer m, Cineplex cp) {
 		cust = m;
 		this.cp = cp;
 	}
 
+	/**
+         * Loads the Booking Menu.
+         */
 	@Override
 	public void load() {
 		showMenu();
 	}
 
+	/**
+         * Shows the Booking Confirmation Menu that will be loaded into the load method.
+         */
 	private void showMenu() {
 		ArrayList<MovieSession> allMovieSessions = msc.readFile();
 
@@ -76,6 +101,10 @@ public class BookingMenu extends BaseMenu {
 		}
 	}
 
+	/**
+         * Shows the movie session that the MovieGoer will like to book and prompt
+	 * the moviegoer for the amount of tickets.
+         */
 	private void showSessions(Movie m) {
 		int i = 0;
 		ArrayList<MovieSession> sessions = msc.readFileByValues(MovieSession_Controller.CHOICE_MOVIE, m.getId());
@@ -101,7 +130,11 @@ public class BookingMenu extends BaseMenu {
 		}
 
 	}
-
+	
+	/**
+         * Shows the seating plan for the Moviegoer to decide 
+	 * which seats he would liket to choose.
+         */
 	private void showSeatingPlan(MovieSession ms, int noOfSeats) {
 		int flag = 0, count = 0;
 		ArrayList<Seat> chosenSeats = new ArrayList<Seat>();
