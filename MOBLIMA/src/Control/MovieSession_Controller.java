@@ -254,7 +254,12 @@ public class MovieSession_Controller {
     public boolean checkIfValidTime(LocalDateTime showingTime, String CinemaCode, Movie shownMovie) {
         ArrayList<MovieSession> sessionList = this.readFileByValues(CHOICE_CINEMACODE, CinemaCode);
         ArrayList<MovieSession> dateList = new ArrayList<MovieSession>();
+
         MovieSession currentCheck = null;
+        MovieSession nextCheck = null;
+
+        LocalDateTime sessionStartTime = showingTime;
+        LocalDateTime sessionEndTime = sessionStartTime.plusMinutes(shownMovie.getDuration().toMinutes() + 30);
 
         for (MovieSession session : sessionList) {
             if (session.getShowDateTime_NonString().toLocalDate().isEqual(showingTime.toLocalDate())) {
@@ -262,24 +267,33 @@ public class MovieSession_Controller {
             }
         }
 
-        for (MovieSession nextsess : dateList) {
-            if (currentCheck != null) {
+        if (dateList.size() == 0) {
+            return true;
+        } else {
 
-                Long shownMovie_Duration = currentCheck.getShownMovie().getDuration().toMinutes();
-                LocalDateTime previousSessionEndingTime = currentCheck.getShowDateTime_NonString()
-                        .plusMinutes(shownMovie_Duration + 30);
-                LocalDateTime nextSessionStartTime = nextsess.getShowDateTime_NonString();
-                LocalDateTime checkSessionFullTime = showingTime.plusMinutes(shownMovie.getDuration().toMinutes());
-
-                if (showingTime.isBefore(previousSessionEndingTime)
-                        && checkSessionFullTime.isAfter(nextSessionStartTime)) {
-                    return false;
-                }
-
-                currentCheck = nextsess;
+            currentCheck = dateList.get(0);
+            if (sessionEndTime.isBefore(currentCheck.getShowDateTime_NonString())) {
+                return true;
             }
 
+            currentCheck = dateList.get(dateList.size() - 1);
+            if (sessionStartTime.isAfter(currentCheck.getShowDateTime_NonString().plusMinutes(30))) {
+                return true;
+            }
+
+            for (int i = 0; i < dateList.size() - 1; i++) {
+                currentCheck = dateList.get(i);
+                nextCheck = dateList.get(i + 1);
+
+                LocalDateTime previousEndTime = currentCheck.getShowDateTime_NonString()
+                        .plusMinutes(currentCheck.getShownMovie().getDuration().toMinutes() + 30);
+                LocalDateTime nextStartTime = nextCheck.getShowDateTime_NonString();
+
+                if (previousEndTime.isBefore(sessionStartTime) && nextStartTime.isAfter(sessionEndTime)) {
+                    return true;
+                }
+            }
         }
-        return true;
+        return false;
     }
 }

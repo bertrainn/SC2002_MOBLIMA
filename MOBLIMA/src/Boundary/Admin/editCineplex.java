@@ -28,10 +28,8 @@ public class editCineplex extends BaseMenu {
 	private editMovie editMovies = new editMovie();
 
 	public static void main(String[] args) {
-		editCineplex eM = new editCineplex();
-		eM.ListCineplex();
-		eM.ListCinemaSessions("A02");
-		eM.ListAllSessions();
+		editCineplex eC = new editCineplex();
+		eC.editSession();
 	}
 
 	@Override
@@ -40,7 +38,7 @@ public class editCineplex extends BaseMenu {
 	}
 
 	public void showMenu() {
-		printHeader("Cineplex Options");
+		printHeader("Cineplex & Session Options");
 		printMenu("Choose from one of the following options:",
 
 				"1. Add Cineplex",
@@ -71,7 +69,7 @@ public class editCineplex extends BaseMenu {
 				addSession();
 				break;
 			case 6:
-
+				editSession();
 				break;
 			case 7:
 				deleteSession();
@@ -372,7 +370,7 @@ public class editCineplex extends BaseMenu {
 
 		shownMovie = movieList.get(choice);
 
-		showingDateTime = getDateTimeInput("Enter the date and time of the session (dd MMM yyyy, hh:mm): ");
+		showingDateTime = getDateTimeInput("Enter the date and time of the session (e.g 10 Nov 2022, 10:30am): ");
 
 		if (!movie_session_Controller.checkIfValidTime(showingDateTime, CinemaCode, shownMovie)) {
 			System.out.println("Invalid session time, returning to settings menu...");
@@ -448,7 +446,8 @@ public class editCineplex extends BaseMenu {
 				}
 				break;
 			case 2:
-				LocalDateTime newShowingTime = getDateTimeInput("Enter the new showing time for the movie: ");
+				LocalDateTime newShowingTime = getDateTimeInput(
+						"Enter the new showing time for the movie (e.g 10 Nov 2022, 10:30am): ");
 				if (movie_session_Controller.checkIfValidTime(newShowingTime, movieSession.getCinemaCode(),
 						movieSession.getShownMovie())) {
 					movieSession.setShowDateTime(newShowingTime);

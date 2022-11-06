@@ -28,7 +28,7 @@ public class editSettings extends BaseMenu {
 	}
 
 	public void showMenu() {
-		printHeader("Edit Settings");
+		printHeader("System Settings");
 		printMenu("Choose from one of the following options:",
 				"1. Add Holiday",
 				"2. Delete Holiday",

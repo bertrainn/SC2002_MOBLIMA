@@ -19,7 +19,7 @@ public class AdminMainMenu extends BaseMenu {
 		printHeader("Welcome to Admin main menu, " + User.getUsername());
 		printMenu("Choose from one of the following options:",
 				"1. Movie Options",
-				"2. Cinemplex Settings",
+				"2. Cinemplex & Session Settings",
 				"3. Edit System Settings",
 				"4. Logout");
 
