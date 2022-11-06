@@ -31,8 +31,9 @@ public class User implements Serializable {
      * Constructor for the user class.
      * The type of user will be determined by at the time of account creation.
      * 
-     * @param username username of user
-     * @param password password of user
+     * @param username    username of user
+     * @param password    password of user
+     * @param AccountType account type of the user
      */
     public User(String username, String password, Constants.ACCOUNT_TYPE AccountType) {
         this.username = username;
@@ -52,7 +53,7 @@ public class User implements Serializable {
     /**
      * This method sets the username of user
      * 
-     * @param id is the new username of user
+     * @param username is the new username of user
      */
     public void setUsername(String username) {
         this.username = username;
@@ -70,7 +71,7 @@ public class User implements Serializable {
     /**
      * This method sets the password of user
      * 
-     * @param id is the new password of user
+     * @param password is the new password of user
      */
     public void setPassword(String password) {
         this.password = password;

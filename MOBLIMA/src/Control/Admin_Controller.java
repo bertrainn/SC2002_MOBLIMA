@@ -15,16 +15,18 @@ import java.util.ArrayList;
  */
 public class Admin_Controller {
 
+    /**
+     * File name of the admin.txt file in the database to acces.
+     */
     public final static String FILENAME = "MOBLIMA/database/Admin.txt";
 
     public Admin_Controller() {
     }
 
     /**
-     * Function to read file. 
+     * Function to read file.
+     * 
      * @return A new arraylist that has the admin details.
-     * @exception IOException for the file.
-     * @exception ClassNotFoundException for the file.
      */
     public ArrayList<Admin> readFile() {
         FileInputStream fis = null;
@@ -45,9 +47,9 @@ public class Admin_Controller {
 
     /**
      * Function to add in a new movie goer.
+     * 
      * @param Username This Admin's username.
      * @param Password This Admin's password.
-     * @exception IOException for the reading the file
      */
     public void addAdmin(String Username, String Password) {
 
@@ -73,9 +75,9 @@ public class Admin_Controller {
 
     /**
      * Function that replaces the content in the file.
-     * @param data ArrayList that replaces the current data in the File.
+     * 
+     * @param data     ArrayList that replaces the current data in the File.
      * @param filename Name of the file.
-     * @exception IOException If there is any error within the file.
      */
     public void replaceFile(ArrayList<Admin> data, String filename) {
         FileOutputStream fos = null;
@@ -96,6 +98,7 @@ public class Admin_Controller {
 
     /**
      * Function that will delete the admin account.
+     * 
      * @param Username This Admin's username.
      */
     public void deleteAdmin(String Username) {
@@ -114,6 +117,7 @@ public class Admin_Controller {
 
     /**
      * Function that checks for the admin's account.
+     * 
      * @param Username This Admin's username.
      * @return true if admin exist otherwise false.
      */
@@ -130,6 +134,7 @@ public class Admin_Controller {
 
     /**
      * Function that will get Admin by this username.
+     * 
      * @param Username The Admin's username.
      * @return admin account if have otherwise null.
      */
