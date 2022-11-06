@@ -21,11 +21,30 @@ import java.util.ArrayList;
  */
 public class LogIn extends BaseMenu {
 
+    /**
+	 * Intialising the controllers for the confirmed booking menu.
+	 */
     private Admin_Controller adminController = new Admin_Controller();
     private MovieGoer_Controller movieGoerController = new MovieGoer_Controller();
+    
+    /**
+	 * The MovieSession selected at the login Page.
+	 */
     private MovieSession ms;
+    
+    /**
+	 * The Movie selected at the login Page.
+	 */
     private Movie m;
+    
+    /**
+	 * The seats chosen at the login Page.
+	 */
     private ArrayList<Seat> chosenSeats;
+    
+    /**
+	 * The cineplex chosen at the login Page.
+	 */
     private Cineplex cp;
 
     //Default constructor
@@ -33,18 +52,31 @@ public class LogIn extends BaseMenu {
 
     }
     
-    //Constructor to redirect back to review page after login
+    /**
+     * Creates a new Login Menu that redirect back to the review page after login..
+     *
+     * @param m This Login Menu's Movie.
+     */
     public LogIn(Movie m) {
     	this.m = m;
     }
 
-    //Constructor to redirect back to booking page after login
+    /**
+     * Creates a new Login Menu that redirect back to the booking page after login..
+     *
+     * @param ms          This Login Menu's MovieSession.
+     * @param chosenSeats This Login Menu's ChosenSeats.
+     * @param cp          This Login Menu's Cineplex.
+     */
     public LogIn(MovieSession ms, ArrayList<Seat> chosenSeats, Cineplex cp) {
         this.ms = ms;
         this.chosenSeats = chosenSeats;
         this.cp = cp;
     }
 
+    /**
+     * Loads the Login Menu.
+     */
     @Override
     public void load() {
         String user, pw;
