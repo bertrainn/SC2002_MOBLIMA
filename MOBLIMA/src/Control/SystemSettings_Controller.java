@@ -95,7 +95,7 @@ public class SystemSettings_Controller {
     }
 
     /**
-     * Function that allows to save the currernt System Settings,
+     * Function that allows to save the currernt System Settings.
      *
      * @param al The Settings to be saved into the system.
      */
