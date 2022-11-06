@@ -19,6 +19,10 @@ import java.util.ArrayList;
  * Controller for the booking of movies.
  */
 public class Booking_Controller {
+    
+    /**
+     * File name of the booking.txt file in the database to acces.
+     */
     public final static String FILENAME = "MOBLIMA/database/Booking.txt";
 
     public Booking_Controller() {
@@ -26,9 +30,8 @@ public class Booking_Controller {
 
     /**
      * Function to read file. 
+     *
      * @return A new arraylist that has the bookings of movies.
-     * @exception IOException for the file
-     * @exception ClassNotFoundException for the file
      */
     public ArrayList<Booking> readFile() {
         FileInputStream fis = null;
@@ -49,13 +52,13 @@ public class Booking_Controller {
 
     /**
      * Function to add in a new booking.
+     *
      * @param TotalAmount The booking's total amount.
      * @param cinema The booking's cinema.
      * @param movie The booking's movie.
      * @param ticketlist TThe booking's ticketlist.
      * @param user The booking's user.
      * @param cineplex The booking's cineplex.
-     * @exception IOException for the reading the file
      */
     public void addBooking(double TotalAmount, Cinema cinema, Movie movie, ArrayList<Ticket> ticketList,
             MovieGoer user, Cineplex cineplex) {
@@ -82,6 +85,7 @@ public class Booking_Controller {
 
     /**
      * Function to retrieve booking by TID
+     *
      * @param TID The booking's TID
      * @return Arraylist that contains the booking linked to the TID
      */
@@ -101,6 +105,7 @@ public class Booking_Controller {
 
     /**
      * Function to retrieve booking by User
+     *
      * @param Username The username of the booking
      * @return Arraylist that contains the booking linked to the username
      */
@@ -124,6 +129,7 @@ public class Booking_Controller {
 
     /**
      * Function that will delete the booking.
+     *
      * @param TID This booking's TID.
      */
     public void deleteBooking(String TID) {
@@ -142,9 +148,9 @@ public class Booking_Controller {
 
     /**
      * Function that replaces the content in the file.
-     * @param data ArrayList that replaces the current data in the File.
+     *
+     * @param data     ArrayList that replaces the current data in the File.
      * @param filename Name of the file.
-     * @exception IOException If there is any error within the file.
      */
     public void replaceFile(ArrayList<Booking> data, String filename) {
         FileOutputStream fos = null;
