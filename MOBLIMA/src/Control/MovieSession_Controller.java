@@ -29,7 +29,7 @@ public class MovieSession_Controller {
     private Cinema_Controller CinemaControl;
     
     /**
-     * The Name of the File that will be used in the cinema controller.
+     * The Name of the File that will be used in the Movie Session controller.
      */
     public String FILENAME;
 
