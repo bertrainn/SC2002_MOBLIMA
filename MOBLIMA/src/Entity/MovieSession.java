@@ -96,6 +96,10 @@ public class MovieSession implements Serializable {
         return showDateTime.format(Constants.datetimeFormat);
     }
 
+    
+    /** 
+     * @return LocalDateTime
+     */
     public LocalDateTime getShowDateTime_NonString() {
         return showDateTime;
     }
@@ -127,18 +131,34 @@ public class MovieSession implements Serializable {
         this.seatPlan = seatPlan;
     }
 
+    
+    /** 
+     * @return MOVIE_TYPE
+     */
     public Constants.MOVIE_TYPE getMovieType() {
         return movieType;
     }
 
+    
+    /** 
+     * @param type
+     */
     public void setMovieType(Constants.MOVIE_TYPE type) {
         this.movieType = type;
     }
 
+    
+    /** 
+     * @return String
+     */
     public String getCinemaCode() {
         return CinemaCode;
     }
 
+    
+    /** 
+     * @param CinemaCode
+     */
     public void setCinemaCode(String CinemaCode) {
         this.CinemaCode = CinemaCode;
     }

@@ -218,6 +218,11 @@ public class SeatLayout implements Serializable {
         return layout[index][id - col * index].isIsOccupied();
     }
     
+    
+    /** 
+     * @param id
+     * @return int
+     */
     public int isCoupleSeat(int id) {
     	int index = id / col;
     	return layout[index][id - col * index].getPairID();

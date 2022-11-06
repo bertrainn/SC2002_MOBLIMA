@@ -68,10 +68,18 @@ public class User implements Serializable {
         this.password = password;
     }
 
+    
+    /** 
+     * @return ACCOUNT_TYPE
+     */
     public Constants.ACCOUNT_TYPE getAccountType() {
         return this.accountType;
     }
 
+    
+    /** 
+     * @param accountType
+     */
     public void setAccountType(Constants.ACCOUNT_TYPE accountType) {
         this.accountType = accountType;
     }

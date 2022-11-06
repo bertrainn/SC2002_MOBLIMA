@@ -8,6 +8,10 @@ public abstract class BaseMenu {
 	//The menu before this menu
 	public BaseMenu previousMenu;
 	
+	
+	/** 
+	 * @param back(
+	 */
 	/**
 	 * This method is to be called when loading a new menu.
 	 */

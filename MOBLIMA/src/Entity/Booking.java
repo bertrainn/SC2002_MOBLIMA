@@ -121,10 +121,18 @@ public class Booking implements Serializable {
         this.cinema = cinema;
     }
 
+    
+    /** 
+     * @return Cineplex
+     */
     public Cineplex getCineplex() {
         return cineplex;
     }
 
+    
+    /** 
+     * @param cineplex
+     */
     public void setCineplex(Cineplex cineplex) {
         this.cineplex = cineplex;
     }

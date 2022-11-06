@@ -64,10 +64,18 @@ public class Cinema implements Serializable {
         this.cinemaCode = cinemaCode;
     }
 
+    
+    /** 
+     * @return CINEMA_TYPE
+     */
     public Constants.CINEMA_TYPE getCinemaType() {
         return cinemaType;
     }
 
+    
+    /** 
+     * @param cinemaType
+     */
     public void setCinemaType(Constants.CINEMA_TYPE cinemaType) {
         this.cinemaType = cinemaType;
     }

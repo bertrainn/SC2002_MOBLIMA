@@ -53,10 +53,18 @@ public class Ticket implements Serializable {
         this.TicketPrice = price_Controller.calcPrice(MovieType, TicketType, CinemaType);
     }
 
+    
+    /** 
+     * @return double
+     */
     public double getTicketPrice() {
         return this.TicketPrice;
     }
 
+    
+    /** 
+     * @param ticketPrice
+     */
     public void setTicketPrice(double ticketPrice) {
         this.TicketPrice = ticketPrice;
     }
@@ -97,10 +105,18 @@ public class Ticket implements Serializable {
         return this.MovieType;
     }
 
+    
+    /** 
+     * @return CINEMA_TYPE
+     */
     public Constants.CINEMA_TYPE getCinemaType() {
         return this.CinemaType;
     }
 
+    
+    /** 
+     * @param cinemaType
+     */
     public void setCinemaType(Constants.CINEMA_TYPE cinemaType) {
         this.CinemaType = cinemaType;
     }

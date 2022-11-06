@@ -528,6 +528,10 @@ public class editMovie extends BaseMenu {
 		}
 	}
 
+	
+	/** 
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		editMovie eM = new editMovie();
 		eM.AddMovie();

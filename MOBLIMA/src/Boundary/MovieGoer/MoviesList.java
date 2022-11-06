@@ -374,6 +374,11 @@ public class MoviesList extends BaseMenu {
 			return -1;
 	}
 
+	
+	/** 
+	 * @param h
+	 * @return HashMap<Movie, Integer>
+	 */
 	private HashMap<Movie, Integer> sortHashMap(HashMap<Movie, Integer> h) {
 		LinkedHashMap<Movie, Integer> sortedMap = new LinkedHashMap<>();
 		h.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))

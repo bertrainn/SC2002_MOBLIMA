@@ -75,6 +75,10 @@ public class Holiday implements Serializable {
         this.date = date;
     }
 
+    
+    /** 
+     * @return String
+     */
     @Override
     public String toString() {
         return String.format("%S is on %S", this.name, this.getDateString());

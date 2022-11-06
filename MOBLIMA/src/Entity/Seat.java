@@ -55,10 +55,18 @@ public class Seat implements Serializable {
         this.SeatID = seatID;
     }
     
+    
+    /** 
+     * @return int
+     */
     public int getPairID() {
         return pairID;
     }
 
+    
+    /** 
+     * @param pairID
+     */
     public void setPairID(int pairID) {
         this.pairID = pairID;
     }
@@ -81,10 +89,18 @@ public class Seat implements Serializable {
         IsOccupied = isOccupied;
     }
     
+    
+    /** 
+     * @return boolean
+     */
     public boolean isIsCoupleSeat() {
     	return IsCoupleSeat;
     }
     
+    
+    /** 
+     * @param isCoupleSeat
+     */
     public void setIsCoupleSeat(boolean isCoupleSeat) {
     	IsCoupleSeat = isCoupleSeat;
     }

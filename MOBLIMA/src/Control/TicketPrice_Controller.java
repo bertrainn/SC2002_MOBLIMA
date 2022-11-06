@@ -36,10 +36,18 @@ public class TicketPrice_Controller implements Serializable {
         TicketPriceMap.put(Constants.CINEMA_TYPE.PLATIUM, 5.0);
     }
 
+    
+    /** 
+     * @return HashMap<PriceAdjust, Double>
+     */
     public HashMap<PriceAdjust, Double> getTicketPriceMap() {
         return TicketPriceMap;
     }
 
+    
+    /** 
+     * @param ticketPriceMap
+     */
     public void setTicketPriceMap(HashMap<PriceAdjust, Double> ticketPriceMap) {
         TicketPriceMap = ticketPriceMap;
     }
