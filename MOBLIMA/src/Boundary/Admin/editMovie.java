@@ -19,16 +19,28 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+/**
+ * This allows the admin to edit the movie..
+ */
 public class editMovie extends BaseMenu {
 
+	/**
+	 * Intialising the controllers for the confirmed booking menu.
+	 */
 	Movie_Controller movie_controller = new Movie_Controller();
 	Booking_Controller booking_controller = new Booking_Controller();
 
+	/**
+         * Loads the Edit Movie Menu.
+         */
 	@Override
 	public void load() {
 		showMenu();
 	}
 
+	/**
+         * Shows the content of the Menu that will be loaded into the edit movie menu.
+         */
 	public void showMenu() {
 		printHeader("Movie Options");
 		printMenu("Choose from one of the following options:",
@@ -63,6 +75,9 @@ public class editMovie extends BaseMenu {
 		}
 	}
 
+	/**
+         * Function to add movies.
+         */
 	public void AddMovie() {
 		int choice = -1;
 		int i;
@@ -168,6 +183,10 @@ public class editMovie extends BaseMenu {
 
 	}
 
+	/**
+         * Function to stop the movie on showing for the moviegoer as 
+	 * the movie is no longer showing.
+         */
 	public void StopShowingMovie() {
 		// don't need to remove the movie from the database: just change it to EOS;
 
@@ -189,6 +208,9 @@ public class editMovie extends BaseMenu {
 		load();
 	}
 
+	/**
+         * Function to update the details of the movie
+         */
 	public void UpdateMovie() {
 
 		ArrayList<Movie> MovieList = movie_controller.readFile();
@@ -346,6 +368,9 @@ public class editMovie extends BaseMenu {
 
 	}
 
+	/**
+         * Function to list the movies by their sales.
+         */
 	public void ListMoviesBySales() {
 		ArrayList<Movie> top5 = new ArrayList<Movie>();
 		HashMap<Movie, Integer> movieSales = topSales();
@@ -395,6 +420,9 @@ public class editMovie extends BaseMenu {
 
 	}
 
+	/**
+         * Function to list the movies by their rating.
+         */
 	public void ListMoviesByRating() {
 		ArrayList<Movie> top5 = new ArrayList<Movie>();
 		ArrayList<Movie> movieList = movie_controller.readFile();
@@ -436,6 +464,12 @@ public class editMovie extends BaseMenu {
 
 	}
 
+	/**
+         * Function that compares the movie ratings.
+	 * @param m1 The first Movie to be compared.
+	 * @param m2 The second Movie to be compared.
+	 * @return a value which indicates which movie is the better rating.
+         */
 	private int compareRating(Movie m1, Movie m2) {
 		String r1 = m1.getOverallRating();
 		String r2 = m2.getOverallRating();
@@ -452,6 +486,9 @@ public class editMovie extends BaseMenu {
 			return -1;
 	}
 
+	/**
+         * idk
+         */
 	private HashMap<Movie, Integer> topSales() {
 		ArrayList<Booking> bookingList = booking_controller.readFile();
 		HashMap<Movie, Integer> movieSales = new HashMap<Movie, Integer>();
@@ -462,6 +499,9 @@ public class editMovie extends BaseMenu {
 		return movieSales;
 	}
 
+	/**
+         * idk
+         */
 	private HashMap<Movie, Integer> sortHashMap(HashMap<Movie, Integer> h) {
 		LinkedHashMap<Movie, Integer> sortedMap = new LinkedHashMap<>();
 		h.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
@@ -470,6 +510,9 @@ public class editMovie extends BaseMenu {
 		return sortedMap;
 	}
 
+	/**
+         * Function to show movies and the movie's showing status.
+         */
 	public void ListMovies() {
 		// show movie + showing status
 		ArrayList<Movie> moviesList = movie_controller.readFile();
