@@ -43,6 +43,10 @@ public class Booking implements Serializable {
      */
     private MovieGoer user;
 
+    /**
+     * The cineplex that the movie is being shown at
+     */
+
     private Cineplex cineplex;
 
     /**
@@ -53,6 +57,7 @@ public class Booking implements Serializable {
      * @param movie       movie for booking
      * @param ticketList  list of tickets
      * @param user        name of movie goer / user
+     * @param cineplex    the cineplex that the movie is being shown at
      */
 
     public Booking(double TotalAmount, Cinema cinema, Movie movie,
@@ -79,7 +84,7 @@ public class Booking implements Serializable {
     /**
      * This method sets the transaction id
      * 
-     * @param id is the new transaction id
+     * @param TID is the new transaction id
      */
     public void setTID(String TID) {
         this.TID = TID;
@@ -97,7 +102,7 @@ public class Booking implements Serializable {
     /**
      * This method sets the total amount for booking
      * 
-     * @param id is the new total amount
+     * @param TotalAmount is the new total amount
      */
     public void setTotalAmount(double TotalAmount) {
         this.TotalAmount = TotalAmount;
@@ -115,7 +120,7 @@ public class Booking implements Serializable {
     /**
      * This method sets the cinema for booking
      * 
-     * @param id is the new cinema
+     * @param cinema is the new cinema
      */
     public void setCinema(Cinema cinema) {
         this.cinema = cinema;
@@ -123,7 +128,9 @@ public class Booking implements Serializable {
 
     
     /** 
-     * @return Cineplex
+     * This method returns the cineplex of the booking
+     * 
+     * @return Cineplex of booking
      */
     public Cineplex getCineplex() {
         return cineplex;
@@ -131,7 +138,9 @@ public class Booking implements Serializable {
 
     
     /** 
-     * @param cineplex
+     * This method sets the booking to another cineplex
+     * 
+     * @param cineplex the new booked cineplex
      */
     public void setCineplex(Cineplex cineplex) {
         this.cineplex = cineplex;
@@ -149,7 +158,7 @@ public class Booking implements Serializable {
     /**
      * This method sets the movie for booking
      * 
-     * @param id is the new movie
+     * @param movie is the new movie
      */
     public void setMovie(Movie movie) {
         this.movie = movie;
@@ -167,7 +176,7 @@ public class Booking implements Serializable {
     /**
      * This method sets the list of tickets
      * 
-     * @param id is the new list of tickets
+     * @param TicketList is the new list of tickets
      */
     public void setTicketList(ArrayList<Ticket> TicketList) {
         this.TicketList = TicketList;

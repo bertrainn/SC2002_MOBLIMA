@@ -29,8 +29,14 @@ public class MovieSession implements Serializable {
      */
     private SeatLayout seatPlan;
 
+    /**
+     * The type of movie being shown
+     */
     private Constants.MOVIE_TYPE movieType;
 
+    /**
+     * The unique identifier of the cinema that the session is being shown in
+     */
     private String CinemaCode;
 
     /**
@@ -40,6 +46,9 @@ public class MovieSession implements Serializable {
      * @param shownMovie    movie to be shown
      * @param LocalDateTime date and time
      * @param seatPlan      seating plan
+     * @param movieType     the type of movie being shown
+     * @param CinemaCode    the code of the cinema that the session is being shown
+     *                      at
      */
     public MovieSession(int sessionId, Movie shownMovie, LocalDateTime showDateTime, SeatLayout seatPlan,
             Constants.MOVIE_TYPE movieType, String CinemaCode) {
@@ -96,8 +105,7 @@ public class MovieSession implements Serializable {
         return showDateTime.format(Constants.datetimeFormat);
     }
 
-    
-    /** 
+    /**
      * @return LocalDateTime
      */
     public LocalDateTime getShowDateTime_NonString() {
@@ -131,33 +139,38 @@ public class MovieSession implements Serializable {
         this.seatPlan = seatPlan;
     }
 
-    
-    /** 
+    /**
+     * This gets the type of the movie being shown at the session
+     * 
      * @return MOVIE_TYPE
      */
     public Constants.MOVIE_TYPE getMovieType() {
         return movieType;
     }
 
-    
-    /** 
-     * @param type
+    /**
+     * This method sets the type of the movie being shown at the session
+     * 
+     * @param type is the new type of the movie being shown at the session
      */
     public void setMovieType(Constants.MOVIE_TYPE type) {
         this.movieType = type;
     }
 
-    
-    /** 
+    /**
+     * This method returns the unique identifier of the cinema that the session is
+     * being shown at
+     * 
      * @return String
      */
     public String getCinemaCode() {
         return CinemaCode;
     }
 
-    
-    /** 
-     * @param CinemaCode
+    /**
+     * This method sets the session to be shown at a different cinema
+     * 
+     * @param CinemaCode is the code of the new cinema the session is to be shown at
      */
     public void setCinemaCode(String CinemaCode) {
         this.CinemaCode = CinemaCode;

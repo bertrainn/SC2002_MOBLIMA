@@ -66,7 +66,7 @@ public class MovieGoer extends User {
     /**
      * This method sets the name of movie goer
      * 
-     * @param id is the new name of movie goer
+     * @param name is the new name of movie goer
      */
     public void setName(String name) {
         this.Name = name;
@@ -84,7 +84,7 @@ public class MovieGoer extends User {
     /**
      * This method sets the email of movie goer
      * 
-     * @param id is the new email of movie goer
+     * @param Email is the new email of movie goer
      */
     public void setEmail(String Email) {
         this.Email = Email;
@@ -102,7 +102,7 @@ public class MovieGoer extends User {
     /**
      * This method sets the phone number of movie goer
      * 
-     * @param id is the new phone number of movie goer
+     * @param Phone is the new phone number of movie goer
      */
     public void setPhone(String Phone) {
         this.Phone = Phone;
@@ -120,7 +120,7 @@ public class MovieGoer extends User {
     /**
      * This method sets the list of bookings
      * 
-     * @param id is the new list of bookings
+     * @param BookingList is the new list of bookings
      */
     public void setBookingList(ArrayList<Booking> BookingList) {
         this.BookingList = BookingList;
@@ -170,7 +170,7 @@ public class MovieGoer extends User {
     /**
      * This method sets the list of posted reviews
      * 
-     * @param id is the new list of posted reviews
+     * @param PostedReviewsList is the new list of posted reviews
      */
     public void setPostedReviews(HashMap<Movie, Review_Ratings> PostedReviewsList) {
         this.PostedReviewsList = PostedReviewsList;

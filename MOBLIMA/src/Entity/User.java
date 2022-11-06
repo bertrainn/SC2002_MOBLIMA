@@ -18,10 +18,18 @@ public class User implements Serializable {
      */
     private String password;
 
+    /**
+     * The account type of the user, use of constant value found in the
+     * Constants.java file
+     * ADMIN = admin user account
+     * MOVIEGOER = moviegoer user account
+     */
+
     private Constants.ACCOUNT_TYPE accountType;
 
     /**
-     * Constructor for the Ticket class, with additional parameters.
+     * Constructor for the user class.
+     * The type of user will be determined by at the time of account creation.
      * 
      * @param username username of user
      * @param password password of user
@@ -68,17 +76,19 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    
-    /** 
-     * @return ACCOUNT_TYPE
+    /**
+     * This method returns the account type of the user
+     * 
+     * @return ACCOUNT_TYPE is the account type of the user
      */
     public Constants.ACCOUNT_TYPE getAccountType() {
         return this.accountType;
     }
 
-    
-    /** 
-     * @param accountType
+    /**
+     * This method sets the account type of user
+     * 
+     * @param accountType is the new account type of user
      */
     public void setAccountType(Constants.ACCOUNT_TYPE accountType) {
         this.accountType = accountType;

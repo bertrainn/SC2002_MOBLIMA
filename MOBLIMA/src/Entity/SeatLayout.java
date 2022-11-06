@@ -150,7 +150,7 @@ public class SeatLayout implements Serializable {
     /**
      * This method sets the seating layout
      * 
-     * @param id is the new seating layout
+     * @param layout is the new seating layout
      */
     public void setLayout(Seat[][] layout) {
         this.layout = layout;
@@ -159,7 +159,7 @@ public class SeatLayout implements Serializable {
     /**
      * This method returns the row
      * 
-     * @return the row
+     * @return the row of the seat
      */
     public int getRow() {
         return row;
@@ -168,7 +168,7 @@ public class SeatLayout implements Serializable {
     /**
      * This method sets the row
      * 
-     * @param id is the new row
+     * @param row is the new row
      */
     public void setRow(int row) {
         this.row = row;
@@ -177,7 +177,7 @@ public class SeatLayout implements Serializable {
     /**
      * This method returns the column
      * 
-     * @return the column
+     * @return the column of the seat
      */
     public int getCol() {
         return col;
@@ -186,14 +186,16 @@ public class SeatLayout implements Serializable {
     /**
      * This method sets the column
      * 
-     * @param id is the new column
+     * @param col is the new column
      */
     public void setCol(int col) {
         this.col = col;
     }
 
     /**
-     * This method assigns an id to a particular seat
+     * This method finds a seat based on its id and sets the value to book
+     * 
+     * @param id is the id of the seat that is to be booked
      */
     public void assignSeats(int id) {
         int index = id / col;
@@ -201,7 +203,9 @@ public class SeatLayout implements Serializable {
     }
 
     /**
-     * This method unassigns an id from a particular seat
+     * This method finds a seat based on its id and sets the value to unbook
+     * 
+     * param id is the id of the seat to be unbooked
      */
     public void unassignSeats(int id) {
         int index = id / col;
@@ -210,6 +214,8 @@ public class SeatLayout implements Serializable {
 
     /**
      * This method returns if a seat has been assigned to a id
+     * 
+     * @param id the id of the seat to be checked
      */
     public boolean isSeatAssign(int id) {
         int index = id / col;
@@ -217,7 +223,9 @@ public class SeatLayout implements Serializable {
     }
 
     /**
-     * This method returns pairID of the paired seat if it is a couple seat, -1 otherwise
+     * This method returns pairID of the paired seat if it is a couple seat, -1
+     * otherwise
+     * 
      * @param id the Id of the seat we want to check
      */
     public int isCoupleSeat(int id) {

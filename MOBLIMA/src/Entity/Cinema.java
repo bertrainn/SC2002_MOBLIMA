@@ -10,13 +10,14 @@ import java.util.ArrayList;
 public class Cinema implements Serializable {
 
     /**
-     * Cinema code. is a concatenation of cinplexCode + the ID of the cinema that is generated at the time of creation of the Cinema. 
-     * Format = A00, A = Cineplex Code and 00 is the ID of the cinema. 
+     * Cinema code. is a concatenation of cinplexCode + the ID of the cinema that is
+     * generated at the time of creation of the Cinema.
+     * Format = A00, A = Cineplex Code and 00 is the ID of the cinema.
      */
     private String cinemaCode;
 
     /**
-     * Determine if cinema is 'Platinum'.
+     * cinemaType represents the type of Cinema - Platinum or Standard.
      */
     private Constants.CINEMA_TYPE cinemaType;
 
@@ -64,16 +65,18 @@ public class Cinema implements Serializable {
         this.cinemaCode = cinemaCode;
     }
 
-    
-    /** 
-     * @return CINEMA_TYPE
+    /**
+     * This method returns the type of cinema
+     * 
+     * @return CINEMA_TYPE is the type of cinema
      */
     public Constants.CINEMA_TYPE getCinemaType() {
         return cinemaType;
     }
 
-    
-    /** 
+    /**
+     * This method sets the type of Cinema
+     * 
      * @param cinemaType
      */
     public void setCinemaType(Constants.CINEMA_TYPE cinemaType) {

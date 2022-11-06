@@ -42,7 +42,7 @@ public class Holiday implements Serializable {
     /**
      * This method sets the name of holiday
      * 
-     * @param id is the new name of holiday
+     * @param name is the new name of holiday
      */
     public void setName(String name) {
         this.name = name;
@@ -69,7 +69,7 @@ public class Holiday implements Serializable {
     /**
      * This method sets the date of holiday
      * 
-     * @param id is the new date of holiday
+     * @param date is the new date of holiday
      */
     public void setDate(LocalDate date) {
         this.date = date;
@@ -77,7 +77,9 @@ public class Holiday implements Serializable {
 
     
     /** 
-     * @return String
+     * This method return a string of Name and date of the holiday
+     * 
+     * @return String the concatenation string and date of the holiday
      */
     @Override
     public String toString() {

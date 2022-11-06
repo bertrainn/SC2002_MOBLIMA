@@ -17,12 +17,12 @@ public class Seat implements Serializable {
      * Whether seat is occupied.
      */
     private boolean IsOccupied;
-    
+
     /**
      * Whether seat is a couple seat.
      */
     private boolean IsCoupleSeat = false;
-    
+
     /**
      * The ID of the seat this seat is a couple with, -1 if not couple seat.
      */
@@ -35,7 +35,7 @@ public class Seat implements Serializable {
         this.SeatID = SeatID;
         this.IsOccupied = false;
     }
-    
+
     /**
      * Constructor for couple seat Seat class
      */
@@ -63,7 +63,7 @@ public class Seat implements Serializable {
     public void setSeatID(int seatID) {
         this.SeatID = seatID;
     }
-    
+
     /**
      * This method returns the pair ID of the seat
      * 
@@ -99,21 +99,19 @@ public class Seat implements Serializable {
     public void setIsOccupied(boolean isOccupied) {
         IsOccupied = isOccupied;
     }
-    
-    
-    /** 
+
+    /**
      * @return boolean
      */
     public boolean isIsCoupleSeat() {
-    	return IsCoupleSeat;
+        return IsCoupleSeat;
     }
-    
-    
-    /** 
+
+    /**
      * @param isCoupleSeat
      */
     public void setIsCoupleSeat(boolean isCoupleSeat) {
-    	IsCoupleSeat = isCoupleSeat;
+        IsCoupleSeat = isCoupleSeat;
     }
 
     /**

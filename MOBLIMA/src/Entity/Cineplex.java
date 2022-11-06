@@ -28,6 +28,7 @@ public class Cineplex implements Serializable {
      * Constructor for the Cinema class.
      * 
      * @param Name       Name of Cineplex
+     * @param CineplexCode Code of the Cineplex
      * @param CinemaList List of Cinemas
      */
     public Cineplex(String Name, String CineplexCode, ArrayList<Cinema> CinemaList) {
@@ -48,7 +49,7 @@ public class Cineplex implements Serializable {
     /**
      * This method sets the name of Cineplex.
      * 
-     * @param id is the new name of Cineplex.
+     * @param name is the new name of Cineplex.
      */
     public void setName(String name) {
         this.Name = name;
@@ -84,7 +85,7 @@ public class Cineplex implements Serializable {
     /**
      * This method sets the list of Cinemas.
      * 
-     * @param id is the new list of Cinemas.
+     * @param CinemaList is the new list of Cinemas.
      */
     public void setCinema(ArrayList<Cinema> CinemaList) {
         this.CinemaList = CinemaList;
@@ -92,12 +93,8 @@ public class Cineplex implements Serializable {
 
     /**
      * This method adds a new cinema to the Cinemaist
-     * Firstly it does a search on the current CinemaList and if they exist in
-     * the list
-     * If they do, the method will terminate.
-     * Else, the cinema is added into the CinemaList
      * 
-     * @param actor is the new cinema to be added.
+     * @param Cinema is the new cinema to be added to the cineplex.
      */
     public void addCinema(Cinema Cinema) {
         this.CinemaList.add(Cinema);
@@ -105,12 +102,8 @@ public class Cineplex implements Serializable {
 
     /**
      * This method removes a cinema from the CinemaList
-     * Firstly it does a search on the current CinemaList and if they exist in
-     * the list
-     * If they do, they will be removed from the CinemaList.
-     * Else, the method terminates.
      * 
-     * @param actor is the cinema to remove.
+     * @param Cinema is the cinema to remove.
      */
     public void removeCinema(Cinema Cinema) {
         this.CinemaList.remove(Cinema);

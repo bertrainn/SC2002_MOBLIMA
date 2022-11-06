@@ -64,7 +64,7 @@ public class Constants {
     }
 
     /**
-     * Ticket types
+     * Cinema types
      */
     public enum CINEMA_TYPE implements PriceAdjust {
         STANDARD("Standard Cinemas"),
