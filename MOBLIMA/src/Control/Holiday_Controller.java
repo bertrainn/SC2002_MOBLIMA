@@ -18,7 +18,7 @@ import java.time.LocalDate;
 public class Holiday_Controller {
     
     /**
-     * File name of the Holiday.txt file in the database to acces.
+     * File name of the Holiday.txt file in the database to access.
      */
     public final static String FILENAME = "MOBLIMA/database/Holiday.txt";
     
@@ -56,8 +56,8 @@ public class Holiday_Controller {
     /**
      * Function that adds public holiday.
      *
-     * @param name The name of the holiday
-     * @param Date The date of the holiday
+     * @param name The name of the holiday.
+     * @param Date The date of the holiday.
      */ 
     public void addHoliday(String name, LocalDate Date) {
 
@@ -135,7 +135,7 @@ public class Holiday_Controller {
     }
 
     /**
-     * Function that deletes and remove the holiday
+     * Function that deletes and remove the holiday.
      *
      * @param date The date of the holiday to be removed.
      */
