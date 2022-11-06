@@ -12,15 +12,32 @@ import Entity.Booking;
 import Entity.MovieGoer;
 import Entity.Ticket;
 
+/**
+ * This shows the booking history menu.
+ */
 public class BookingHistory extends BaseMenu {
 	
+	/**
+	 * The MovieGoer of the booking history.
+	 */
 	private MovieGoer cust;
+	
+	/**
+	 * Intialising the controller for the booking history menu.
+	 */
 	private Booking_Controller bc = new Booking_Controller();
 	
+	/**
+         * Creates a new booking history for the MovieGoer.
+         * @param m This BookingConfirmationMenu's MovieGoer.
+         */
 	public BookingHistory(MovieGoer m) {
 		cust = m;
 	}
 
+	/**
+         * Loads the Booking History Menu.
+         */
 	@Override
 	public void load() {
 		printHeader("Booking History for " + cust.getName());
