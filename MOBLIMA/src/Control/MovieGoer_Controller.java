@@ -20,6 +20,9 @@ import java.util.HashMap;
  */
 public class MovieGoer_Controller {
 
+    /**
+     * File name of the MovierGoer.txt file in the database to acces.
+     */
     public final static String FILENAME = "MOBLIMA/database/MovieGoer.txt";
     
     /**
@@ -37,9 +40,8 @@ public class MovieGoer_Controller {
 
     /**
      * Function to read file. 
+     *
      * @return A new arraylist that has the movie sessions.
-     * @exception IOException for the file
-     * @exception ClassNotFoundException for the file
      */
     public ArrayList<MovieGoer> readFile() {
         FileInputStream fis = null;
@@ -60,14 +62,15 @@ public class MovieGoer_Controller {
 
     /**
      * Function to add in a new movie goer.
-     * @param Username This Moviegoer's username.
-     * @param Password This Moviegoer's password.
-     * @param Name This Moviegoer's name.
-     * @param Email This Moviegoer's email.
-     * @param Phone This Moviegoer's phone number.
-     * @param PostedReviewList This Moviegoer's movie review list.
-     * @param BookingList This Moviegoer's movie booking list.
-     * @exception IOException for the reading the file
+     *
+     * @param Username          This Moviegoer's username.
+     * @param Password          This Moviegoer's password.
+     * @param Name              This Moviegoer's name.
+     * @param Email             This Moviegoer's email.
+     * @param Phone             This Moviegoer's phone number.
+     * @param PostedReviewList  This Moviegoer's movie review list.
+     * @param BookingList       This Moviegoer's movie booking list.
+     
      */
     public void addMovieGoer(String Username, String Password, String Name, String Email, String Phone,
             HashMap<Movie, Review_Ratings> PostedReviewsList, ArrayList<Booking> BookingList) {
@@ -93,9 +96,9 @@ public class MovieGoer_Controller {
 
     /**
      * Function that replaces the content in the file.
-     * @param data ArrayList that replaces the current data in the File.
+     *
+     * @param data     ArrayList that replaces the current data in the File.
      * @param filename Name of the file.
-     * @exception IOException If there is any error within the file.
      */
     public void replaceFile(ArrayList<MovieGoer> data, String filename) {
         FileOutputStream fos = null;
@@ -116,9 +119,10 @@ public class MovieGoer_Controller {
 
     /**
      * Function that updates the movie goer details.
-     * @param choice The movie goer choice of detail to change.
+     *
+     * @param choice   The movie goer choice of detail to change.
      * @param Username The MovieGoer's username.
-     * @param obj The object that will update the moviegoer's choice.
+     * @param obj      The object that will update the moviegoer's choice.
      */
     public void updateMovieGoer(int choice, String Username, Object obj) {
         ArrayList<MovieGoer> Data = readFile();
@@ -155,6 +159,7 @@ public class MovieGoer_Controller {
 
     /**
      * Function that will delete the movie goer account.
+     *
      * @param Username This MovieGoer's username.
      */
     public void deleteMovieGoer(String Username) {
@@ -173,6 +178,7 @@ public class MovieGoer_Controller {
 
     /**
      * Function that checks for the movie goer account.
+     *
      * @param Username This MovieGoer's username.
      * @return true if moviegoer exist otherwise false.
      */
@@ -189,6 +195,7 @@ public class MovieGoer_Controller {
     
     /**
      * Function that will get moviegoer by this username.
+     *
      * @param Username The MovieGoer's username.
      * @return moviegoer if have otherwise null.
      */
