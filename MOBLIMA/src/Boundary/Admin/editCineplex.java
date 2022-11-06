@@ -43,8 +43,7 @@ public class editCineplex extends BaseMenu {
 	}
 
 	/**
-	 * Shows the content of the Menu that will be loaded into the edit cineplex
-	 * menu.
+	 * Shows the content of the Menu that will be loaded into the edit cineplex menu.
 	 */
 	public void showMenu() {
 		printHeader("Cineplex & Session Options");
