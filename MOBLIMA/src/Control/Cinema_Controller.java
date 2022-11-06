@@ -99,7 +99,7 @@ public class Cinema_Controller {
         Cinema cinema;
         for (int i = 0; i < cineplexList.size(); i++) {
             c = cineplexList.get(i);
-            if (c.getName().equals(cineplexCode)) {
+            if (c.getCineplexCode().equals(cineplexCode)) {
                 ArrayList<Cinema> temp = c.getCinemaList();
                 for (int j = 0; j < temp.size(); j++) {
                     cinema = temp.get(j);
@@ -139,11 +139,12 @@ public class Cinema_Controller {
         ArrayList<Cineplex> Data = CineplexController.readFile();
         ArrayList<Cineplex> UpdateData = new ArrayList<Cineplex>();
         ArrayList<Cinema> temp;
-        ArrayList<Cinema> UpdatedList = new ArrayList<Cinema>();
+        
         Cineplex cineplex;
         Cinema cinema;
 
         for (int i = 0; i < Data.size(); i++) {
+        	ArrayList<Cinema> UpdatedList = new ArrayList<Cinema>();
             cineplex = Data.get(i);
             temp = cineplex.getCinemaList();
 

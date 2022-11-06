@@ -183,57 +183,69 @@ public class Databasepopulate {
         // "96996969", reviews,
         // bookingList);
 
-        // Cineplex_Controller cpc = new Cineplex_Controller();
-        // Cinema_Controller cc = new Cinema_Controller(cpc);
-        // // MovieSession_Controller msc = new MovieSession_Controller(cc);
-        // // ArrayList<Movie> movies = mc.readFile();
-        // ArrayList<Cinema> cinema_list = new ArrayList<Cinema>();
-        // ArrayList<MovieSession> sessions1 = new ArrayList<MovieSession>();
+         Cineplex_Controller cpc = new Cineplex_Controller();
+         Cinema_Controller cc = new Cinema_Controller(cpc);
+         MovieSession_Controller msc = new MovieSession_Controller(cc);
+         Movie_Controller mc = new Movie_Controller();
+         ArrayList<Movie> movies = mc.readFile();
+         ArrayList<Cinema> cinema_list = new ArrayList<Cinema>();
+         ArrayList<Cinema> cinema_list1 = new ArrayList<Cinema>();
+         ArrayList<Cinema> cinema_list2 = new ArrayList<Cinema>();
+         ArrayList<MovieSession> sessions1 = new ArrayList<MovieSession>();
+         ArrayList<MovieSession> sessions2 = new ArrayList<MovieSession>();
+         ArrayList<MovieSession> sessions3 = new ArrayList<MovieSession>();
 
-        // SeatLayout test1 = new SeatLayout(15, 30);
-        // SeatLayout test2 = new SeatLayout(20, 25);
-        // SeatLayout psl = new SeatLayout(10, 10);
+         SeatLayout test1 = new SeatLayout(15, 30);
+         SeatLayout test2 = new SeatLayout(20, 25);
+         SeatLayout psl = new SeatLayout(10, 10);
+         
 
-        // cpc.addCineplex("Great World City", "A", cinema_list);
+         cpc.addCineplex("Great World City", "A", cinema_list);
 
-        // cc.createCinema("A", "A01",
-        // Constants.CINEMA_TYPE.STANDARD, test1, sessions1);
-        // cc.createCinema("A", "A02",
-        // Constants.CINEMA_TYPE.STANDARD, test2, sessions1);
-        // cc.createCinema("A", "A03",
-        // Constants.CINEMA_TYPE.STANDARD, test1, sessions1);
-        // cc.createCinema("A", "A04",
-        // Constants.CINEMA_TYPE.PLATIUM, psl, sessions1);
-        // cc.createCinema("A", "A05",
-        // Constants.CINEMA_TYPE.PLATIUM, psl, sessions1);
+         cc.createCinema("A", "A01",
+         Constants.CINEMA_TYPE.STANDARD, test1, sessions1);
+         cc.createCinema("A", "A02",
+         Constants.CINEMA_TYPE.STANDARD, test2, sessions1);
+         cc.createCinema("A", "A03",
+         Constants.CINEMA_TYPE.STANDARD, test1, sessions1);
+         cc.createCinema("A", "A04",
+         Constants.CINEMA_TYPE.PLATIUM, psl, sessions1);
+         cc.createCinema("A", "A05",
+         Constants.CINEMA_TYPE.PLATIUM, psl, sessions1);
 
-        // cpc.addCineplex("JEM", "J", cinema_list);
+         cpc.addCineplex("JEM", "J", cinema_list1);
 
-        // cc.createCinema("J", "J01",
-        // Constants.CINEMA_TYPE.STANDARD, test1, sessions1);
-        // cc.createCinema("J", "J02",
-        // Constants.CINEMA_TYPE.STANDARD, test1, sessions1);
-        // cc.createCinema("J", "J03",
-        // Constants.CINEMA_TYPE.STANDARD, test2, sessions1);
-        // cc.createCinema("J", "J04",
-        // Constants.CINEMA_TYPE.PLATIUM, psl, sessions1);
-        // cc.createCinema("J", "J05",
-        // Constants.CINEMA_TYPE.PLATIUM, psl, sessions1);
+         cc.createCinema("J", "J01",
+         Constants.CINEMA_TYPE.STANDARD, test1, sessions2);
+         cc.createCinema("J", "J02",
+         Constants.CINEMA_TYPE.STANDARD, test1, sessions2);
+         cc.createCinema("J", "J03",
+         Constants.CINEMA_TYPE.STANDARD, test2, sessions2);
+         cc.createCinema("J", "J04",
+         Constants.CINEMA_TYPE.PLATIUM, psl, sessions2);
+         cc.createCinema("J", "J05",
+         Constants.CINEMA_TYPE.PLATIUM, psl, sessions2);
 
-        // cpc.addCineplex("Plaza Singapura", "P", cinema_list);
-        // cc.createCinema("P", "P01",
-        // Constants.CINEMA_TYPE.STANDARD, test1, sessions1);
-        // cc.createCinema("P", "P02",
-        // Constants.CINEMA_TYPE.STANDARD, test1, sessions1);
-        // cc.createCinema("P", "P03",
-        // Constants.CINEMA_TYPE.STANDARD, test2, sessions1);
-        // cc.createCinema("P", "P04",
-        // Constants.CINEMA_TYPE.PLATIUM, psl, sessions1);
-        // cc.createCinema("P", "P05",
-        // Constants.CINEMA_TYPE.PLATIUM, psl, sessions1);
+         cpc.addCineplex("Plaza Singapura", "P", cinema_list2);
+         cc.createCinema("P", "P01",
+         Constants.CINEMA_TYPE.STANDARD, test1, sessions3);
+         cc.createCinema("P", "P02",
+         Constants.CINEMA_TYPE.STANDARD, test1, sessions3);
+         cc.createCinema("P", "P03",
+         Constants.CINEMA_TYPE.STANDARD, test2, sessions3);
+         cc.createCinema("P", "P04",
+         Constants.CINEMA_TYPE.PLATIUM, psl, sessions3);
+         cc.createCinema("P", "P05",
+         Constants.CINEMA_TYPE.PLATIUM, psl, sessions3);
 
-        // ArrayList<Cinema> cinemaList = cc.getCinemaByCineplexCode("A");
-        // cpc.updateCineplex(cpc.CHOICE_CINEMALIST, "A", cinemaList);
+         ArrayList<Cinema> cinemaList = cc.getCinemaByCineplexCode("A");
+         cpc.updateCineplex(cpc.CHOICE_CINEMALIST, "A", cinemaList);
+         
+         ArrayList<Cinema> cinemaList1 = cc.getCinemaByCineplexCode("J");
+         cpc.updateCineplex(cpc.CHOICE_CINEMALIST, "J", cinemaList1);
+         
+         ArrayList<Cinema> cinemaList2 = cc.getCinemaByCineplexCode("P");
+         cpc.updateCineplex(cpc.CHOICE_CINEMALIST, "P", cinemaList2);
         //
         // LocalDate date = LocalDate.of(2022, 11, 28);
         // LocalTime time = LocalTime.of(12, 00);

@@ -198,7 +198,7 @@ public class editCineplex extends BaseMenu {
 		}
 
 		numberofCinemas = getIntInput_Min("Please enter the number of cinemas this cineplex has (minimum 3): ", 2);
-
+		cineplex_Controller.addCineplex(cineplexName, cineplexCode, cinemaList);
 		for (int i = 0; i < numberofCinemas; i++) {
 			String cinemaCode_int = String.format("%02d", i);
 			cinemaCode = cineplexCode + cinemaCode_int;
@@ -211,6 +211,8 @@ public class editCineplex extends BaseMenu {
 					"2. Standard");
 
 			cinemaTypeChoice = userInput(1, 2);
+			
+			
 
 			switch (cinemaTypeChoice) {
 				case 1:
@@ -220,11 +222,11 @@ public class editCineplex extends BaseMenu {
 					cinemaType = Constants.CINEMA_TYPE.STANDARD;
 					break;
 			}
-			Cinema newCinema = new Cinema(cinemaCode, cinemaType, seatPlan, sessionList);
-			cinemaList.add(newCinema);
+			
+			cinemaList.add(new Cinema(cinemaCode, cinemaType, seatPlan, sessionList));
 		}
-
-		cineplex_Controller.addCineplex(cineplexName, cineplexCode, cinemaList);
+		cineplex_Controller.updateCineplex(Cineplex_Controller.CHOICE_CINEMALIST, cineplexCode, cinemaList);
+		
 
 		System.out.println("Addition success, returning to settings menu...");
 		try {
@@ -379,7 +381,8 @@ public class editCineplex extends BaseMenu {
 
 		CinemaCode = getStringInput("Enter the cinema code you want to add the session to: ");
 
-		if (cinema_Controller.doesCinemaExist(CinemaCode)) {
+		if (cinema_Controller.doesCinemaExist(CinemaCode) == false) {
+			
 			System.out.println("Invalid cinema code, returning to settings menu...");
 			try {
 				Thread.sleep(500);

@@ -58,19 +58,12 @@ public class MovieSession_Controller {
 
         ArrayList<Cinema> Data = CinemaControl.getCinema();
         ArrayList<MovieSession> temp = new ArrayList<MovieSession>();
-        Cinema c;
-
-        for (int i = 0; i < Data.size(); i++) {
-            c = Data.get(i);
-            if (c.getcinemaCode().equals(cinemaCode)) {
-                temp = c.getMovieSessions();
-                temp.add(newSess);
-                c.setMovieSessions(temp);
-                this.CinemaControl.updateCinema(CinemaControl.CHOICE_MOVIESESS, cinemaCode, temp);
-                temp.clear();
-                break;
-            }
-        }
+        Cinema c = CinemaControl.getCinemaByCode(cinemaCode);
+        temp = c.getMovieSessions();
+        temp.add(newSess);
+        c.setMovieSessions(temp);
+        this.CinemaControl.updateCinema(CinemaControl.CHOICE_MOVIESESS, cinemaCode, temp);
+        temp.clear();
     }
 
     /**

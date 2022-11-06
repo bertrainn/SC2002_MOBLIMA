@@ -150,12 +150,16 @@ public class MoviesList extends BaseMenu {
 		for (Cineplex cp : cineplexList) {
 			printMenuWithoutSpace(++i + ". " + cp.getName());
 		}
-		printMenu(++i + ". Back");
+		printMenu(++i + ". Book by movie instead",
+				  ++i + ". Back");
 
 		int choice = userInput(1, i);
 
 		if (choice == i)
 			showMenu();
+		else if (choice == i-1) {
+			navigate(this, new BookingMenu(cust, null));
+		}
 		else {
 			Cineplex cp = cineplexList.get(choice - 1);
 			navigate(this, new BookingMenu(cust, cp));

@@ -8,6 +8,8 @@ import Boundary.BaseMenu;
 import Control.Cineplex_Controller;
 import Control.Cinema_Controller;
 import Control.MovieSession_Controller;
+import Control.Movie_Controller;
+import Entity.Cinema;
 import Entity.Cineplex;
 import Entity.Movie;
 import Entity.MovieGoer;
@@ -26,6 +28,7 @@ public class BookingMenu extends BaseMenu {
 	private Cineplex_Controller cpc = new Cineplex_Controller();
 	private Cinema_Controller cc = new Cinema_Controller(cpc);
 	private MovieSession_Controller msc = new MovieSession_Controller(cc);
+	private Movie_Controller mc = new Movie_Controller();
 	
 	/**
 	 * The Cineplex that was chosen by the moviegoer.
@@ -52,18 +55,31 @@ public class BookingMenu extends BaseMenu {
          */
 	@Override
 	public void load() {
-		showMenu();
+		if (cp != null)
+			showMenu();
+		else 
+			showMenuByMovie();
 	}
 
 	/**
          * Shows the Booking Confirmation Menu that will be loaded into the load method.
          */
 	private void showMenu() {
+		ArrayList<MovieSession> curMs = new ArrayList<MovieSession>();
 		ArrayList<MovieSession> allMovieSessions = msc.readFile();
+		ArrayList<Cinema> cList = cp.getCinemaList();
 
 		printHeader("Movies showing at " + cp.getName());
 
-		if (allMovieSessions.isEmpty()) {
+		for (MovieSession ms : allMovieSessions) {
+			for (Cinema c : cList) {
+				if(ms.getCinemaCode().equals(c.getcinemaCode())) {
+					curMs.add(ms);
+				}
+			}
+		}
+		
+		if (curMs.isEmpty()) {
 			printMenu("There are no movies showing at this cineplex, enter any number to go back.");
 			userInput(1, 9);
 			back();
@@ -74,7 +90,7 @@ public class BookingMenu extends BaseMenu {
 			int flag = 0;
 			ArrayList<String> movieNames = new ArrayList<>();
 			printMenuWithoutSpace("Choose one of the following movies:");
-			for (MovieSession ms : allMovieSessions) {
+			for (MovieSession ms : curMs) {
 				String movieName = reduceStringLength(ms.getShownMovie().getTitle(), 60);
 				for (String s : movieNames) {
 					if (s.equals(movieName)) {
@@ -94,10 +110,91 @@ public class BookingMenu extends BaseMenu {
 			if (choice == i)
 				back();
 			else {
-				MovieSession ms = allMovieSessions.get(choice - 1);
+				MovieSession ms = curMs.get(choice - 1);
 				Movie m = ms.getShownMovie();
 				showSessions(m);
 			}
+		}
+	}
+	
+	/**
+     * Shows the Booking Confirmation Menu by Movie that will be loaded into the load method.
+     */
+	private void showMenuByMovie() {
+		ArrayList<MovieSession> curMs = new ArrayList<MovieSession>();
+		ArrayList<MovieSession> allMovieSessions = msc.readFile();
+	
+		printHeader("Movies currently showing");
+		
+		if (allMovieSessions.isEmpty()) {
+			printMenu("There are no movies showing currently, enter any number to go back.");
+			userInput(1, 9);
+			back();
+		}
+	
+		else {
+			int i = 0;
+			int flag = 0;
+			ArrayList<String> movieNames = new ArrayList<>();
+			printMenuWithoutSpace("Choose one of the following movies:");
+			for (MovieSession ms : allMovieSessions) {
+				String movieName = reduceStringLength(ms.getShownMovie().getTitle(), 60);
+				for (String s : movieNames) {
+					if (s.equals(movieName)) {
+						flag = 1;
+						break;
+					}
+				}
+				if (flag == 1)
+					continue;
+				movieNames.add(movieName);
+				printMenuWithoutSpace(++i + ". " + movieName);
+			}
+			printMenu(++i + ". Back");
+	
+			int choice = userInput(1, i);
+	
+			if (choice == i)
+				back();
+			else {
+				MovieSession ms = allMovieSessions.get(choice - 1);
+				Movie m = ms.getShownMovie();
+				for (MovieSession ms2 : allMovieSessions) {
+					if (ms2.getShownMovie().getTitle().equals(m.getTitle()))
+						curMs.add(ms);
+				}
+				
+				showMovies(curMs);
+			}
+		}
+	}
+	
+	/**
+     * Show sessions by movies
+     * @param curMs The movie sessions for that movie
+     */
+	private void showMovies(ArrayList<MovieSession> curMs) {
+		int i = 0;
+		String movieName = reduceStringLength(curMs.get(0).getShownMovie().getTitle(), 60);
+		printHeader("Movie sessions for " + movieName);
+		printMenuWithoutSpace("Choose one of the following sessions:");
+		for (MovieSession ms : curMs) {
+			String cineplexCode = ms.getCinemaCode().substring(0, 1);
+			Cineplex cinp = cpc.getCineplexByCode(cineplexCode);
+			printMenuWithoutSpace(++i + ". " + cinp.getName() + generateSpaces(20 - cinp.getName().length()) + ms.getShowDateTime());
+		}
+		printMenu(++i + ". Back");
+		
+		int choice = userInput(1, i);
+		
+		if (choice == i)
+			back();
+		else {
+			MovieSession ms = curMs.get(choice - 1);
+			printMenu("How many tickets would you like to purchase? (Enter 1 to buy 1 couple seat)");
+			int maxSeats = ms.getSeatPlan().getCol() * ms.getSeatPlan().getRow();
+			int noOfSeats = userInput(1, maxSeats);
+			showSeatingPlan(ms, noOfSeats);
 		}
 	}
 
