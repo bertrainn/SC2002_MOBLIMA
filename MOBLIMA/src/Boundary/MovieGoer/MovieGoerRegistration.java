@@ -56,6 +56,7 @@ public class MovieGoerRegistration extends BaseMenu {
 	/**
 	 * Creates a New MovieGoerRegistration Menu to redirect
 	 * to review page after registration.
+	 *
 	 * @param m The MovieGoer's selected movie.
 	 */
 	public MovieGoerRegistration(Movie m) {
@@ -65,9 +66,10 @@ public class MovieGoerRegistration extends BaseMenu {
 	/**
 	 * Creates a New MovieGoerRegistration Menu to redirect
 	 * to booking page after registration.
-	 * @param ms The MovieGoer's selected movie session.
+	 *
+	 * @param ms          The MovieGoer's selected movie session.
 	 * @param chosenSeats The MovieGoer's selected seats.
-	 * @param cp The MovieGoer's selected cineplex.
+	 * @param cp          The MovieGoer's selected cineplex.
 	 */
 	public MovieGoerRegistration(MovieSession ms, ArrayList<Seat> chosenSeats, Cineplex cp) {
 		this.ms = ms;
