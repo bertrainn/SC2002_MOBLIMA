@@ -18,12 +18,34 @@ import Entity.MovieSession;
 import Entity.Review_Ratings;
 import Entity.Seat;
 
+/**
+ * This shows the menu where the MovieGoer can register an account.
+ */
 public class MovieGoerRegistration extends BaseMenu {
 
+	/**
+	 * Intialising the controller for the MovieGoer's Registration menu.
+	 */
 	private MovieGoer_Controller mgc = new MovieGoer_Controller();
+	
+	/**
+	 * The Moviesession that was chosen by the moviegoer.
+	 */
 	private MovieSession ms;
+	
+	/**
+	 * The Movie that was chosen by the moviegoer.
+	 */
 	private Movie m;
+	
+	/**
+	 * The Seats that was chosen by the moviegoer.
+	 */
 	private ArrayList<Seat> chosenSeats;
+	
+	/**
+	 * The Seats that was chosen by the moviegoer.
+	 */
 	private Cineplex cp;
 
 	//Default constructor
@@ -31,18 +53,31 @@ public class MovieGoerRegistration extends BaseMenu {
 		
 	}
 	
-	//Constructor to redirect to review page after registration
+	/**
+	 * Creates a New MovieGoerRegistration Menu to redirect
+	 * to review page after registration.
+	 * @param m The MovieGoer's selected movie.
+	 */
 	public MovieGoerRegistration(Movie m) {
 		this.m = m;
 	}
 
-	//Constructor to redirect to booking page after registration
+	/**
+	 * Creates a New MovieGoerRegistration Menu to redirect
+	 * to booking page after registration.
+	 * @param ms The MovieGoer's selected movie session.
+	 * @param chosenSeats The MovieGoer's selected seats.
+	 * @param cp The MovieGoer's selected cineplex.
+	 */
 	public MovieGoerRegistration(MovieSession ms, ArrayList<Seat> chosenSeats, Cineplex cp) {
 		this.ms = ms;
 		this.chosenSeats = chosenSeats;
 		this.cp = cp;
 	}
 
+	/**
+         * Loads the MovieGoer Registration Menu.
+         */
 	@Override
 	public void load() {
 		ArrayList<MovieGoer> movieGoerList = mgc.readFile();
