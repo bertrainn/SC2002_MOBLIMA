@@ -30,7 +30,7 @@ public class MoviesList extends BaseMenu {
 
 	private MovieGoer cust;
 	private boolean topFive = false;
-	private String orderBy = "review";//ssc.readSystemSettings().get(0);
+	private String orderBy = ssc.readSystemSettings().get(0);
 
 	public MoviesList(MovieGoer mg) {
 		cust = mg;
@@ -43,33 +43,71 @@ public class MoviesList extends BaseMenu {
 
 	private void showMenu() {
 		topFive = false;
+		orderBy = ssc.readSystemSettings().get(0);
 		printHeader("View Movies");
-		printMenu("Choose from one of the following options:",
-				"1. Make a booking",
-				"2. Search for a movie",
-				"3. List all movies",
-				"4. List the top 5 movies",
-				"5. Back");
-
-		int choice = userInput(1, 5);
-
-		switch (choice) {
-			case 1:
-				allShowtimes();
-				break;
-			case 2:
-				search();
-				break;
-			case 3:
-				showAllMovies();
-				break;
-			case 4:
-				topFive = true;
-				showAllMovies();
-				break;
-			case 5:
-				back();
-				break;
+		if (orderBy == "both") {
+			printMenu("Choose from one of the following options:",
+					"1. Make a booking",
+					"2. Search for a movie",
+					"3. List all movies",
+					"4. List the top 5 movies by reviews",
+					"5. List the top 5 movies by sales",
+					"6. Back");
+	
+			int choice = userInput(1, 5);
+	
+			switch (choice) {
+				case 1:
+					allShowtimes();
+					break;
+				case 2:
+					search();
+					break;
+				case 3:
+					showAllMovies();
+					break;
+				case 4:
+					orderBy = "review";
+					topFive = true;
+					showAllMovies();
+					break;
+				case 5:
+					orderBy = "sales";
+					topFive = true;
+					showAllMovies();
+				case 6:
+					back();
+					break;
+			}
+		}
+		else {
+			printMenu("Choose from one of the following options:",
+					"1. Make a booking",
+					"2. Search for a movie",
+					"3. List all movies",
+					"4. List the top 5 movies by " + orderBy,
+					"5. Back");
+	
+			int choice = userInput(1, 5);
+	
+			switch (choice) {
+				case 1:
+					allShowtimes();
+					break;
+				case 2:
+					search();
+					break;
+				case 3:
+					showAllMovies();
+					break;
+				case 4:
+					topFive = true;
+					showAllMovies();
+					break;
+				case 5:
+					back();
+					break;
+			}
 		}
 	}
 
@@ -316,7 +354,7 @@ public class MoviesList extends BaseMenu {
 		return movieSales;
 	}
 
-	// Temporary method to show fake top sales
+	// Temporary method to show fake top sales, remove before submit
 	private HashMap<Movie, Integer> fakeTopSales() {
 		ArrayList<Booking> bookingList = new ArrayList<Booking>();
 		HashMap<Movie, Integer> movieSales = new HashMap<Movie, Integer>();
