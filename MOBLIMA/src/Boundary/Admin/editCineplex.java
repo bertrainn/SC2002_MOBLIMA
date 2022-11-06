@@ -153,9 +153,10 @@ public class editCineplex extends BaseMenu {
 	}
 
 	/**
-         * Function to build 3 cinemas.
+         * Function to add cineplex.
          */
 	public void addCineplex() {
+		//function to auto add 3 cinema 
 		boolean flag = false;
 		int choice = -1;
 		String cinemaCode;
