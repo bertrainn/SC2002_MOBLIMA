@@ -133,7 +133,7 @@ public class ReviewView extends BaseMenu {
 				cust.addReview(m, new Review_Ratings(rating, review));
 				printMenu("Review successfully posted, enter any number to go back.");
 				userInput(0, 9);
-				back();
+				navigate(this, new MovieDetailsView(m, cust));
 			}
 		}
 	}

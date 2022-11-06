@@ -123,7 +123,7 @@ public class BookingMenu extends BaseMenu {
 			load();
 		else {
 			MovieSession ms = sessions.get(choice - 1);
-			printMenu("How many tickets would you like to purchase?");
+			printMenu("How many tickets would you like to purchase? (Enter 1 to buy 1 couple seat)");
 			int maxSeats = ms.getSeatPlan().getCol() * ms.getSeatPlan().getRow();
 			int noOfSeats = userInput(1, maxSeats);
 			showSeatingPlan(ms, noOfSeats);
@@ -145,7 +145,13 @@ public class BookingMenu extends BaseMenu {
 		for (int i = 0; i < noOfSeats; i++) {
 			printMenuWithoutSpace("Choice for seat " + (i + 1));
 			int choice = userInput(0, total - 1);
-			chosenSeats.add(new Seat(choice));
+			if (seatPlan.isCoupleSeat(choice) == -1)
+				chosenSeats.add(new Seat(choice));
+			else {
+				int pairID = seatPlan.isCoupleSeat(choice);
+				chosenSeats.add(new Seat(choice, true, pairID));
+				chosenSeats.add(new Seat(pairID, true, choice));
+			}
 		}
 		
 		for (int i=0; i<chosenSeats.size(); i++) {
@@ -154,6 +160,8 @@ public class BookingMenu extends BaseMenu {
 			for (int j=i+1; j<chosenSeats.size(); j++) {
 				if (chosenSeats.get(i).getSeatID() == chosenSeats.get(j).getSeatID()) {
 					flag = 2;
+					if (chosenSeats.get(i).isIsCoupleSeat())
+						flag = 3;
 					break;
 				}
 			}
@@ -169,7 +177,13 @@ public class BookingMenu extends BaseMenu {
 			printMenu("Two or more of the seats you have chosen are duplicates, enter any number to try again.");
 			userInput(0, 9);
 			showSeatingPlan(ms, noOfSeats);
-		} else {
+		} else if (flag == 3) {
+			printMenu("Please only enter one seat number per couple seat, enter any number to try again.");
+			userInput(0, 9);
+			showSeatingPlan(ms, noOfSeats);
+		}
+		
+		else {
 			navigate(this, new BookingConfirmationMenu(cust, ms, chosenSeats, cp));
 		}
 	}

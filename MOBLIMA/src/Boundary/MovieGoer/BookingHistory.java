@@ -5,6 +5,7 @@ import static Control.UserInput_Controller.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import Boundary.BaseMenu;
 import Control.Booking_Controller;
@@ -64,6 +65,7 @@ public class BookingHistory extends BaseMenu {
 			LocalTime time = LocalTime.of(hour, min);
 			
 			ArrayList<Ticket> tixList = b.getTicketList();
+			Collections.sort(tixList, (o1, o2) -> Integer.compare(o1.getSeat().getSeatID(), o2.getSeat().getSeatID()));
 			String seats = "";
 			for (int j=0; j<tixList.size()-1; j++) {
 				seats = seats + tixList.get(j).getSeat().getSeatID() + ", ";

@@ -308,7 +308,7 @@ public class MoviesList extends BaseMenu {
 	private ArrayList<Movie> getTop5Movies(String orderBy) {
 		ArrayList<Movie> top5 = new ArrayList<>();
 
-		if (orderBy == "review") {
+		if (orderBy.equals("review")) {
 			ArrayList<Movie> movieList = mc.readFile();
 			for (Movie m : movieList)
 				if (!m.getShowingStatus().equals(Constants.SHOWING_STATUS.EOS))

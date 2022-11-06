@@ -17,6 +17,10 @@ public class Seat implements Serializable {
      * Whether seat is occupied.
      */
     private boolean IsOccupied;
+    
+    private boolean IsCoupleSeat = false;
+    
+    int pairID = -1;
 
     /**
      * Constructor for the Seats class
@@ -24,6 +28,13 @@ public class Seat implements Serializable {
     public Seat(int SeatID) {
         this.SeatID = SeatID;
         this.IsOccupied = false;
+    }
+    
+    public Seat(int SeatID, boolean IsCoupleSeat, int pairID) {
+        this.SeatID = SeatID;
+        this.IsOccupied = false;
+        this.IsCoupleSeat = IsCoupleSeat;
+        this.pairID = pairID;
     }
 
     /**
@@ -43,6 +54,14 @@ public class Seat implements Serializable {
     public void setSeatID(int seatID) {
         this.SeatID = seatID;
     }
+    
+    public int getPairID() {
+        return pairID;
+    }
+
+    public void setPairID(int pairID) {
+        this.pairID = pairID;
+    }
 
     /**
      * This method returns whether seat is occupied
@@ -60,6 +79,14 @@ public class Seat implements Serializable {
      */
     public void setIsOccupied(boolean isOccupied) {
         IsOccupied = isOccupied;
+    }
+    
+    public boolean isIsCoupleSeat() {
+    	return IsCoupleSeat;
+    }
+    
+    public void setIsCoupleSeat(boolean isCoupleSeat) {
+    	IsCoupleSeat = isCoupleSeat;
     }
 
     /**

@@ -108,7 +108,7 @@ public class BookingConfirmationMenu extends BaseMenu {
 		ArrayList<Ticket> tixList = new ArrayList<Ticket>();
 		int i = 1;
 		for (Seat s : chosenSeats)
-			tixList.add(createTicket(ms, s, i));
+			tixList.add(createTicket(ms, s, i++));
 
 		Double totalPrice = 0.00;
 		for (Ticket t : tixList)
@@ -170,7 +170,7 @@ public class BookingConfirmationMenu extends BaseMenu {
 				|| day == DayOfWeek.THURSDAY) {
 			ticketType = Constants.TICKET_TYPE.MON_TO_THU;
 			if (session.getMovieType() == Constants.MOVIE_TYPE.TWO_D) {
-				printMenu("Ticket for Customer " + (i++),
+				printMenu("Ticket for Seat " + i,
 						"Are you a student/senior citizen?",
 						"1. Student",
 						"2. Senior Citizen",

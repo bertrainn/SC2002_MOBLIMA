@@ -31,11 +31,64 @@ public class SeatLayout implements Serializable {
         this.col = col;
         layout = new Seat[row][col];
 
-        for (int i = 0; i < this.row; i++) {
+        for (int i = 0; i < this.row-1; i++) {
             for (int j = 0; j < this.col; j++) {
                 layout[i][j] = new Seat(i * this.col + j);
             }
         }
+        
+        boolean IsCoupleSeat = true;
+        int last = this.row-1;
+        int pairID;
+        if (this.col % 2 != 0) {
+        	layout[last][0] = new Seat(last * this.col + 0);
+        	if (this.col/2 % 2 == 0) {
+        		for (int k = 1; k<this.col; k++) {
+        			if (k == this.col/2 - 1 || k == this.col/2) {
+        				layout[last][k] = new Seat(last * this.col + k);
+            		}
+        			else {
+	            		if (k % 2 != 0)
+	            			pairID = last * this.col + (k+1);
+	            		else pairID = last * this.col + (k-1);
+	            		layout[last][k] = new Seat(last * this.col + k, IsCoupleSeat, pairID);
+            		}
+            	}
+        	}
+        	else {
+	        	for (int k = 1; k<this.col; k++) {
+	        		if (k % 2 != 0)
+	        			pairID = last * this.col + (k+1);
+	        		else pairID = last * this.col + (k-1);
+	        		layout[last][k] = new Seat(last * this.col + k, IsCoupleSeat, pairID);
+	        	}
+        	}
+        }
+        
+        else {
+        	if (this.col/2 % 2 != 0) {
+        		for (int k = 0; k < this.col; k++) {
+        			if (k == this.col/2 - 1 || k == this.col/2) {
+        				layout[last][k] = new Seat(last * this.col + k);
+        			}
+        			else {
+	    	        	if (k % 2 == 0)
+	    	        		pairID = last * this.col + (k+1);
+	    	        	else pairID = last * this.col + (k-1);
+	    	        	layout[last][k] = new Seat(last * this.col + k, IsCoupleSeat, pairID);
+    	        	}
+    	        }
+        	}
+        	else {
+		        for (int k = 0; k < this.col; k++) {
+		        	if (k % 2 == 0)
+		        		pairID = last * this.col + (k+1);
+		        	else pairID = last * this.col + (k-1);
+		        	layout[last][k] = new Seat(last * this.col + k, IsCoupleSeat, pairID);
+		        }
+        	}
+        }
+        
     }
 
     /**
@@ -59,11 +112,26 @@ public class SeatLayout implements Serializable {
             String s = "Seats " + (i * this.col) + " - " + ((i + 1) * this.col - 1);
             System.out.printf(s + generateSpaces(17 - s.length()));
             for (int j = 0; j < this.col; j++) {
-                if (layout[i][j].isIsOccupied())
-                    System.out.print("[X]");
-                else
-                    System.out.print("[ ]");
-
+            	if (layout[i][j].isIsCoupleSeat()) {
+            		if (layout[i][j].getSeatID() < layout[i][j].getPairID()) {
+            			if (layout[i][j].isIsOccupied())
+            				System.out.print("[X ");
+            			else
+            				System.out.print("[  ");
+            		}
+            		else {
+            			if (layout[i][j].isIsOccupied())
+            				System.out.print(" X]");
+            			else
+            				System.out.print("  ]");
+            		}	
+            	}
+            	else {
+	                if (layout[i][j].isIsOccupied())
+	                    System.out.print("[X]");
+	                else
+	                    System.out.print("[ ]");
+            	}
                 if (j == this.col / 2 - 1)
                     System.out.print("  ");
             }
@@ -148,5 +216,10 @@ public class SeatLayout implements Serializable {
     public boolean isSeatAssign(int id) {
         int index = id / col;
         return layout[index][id - col * index].isIsOccupied();
+    }
+    
+    public int isCoupleSeat(int id) {
+    	int index = id / col;
+    	return layout[index][id - col * index].getPairID();
     }
 }
