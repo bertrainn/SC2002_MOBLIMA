@@ -450,7 +450,7 @@ public class editCineplex extends BaseMenu {
 	}
 
 	/**
-         * Function to edit movie session.
+         * Function to edit the details of the movie session.
          */
 	public void editSession() {
 		ArrayList<MovieSession> sessions = movie_session_Controller.readFile();
