@@ -20,6 +20,10 @@ import java.time.LocalDate;
  * Controller for the Movie.
  */
 public class Movie_Controller {
+    
+    /**
+     * File name of the Movie.txt file in the database to acces.
+     */
     public final static String FILENAME = "MOBLIMA/database/Movie.txt";
 
     /**
@@ -45,8 +49,6 @@ public class Movie_Controller {
      * Function to read file and make sure that there are no errors.
      * 
      * @return A new arraylist that is error free.
-     * @exception IOException            for the file
-     * @exception ClassNotFoundException for the file.
      */
     public ArrayList<Movie> readFile() {
         FileInputStream fis = null;
@@ -106,7 +108,6 @@ public class Movie_Controller {
      * 
      * @param data     ArrayList that replaces the current data in the File.
      * @param filename Name of the file.
-     * @exception IOException If there is any error within the file.
      */
     public void replaceFile(ArrayList<Movie> data, String filename) {
         FileOutputStream fos = null;
