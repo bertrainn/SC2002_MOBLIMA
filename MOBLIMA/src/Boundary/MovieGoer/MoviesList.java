@@ -374,11 +374,11 @@ public class MoviesList extends BaseMenu {
 			return -1;
 	}
 
-	
-	/** 
-	 * @param h
-	 * @return HashMap<Movie, Integer>
-	 */
+	/**
+     	* Function that sorts a hashmap buy value.
+     	* * @param h The hashmap to be sorted
+     	* * @return a sorted hashmap
+     	*/
 	private HashMap<Movie, Integer> sortHashMap(HashMap<Movie, Integer> h) {
 		LinkedHashMap<Movie, Integer> sortedMap = new LinkedHashMap<>();
 		h.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
@@ -388,7 +388,8 @@ public class MoviesList extends BaseMenu {
 	}
 
 	/**
-         * idk
+         * Function that creates a hashmap of movie and its corresponding sales.
+         * * @return the hashmap of movies as key and corresponding sales as value
          */
 	private HashMap<Movie, Integer> topSales() {
 		ArrayList<Booking> bookingList = bc.readFile();
