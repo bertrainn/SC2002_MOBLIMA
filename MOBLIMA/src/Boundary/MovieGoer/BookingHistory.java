@@ -30,6 +30,7 @@ public class BookingHistory extends BaseMenu {
 	
 	/**
          * Creates a new booking history for the MovieGoer.
+	 *
          * @param m This BookingHistory's MovieGoer.
          */
 	public BookingHistory(MovieGoer m) {

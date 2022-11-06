@@ -14,15 +14,19 @@ import Entity.Constants;
 
 public class UserInput_Controller {
 	
+	/**
+         * Initialising of Scanner for the UserInput Controller.
+         */
 	static Scanner sc = new Scanner(System.in);
 	
 	/**
-	 * The Decimal Format 
+	 * The Decimal Format to be used in the UserInput_Controller.
 	 */
 	public static final DecimalFormat df = new DecimalFormat("0.00");
 	
 	/**
 	 * Function to print header.
+	 *
 	 * @param header of userinput .
 	 */
 	public static void printHeader(String header) {
@@ -44,6 +48,7 @@ public class UserInput_Controller {
 
 	/**
 	 * Function to print Menu .
+	 *
 	 * @param menu of userinput .
 	 */
 	public static void printMenu(String... menu) {
@@ -64,6 +69,7 @@ public class UserInput_Controller {
 	
 	/**
 	 * Function to print Menu without spacing.
+	 *
 	 * @param menu of userinput.
 	 */
 	public static void printMenuWithoutSpace(String... menu) {
@@ -74,6 +80,7 @@ public class UserInput_Controller {
 	
 	/**
 	 * Function to generate spaces. 
+	 *
 	 * @param size Size of the amount of spaces needed.
 	 * @return the string of spaces.
 	 */
@@ -88,10 +95,10 @@ public class UserInput_Controller {
 	 * Function to get the user choice.
 	 * Makes sure the choice does not have any error.
 	 * Makes sure the choice is with the range of choices.
+	 *
 	 * @param i Value of the lowest choice.
 	 * @param j Value of the highest choice.
 	 * @return Choice of the user. 
-	 * @exception NumberFormatException On input error
 	 */
 	public static int userInput(int i, int j) {
 		int choice;
@@ -118,6 +125,7 @@ public class UserInput_Controller {
 	
 	/**
 	 * Function to get the string input.
+	 *
 	 * @param message Message to be printed.
 	 * @return the string of the next input.
 	 */
@@ -128,7 +136,8 @@ public class UserInput_Controller {
 	}
 	
 	/**
-	 * Function to get the string input in sentences
+	 * Function to get the string input in sentences.
+	 *
 	 * @param message Message to be printed.
 	 * @return the string of the next input.
 	 */
@@ -139,7 +148,8 @@ public class UserInput_Controller {
 	}
 	
 	/**
-	 * Function to get the integer input 
+	 * Function to get the integer input.
+	 *
 	 * @param message Message to be printed.
 	 * @return the integer of the next input.
 	 */
@@ -152,9 +162,10 @@ public class UserInput_Controller {
 	/**
 	 * Function to get the integer which the integer 
 	 * have to be higher than the minimum value.
+	 *
 	 * @param message Message to be printed.
-	 * @param min Minimum value that the Input integer have to be higher than.
-	 * @return the int of the next input.
+	 * @param min 	  Minimum value that the Input integer have to be higher than.
+	 * @return the integer of the next input.
 	 */
 	public static int getIntInput_Min(String message, int min) {
 		System.out.print(message);
@@ -168,6 +179,7 @@ public class UserInput_Controller {
 	
 	/**
 	 * Function to get the double input.
+	 *
 	 * @param message Message to be printed in sentences.
 	 * @return the double of the next input.
 	 */
@@ -179,8 +191,9 @@ public class UserInput_Controller {
 	
 	/**
 	 * Function to get the date input. 
+	 *
 	 * @param message Message to be printed.
-	 * @return the parsed date.
+	 * @return the parsed date of the input.
 	 */
 	public static LocalDate getDateInput(String message) {
 		System.out.print(message);
@@ -192,8 +205,9 @@ public class UserInput_Controller {
 	
 	/**
 	 * Function to get the date input if there is no year.
+	 *
 	 * @param message Message to be printed.
-	 * @return the parsed date.
+	 * @return the parsed date of the input with no year.
 	 */
 	public static LocalDate getDateInput_NoYear(String message) {
 		System.out.print(message);
@@ -206,8 +220,9 @@ public class UserInput_Controller {
 	
 	/**
 	 * Function to get the date and time input.
+	 *
 	 * @param message Message to be printed.
-	 * @return the parsed date.
+	 * @return the parsed date and time input.
 	 */
 	public static LocalDateTime getDateTimeInput(String message) {
 		System.out.print(message);
@@ -218,7 +233,8 @@ public class UserInput_Controller {
 	}
 	
 	/**
-	 * Function to check the user and password of the admin account
+	 * Function to check the user and password of the admin account.
+	 *
 	 * @return Boolean indicating if the login is successful or a failure.
 	 */
 	public static boolean adminAuthorise() {
@@ -237,6 +253,7 @@ public class UserInput_Controller {
 	
 	/**
 	 * Function to change the list to a string.
+	 *
 	 * @param a List of strings to be converted to string.
 	 * @return the string of the converted list.
 	 */
@@ -250,7 +267,8 @@ public class UserInput_Controller {
 	
 	/**
 	 * Function to reduce the length of the string.
-	 * @param input String input that will be reduced.
+	 *
+	 * @param input  String input that will be reduced.
 	 * @param maxLen The maximum length of the string allowed.
 	 * @return the reduced string
 	 */

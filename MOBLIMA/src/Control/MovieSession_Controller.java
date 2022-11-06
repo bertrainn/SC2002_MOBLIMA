@@ -22,7 +22,15 @@ import Entity.SeatLayout;
  * Controller for the Movie Sessions.
  */
 public class MovieSession_Controller {
+    
+    /**
+     * Initialising Cinema Controller for Movie Session Controller. 
+     */
     private Cinema_Controller CinemaControl;
+    
+    /**
+     * The Name of the File that will be used in the Movie Session controller.
+     */
     public String FILENAME;
 
     /**
@@ -234,14 +242,14 @@ public class MovieSession_Controller {
      * as there is an overlap.
      * 2) Movie ends at 1300, user inputs the next session to be at 1301, system
      * will return false as we assume that we need time to clean the cinema after
-     * the previous screening
+     * the previous screening.
      * 
      * 
-     * @param showingTime The time and date of the new session
+     * @param showingTime The time and date of the new session.
      * @param CinemaCode  The code of the cinema that we want the new screening to
      *                    be in.
-     * @param shownMovie  The movie being shown at the session
-     * @return true if the session time is valid, false if it is invalid;
+     * @param shownMovie  The movie being shown at the session.
+     * @return true if the session time is valid, false if it is invalid.
      */
 
     public boolean checkIfValidTime(LocalDateTime showingTime, String CinemaCode, Movie shownMovie) {

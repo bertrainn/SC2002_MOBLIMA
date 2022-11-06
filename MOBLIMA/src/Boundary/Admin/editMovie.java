@@ -20,7 +20,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
- * This allows the admin to edit the movie..
+ * This allows the admin to edit the movie.
  */
 public class editMovie extends BaseMenu {
 
@@ -210,7 +210,7 @@ public class editMovie extends BaseMenu {
 	}
 
 	/**
-         * Function to update the details of the movie
+         * Function to update the details of the movie.
          */
 	public void UpdateMovie() {
 
@@ -468,6 +468,7 @@ public class editMovie extends BaseMenu {
 
 	/**
          * Function that compares the movie ratings.
+	 *
 	 * @param m1 The first Movie to be compared.
 	 * @param m2 The second Movie to be compared.
 	 * @return a value which indicates which movie is the better rating.

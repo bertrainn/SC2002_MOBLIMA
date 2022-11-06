@@ -14,15 +14,22 @@ import java.io.Serializable;
 
 public class TicketPrice_Controller implements Serializable {
     
+    /**
+     * idk
+     */
     private HashMap<PriceAdjust, Double> TicketPriceMap = new HashMap<>();
 
+    /**
+     * Creates a new TicketPrice controller.
+     */
     public TicketPrice_Controller() {
         populatePriceMap(TicketPriceMap);
     }
 
     /**
      * Function to set the different prices out on the ticket price map.
-     * @param TicketPriceMap HashMap holds the ticket price
+     *
+     * @param TicketPriceMap HashMap holds the ticket price.
      */
     private void populatePriceMap(HashMap<PriceAdjust, Double> TicketPriceMap) {
         TicketPriceMap.put(Constants.TICKET_TYPE.MON_TO_THU, 9.50);
@@ -38,6 +45,8 @@ public class TicketPrice_Controller implements Serializable {
 
     
     /** 
+     * idk
+     *
      * @return HashMap<PriceAdjust, Double>
      */
     public HashMap<PriceAdjust, Double> getTicketPriceMap() {
@@ -46,6 +55,8 @@ public class TicketPrice_Controller implements Serializable {
 
     
     /** 
+     * idk
+     *
      * @param ticketPriceMap
      */
     public void setTicketPriceMap(HashMap<PriceAdjust, Double> ticketPriceMap) {
@@ -54,6 +65,7 @@ public class TicketPrice_Controller implements Serializable {
 
     /**
      * Function to get price of the movie. 
+     *
      * @param key Movie object.
      * @return Double value of the ticket price.
      */
@@ -63,8 +75,9 @@ public class TicketPrice_Controller implements Serializable {
 
     /**
      * Function to add the ticket price.
+     *
      * @param newKey The new movie to be added into the hash table.
-     * @param price Price of the new movie to be added into the hash table.
+     * @param price  The price of the new movie to be added into the hash table.
      */
     public void addTicketPriceItem(PriceAdjust newKey, double price) {
         this.TicketPriceMap.put(newKey, price);
@@ -72,7 +85,8 @@ public class TicketPrice_Controller implements Serializable {
 
     /**
      * Function to update the ticket price.
-     * @param key Movie that is to be updated.
+     *
+     * @param key      The movie that is to be updated.
      * @param newprice The new price that is to be updated into the hash table.
      */
     public void updateTicketPriceItem(PriceAdjust key, double newprice) {
@@ -83,6 +97,7 @@ public class TicketPrice_Controller implements Serializable {
     
     /**
      * Function to remove the ticket price.
+     *
      * @param key Movie object.
      * @return the string of the next input.
      */
@@ -93,9 +108,10 @@ public class TicketPrice_Controller implements Serializable {
     /**
      * This method calculates the total price of the ticket based on the TicketType
      * and Movie Type.
-     * @param movieType The Type of the movie.
+     *
+     * @param movieType  The Type of the movie.
      * @param ticketType The type of the ticket.
-     * @param cinemaTyp The type of the cinema.
+     * @param cinemaTyp  The type of the cinema.
      * @return the calculated price of the movie.
      */
     public double calcPrice(Constants.MOVIE_TYPE movieType, Constants.TICKET_TYPE ticketType,

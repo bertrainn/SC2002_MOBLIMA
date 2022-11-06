@@ -25,7 +25,8 @@ public class MovieDetailsView extends BaseMenu {
 
 	/**
          * Creates a new View Movie details menu with the given parameters.
-         * @param m This MovieDetailsView's movie.
+	 *
+         * @param m  This MovieDetailsView's movie.
 	 * @param mg This MovieDetailsView's Moviegoer
          */
 	public MovieDetailsView(Movie m, MovieGoer mg) {

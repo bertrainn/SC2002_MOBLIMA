@@ -10,6 +10,9 @@ import static Control.UserInput_Controller.*;
  */
 public class MainMenu extends BaseMenu {
 
+	/**
+         * Loads the Main Menu.
+         */
 	@Override
 	public void load() {
 		printHeader("Welcome to MOBLIMA");
