@@ -4,17 +4,15 @@ package Boundary;
  * This Abstract class is implemented for the login class and main menu class.
  */
 public abstract class BaseMenu {
-	
-	//The menu before this menu
+
+	/**
+         * Creates the Previous Menu which is before the current menu.
+         */
 	public BaseMenu previousMenu;
 	
-	
-	/** 
-	 * @param back(
-	 */
 	/**
-	 * This method is to be called when loading a new menu.
-	 */
+         * The purpose of this abstract method is to be able to load the menus after the selected class.
+         */
 	public abstract void load();
 	
 	/**
@@ -31,7 +29,7 @@ public abstract class BaseMenu {
 	}
 	
 	/**
-	 * This method is used to navigate to the next menu while saving current menu as next menu's previous
+	 * This method is used to navigate to the next menu while saving current menu as next menu's previous.
 	 */
 	public void navigate(BaseMenu a, BaseMenu b) {
 		b.previousMenu = a;
