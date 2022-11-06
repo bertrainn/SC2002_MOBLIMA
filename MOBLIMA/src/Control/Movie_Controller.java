@@ -22,7 +22,7 @@ import java.time.LocalDate;
 public class Movie_Controller {
     
     /**
-     * File name of the Movie.txt file in the database to acces.
+     * File name of the Movie.txt file in the database to access.
      */
     public final static String FILENAME = "MOBLIMA/database/Movie.txt";
 
@@ -127,7 +127,7 @@ public class Movie_Controller {
     }
 
     /**
-     * Function that updates the selected movie
+     * Function that updates the selected movie.
      * 
      * @param choice The choice of content to be updated.
      * @param id     ID of the movie.
@@ -209,7 +209,7 @@ public class Movie_Controller {
     /**
      * Function that gets the movie that are currently showing.
      * 
-     * @return the Array List of movies that are currently showing
+     * @return the Array List of movies that are currently showing.
      */
     public ArrayList<Movie> getShowingMovies() {
         ArrayList<Movie> Data = readFile();
@@ -225,7 +225,7 @@ public class Movie_Controller {
     }
 
     /**
-     * Function to check if the movie still exists
+     * Function to check if the movie still exists.
      * 
      * @param Title The movie's title.
      * @return Boolean indicating the movie's existence.
