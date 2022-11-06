@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class Admin_Controller {
 
     /**
-     * File name of the admin.txt file in the database to acces.
+     * File name of the admin.txt file in the database to access.
      */
     public final static String FILENAME = "MOBLIMA/database/Admin.txt";
 
