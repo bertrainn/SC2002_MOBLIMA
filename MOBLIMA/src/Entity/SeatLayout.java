@@ -218,6 +218,9 @@ public class SeatLayout implements Serializable {
         return layout[index][id - col * index].isIsOccupied();
     }
     
+    /**
+     * This method returns pairID of the paired seat if it is a couple seat, -1 otherwise
+     */
     public int isCoupleSeat(int id) {
     	int index = id / col;
     	return layout[index][id - col * index].getPairID();

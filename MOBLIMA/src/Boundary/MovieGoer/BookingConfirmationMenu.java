@@ -152,7 +152,7 @@ public class BookingConfirmationMenu extends BaseMenu {
          * Function creates ticket with given parameters.
 	 * @param session The ticket's movie session.
 	 * @param seat The ticket's seat number.
-	 * @param i [ Notsure whats the purpose of i ]
+	 * @param i The index of the seat in chosenSeats to get price for.
 	 * @return a completed ticket with the necessary details.
          */
 	private Ticket createTicket(MovieSession session, Seat seat, int i) {
