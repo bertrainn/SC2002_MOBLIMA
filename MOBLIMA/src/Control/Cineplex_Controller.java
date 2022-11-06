@@ -83,7 +83,7 @@ public class Cineplex_Controller {
     /**
      * Function that replaces the content in the file.
      *
-     * @param data ArrayList that replaces the current data in the File.
+     * @param data     ArrayList that replaces the current data in the File.
      * @param filename Name of the file.
      */
     public void replaceFile(ArrayList<Cineplex> data, String filename) {
@@ -157,7 +157,7 @@ public class Cineplex_Controller {
     }
 
     /**
-     * Function that returns the cineplex using the cineplex code if exist
+     * Function that returns the cineplex using the cineplex code if exist.
      *
      * @param cineplexCode The Cineplex's code.
      * @return the cineplex if Cineplex exist otherwise null.
