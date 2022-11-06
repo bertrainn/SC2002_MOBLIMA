@@ -12,12 +12,13 @@ import Entity.MovieGoer;
 public class MovieGoerMainMenu extends BaseMenu {
 
 	/**
-	 * The Menu's MovieGoer.
+	 * The MovieGoerMainMenu's MovieGoer.
 	 */
 	private MovieGoer cust;
 
 	/**
          * Creates a new Main Menu for the MovieGoer with the given parameters.
+	 *
          * @param m This MovieGoerMainMenu's MovieGoer.
          */
 	public MovieGoerMainMenu(MovieGoer m) {
