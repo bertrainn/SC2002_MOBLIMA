@@ -11,8 +11,14 @@ import Entity.MovieGoer;
  */
 public class Review_Controller {
     
+    /**
+     * Initialising Movie Controller to be used in the Review Controller. 
+     */
     private Movie_Controller MovieController;
   
+    /**
+     * The Name of the File that will be used in the Review controller.
+     */
     public String FILENAME_MOVIE;
 
     private MovieGoer_Controller MovieGoerController;
@@ -20,7 +26,8 @@ public class Review_Controller {
 
     /**
      * Creates a new ReviewController with the given controllers.
-     * @param MovieController This Review_Controller's MovieController.
+     *
+     * @param MovieController     This Review_Controller's MovieController.
      * @param MovieGoerController This Review_Controller's MovieGoerController.
      */
     public Review_Controller(Movie_Controller MovieController, MovieGoer_Controller MovieGoerController) {
@@ -33,6 +40,7 @@ public class Review_Controller {
 
     /**
      * This method gets the MovieController.
+     *
      * @return this MovieController.
      */
     public Movie_Controller getMovieController() {
@@ -41,6 +49,7 @@ public class Review_Controller {
  
     /**
      * This method sets the moviecontroller.
+     *
      * @param MovieController The moviecontroller to be set.
      */
     public void setMovieController(Movie_Controller MovieController) {
@@ -49,6 +58,7 @@ public class Review_Controller {
 
     /**
      * This method gets the MovieGoerController.
+     *
      * @return this MovieGoerController.
      */
     public MovieGoer_Controller getMovieGoerController() {
@@ -57,6 +67,7 @@ public class Review_Controller {
 
     /**
      * This method sets the moviegoercontroller.
+     *
      * @param MovieGoerController The moviegoercontroller to be set.
      */
     public void setMovieGoerController(MovieGoer_Controller MovieGoerController) {
@@ -65,10 +76,11 @@ public class Review_Controller {
 
     /**
      * This method helps to create a movie review.
-     * @param movie The object movie.
-     * @param username Name of the User.
-     * @param rating The User's Rating.
-     * @param Review The content of the User's review.
+     *
+     * @param movie    The object movie.
+     * @param username The UserName of the User.
+     * @param rating   The User's Rating.
+     * @param Review   The content of the User's review.
      */
     public void createReview(Movie movie, String username, double rating, String Review) {
         int i;
