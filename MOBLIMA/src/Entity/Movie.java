@@ -16,7 +16,7 @@ public class Movie implements Serializable {
      * The ID of the movie.
      */
     private int id;
-    
+
     /**
      * Title of the movie.
      */
@@ -265,7 +265,7 @@ public class Movie implements Serializable {
         return this.directorList;
     }
 
-   /**
+    /**
      * This method sets a list of directors for the movie
      * 
      * @param classification is the new list of directors for the movie
@@ -313,7 +313,7 @@ public class Movie implements Serializable {
         System.out.println("This actor does not exist in the list.");
     }
 
-     /**
+    /**
      * This method returns the list of genres of the movie
      * 
      * @return the genre list of the movie
@@ -438,18 +438,8 @@ public class Movie implements Serializable {
      * This method is called to update the ShowingStatus of the movie
      * It functions similarly to the one in the constructor method.
      */
-    public void setShowingStatus() {
-        LocalDate today = LocalDate.now();
-        if (today.isAfter(this.ClosingDate)) {
-            this.ShowingStatus = Constants.SHOWING_STATUS.EOS;
-        } else if (today.isEqual(this.ClosingDate) || today.isEqual(this.OpeningDate)
-                || (today.isBefore(this.ClosingDate) && today.isAfter(this.OpeningDate))) {
-            this.ShowingStatus = Constants.SHOWING_STATUS.NS;
-        } else if (Duration.between(this.OpeningDate.atStartOfDay(), today.atStartOfDay()).toDays() >= -2) {
-            this.ShowingStatus = Constants.SHOWING_STATUS.P;
-        } else {
-            this.ShowingStatus = Constants.SHOWING_STATUS.CS;
-        }
+    public void setShowingStatus(Constants.SHOWING_STATUS status) {
+        this.ShowingStatus = status;
     }
 
     /**
@@ -469,7 +459,7 @@ public class Movie implements Serializable {
      */
     public void setOpeningDate(LocalDate newDate) {
         this.OpeningDate = newDate;
-        setShowingStatus();
+
     }
 
     /**

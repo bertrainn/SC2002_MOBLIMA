@@ -175,9 +175,10 @@ public class editMovie extends BaseMenu {
 		Movie temp;
 		this.ListMovies();
 
-		int movie_choice = getIntInput("Enter the index of the movie you want to stop showing: ");
+		System.out.println("Enter the index of the movie you want to edit: ");
+		int movie_choice = userInput(1, MovieList.size());
 
-		temp = MovieList.get(movie_choice);
+		temp = MovieList.get(movie_choice - 1);
 		movie_controller.updateMovie(Movie_Controller.CHOICE_SHOWING, temp.getId(), Constants.SHOWING_STATUS.EOS);
 
 		System.out.println("Update success, returning to settings menu...");
@@ -198,10 +199,10 @@ public class editMovie extends BaseMenu {
 		String entries;
 		int i;
 		this.ListMovies();
+		System.out.println("Enter the index of the movie you want to edit: ");
+		int movie_choice = userInput(1, MovieList.size());
 
-		int movie_choice = getIntInput("Enter the index of the movie you want to edit: ");
-
-		temp = MovieList.get(movie_choice);
+		temp = MovieList.get(movie_choice - 1);
 
 		printMenu("Select which movie attribute you want to edit: ",
 				"1. Title",
@@ -389,7 +390,8 @@ public class editMovie extends BaseMenu {
 		System.out.printf("%-3s %-4s %-25s %-15s", "No.", "ID", "Name", "Number of Sales");
 		System.out.println();
 		for (Movie m : top5) {
-			System.out.printf("%-3d %-4d %-25s %-15d", ++i, m.getId(), m.getTitle(), movieSales.get(m));
+			System.out.printf("%-3d %-4d %-25s %-15d", ++i, m.getId(), reduceStringLength(m.getTitle(), 25),
+					movieSales.get(m));
 			System.out.println();
 		}
 
@@ -474,10 +476,11 @@ public class editMovie extends BaseMenu {
 		// show movie + showing status
 		ArrayList<Movie> moviesList = movie_controller.readFile();
 		int i = 0;
-		System.out.printf("%-3s %-4s %-25s %-15s", "No.", "ID", "Name", "Showing Status");
+		System.out.printf("%-3s %-4s %-28s %-15s", "No.", "ID", "Name", "Showing Status");
 		System.out.println();
 		for (Movie m : moviesList) {
-			System.out.printf("%-3d %-4d %-25s %-15s", ++i, m.getId(), m.getTitle(), m.getShowingStatus().toString());
+			System.out.printf("%-3d %-4d %-28s %-15s", ++i, m.getId(), reduceStringLength(m.getTitle(), 25),
+					m.getShowingStatus().toString());
 			System.out.println();
 		}
 	}

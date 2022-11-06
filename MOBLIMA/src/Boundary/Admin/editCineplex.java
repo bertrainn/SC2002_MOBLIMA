@@ -27,11 +27,6 @@ public class editCineplex extends BaseMenu {
 	private Movie_Controller movie_controller = new Movie_Controller();
 	private editMovie editMovies = new editMovie();
 
-	public static void main(String[] args) {
-		editCineplex eC = new editCineplex();
-		eC.editSession();
-	}
-
 	@Override
 	public void load() {
 		showMenu();
