@@ -29,7 +29,7 @@ public class TicketPrice_Controller implements Serializable {
     /**
      * Function to set the different prices out on the ticket price map.
      *
-     * @param TicketPriceMap HashMap holds the ticket price
+     * @param TicketPriceMap HashMap holds the ticket price.
      */
     private void populatePriceMap(HashMap<PriceAdjust, Double> TicketPriceMap) {
         TicketPriceMap.put(Constants.TICKET_TYPE.MON_TO_THU, 9.50);
@@ -45,6 +45,8 @@ public class TicketPrice_Controller implements Serializable {
 
     
     /** 
+     * idk
+     *
      * @return HashMap<PriceAdjust, Double>
      */
     public HashMap<PriceAdjust, Double> getTicketPriceMap() {
