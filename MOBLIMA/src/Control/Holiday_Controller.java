@@ -16,6 +16,10 @@ import java.time.LocalDate;
  * Controller for the holiday.
  */
 public class Holiday_Controller {
+    
+    /**
+     * File name of the Holiday.txt file in the database to acces.
+     */
     public final static String FILENAME = "MOBLIMA/database/Holiday.txt";
     
     /**
@@ -28,10 +32,9 @@ public class Holiday_Controller {
     }
 
     /**
-     * Function to read file. 
+     * Function to read file.
+     *
      * @return A new arraylist that has the movie sessions.
-     * @exception IOException for the file
-     * @exception ClassNotFoundException for the file
      */
     public ArrayList<Holiday> readFile() {
         FileInputStream fis = null;
@@ -52,9 +55,9 @@ public class Holiday_Controller {
 
     /**
      * Function that adds public holiday.
+     *
      * @param name The name of the holiday
      * @param Date The date of the holiday
-     * @exception IOException If there is any error within the file.
      */ 
     public void addHoliday(String name, LocalDate Date) {
 
@@ -79,9 +82,9 @@ public class Holiday_Controller {
 
     /**
      * Function that replaces the content in the file.
-     * @param data ArrayList that replaces the current data in the File.
+     *
+     * @param data     ArrayList that replaces the current data in the File.
      * @param filename Name of the file.
-     * @exception IOException If there is any error within the file.
      */
     public void replaceFile(ArrayList<Holiday> data, String filename) {
         FileOutputStream fos = null;
@@ -102,9 +105,10 @@ public class Holiday_Controller {
 
     /**
      * Function that updates the dates of the holidays.
+     *
      * @param choice The Content to update either name or date of holiday.
-     * @param date Date of the holiday.
-     * @param obj The object that updates the choice.
+     * @param date   Date of the holiday.
+     * @param obj    The object that updates the choice.
      */
     public void updateHoliday(int choice, LocalDate Date, Object obj) {
         ArrayList<Holiday> Data = readFile();
@@ -132,6 +136,7 @@ public class Holiday_Controller {
 
     /**
      * Function that deletes and remove the holiday
+     *
      * @param date The date of the holiday to be removed.
      */
     public void deleteHoliday(LocalDate Date) {
@@ -150,6 +155,7 @@ public class Holiday_Controller {
 
     /**
      * Function that checks whether the date or day is a holiday.
+     *
      * @param value The date of the holiday.
      * @return true if it is holiday otherwise false.
      */
