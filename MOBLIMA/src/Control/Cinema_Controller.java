@@ -19,7 +19,15 @@ import Entity.Constants;
  * Controller for the Cinema.
  */
 public class Cinema_Controller {
+    
+    /**
+     * Initialising Cineplex Controller. 
+     */
     private Cineplex_Controller CineplexController;
+    
+    /**
+     * The Name of the File that will be used in the cinema controller.
+     */
     public String FILENAME;
 
     /**
@@ -32,6 +40,7 @@ public class Cinema_Controller {
 
     /**
      * Creates a new Cinema Controller with the given Cineplex Controller.
+     *
      * @param CC This Cinema Controller's Cineplex Controller.
      */
     public Cinema_Controller(Cineplex_Controller CineplexController) {
@@ -41,11 +50,12 @@ public class Cinema_Controller {
 
     /**
      * Function that creates cinema.
+     *
      * @param cineplexCode The cineplex's code.
-     * @param cinemaCode The cinema's code.
-     * @param cinemaType The cinema's Type.
-     * @param s1 The layout of the cinema.
-     * @param sessions The movie sessions.
+     * @param cinemaCode   The cinema's code.
+     * @param cinemaType   The cinema's Type.
+     * @param s1           The layout of the cinema.
+     * @param sessions     The movie sessions.
      */
     public void createCinema(String cineplexCode, String cinemaCode,
             Constants.CINEMA_TYPE cinemaType, SeatLayout sl,
@@ -69,6 +79,7 @@ public class Cinema_Controller {
 
     /**
      * Function that gets the cinema. 
+     *
      * @return Arraylist that contains the cinema needed.
      */
     public ArrayList<Cinema> getCinema() {
@@ -89,6 +100,7 @@ public class Cinema_Controller {
 
     /**
      * Function that gets the cinema by cineplex code.
+     *
      * @param cineplexCode The cineplex's code.
      * @return The cinema found by cineplex code.
      */
@@ -112,6 +124,7 @@ public class Cinema_Controller {
 
     /**
      * Function that gets the cinema by cinema code.
+     *
      * @param cinemaCode The cinema's code.
      * @return The cinema found by cinema code.
      */
@@ -131,9 +144,10 @@ public class Cinema_Controller {
 
     /**
      * Function that updates the cinema details.
-     * @param choice The choice of detail to change in the cinema.
+     *
+     * @param choice     The choice of detail to change in the cinema.
      * @param cinemaCode The Cinema's code.
-     * @param obj The object that will update the cinema's detail.
+     * @param obj        The object that will update the cinema's detail.
      */
     public void updateCinema(int choice, String cinemaCode, Object obj) {
         ArrayList<Cineplex> Data = CineplexController.readFile();
@@ -177,6 +191,7 @@ public class Cinema_Controller {
 
     /**
      * Function that will delete the cinema.
+     *
      * @param cinemaCode This cinema's code.
      */
     public void deleteCinema(String cinemaCode) {
@@ -206,8 +221,8 @@ public class Cinema_Controller {
     }
 
     /**
-     * This function obtains the last ID for a given list of Cinemas of a given
-     * Cineplex.
+     * This function obtains the last ID for a given list of Cinemas of a given Cineplex.
+     *
      * @param cineplexCode the Cinema's cineplex Code
      * @return the last ID of a given Cinema List
      */
@@ -232,6 +247,7 @@ public class Cinema_Controller {
 
     /**
      * Function that checks for the cinema existence.
+     *
      * @param cinemaCode This Cinema's code.
      * @return true if cinema exist otherwise false.
      */
