@@ -18,6 +18,7 @@ public class AdminMainMenu extends BaseMenu {
 
 	/**
      	 * Creates a new Admin Main Menu with the given Admin user.
+	 *
      	 * @param User This AdminMainMenu's User.
      	 */
 	public AdminMainMenu(Admin user) {
