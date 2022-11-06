@@ -373,10 +373,11 @@ public class editSettings extends BaseMenu {
 
 		printMenu("Choose from one of the following options:",
 				"1. Change to by review",
-				"2. Change to by Ticket Sales",
-				"3. Back");
+				"2. Change to by ticket sales",
+				"3. Change to let the user decide",
+				"4. Back");
 
-		int choice = userInput(1, 3);
+		int choice = userInput(1, 4);
 
 		switch (choice) {
 			case 1:
@@ -385,6 +386,10 @@ public class editSettings extends BaseMenu {
 				break;
 			case 2:
 				newOrderBy = "sales";
+				update.add(newOrderBy);
+				break;
+			case 3:
+				newOrderBy = "both";
 				update.add(newOrderBy);
 				break;
 			default:

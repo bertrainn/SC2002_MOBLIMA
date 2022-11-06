@@ -1,6 +1,7 @@
 package Boundary.Admin;
 
 import Boundary.BaseMenu;
+import Boundary.Admin.editMovie;
 
 import Control.Cineplex_Controller;
 import Control.Cinema_Controller;
@@ -24,6 +25,7 @@ public class editCineplex extends BaseMenu {
 	private Cinema_Controller cinema_Controller = new Cinema_Controller(cineplex_Controller);
 	private MovieSession_Controller movie_session_Controller = new MovieSession_Controller(cinema_Controller);
 	private Movie_Controller movie_controller = new Movie_Controller();
+	private editMovie editMovies = new editMovie();
 
 	public static void main(String[] args) {
 		editCineplex eM = new editCineplex();
@@ -46,10 +48,11 @@ public class editCineplex extends BaseMenu {
 				"3. Add Cinemas",
 				"4. Delete Cinemas",
 				"5. Add Session",
-				"6. Delete Session",
+				"6. Edit Session",
+				"7. Delete Session",
 				"8. Back");
 
-		int choice = userInput(1, 10);
+		int choice = userInput(1, 8);
 
 		switch (choice) {
 			case 1:
@@ -68,9 +71,12 @@ public class editCineplex extends BaseMenu {
 				addSession();
 				break;
 			case 6:
-				deleteSession();
+
 				break;
 			case 7:
+				deleteSession();
+				break;
+			case 8:
 				back();
 				break;
 		}
@@ -408,6 +414,63 @@ public class editCineplex extends BaseMenu {
 		load();
 	}
 
+	public void editSession() {
+		ArrayList<MovieSession> sessions = movie_session_Controller.readFile();
+		MovieSession movieSession;
+		int choice;
+		ListAllSessions();
+
+		System.out.println("Enter the No. of the sessions to edit: ");
+		choice = userInput(0, sessions.size() - 1);
+
+		movieSession = sessions.get(choice);
+
+		printMenu("Select which session attribute you want to edit: ",
+				"1. Movie Shown",
+				"2. Date and Timing of Session",
+				"3. Back");
+
+		int editChoice = userInput(1, 3);
+
+		switch (editChoice) {
+			case 1:
+				editMovies.ListMovies();
+				ArrayList<Movie> movieList = movie_controller.getShowingMovies();
+				int movieChoice = userInput(1, movieList.size());
+				Movie newShowingMovie = movieList.get(movieChoice - 1);
+
+				if (movie_session_Controller.checkIfValidTime(movieSession.getShowDateTime_NonString(),
+						movieSession.getCinemaCode(), newShowingMovie)) {
+					movieSession.setShownMovie(newShowingMovie);
+				} else {
+					System.out.println("Invalid movie, returning to settings menu...");
+					load();
+				}
+				break;
+			case 2:
+				LocalDateTime newShowingTime = getDateTimeInput("Enter the new showing time for the movie: ");
+				if (movie_session_Controller.checkIfValidTime(newShowingTime, movieSession.getCinemaCode(),
+						movieSession.getShownMovie())) {
+					movieSession.setShowDateTime(newShowingTime);
+				} else {
+					System.out.println("Invalid showing time, returning to settings menu...");
+					load();
+				}
+				break;
+			case 3:
+				load();
+				break;
+		}
+		movie_session_Controller.updateSession(movieSession);
+		System.out.println("Update success, returning to settings menu...");
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		load();
+	}
+
 	public void deleteSession() {
 		ArrayList<MovieSession> sessions = movie_session_Controller.readFile();
 		MovieSession movieSession;
@@ -421,5 +484,12 @@ public class editCineplex extends BaseMenu {
 
 		movie_session_Controller.deleteByID(movieSession.getSessionId());
 
+		System.out.println("Deletion success, returning to settings menu...");
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		load();
 	}
 }
