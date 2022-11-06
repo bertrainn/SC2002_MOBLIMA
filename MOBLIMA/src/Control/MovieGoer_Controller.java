@@ -21,7 +21,7 @@ import java.util.HashMap;
 public class MovieGoer_Controller {
 
     /**
-     * File name of the MovierGoer.txt file in the database to acces.
+     * File name of the MovierGoer.txt file in the database to access.
      */
     public final static String FILENAME = "MOBLIMA/database/MovieGoer.txt";
     
