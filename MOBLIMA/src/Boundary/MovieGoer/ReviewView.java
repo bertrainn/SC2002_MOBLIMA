@@ -46,8 +46,9 @@ public class ReviewView extends BaseMenu {
 
 	/**
          * Creates a new View review menu with the given parameters.
-         * @param m This Review's Movie.
-	 * @param mg This Review's MovierGoer.
+	 *
+         * @param m    This Review's Movie.
+	 * @param mg   This Review's MovierGoer.
 	 * @param view The indicator on whether to view the movie review or leave a review.
          */
 	public ReviewView(Movie m, MovieGoer mg, boolean view) {
