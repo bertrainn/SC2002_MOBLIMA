@@ -8,21 +8,42 @@ import Boundary.BaseMenu;
 import Entity.Movie;
 import Entity.MovieGoer;
 
+/**
+ * This allows the moviegoer to view the movies details.
+ */
 public class MovieDetailsView extends BaseMenu {
 
+	/**
+	 * The Movie that the MovieGoer wants to view the details of.
+	 */
 	private Movie m;
+	
+	/**
+	 * The MovieGoer who selected the view Movie details.
+	 */
 	private MovieGoer cust;
 
+	/**
+         * Creates a new View Movie details menu with the given parameters.
+         * @param m This MovieDetailsView's movie.
+	 * @param mg This MovieDetailsView's Moviegoer
+         */
 	public MovieDetailsView(Movie m, MovieGoer mg) {
 		this.m = m;
 		cust = mg;
 	}
 
+	/**
+         * Loads the Booking Confirmation Menu.
+         */
 	@Override
 	public void load() {
 		showDetails();
 	}
 
+	/**
+         * Shows the Details of the movie that will be loaded into the load method.
+         */
 	private void showDetails() {
 		ArrayList<String> actorList = m.getActors();
 		ArrayList<String> directorList = m.getDirectors();
