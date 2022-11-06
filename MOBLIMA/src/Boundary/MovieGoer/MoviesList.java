@@ -390,7 +390,8 @@ public class MoviesList extends BaseMenu {
 
 	/**
 	 * Function that creates a hashmap of movie and its corresponding sales.
-	 * * @return the hashmap of movies as key and corresponding sales as value
+	 *
+	 * @return the hashmap of movies as key and corresponding sales as value
 	 */
 	private HashMap<Movie, Integer> topSales() {
 		ArrayList<Booking> bookingList = bc.readFile();
