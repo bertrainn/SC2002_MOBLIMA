@@ -172,7 +172,7 @@ public class editSettings extends BaseMenu {
 
 		load();
 	}
-\
+
 	/**
          * Function to edit the details of the public holidays.
          */

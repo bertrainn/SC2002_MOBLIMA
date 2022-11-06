@@ -77,7 +77,7 @@ public class ReviewView extends BaseMenu {
 		if (reviewList.isEmpty()) {
 			printMenu("There are no reviews for this movie. Enter any number to go back.");
 			userInput(0, 9);
-			back();
+			navigate(this, new MovieDetailsView(m, cust));
 		} else {
 			int i = 0;
 			for (Review_Ratings r : reviewList) {
@@ -85,7 +85,7 @@ public class ReviewView extends BaseMenu {
 			}
 			printMenu("Enter any number to go back");
 			userInput(0, 9);
-			back();
+			navigate(this, new MovieDetailsView(m, cust));
 		}
 
 	}
@@ -123,7 +123,7 @@ public class ReviewView extends BaseMenu {
 			if (flag == 1) {
 				printMenu("You have already left a review for this movie, enter any number to go back.");
 				userInput(0, 9);
-				back();
+				navigate(this, new MovieDetailsView(m, cust));
 			} else {
 				String review = getStringInput_Sentence("Enter your review of the movie: ");
 				printMenuWithoutSpace("Rate the movie from 0 to 5 stars:");
@@ -137,5 +137,4 @@ public class ReviewView extends BaseMenu {
 			}
 		}
 	}
-
 }

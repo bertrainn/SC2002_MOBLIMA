@@ -190,5 +190,4 @@ public class BookingConfirmationMenu extends BaseMenu {
 		Ticket tix = new Ticket(ticketType, session.getMovieType(), cinemaType, seat);
 		return tix;
 	}
-
 }

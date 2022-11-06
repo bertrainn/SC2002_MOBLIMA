@@ -88,7 +88,7 @@ public class MovieDetailsView extends BaseMenu {
 				navigate(this, new ReviewView(m, cust, false));
 				break;
 			case 3:
-				back();
+				navigate(this, new MoviesList(cust));
 				break;
 		}
 	}

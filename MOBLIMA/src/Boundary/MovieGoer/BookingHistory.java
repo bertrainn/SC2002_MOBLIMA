@@ -86,5 +86,4 @@ public class BookingHistory extends BaseMenu {
 		userInput(0,9);
 		navigate(this, new MovieGoerMainMenu(cust));
 	}
-
 }

@@ -415,7 +415,6 @@ public class MoviesList extends BaseMenu {
 		ArrayList<Movie> moviesList = mc.readFile();
 
 		Cinema c1 = new Cinema(null, null, null, null);
-
 		for (int i = 0; i < 5; i++) {
 			for (Movie m : moviesList) {
 				if (i % 2 == 0 && m.getTitle().equals("Black Adam"))
@@ -427,7 +426,7 @@ public class MoviesList extends BaseMenu {
 				bookingList.add(b1);
 			}
 		}
-
+		
 		for (Booking b : bookingList) {
 			movieSales.put(b.getMovie(), movieSales.getOrDefault(b.getMovie(), 0) + 1);
 		}
