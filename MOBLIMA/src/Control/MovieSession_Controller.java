@@ -22,7 +22,15 @@ import Entity.SeatLayout;
  * Controller for the Movie Sessions.
  */
 public class MovieSession_Controller {
+    
+    /**
+     * Initialising Cinema Controller for Movie Session Controller. 
+     */
     private Cinema_Controller CinemaControl;
+    
+    /**
+     * The Name of the File that will be used in the cinema controller.
+     */
     public String FILENAME;
 
     /**
