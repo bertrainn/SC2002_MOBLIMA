@@ -39,7 +39,8 @@ public class BookingMenu extends BaseMenu {
 
 	/**
          * Creates a new Booking Menu with the given parameters.
-         * @param m This BookingMenu's MovieGoer.
+	 *
+         * @param m  This BookingMenu's MovieGoer.
 	 * @param cp This BookingMenu's cineplex.
          */
 	public BookingMenu(MovieGoer m, Cineplex cp) {
