@@ -223,8 +223,8 @@ public class Cinema_Controller {
     /**
      * This function obtains the last ID for a given list of Cinemas of a given Cineplex.
      *
-     * @param cineplexCode the Cinema's cineplex Code
-     * @return the last ID of a given Cinema List
+     * @param cineplexCode the Cinema's cineplex Code.
+     * @return the last ID of a given Cinema List.
      */
 
     public int getLastCinemaID(String cineplexCode) {
