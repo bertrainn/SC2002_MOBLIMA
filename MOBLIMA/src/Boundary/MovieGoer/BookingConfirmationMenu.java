@@ -26,7 +26,7 @@ import Entity.Seat;
 import Entity.SeatLayout;
 import Entity.Ticket;
 /**
- * This shows the booking confirmation menu
+ * This shows the booking confirmation menu.
  */
 public class BookingConfirmationMenu extends BaseMenu {
 
@@ -62,10 +62,11 @@ public class BookingConfirmationMenu extends BaseMenu {
 	
 	/**
          * Creates a new BookingConfirmationMenu with the given parameters.
-         * @param cust This BookingConfirmationMenu's MovieGoer.
-	 * @param ms This BookingConfirmationMenu's ms.
-	 * @param chosenSeats This BookingConfirmationMenu's chosenSeats.
-	 * @param cp This BookingConfirmationMenu's cp.
+	 *
+         * @param cust 	      This BookingConfirmationMenu's MovieGoer.
+	 * @param ms 	      This BookingConfirmationMenu's MovieSessions.
+	 * @param chosenSeats This BookingConfirmationMenu's ChosenSeats.
+	 * @param cp          This BookingConfirmationMenu's cineplex.
          */
 	public BookingConfirmationMenu(MovieGoer cust, MovieSession ms, ArrayList<Seat> chosenSeats, Cineplex cp) {
 		this.cust = cust;
@@ -150,9 +151,10 @@ public class BookingConfirmationMenu extends BaseMenu {
 
 	/**
          * Function creates ticket with given parameters.
+	 *
 	 * @param session The ticket's movie session.
-	 * @param seat The ticket's seat number.
-	 * @param i The index of the seat in chosenSeats to get price for.
+	 * @param seat    The ticket's seat number.
+	 * @param i       The index of the seat in chosenSeats to get price for.
 	 * @return a completed ticket with the necessary details.
          */
 	private Ticket createTicket(MovieSession session, Seat seat, int i) {
