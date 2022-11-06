@@ -17,21 +17,48 @@ import Entity.Movie;
 import Entity.MovieGoer;
 import Entity.Review_Ratings;
 
+/**
+ * This shows the review menu.
+ */
 public class ReviewView extends BaseMenu {
 
+	/**
+	 * The Movie of the review.
+	 */
 	private Movie m;
+	
+	/**
+	 * The MovieGoer who review the movie.
+	 */
 	private MovieGoer cust;
+	
+	/**
+	 * The Indicator on whether the moviegoer wants to view the movie review or leave a review..
+	 */
 	private boolean view;
+	
+	/**
+	 * Intialising the controllers for the confirmed booking menu.
+	 */
 	private Movie_Controller mc = new Movie_Controller();
 	private MovieGoer_Controller mgc = new MovieGoer_Controller();
 	private Review_Controller rc = new Review_Controller(mc, mgc);
 
+	/**
+         * Creates a new View review menu with the given parameters.
+         * @param m This Review's Movie.
+	 * @param mg This Review's MovierGoer.
+	 * @param view The indicator on whether to view the movie review or leave a review.
+         */
 	public ReviewView(Movie m, MovieGoer mg, boolean view) {
 		this.m = m;
 		cust = mg;
 		this.view = view;
 	}
 
+	/**
+         * Loads the Review Menu.
+         */
 	@Override
 	public void load() {
 		if (view == true)
@@ -40,6 +67,9 @@ public class ReviewView extends BaseMenu {
 			leaveReview();
 	}
 
+	/**
+         * Shows the Reviews of the requested movie.
+         */
 	public void viewReviews() {
 		String tit = reduceStringLength(m.getTitle(), 35);
 		printHeader("Reviews for " + tit);
@@ -60,6 +90,9 @@ public class ReviewView extends BaseMenu {
 
 	}
 
+	/**
+         * Allows the MovieGoer to leave a review on the movie.
+         */
 	private void leaveReview() {
 		String tit = reduceStringLength(m.getTitle(), 35);
 		printHeader("Leave a Review for " + tit);
