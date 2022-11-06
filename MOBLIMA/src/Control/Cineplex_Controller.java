@@ -30,9 +30,8 @@ public class Cineplex_Controller {
 
     /**
      * Function to read file. 
+     *
      * @return A new arraylist that has the cineplex.
-     * @exception IOException for the file
-     * @exception ClassNotFoundException for the file
      */
     public ArrayList<Cineplex> readFile() {
         FileInputStream fis = null;
@@ -54,10 +53,10 @@ public class Cineplex_Controller {
 
     /**
      * Function to add in a new cineplex.
-     * @param Name This cineplex's Name.
+     *
+     * @param Name         This cineplex's Name.
      * @param CineplexCode This cineplex's code.
-     * @param CinemaList The cinemas to be added into the cineplex.
-     * @exception IOException for the reading the file
+     * @param CinemaList   The cinemas to be added into the cineplex.
      */
     public void addCineplex(String Name, String CineplexCode, ArrayList<Cinema> CinemaList) {
 
@@ -83,9 +82,9 @@ public class Cineplex_Controller {
 
     /**
      * Function that replaces the content in the file.
+     *
      * @param data ArrayList that replaces the current data in the File.
      * @param filename Name of the file.
-     * @exception IOException If there is any error within the file.
      */
     public void replaceFile(ArrayList<Cineplex> data, String filename) {
         FileOutputStream fos = null;
@@ -107,9 +106,10 @@ public class Cineplex_Controller {
 
     /**
      * Function that updates the cineplex's details.
+     *
      * @param choice The choice of detail to change.
-     * @param Code The Cineplex's Code.
-     * @param obj The object that will update the choice of detail.
+     * @param Code   The Cineplex's Code.
+     * @param obj    The object that will update the choice of detail.
      */
     public void updateCineplex(int choice, String Code, Object obj) {
         ArrayList<Cineplex> Data = readFile();
@@ -139,6 +139,7 @@ public class Cineplex_Controller {
 
     /**
      * Function that will delete the cineplex.
+     *
      * @param Code This Ciniplex's code.
      */
     public void deleteCineplex(String Code) {
@@ -157,6 +158,7 @@ public class Cineplex_Controller {
 
     /**
      * Function that returns the cineplex using the cineplex code if exist
+     *
      * @param cineplexCode The Cineplex's code.
      * @return the cineplex if Cineplex exist otherwise null.
      */
@@ -172,6 +174,7 @@ public class Cineplex_Controller {
 
     /**
      * Function that checks the cineplex existence by name.
+     *
      * @param Name The Cineplex's Name.
      * @return true if Cineplex exist otherwise false.
      */
@@ -188,6 +191,7 @@ public class Cineplex_Controller {
 
     /**
      * Function that checks the cineplex existence by code.
+     *
      * @param Code The Cineplex's Code.
      * @return true if Cineplex exist otherwise false.
      */
