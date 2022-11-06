@@ -38,37 +38,38 @@ public class MoviesList extends BaseMenu {
 	 * The MovieGoer who selected the Movies List.
 	 */
 	private MovieGoer cust;
-	
+
 	/**
-	 * The indicator on whether the MovieGoer would like 
+	 * The indicator on whether the MovieGoer would like
 	 * to see the top5 movies or not.
 	 */
 	private boolean topFive = false;
-	
+
 	/**
 	 * 
 	 */
 	private String orderBy = ssc.readSystemSettings().get(0);
 
 	/**
-         * Creates a new MoviesList with the given parameters.
-         * @param mg This MoviesList's MovieGoer.
+	 * Creates a new MoviesList with the given parameters.
+	 * 
+	 * @param mg This MoviesList's MovieGoer.
 	 */
 	public MoviesList(MovieGoer mg) {
 		cust = mg;
 	}
 
 	/**
-         * Loads the Movies List Menu.
-         */
+	 * Loads the Movies List Menu.
+	 */
 	@Override
 	public void load() {
 		showMenu();
 	}
 
 	/**
-         * Shows the Details of the movie that will be loaded into the load method.
-         */
+	 * Shows the Details of the movie that will be loaded into the load method.
+	 */
 	private void showMenu() {
 		topFive = false;
 		orderBy = ssc.readSystemSettings().get(0);
@@ -81,9 +82,9 @@ public class MoviesList extends BaseMenu {
 					"4. List the top 5 movies by reviews",
 					"5. List the top 5 movies by sales",
 					"6. Back");
-	
-			int choice = userInput(1, 5);
-	
+
+			int choice = userInput(1, 6);
+
 			switch (choice) {
 				case 1:
 					allShowtimes();
@@ -107,17 +108,16 @@ public class MoviesList extends BaseMenu {
 					back();
 					break;
 			}
-		}
-		else {
+		} else {
 			printMenu("Choose from one of the following options:",
 					"1. Make a booking",
 					"2. Search for a movie",
 					"3. List all movies",
 					"4. List the top 5 movies by " + orderBy,
 					"5. Back");
-	
+
 			int choice = userInput(1, 5);
-	
+
 			switch (choice) {
 				case 1:
 					allShowtimes();
@@ -140,8 +140,8 @@ public class MoviesList extends BaseMenu {
 	}
 
 	/**
-         * Shows all the showtimes of each cineplex.
-         */
+	 * Shows all the showtimes of each cineplex.
+	 */
 	private void allShowtimes() {
 		ArrayList<Cineplex> cineplexList = cc.readFile();
 		int i = 0;
@@ -164,8 +164,8 @@ public class MoviesList extends BaseMenu {
 	}
 
 	/**
-         * Function allows user to search for any Movies by movie title.
-         */
+	 * Function allows user to search for any Movies by movie title.
+	 */
 	private void search() {
 		String searchInput = getStringInput("Enter the movie title: ");
 		ArrayList<Movie> searchResults = mc.getMoviesByTitle(searchInput.toUpperCase());
@@ -182,7 +182,7 @@ public class MoviesList extends BaseMenu {
 			printMenu(searchResults.size() + " result(s) found: ");
 			for (Movie m : searchResults) {
 				String tit = reduceStringLength(m.getTitle(), 25);
-				printMenuWithoutSpace(++i + ". " + tit + 
+				printMenuWithoutSpace(++i + ". " + tit +
 						generateSpaces(30 - tit.length()) + m.getShowingStatus().toString());
 			}
 			printMenu(++i + ". Back");
@@ -200,9 +200,9 @@ public class MoviesList extends BaseMenu {
 	}
 
 	/**
-         * Function show all current movies that is showing and
+	 * Function show all current movies that is showing and
 	 * top 5 movies as well.
-         */
+	 */
 	private void showAllMovies() {
 		ArrayList<Movie> movieList = mc.readFile();
 		ArrayList<Movie> movies = null;
@@ -227,25 +227,24 @@ public class MoviesList extends BaseMenu {
 				String tit = reduceStringLength(m.getTitle(), 25);
 				if (m.getShowingStatus().equals(Constants.SHOWING_STATUS.EOS))
 					continue;
-				printMenuWithoutSpace(++i + ". " +tit + 
-					generateSpaces(30 - tit.length()) 
-					+ m.getShowingStatus().toString());
+				printMenuWithoutSpace(++i + ". " + tit +
+						generateSpaces(30 - tit.length())
+						+ m.getShowingStatus().toString());
 			}
 		}
 
 		else if (orderBy.equals("sales")) {
 			HashMap<Movie, Integer> salesList = topSales(); // fakeTopSales();
 			if (salesList.isEmpty()) {
-				for (Movie m: movies) {
+				for (Movie m : movies) {
 					String tit = reduceStringLength(m.getTitle(), 25);
-					printMenuWithoutSpace(++i + ". " + tit 
-						+ generateSpaces(30 - tit.length())
-						+ m.getShowingStatus().toString() 
-						+ generateSpaces(18 - m.getShowingStatus().toString().length())
-						+ 0 + " tickets sold");
+					printMenuWithoutSpace(++i + ". " + tit
+							+ generateSpaces(30 - tit.length())
+							+ m.getShowingStatus().toString()
+							+ generateSpaces(18 - m.getShowingStatus().toString().length())
+							+ 0 + " tickets sold");
 				}
-			}
-			else {
+			} else {
 				for (Movie m : movies) {
 					Integer sales = 0;
 					for (Map.Entry<Movie, Integer> movie : salesList.entrySet()) {
@@ -258,11 +257,11 @@ public class MoviesList extends BaseMenu {
 					String tit = reduceStringLength(m.getTitle(), 25);
 					if (m.getShowingStatus().equals(Constants.SHOWING_STATUS.EOS))
 						continue;
-					printMenuWithoutSpace(++i + ". " + tit 
-						+ generateSpaces(30 - tit.length())
-						+ m.getShowingStatus().toString()
-						+ generateSpaces(18 - m.getShowingStatus().toString().length())
-						+ sales + " tickets sold");
+					printMenuWithoutSpace(++i + ". " + tit
+							+ generateSpaces(30 - tit.length())
+							+ m.getShowingStatus().toString()
+							+ generateSpaces(18 - m.getShowingStatus().toString().length())
+							+ sales + " tickets sold");
 				}
 			}
 		}
@@ -273,16 +272,16 @@ public class MoviesList extends BaseMenu {
 				if (m.getShowingStatus().equals(Constants.SHOWING_STATUS.EOS))
 					continue;
 				if (!m.getOverallRating().equals("N/A"))
-					printMenuWithoutSpace(++i + ". " + tit 
-						+ generateSpaces(30 - tit.length())
-						+ m.getShowingStatus().toString() 
-						+ generateSpaces(18 - m.getShowingStatus().toString().length()) 
-						+ m.getOverallRating() + " stars");
-				else
-					printMenuWithoutSpace(++i + ". " + tit 
+					printMenuWithoutSpace(++i + ". " + tit
 							+ generateSpaces(30 - tit.length())
-							+  m.getShowingStatus().toString() 
-							+ generateSpaces(18 - m.getShowingStatus().toString().length()) 
+							+ m.getShowingStatus().toString()
+							+ generateSpaces(18 - m.getShowingStatus().toString().length())
+							+ m.getOverallRating() + " stars");
+				else
+					printMenuWithoutSpace(++i + ". " + tit
+							+ generateSpaces(30 - tit.length())
+							+ m.getShowingStatus().toString()
+							+ generateSpaces(18 - m.getShowingStatus().toString().length())
 							+ m.getOverallRating());
 			}
 		}
@@ -301,10 +300,12 @@ public class MoviesList extends BaseMenu {
 	}
 
 	/**
-         * Function that gets the current top 5 movies based on reviews or sales.
-	 * @param orderBy The Filter based on how the movies is ranked based on review or sales.
+	 * Function that gets the current top 5 movies based on reviews or sales.
+	 * 
+	 * @param orderBy The Filter based on how the movies is ranked based on review
+	 *                or sales.
 	 * @return a arrayList of top5 movies.
-         */
+	 */
 	private ArrayList<Movie> getTop5Movies(String orderBy) {
 		ArrayList<Movie> top5 = new ArrayList<>();
 
@@ -319,10 +320,9 @@ public class MoviesList extends BaseMenu {
 			ArrayList<Movie> movieList = mc.readFile();
 			if (salesList.isEmpty()) {
 				for (Movie m : movieList)
-				if (!m.getShowingStatus().equals(Constants.SHOWING_STATUS.EOS))
-					top5.add(m);
-			}
-			else {
+					if (!m.getShowingStatus().equals(Constants.SHOWING_STATUS.EOS))
+						top5.add(m);
+			} else {
 				HashMap<Movie, Integer> sortedSalesList = sortHashMap(salesList);
 				for (Map.Entry<Movie, Integer> sales : sortedSalesList.entrySet()) {
 					Movie m = sales.getKey();
@@ -353,11 +353,12 @@ public class MoviesList extends BaseMenu {
 	}
 
 	/**
-         * Function that compares the movie ratings.
+	 * Function that compares the movie ratings.
+	 * 
 	 * @param m1 The first Movie to be compared.
 	 * @param m2 The second Movie to be compared.
 	 * @return a value which indicates which movie is the better rating.
-         */
+	 */
 	private int compareRating(Movie m1, Movie m2) {
 		String r1 = m1.getOverallRating();
 		String r2 = m2.getOverallRating();
@@ -375,10 +376,10 @@ public class MoviesList extends BaseMenu {
 	}
 
 	/**
-     	* Function that sorts a hashmap buy value.
-     	* * @param h The hashmap to be sorted
-     	* * @return a sorted hashmap
-     	*/
+	 * Function that sorts a hashmap buy value.
+	 * * @param h The hashmap to be sorted
+	 * * @return a sorted hashmap
+	 */
 	private HashMap<Movie, Integer> sortHashMap(HashMap<Movie, Integer> h) {
 		LinkedHashMap<Movie, Integer> sortedMap = new LinkedHashMap<>();
 		h.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
@@ -388,9 +389,9 @@ public class MoviesList extends BaseMenu {
 	}
 
 	/**
-         * Function that creates a hashmap of movie and its corresponding sales.
-         * * @return the hashmap of movies as key and corresponding sales as value
-         */
+	 * Function that creates a hashmap of movie and its corresponding sales.
+	 * * @return the hashmap of movies as key and corresponding sales as value
+	 */
 	private HashMap<Movie, Integer> topSales() {
 		ArrayList<Booking> bookingList = bc.readFile();
 		HashMap<Movie, Integer> movieSales = new HashMap<Movie, Integer>();
@@ -411,10 +412,10 @@ public class MoviesList extends BaseMenu {
 		}
 		return movieSales;
 	}
-	
+
 	/**
-         * idk
-         */
+	 * idk
+	 */
 	private HashMap<Movie, Integer> fakeTopSales() {
 		ArrayList<Booking> bookingList = new ArrayList<Booking>();
 		HashMap<Movie, Integer> movieSales = new HashMap<Movie, Integer>();
@@ -432,7 +433,7 @@ public class MoviesList extends BaseMenu {
 				bookingList.add(b1);
 			}
 		}
-		
+
 		for (Booking b : bookingList) {
 			movieSales.put(b.getMovie(), movieSales.getOrDefault(b.getMovie(), 0) + 1);
 		}
