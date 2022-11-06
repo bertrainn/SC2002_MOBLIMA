@@ -6,14 +6,27 @@ import Boundary.BaseMenu;
 import Boundary.MainMenu;
 import Entity.MovieGoer;
 
+/**
+ * This shows the main menu of the MovieGoer.
+ */
 public class MovieGoerMainMenu extends BaseMenu {
 
+	/**
+	 * The Menu's MovieGoer.
+	 */
 	private MovieGoer cust;
 
+	/**
+         * Creates a new Main Menu for the MovieGoer with the given parameters.
+         * @param m This MovieGoerMainMenu's MovieGoer.
+         */
 	public MovieGoerMainMenu(MovieGoer m) {
 		cust = m;
 	}
 
+	/**
+         * Loads the MovieGoer's Main Menu.
+         */
 	@Override
 	public void load() {
 		printHeader("Welcome to customer main menu, " + cust.getName());
