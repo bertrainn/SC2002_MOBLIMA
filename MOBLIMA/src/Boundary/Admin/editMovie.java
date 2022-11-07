@@ -168,7 +168,7 @@ public class editMovie extends BaseMenu {
 			GenreList.add(entries);
 		}
 
-		OpeningDate = getDateInput("Enter movie's opening date (dd MMM yyyy): ");
+		OpeningDate = getDateInput("Enter movie's opening date (e.g. 10 Nov 2022): ");
 		ClosingDate = OpeningDate.plusDays(30);
 
 		duration = Duration.ofMinutes(getIntInput_Min("Enter the duration of the movie (in minutes): ", 0));

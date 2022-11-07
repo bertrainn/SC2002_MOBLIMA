@@ -32,7 +32,7 @@ public class AdminMainMenu extends BaseMenu {
 	public void load() {
 		printHeader("Welcome to Admin main menu, " + User.getUsername());
 		printMenu("Choose from one of the following options:",
-				"1. Movie Options",
+				"1. Movie Settings",
 				"2. Cinemplex & Session Settings",
 				"3. Edit System Settings",
 				"4. Logout");
