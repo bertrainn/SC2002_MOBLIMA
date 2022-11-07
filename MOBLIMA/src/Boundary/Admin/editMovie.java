@@ -32,16 +32,16 @@ public class editMovie extends BaseMenu {
 	Booking_Controller booking_controller = new Booking_Controller();
 
 	/**
-         * Loads the Edit Movie Menu.
-         */
+	 * Loads the Edit Movie Menu.
+	 */
 	@Override
 	public void load() {
 		showMenu();
 	}
 
 	/**
-         * Shows the content of the Menu that will be loaded into the edit movie menu.
-         */
+	 * Shows the content of the Menu that will be loaded into the edit movie menu.
+	 */
 	public void showMenu() {
 		printHeader("Movie Options");
 		printMenu("Choose from one of the following options:",
@@ -77,8 +77,8 @@ public class editMovie extends BaseMenu {
 	}
 
 	/**
-         * Function to add movies.
-         */
+	 * Function to add movies.
+	 */
 	public void AddMovie() {
 		int choice = -1;
 		int i;
@@ -173,7 +173,8 @@ public class editMovie extends BaseMenu {
 
 		duration = Duration.ofMinutes(getIntInput_Min("Enter the duration of the movie (in minutes): ", 0));
 
-		movie_controller.addMovie(title, description, age_class, DirectorList, ActorList, GenreList, reviewList, OpeningDate,
+		movie_controller.addMovie(title, description, age_class, DirectorList, ActorList, GenreList, reviewList,
+				OpeningDate,
 				ClosingDate, duration);
 		System.out.println("Addition success, returning to settings menu...");
 		try {
@@ -186,18 +187,23 @@ public class editMovie extends BaseMenu {
 	}
 
 	/**
-         * Function to stop the movie on showing for the moviegoer as 
+	 * Function to stop the movie on showing for the moviegoer as
 	 * the movie is no longer showing.
-         */
+	 */
 	public void StopShowingMovie() {
 		// don't need to remove the movie from the database: just change it to EOS;
 
 		ArrayList<Movie> MovieList = movie_controller.readFile();
 		Movie temp;
 		this.ListMovies();
+		printMenu(MovieList.size() + 1 + ". Back");
 
 		System.out.println("Enter the index of the movie you want to edit: ");
-		int movie_choice = userInput(1, MovieList.size());
+		int movie_choice = userInput(1, MovieList.size() + 1);
+
+		if (movie_choice == MovieList.size() + 1) {
+			load();
+		}
 
 		temp = MovieList.get(movie_choice - 1);
 		movie_controller.updateMovie(Movie_Controller.CHOICE_SHOWING, temp.getId(), Constants.SHOWING_STATUS.EOS);
@@ -212,8 +218,8 @@ public class editMovie extends BaseMenu {
 	}
 
 	/**
-         * Function to update the details of the movie.
-         */
+	 * Function to update the details of the movie.
+	 */
 	public void UpdateMovie() {
 
 		ArrayList<Movie> MovieList = movie_controller.readFile();
@@ -223,8 +229,14 @@ public class editMovie extends BaseMenu {
 		String entries;
 		int i;
 		this.ListMovies();
+		printMenu(MovieList.size() + 1 + ". Back");
+		
 		System.out.println("Enter the index of the movie you want to edit: ");
-		int movie_choice = userInput(1, MovieList.size());
+		int movie_choice = userInput(1, MovieList.size() + 1);
+
+		if (movie_choice == MovieList.size() + 1) {
+			load();
+		}
 
 		temp = MovieList.get(movie_choice - 1);
 
@@ -241,7 +253,7 @@ public class editMovie extends BaseMenu {
 				"10. Duration",
 				"11. Back");
 
-		int choice = userInput(1, 12);
+		int choice = userInput(1, 11);
 		switch (choice) {
 			case 1:
 				String title = getStringInput("Enter the new title: ");
@@ -372,8 +384,8 @@ public class editMovie extends BaseMenu {
 	}
 
 	/**
-         * Function to list the movies by their sales.
-         */
+	 * Function to list the movies by their sales.
+	 */
 	public void ListMoviesBySales() {
 		ArrayList<Movie> top5 = new ArrayList<Movie>();
 		HashMap<Movie, Integer> movieSales = topSales();
@@ -420,13 +432,17 @@ public class editMovie extends BaseMenu {
 			System.out.printf("%-3d %-4d %-25s %-15d", ++i, m.getId(), reduceStringLength(m.getTitle(), 25),
 					movieSales.get(m));
 			System.out.println();
+
+			printMenuWithoutSpace("Enter any number to go back");
+			userInput(0, 9);
+			load();
 		}
 
 	}
 
 	/**
-         * Function to list the movies by their rating.
-         */
+	 * Function to list the movies by their rating.
+	 */
 	public void ListMoviesByRating() {
 		ArrayList<Movie> top5 = new ArrayList<Movie>();
 		ArrayList<Movie> movieList = movie_controller.readFile();
@@ -462,19 +478,33 @@ public class editMovie extends BaseMenu {
 		System.out.printf("%-3s %-4s %-25s %-15s", "No.", "ID", "Name", "Overall Review");
 		System.out.println();
 		for (Movie m : top5) {
-			System.out.printf("%-3d %-4d %-25s %-15.2f", ++i, m.getId(), m.getTitle(), m.getOverallRating());
-			System.out.println();
-		}
+			String tit = reduceStringLength(m.getTitle(), 25);
+			if (!m.getOverallRating().equals("N/A"))
+				printMenuWithoutSpace(++i + ". " + tit
+						+ generateSpaces(30 - tit.length())
+						+ m.getShowingStatus().toString()
+						+ generateSpaces(18 - m.getShowingStatus().toString().length())
+						+ m.getOverallRating() + " stars");
+			else
+				printMenuWithoutSpace(++i + ". " + tit
+						+ generateSpaces(30 - tit.length())
+						+ m.getShowingStatus().toString()
+						+ generateSpaces(18 - m.getShowingStatus().toString().length())
+						+ m.getOverallRating());
 
+		}
+		printMenuWithoutSpace("Enter any number to go back");
+		userInput(0, 9);
+		load();
 	}
 
 	/**
-         * Function that compares the movie ratings.
+	 * Function that compares the movie ratings.
 	 *
 	 * @param m1 The first Movie to be compared.
 	 * @param m2 The second Movie to be compared.
 	 * @return a value which indicates which movie is the better rating.
-         */
+	 */
 	private int compareRating(Movie m1, Movie m2) {
 		String r1 = m1.getOverallRating();
 		String r2 = m2.getOverallRating();
@@ -492,8 +522,8 @@ public class editMovie extends BaseMenu {
 	}
 
 	/**
-         * idk
-         */
+	 * idk
+	 */
 	private HashMap<Movie, Integer> topSales() {
 		ArrayList<Booking> bookingList = booking_controller.readFile();
 		HashMap<Movie, Integer> movieSales = new HashMap<Movie, Integer>();
@@ -505,8 +535,8 @@ public class editMovie extends BaseMenu {
 	}
 
 	/**
-         * idk
-         */
+	 * idk
+	 */
 	private HashMap<Movie, Integer> sortHashMap(HashMap<Movie, Integer> h) {
 		LinkedHashMap<Movie, Integer> sortedMap = new LinkedHashMap<>();
 		h.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
@@ -516,8 +546,8 @@ public class editMovie extends BaseMenu {
 	}
 
 	/**
-         * Function to show movies and the movie's showing status.
-         */
+	 * Function to show movies and the movie's showing status.
+	 */
 	public void ListMovies() {
 		// show movie + showing status
 		ArrayList<Movie> moviesList = movie_controller.readFile();
@@ -531,8 +561,7 @@ public class editMovie extends BaseMenu {
 		}
 	}
 
-	
-	/** 
+	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
