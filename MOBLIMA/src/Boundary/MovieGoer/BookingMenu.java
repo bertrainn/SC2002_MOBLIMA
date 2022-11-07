@@ -89,20 +89,21 @@ public class BookingMenu extends BaseMenu {
 		else {
 			int i = 0;
 			int flag = 0;
-			ArrayList<String> movieNames = new ArrayList<>();
+			ArrayList<Movie> movieNames = new ArrayList<Movie>();
 			printMenuWithoutSpace("Choose one of the following movies:");
 			for (MovieSession ms : curMs) {
-				String movieName = reduceStringLength(ms.getShownMovie().getTitle(), 60);
-				for (String s : movieNames) {
-					if (s.equals(movieName)) {
+				flag = 0;
+				String movieName = ms.getShownMovie().getTitle();
+				for (Movie s : movieNames) {
+					if (s.getTitle().equals(movieName)) {
 						flag = 1;
 						break;
 					}
 				}
 				if (flag == 1)
 					continue;
-				movieNames.add(movieName);
-				printMenuWithoutSpace(++i + ". " + movieName);
+				movieNames.add(ms.getShownMovie());
+				printMenuWithoutSpace(++i + ". " + reduceStringLength(movieName, 60));
 			}
 			printMenu(++i + ". Back");
 
@@ -111,8 +112,7 @@ public class BookingMenu extends BaseMenu {
 			if (choice == i)
 				back();
 			else {
-				MovieSession ms = curMs.get(choice - 1);
-				Movie m = ms.getShownMovie();
+				Movie m = movieNames.get(choice - 1);
 				showSessions(m);
 			}
 		}
@@ -136,20 +136,21 @@ public class BookingMenu extends BaseMenu {
 		else {
 			int i = 0;
 			int flag = 0;
-			ArrayList<String> movieNames = new ArrayList<>();
+			ArrayList<Movie> movieNames = new ArrayList<Movie>();
 			printMenuWithoutSpace("Choose one of the following movies:");
 			for (MovieSession ms : allMovieSessions) {
-				String movieName = reduceStringLength(ms.getShownMovie().getTitle(), 60);
-				for (String s : movieNames) {
-					if (s.equals(movieName)) {
+				flag = 0;
+				String movieName = ms.getShownMovie().getTitle();
+				for (Movie s : movieNames) {
+					if (s.getTitle().equals(movieName)) {
 						flag = 1;
 						break;
 					}
 				}
 				if (flag == 1)
 					continue;
-				movieNames.add(movieName);
-				printMenuWithoutSpace(++i + ". " + movieName);
+				movieNames.add(ms.getShownMovie());
+				printMenuWithoutSpace(++i + ". " + reduceStringLength(movieName, 60));
 			}
 			printMenu(++i + ". Back");
 	
@@ -158,8 +159,7 @@ public class BookingMenu extends BaseMenu {
 			if (choice == i)
 				back();
 			else {
-				MovieSession ms = allMovieSessions.get(choice - 1);
-				Movie m = ms.getShownMovie();
+				Movie m = movieNames.get(choice - 1);
 				for (MovieSession ms2 : allMovieSessions) {
 					if (ms2.getShownMovie().getTitle().equals(m.getTitle()))
 						curMs.add(ms2);
@@ -202,8 +202,12 @@ public class BookingMenu extends BaseMenu {
 			
 			String cineplexCode = ms.getCinemaCode().substring(0, 1);
 			Cineplex cinp = cpc.getCineplexByCode(cineplexCode);
-			printMenuWithoutSpace(++i + ". " + cinp.getName() + generateSpaces(15 - cinp.getName().length()) 
-				+ ms.getShowDateTime() + generateSpaces(25 - ms.getShowDateTime().toString().length()) + availability);
+			String type = ms.getMovieType().toString();
+			if (type.length()>11)
+				type = type.substring(0, 11);
+			printMenuWithoutSpace(++i + ". " + reduceStringLength(cinp.getName(), 14) + generateSpaces(15 - cinp.getName().length()) 
+				+ ms.getShowDateTime() + generateSpaces(25 - ms.getShowDateTime().toString().length()) + type 
+				+ generateSpaces(15 - type.length()) + availability);
 		}
 		printMenu(++i + ". Back");
 		
@@ -254,8 +258,14 @@ public class BookingMenu extends BaseMenu {
 				availability = String.valueOf(seatCount) + " seat(s) available";
 			}
 			avail.add(seatCount);
+			
+			String type = ms.getMovieType().toString();
+			if (type.length()>11)
+				type = type.substring(0, 11);
+			
 			printMenuWithoutSpace(++i + ". " + ms.getShowDateTime() + 
-					generateSpaces(25 - ms.getShowDateTime().toString().length()) + availability);
+					generateSpaces(25 - ms.getShowDateTime().toString().length()) 
+				+ type + generateSpaces(15 - type.length()) + availability);
 		}
 		printMenu(++i + ". Back");
 
