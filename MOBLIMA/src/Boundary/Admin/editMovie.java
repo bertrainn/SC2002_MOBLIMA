@@ -230,7 +230,7 @@ public class editMovie extends BaseMenu {
 		int i;
 		this.ListMovies();
 		printMenu(MovieList.size() + 1 + ". Back");
-		
+
 		System.out.println("Enter the index of the movie you want to edit: ");
 		int movie_choice = userInput(1, MovieList.size() + 1);
 
@@ -559,14 +559,5 @@ public class editMovie extends BaseMenu {
 					m.getShowingStatus().toString());
 			System.out.println();
 		}
-	}
-
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		editMovie eM = new editMovie();
-		eM.AddMovie();
-		eM.ListMovies();
 	}
 }
