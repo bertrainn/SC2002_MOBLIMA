@@ -11,6 +11,7 @@ import Control.MovieSession_Controller;
 import Control.Movie_Controller;
 import Entity.Cinema;
 import Entity.Cineplex;
+import Entity.Constants;
 import Entity.Movie;
 import Entity.MovieGoer;
 import Entity.MovieSession;
@@ -67,8 +68,14 @@ public class BookingMenu extends BaseMenu {
          */
 	private void showMenu() {
 		ArrayList<MovieSession> curMs = new ArrayList<MovieSession>();
-		ArrayList<MovieSession> allMovieSessions = msc.readFile();
+		ArrayList<MovieSession> movSes = msc.readFile();
+		ArrayList<MovieSession> allMovieSessions = new ArrayList<MovieSession>();
 		ArrayList<Cinema> cList = cp.getCinemaList();
+		
+		for (MovieSession ms : movSes) {
+			if (ms.getShownMovie().getShowingStatus() != Constants.SHOWING_STATUS.CS)
+				allMovieSessions.add(ms);
+		}
 
 		printHeader("Movies showing at " + cp.getName());
 
@@ -123,8 +130,14 @@ public class BookingMenu extends BaseMenu {
      */
 	private void showMenuByMovie() {
 		ArrayList<MovieSession> curMs = new ArrayList<MovieSession>();
-		ArrayList<MovieSession> allMovieSessions = msc.readFile();
-	
+		ArrayList<MovieSession> movSes = msc.readFile();
+		ArrayList<MovieSession> allMovieSessions = new ArrayList<MovieSession>();
+		
+		for (MovieSession ms : movSes) {
+			if (ms.getShownMovie().getShowingStatus() != Constants.SHOWING_STATUS.CS)
+				allMovieSessions.add(ms);
+		}
+		
 		printHeader("Movies currently showing");
 		
 		if (allMovieSessions.isEmpty()) {
