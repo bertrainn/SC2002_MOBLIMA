@@ -81,7 +81,12 @@ public class LogIn extends BaseMenu {
     public void load() {
         String user, pw;
         User temp;
-        BaseMenu next = new LogIn();
+        BaseMenu next;
+        if (m != null)
+        	next = new LogIn(m);
+        else if (ms != null)
+        	next = new LogIn(ms, chosenSeats, cp);
+        else next = new LogIn();
         int choice = 1;
 
         printHeader("Login");
@@ -109,10 +114,10 @@ public class LogIn extends BaseMenu {
                         next = new AdminMainMenu(adminController.getAdminByUsername(user));
                         break;
                     case MOVIEGOER:
-                        if (this.getPrevMenu() instanceof BookingConfirmationMenu)
+                        if (ms != null)
                             next = new BookingConfirmationMenu(movieGoerController.getMovieGoerByUsername(user), ms,
                                     chosenSeats, cp);
-                        else if (this.getPrevMenu() instanceof ReviewView)
+                        else if (m != null)
                         	next = new ReviewView(m, movieGoerController.getMovieGoerByUsername(user), false);
                         else
                             next = new MovieGoerMainMenu(movieGoerController.getMovieGoerByUsername(user));
@@ -130,7 +135,7 @@ public class LogIn extends BaseMenu {
         if (choice == 0)
             navigate(this, new MainMenu());
         else {
-            navigate(this, next);
+        	navigate(this, next);
         }
     }
 }

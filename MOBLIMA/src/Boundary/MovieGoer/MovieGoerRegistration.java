@@ -99,6 +99,10 @@ public class MovieGoerRegistration extends BaseMenu {
 			int choice = userInput(0, 9);
 			if (choice == 0)
 				navigate(this, new MainMenu());
+			else if (m != null)
+				navigate(this, new MovieGoerRegistration(m));
+			else if (ms != null)
+				navigate(this, new MovieGoerRegistration(ms, chosenSeats, cp));
 			else
 				navigate(this, new MovieGoerRegistration());
 		}
@@ -116,9 +120,9 @@ public class MovieGoerRegistration extends BaseMenu {
 			}
 
 			MovieGoer mg = new MovieGoer(username, pw, name, email, num, PostedReviewsList, BookingList);
-			if (this.getPrevMenu() instanceof BookingConfirmationMenu)
+			if (ms != null)
 				navigate(this, new BookingConfirmationMenu(mg, ms, chosenSeats, cp));
-			else if (this.getPrevMenu() instanceof ReviewView)
+			else if (m != null)
 				navigate(this, new ReviewView(m, mg, false));
 			else
 				navigate(this, new MovieGoerMainMenu(mg));
