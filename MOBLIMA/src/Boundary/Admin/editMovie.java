@@ -187,8 +187,8 @@ public class editMovie extends BaseMenu {
 	}
 
 	/**
-	 * Function to stop the movie on showing for the moviegoer as
-	 * the movie is no longer showing.
+	 * This method changes a movie's showing status to End of Showing,
+	 * "pesudo-deleting it for the MovieGoer"
 	 */
 	public void StopShowingMovie() {
 		// don't need to remove the movie from the database: just change it to EOS;
@@ -522,7 +522,8 @@ public class editMovie extends BaseMenu {
 	}
 
 	/**
-	 * idk
+	 * This method is used to convert our bookings into a hashmap to keep count of
+	 * the ticket sales of each movie in our system
 	 */
 	private HashMap<Movie, Integer> topSales() {
 		ArrayList<Booking> bookingList = booking_controller.readFile();
@@ -535,7 +536,12 @@ public class editMovie extends BaseMenu {
 	}
 
 	/**
-	 * idk
+	 * This method takes in a hashmap of movies and integers and sorts it based on
+	 * the integer values.
+	 * 
+	 * @param h is the hashmap we would like to sort
+	 * 
+	 * @return the sorted hashmap.
 	 */
 	private HashMap<Movie, Integer> sortHashMap(HashMap<Movie, Integer> h) {
 		LinkedHashMap<Movie, Integer> sortedMap = new LinkedHashMap<>();
