@@ -443,32 +443,4 @@ public class MoviesList extends BaseMenu {
 		}
 		return movieSales;
 	}
-
-	/**
-	 * idk
-	 */
-	private HashMap<Movie, Integer> fakeTopSales() {
-		ArrayList<Booking> bookingList = new ArrayList<Booking>();
-		HashMap<Movie, Integer> movieSales = new HashMap<Movie, Integer>();
-		ArrayList<Movie> moviesList = mc.readFile();
-
-		Cinema c1 = new Cinema(null, null, null, null);
-		for (int i = 0; i < 5; i++) {
-			for (Movie m : moviesList) {
-				if (i % 2 == 0 && m.getTitle().equals("Black Adam"))
-					continue;
-				if (i == 3 && m.getTitle().equals("Thor: Love and Thunder"))
-					continue;
-
-				Booking b1 = new Booking(0, c1, m, null, null, null);
-				bookingList.add(b1);
-			}
-		}
-
-		for (Booking b : bookingList) {
-			movieSales.put(b.getMovie(), movieSales.getOrDefault(b.getMovie(), 0) + 1);
-		}
-		return movieSales;
-	}
-
 }

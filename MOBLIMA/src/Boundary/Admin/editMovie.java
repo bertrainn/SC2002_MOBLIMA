@@ -528,9 +528,20 @@ public class editMovie extends BaseMenu {
 	private HashMap<Movie, Integer> topSales() {
 		ArrayList<Booking> bookingList = booking_controller.readFile();
 		HashMap<Movie, Integer> movieSales = new HashMap<Movie, Integer>();
-
 		for (Booking b : bookingList) {
-			movieSales.put(b.getMovie(), movieSales.getOrDefault(b.getMovie(), 0) + 1);
+			int flag = 0;
+			Movie m = b.getMovie();
+			int count = b.getTicketList().size();
+			for (Map.Entry<Movie, Integer> mov : movieSales.entrySet()) {
+				String movTitle = mov.getKey().getTitle();
+				if (movTitle.equals(m.getTitle())) {
+					flag = 1;
+					movieSales.put(mov.getKey(), mov.getValue() + count);
+					break;
+				}
+			}
+			if (flag == 0)
+				movieSales.put(b.getMovie(), count);
 		}
 		return movieSales;
 	}
