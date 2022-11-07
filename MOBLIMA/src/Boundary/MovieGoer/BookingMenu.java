@@ -162,7 +162,7 @@ public class BookingMenu extends BaseMenu {
 				Movie m = ms.getShownMovie();
 				for (MovieSession ms2 : allMovieSessions) {
 					if (ms2.getShownMovie().getTitle().equals(m.getTitle()))
-						curMs.add(ms);
+						curMs.add(ms2);
 				}
 				
 				showMovies(curMs);
@@ -176,13 +176,34 @@ public class BookingMenu extends BaseMenu {
      */
 	private void showMovies(ArrayList<MovieSession> curMs) {
 		int i = 0;
+		ArrayList<Integer> avail = new ArrayList<Integer>();
 		String movieName = reduceStringLength(curMs.get(0).getShownMovie().getTitle(), 60);
 		printHeader("Movie sessions for " + movieName);
 		printMenuWithoutSpace("Choose one of the following sessions:");
 		for (MovieSession ms : curMs) {
+			String availability;
+			SeatLayout availSeats = ms.getSeatPlan();
+			int seatCount = 0, coupleCount = 0, total = availSeats.getCol()*availSeats.getRow();
+			
+			for (int j=0; j<total-1; j++) {
+				if (!availSeats.isSeatAssign(j))
+					seatCount++;
+				if (availSeats.isCoupleSeat(j) != -1 && !availSeats.isSeatAssign(j))
+					coupleCount++;
+			}
+			seatCount = seatCount - (coupleCount/2);
+			if (seatCount == 0) {
+				availability = "Sold out";
+			}
+			else {
+				availability = String.valueOf(seatCount) + " seat(s) available";
+			}
+			avail.add(seatCount);
+			
 			String cineplexCode = ms.getCinemaCode().substring(0, 1);
 			Cineplex cinp = cpc.getCineplexByCode(cineplexCode);
-			printMenuWithoutSpace(++i + ". " + cinp.getName() + generateSpaces(20 - cinp.getName().length()) + ms.getShowDateTime());
+			printMenuWithoutSpace(++i + ". " + cinp.getName() + generateSpaces(15 - cinp.getName().length()) 
+				+ ms.getShowDateTime() + generateSpaces(25 - ms.getShowDateTime().toString().length()) + availability);
 		}
 		printMenu(++i + ". Back");
 		
@@ -195,8 +216,7 @@ public class BookingMenu extends BaseMenu {
 			String cineplexCode = ms.getCinemaCode().substring(0, 1);
 			cp = cpc.getCineplexByCode(cineplexCode);
 			printMenu("How many tickets would you like to purchase? (Enter 1 to buy 1 couple seat)");
-			int maxSeats = ms.getSeatPlan().getCol() * ms.getSeatPlan().getRow();
-			int noOfSeats = userInput(1, maxSeats);
+			int noOfSeats = userInput(1, avail.get(choice-1));
 			showSeatingPlan(ms, noOfSeats);
 		}
 	}
@@ -207,13 +227,35 @@ public class BookingMenu extends BaseMenu {
          */
 	private void showSessions(Movie m) {
 		int i = 0;
+		ArrayList<Integer> avail = new ArrayList<Integer>();
 		ArrayList<MovieSession> sessions = msc.readFileByValues(MovieSession_Controller.CHOICE_MOVIE, m.getId());
 		
 		String movieName = reduceStringLength(m.getTitle(), 40);
 
 		printMenuWithoutSpace("Showtimes for " + movieName + ":");
 		for (MovieSession ms : sessions) {
-			printMenuWithoutSpace(++i + ". " + ms.getShowDateTime());
+			if (!ms.getCinemaCode().substring(0, 1).equals(this.cp.getCineplexCode()))
+				continue;
+			String availability;
+			SeatLayout availSeats = ms.getSeatPlan();
+			int seatCount = 0, coupleCount = 0, total = availSeats.getCol()*availSeats.getRow();
+			
+			for (int j=0; j<total-1; j++) {
+				if (!availSeats.isSeatAssign(j))
+					seatCount++;
+				if (availSeats.isCoupleSeat(j) != -1 && !availSeats.isSeatAssign(j))
+					coupleCount++;
+			}
+			seatCount = seatCount - (coupleCount/2);
+			if (seatCount == 0) {
+				availability = "Sold out";
+			}
+			else {
+				availability = String.valueOf(seatCount) + " seat(s) available";
+			}
+			avail.add(seatCount);
+			printMenuWithoutSpace(++i + ". " + ms.getShowDateTime() + 
+					generateSpaces(25 - ms.getShowDateTime().toString().length()) + availability);
 		}
 		printMenu(++i + ". Back");
 
@@ -224,8 +266,7 @@ public class BookingMenu extends BaseMenu {
 		else {
 			MovieSession ms = sessions.get(choice - 1);
 			printMenu("How many tickets would you like to purchase? (Enter 1 to buy 1 couple seat)");
-			int maxSeats = ms.getSeatPlan().getCol() * ms.getSeatPlan().getRow();
-			int noOfSeats = userInput(1, maxSeats);
+			int noOfSeats = userInput(1, avail.get(choice-1));
 			showSeatingPlan(ms, noOfSeats);
 		}
 
