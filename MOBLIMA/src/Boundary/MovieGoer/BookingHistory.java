@@ -4,6 +4,7 @@ import static Control.UserInput_Controller.*;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -11,6 +12,7 @@ import Boundary.BaseMenu;
 import Control.Booking_Controller;
 import Entity.Booking;
 import Entity.MovieGoer;
+import Entity.MovieSession;
 import Entity.Ticket;
 
 /**
@@ -54,6 +56,8 @@ public class BookingHistory extends BaseMenu {
 		}
 		
 		for (Booking b : bookings) {
+			MovieSession movSes = null;
+			String dateTimeMov;
 			int indent = String.valueOf(++i).length() + 2;
 			
 			int year = Integer.parseInt(b.getTID().substring(3, 7));
@@ -64,6 +68,8 @@ public class BookingHistory extends BaseMenu {
 			
 			LocalDate date = LocalDate.of(year, month, day);
 			LocalTime time = LocalTime.of(hour, min);
+			String dateStr = date.format(DateTimeFormatter.ofPattern("dd MMM yyyy"));
+			String timeStr = time.format(DateTimeFormatter.ofPattern("hh:mm a"));
 			
 			ArrayList<Ticket> tixList = b.getTicketList();
 			Collections.sort(tixList, (o1, o2) -> Integer.compare(o1.getSeat().getSeatID(), o2.getSeat().getSeatID()));
@@ -74,7 +80,28 @@ public class BookingHistory extends BaseMenu {
 			seats = seats + tixList.get(tixList.size()-1).getSeat().getSeatID();
 			String tit = reduceStringLength(b.getMovie().getTitle(), 50);
 			
-			printMenu(i + ". " + "Booking date: " + date + " " + time,
+			ArrayList<MovieSession> msList = b.getCinema().getMovieSessions();
+			for (MovieSession ms : msList) {
+				int flag = 0;
+				if (ms.getShownMovie().getTitle().equals(b.getMovie().getTitle())) {
+					if (!ms.getCinemaCode().equals(b.getCinema().getcinemaCode()))
+						flag = 1;
+					if (ms.getMovieType() != b.getTicketList().get(0).getMovieType())
+						flag = 1;
+					if (flag == 0) {
+						movSes = ms;
+						break;
+					}
+				}
+			}
+			
+			if (movSes == null)
+				dateTimeMov = "28-Nov-2022";
+			else 
+				dateTimeMov = movSes.getShowDateTime();
+			
+			printMenu(i + ". " + "Booking date: " + dateStr + ", " + timeStr,
+					generateSpaces(indent) + "Movie date: " + dateTimeMov,
 					generateSpaces(indent) + "Movie: " + tit,
 					generateSpaces(indent) + "Cineplex: " + b.getCineplex().getName(),
 					generateSpaces(indent) + "Cinema Hall: " + b.getCinema().getcinemaCode(),
