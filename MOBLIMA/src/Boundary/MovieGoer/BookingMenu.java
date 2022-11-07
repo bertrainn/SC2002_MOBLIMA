@@ -40,6 +40,11 @@ public class BookingMenu extends BaseMenu {
 	 * The MovieGoer who booked the tickets.
 	 */
 	private MovieGoer cust;
+	
+	/**
+	 * The Movie that was chosen by the moviegoer
+	 */
+	private Movie mov;
 
 	/**
          * Creates a new Booking Menu with the given parameters.
@@ -51,16 +56,43 @@ public class BookingMenu extends BaseMenu {
 		cust = m;
 		this.cp = cp;
 	}
+	
+	/**
+     * Creates a new Booking Menu with the given parameters.
+ *
+     * @param m  This BookingMenu's MovieGoer.
+     * @param mov This BookingMenu's Movie.
+     */
+	public BookingMenu(MovieGoer m, Movie mov) {
+		cust = m;
+		this.mov = mov;
+	}
 
 	/**
          * Loads the Booking Menu.
          */
 	@Override
 	public void load() {
-		if (cp != null)
-			showMenu();
-		else 
-			showMenuByMovie();
+		if (mov == null) {
+			if (cp != null)
+				showMenu();
+			else
+				showMenuByMovie();
+		}
+		else {
+			ArrayList<MovieSession> movSess = msc.readFile();
+			ArrayList<MovieSession> curMs = new ArrayList<MovieSession>();
+			for (MovieSession ms : movSess) {
+				if (ms.getShownMovie().getShowingStatus() != Constants.SHOWING_STATUS.CS && ms.getShownMovie().getTitle().equals(mov.getTitle()))
+					curMs.add(ms);
+			}
+			if (curMs.isEmpty()) {
+				printMenu("There are no sessions for this movie, enter any number to go back.");
+				userInput(0, 9);
+				navigate(this, new MovieDetailsView(mov, cust));
+			}
+			showMovies(curMs);
+		}
 	}
 
 	/**
@@ -192,6 +224,11 @@ public class BookingMenu extends BaseMenu {
 		ArrayList<Integer> avail = new ArrayList<Integer>();
 		String movieName = reduceStringLength(curMs.get(0).getShownMovie().getTitle(), 60);
 		printHeader("Movie sessions for " + movieName);
+		if (curMs.isEmpty()) {
+			printMenu("There are no sessions for this movie, enter any number to go back.");
+			userInput(0, 9);
+			navigate(this, new MovieDetailsView(mov, cust));
+		}
 		printMenuWithoutSpace("Choose one of the following sessions:");
 		for (MovieSession ms : curMs) {
 			String availability;
@@ -246,6 +283,7 @@ public class BookingMenu extends BaseMenu {
 		int i = 0;
 		ArrayList<Integer> avail = new ArrayList<Integer>();
 		ArrayList<MovieSession> sessions = msc.readFileByValues(MovieSession_Controller.CHOICE_MOVIE, m.getId());
+		ArrayList<MovieSession> movSes = new ArrayList<MovieSession>();
 		
 		String movieName = reduceStringLength(m.getTitle(), 40);
 
@@ -276,6 +314,8 @@ public class BookingMenu extends BaseMenu {
 			if (type.length()>11)
 				type = type.substring(0, 11);
 			
+			movSes.add(ms);
+			
 			printMenuWithoutSpace(++i + ". " + ms.getShowDateTime() + 
 					generateSpaces(25 - ms.getShowDateTime().toString().length()) 
 				+ type + generateSpaces(15 - type.length()) + availability);
@@ -287,7 +327,7 @@ public class BookingMenu extends BaseMenu {
 		if (choice == i)
 			load();
 		else {
-			MovieSession ms = sessions.get(choice - 1);
+			MovieSession ms = movSes.get(choice - 1);
 			printMenu("How many tickets would you like to purchase? (Enter 1 to buy 1 couple seat)");
 			int noOfSeats = userInput(1, avail.get(choice-1));
 			showSeatingPlan(ms, noOfSeats);

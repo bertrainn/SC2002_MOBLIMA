@@ -165,7 +165,8 @@ public class MoviesList extends BaseMenu {
 		if (choice == i)
 			showMenu();
 		else if (choice == i-1) {
-			navigate(this, new BookingMenu(cust, null));
+			Cineplex cp = null;
+			navigate(this, new BookingMenu(cust, cp));
 		}
 		else {
 			Cineplex cp = cineplexList.get(choice - 1);

@@ -77,9 +77,10 @@ public class MovieDetailsView extends BaseMenu {
 
 		printMenu("1. See reviews",
 				"2. Leave a review",
-				"3. Back");
+				"3. See showtimes and book",
+				"4. Back");
 
-		int choice = userInput(1, 3);
+		int choice = userInput(1, 4);
 		switch (choice) {
 			case 1:
 				navigate(this, new ReviewView(m, cust, true));
@@ -88,6 +89,9 @@ public class MovieDetailsView extends BaseMenu {
 				navigate(this, new ReviewView(m, cust, false));
 				break;
 			case 3:
+				navigate(this, new BookingMenu(cust, m));
+				break;
+			case 4:
 				navigate(this, new MoviesList(cust));
 				break;
 		}
