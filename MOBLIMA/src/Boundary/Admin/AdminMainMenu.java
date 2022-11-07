@@ -17,17 +17,17 @@ public class AdminMainMenu extends BaseMenu {
 	private Admin User;
 
 	/**
-     	 * Creates a new Admin Main Menu with the given Admin user.
+	 * Creates a new Admin Main Menu with the given Admin user.
 	 *
-     	 * @param User This AdminMainMenu's User.
-     	 */
+	 * @param User This AdminMainMenu's User.
+	 */
 	public AdminMainMenu(Admin user) {
 		this.User = user;
 	}
 
 	/**
-         * Loads the Booking Confirmation Menu.
-         */
+	 * Loads the Admin Main Menu.
+	 */
 	@Override
 	public void load() {
 		printHeader("Welcome to Admin main menu, " + User.getUsername());

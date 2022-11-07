@@ -21,7 +21,7 @@ import java.time.LocalDate;
 public class editSettings extends BaseMenu {
 
 	/**
-	 * Intialising the controllers for the confirmed booking menu.
+	 * Intialising the controllers for the edit settings menu.
 	 */
 	private Holiday_Controller hol_Control = new Holiday_Controller();
 	private Admin_Controller admin_Control = new Admin_Controller();
@@ -29,16 +29,17 @@ public class editSettings extends BaseMenu {
 	private TicketPrice_Controller ticketPrice_control = new TicketPrice_Controller();
 
 	/**
-         * Loads the Edit Settings Menu.
-         */
+	 * Loads the edit settings Menu.
+	 */
 	@Override
 	public void load() {
 		showMenu();
 	}
 
 	/**
-         * Shows the content of the Menu that will be loaded into the edit settings menu.
-         */
+	 * Shows the content of the Menu that will be loaded into the edit settings
+	 * menu and accepts user input to pick which option they want to use.
+	 */
 	public void showMenu() {
 		printHeader("System Settings");
 		printMenu("Choose from one of the following options:",
@@ -96,8 +97,11 @@ public class editSettings extends BaseMenu {
 	// Holidays
 
 	/**
-         * Function to add in the public holidays.
-         */
+	 * Function to add in the public holidays.
+	 * It will ask the user for the date of the holiday, then the name
+	 * If there is a holiday on that date it will throw an error to the user.
+	 * else, the holiday and name will be added to the system
+	 */
 	public void add_Holiday() {
 		String name;
 		LocalDate date;
@@ -134,8 +138,8 @@ public class editSettings extends BaseMenu {
 	}
 
 	/**
-         * Function to delete the public holidays that were added in the system.
-         */
+	 * Function to delete the public holidays that were added in the system.
+	 */
 	public void deleteHolidays() {
 		ArrayList<Holiday> Hol_list = this.hol_Control.readFile();
 		Holiday holiday_temp;
@@ -174,8 +178,8 @@ public class editSettings extends BaseMenu {
 	}
 
 	/**
-         * Function to edit the details of the public holidays.
-         */
+	 * Function to edit the details of the public holidays.
+	 */
 	public void updateHolidays() {
 		ArrayList<Holiday> Hol_list = this.hol_Control.readFile();
 		Holiday holiday_temp;
@@ -234,8 +238,8 @@ public class editSettings extends BaseMenu {
 	}
 
 	/**
-         * Function to list all the public holidays that were added in the system.
-         */
+	 * Function to list all the public holidays that were added in the system.
+	 */
 	public void list_Holidays() {
 		ArrayList<Holiday> Hol_list = this.hol_Control.readFile();
 		int choice;
@@ -263,8 +267,8 @@ public class editSettings extends BaseMenu {
 	// Edit pricing
 
 	/**
-         * Function to edit the ticket price of the movies in the system.
-         */
+	 * Function to edit the ticket price of the movies in the system.
+	 */
 	public void changeTicketPrice() {
 		int i = 0;
 		int choice;
@@ -310,8 +314,8 @@ public class editSettings extends BaseMenu {
 	}
 
 	/**
-         * Function to edit the movie price in the system.
-         */
+	 * Function to edit the movie price in the system.
+	 */
 	public void changeMoviePrice() {
 		int i = 0;
 		int choice;
@@ -354,8 +358,8 @@ public class editSettings extends BaseMenu {
 	}
 
 	/**
-         * Function to edit the cinema price in the system.
-         */
+	 * Function to edit the cinema price in the system.
+	 */
 	public void changeCinemaPrice() {
 		int i = 0;
 		int choice;
@@ -395,8 +399,12 @@ public class editSettings extends BaseMenu {
 	}
 
 	/**
-         * Function to change the top 5 movies in the system.
-         */
+	 * Function to change the how the list top 5 movie option is shown for the user.
+	 * if the value is review, the user can only show top 5 movie by review.
+	 * Similar to sales.
+	 * If the option is set to "both", the user can choose how to view top 5 movie
+	 * list
+	 */
 	public void changeTop5() {
 
 		String Top5OrderBy = systemsetting_Controller.readSystemSettings().get(0);
@@ -439,8 +447,8 @@ public class editSettings extends BaseMenu {
 	}
 
 	/**
-         * Function to add new admin account into the system.
-         */
+	 * Function to add new admin account into the system.
+	 */
 	public void addNewAdmin() {
 		int choice = -1;
 		String name;
@@ -476,8 +484,8 @@ public class editSettings extends BaseMenu {
 	}
 
 	/**
-         * Function to delete admin account into the system.
-         */
+	 * Function to delete admin account into the system.
+	 */
 	public void deleteAdmin() {
 		ArrayList<Admin> admin_list = admin_Control.readFile();
 		Admin temp;

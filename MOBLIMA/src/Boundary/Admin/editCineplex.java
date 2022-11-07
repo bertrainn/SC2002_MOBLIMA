@@ -1,7 +1,6 @@
 package Boundary.Admin;
 
 import Boundary.BaseMenu;
-import Boundary.Admin.editMovie;
 
 import Control.Cineplex_Controller;
 import Control.Cinema_Controller;
@@ -26,7 +25,7 @@ import java.time.LocalDateTime;
 public class editCineplex extends BaseMenu {
 
 	/**
-	 * Intialising the controllers for the confirmed booking menu.
+	 * Intialising the controllers for the editCineplex menu.
 	 */
 	private Cineplex_Controller cineplex_Controller = new Cineplex_Controller();
 	private Cinema_Controller cinema_Controller = new Cinema_Controller(cineplex_Controller);
@@ -43,7 +42,8 @@ public class editCineplex extends BaseMenu {
 	}
 
 	/**
-	 * Shows the content of the Menu that will be loaded into the edit cineplex menu.
+	 * Shows the content of the Menu that will be loaded into the edit cineplex
+	 * menu.
 	 */
 	public void showMenu() {
 		printHeader("Cineplex & Session Options");
@@ -89,8 +89,8 @@ public class editCineplex extends BaseMenu {
 	}
 
 	/**
-	 * Function shows the count of how many cinemas is in which cinplex
-	 * also shows the id of the cineplex as well.
+	 * This method list all the cineplexes that are currently in the system, showing
+	 * their name, code and which cinemas are attached to them
 	 */
 	public void ListCineplex() {
 		ArrayList<Cineplex> cineplexList = cineplex_Controller.readFile();
@@ -116,7 +116,11 @@ public class editCineplex extends BaseMenu {
 	}
 
 	/**
-	 * Function shows the list of movie sessions in the cinema.
+	 * This method prints a list of all the sessions that belong to a certain
+	 * cinema. It shows which movie are showing and the session date & time
+	 * 
+	 * @param cinemaCode the code of the cinema that you want to show all the
+	 *                   sessions of
 	 */
 	public void ListCinemaSessions(String cinemaCode) {
 		Cinema cinema = cinema_Controller.getCinemaByCode(cinemaCode);
@@ -148,7 +152,11 @@ public class editCineplex extends BaseMenu {
 	}
 
 	/**
-	 * Function to add cineplex.
+	 * This method will add a new cineplex to the system.
+	 * It will prompt the user for the name and code of the new cineplex and how
+	 * many cinemas (min 3) are in the new cineplex
+	 * it will then create the new cineplex with the associated cinema objects and
+	 * add them to the serialisation file through the controller
 	 */
 	public void addCineplex() {
 		// function to auto add 3 cinema
@@ -210,8 +218,6 @@ public class editCineplex extends BaseMenu {
 					"2. Standard");
 
 			cinemaTypeChoice = userInput(1, 2);
-			
-			
 
 			switch (cinemaTypeChoice) {
 				case 1:
@@ -221,11 +227,10 @@ public class editCineplex extends BaseMenu {
 					cinemaType = Constants.CINEMA_TYPE.STANDARD;
 					break;
 			}
-			
+
 			cinemaList.add(new Cinema(cinemaCode, cinemaType, seatPlan, sessionList));
 		}
 		cineplex_Controller.updateCineplex(Cineplex_Controller.CHOICE_CINEMALIST, cineplexCode, cinemaList);
-		
 
 		System.out.println("Addition success, returning to settings menu...");
 		try {
@@ -261,7 +266,7 @@ public class editCineplex extends BaseMenu {
 	}
 
 	/**
-	 * Function to add cinema.
+	 * This function adds a cinema to an existing cineplex.
 	 */
 	public void addCinema() {
 		ListCineplex();
@@ -318,7 +323,7 @@ public class editCineplex extends BaseMenu {
 	}
 
 	/**
-	 * Function to delete cinema.
+	 * This method deletes an exisiting cinema from it's associated cineplex.
 	 */
 	public void deleteCinema() {
 		String choice;
@@ -367,7 +372,7 @@ public class editCineplex extends BaseMenu {
 	}
 
 	/**
-	 * Function to add movie session.
+	 * This method adds a new movie session to a cinema.
 	 */
 	public void addSession() {
 		ArrayList<Movie> movieList = movie_controller.getShowingMovies();
@@ -381,7 +386,7 @@ public class editCineplex extends BaseMenu {
 		CinemaCode = getStringInput("Enter the cinema code you want to add the session to: ");
 
 		if (cinema_Controller.doesCinemaExist(CinemaCode) == false) {
-			
+
 			System.out.println("Invalid cinema code, returning to settings menu...");
 			try {
 				Thread.sleep(500);
@@ -403,7 +408,7 @@ public class editCineplex extends BaseMenu {
 		System.out.println("Select the No. of the movie you want to show: ");
 		int choice = userInput(1, i);
 
-		shownMovie = movieList.get(choice-1);
+		shownMovie = movieList.get(choice - 1);
 
 		showingDateTime = getDateTimeInput("Enter the date and time of the session (e.g 10 Nov 2022, 10:30am): ");
 
@@ -448,7 +453,7 @@ public class editCineplex extends BaseMenu {
 	}
 
 	/**
-	 * Function to edit the details of the movie session.
+	 * This method edits the details of the movie session.
 	 */
 	public void editSession() {
 		ArrayList<MovieSession> sessions = movie_session_Controller.readFile();
@@ -509,7 +514,7 @@ public class editCineplex extends BaseMenu {
 	}
 
 	/**
-	 * Function to delete movie session.
+	 * This method deletes a movie session.
 	 */
 	public void deleteSession() {
 		ArrayList<MovieSession> sessions = movie_session_Controller.readFile();

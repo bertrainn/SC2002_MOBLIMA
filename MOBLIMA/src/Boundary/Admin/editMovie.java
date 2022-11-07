@@ -26,7 +26,7 @@ import java.util.Map;
 public class editMovie extends BaseMenu {
 
 	/**
-	 * Intialising the controllers for the confirmed booking menu.
+	 * Intialising the controllers for the editMovie menu.
 	 */
 	Movie_Controller movie_controller = new Movie_Controller();
 	Booking_Controller booking_controller = new Booking_Controller();
