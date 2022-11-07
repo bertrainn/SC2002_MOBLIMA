@@ -1,6 +1,7 @@
 package Boundary.MovieGoer;
 
 import Boundary.BaseMenu;
+import Boundary.MainMenu;
 import Control.Booking_Controller;
 import Control.Cineplex_Controller;
 import Control.Movie_Controller;
@@ -74,7 +75,7 @@ public class MoviesList extends BaseMenu {
 		topFive = false;
 		orderBy = ssc.readSystemSettings().get(0);
 		printHeader("View Movies");
-		if (orderBy == "both") {
+		if (orderBy.equals("both")) {
 			printMenu("Choose from one of the following options:",
 					"1. Make a booking",
 					"2. Search for a movie",
@@ -105,7 +106,10 @@ public class MoviesList extends BaseMenu {
 					topFive = true;
 					showAllMovies();
 				case 6:
-					back();
+					if (cust != null)
+						navigate(this, new MovieGoerMainMenu(cust));
+					else
+						navigate(this, new MainMenu());
 					break;
 			}
 		} else {
@@ -133,7 +137,10 @@ public class MoviesList extends BaseMenu {
 					showAllMovies();
 					break;
 				case 5:
-					back();
+					if (cust != null)
+						navigate(this, new MovieGoerMainMenu(cust));
+					else
+						navigate(this, new MainMenu());
 					break;
 			}
 		}
@@ -172,7 +179,20 @@ public class MoviesList extends BaseMenu {
 	 */
 	private void search() {
 		String searchInput = getStringInput("Enter the movie title: ");
-		ArrayList<Movie> searchResults = mc.getMoviesByTitle(searchInput.toUpperCase());
+		ArrayList<Movie> showingMov = mc.readFile();
+		ArrayList<Movie> searching = new ArrayList<Movie>();
+		ArrayList<Movie> searchResults = new ArrayList<Movie>();
+		
+		for (Movie m : showingMov) {
+			String resultTitle = m.getTitle().toUpperCase();
+			if (resultTitle.contains(searchInput.toUpperCase()))
+				searching.add(m);
+		}
+		
+		for (Movie m : searching) {
+			if (m.getShowingStatus() != Constants.SHOWING_STATUS.EOS)
+				searchResults.add(m);
+		}
 
 		if (searchResults.isEmpty()) {
 			printMenuWithoutSpace("No movies found, enter any number to go back");
@@ -208,9 +228,15 @@ public class MoviesList extends BaseMenu {
 	 * top 5 movies as well.
 	 */
 	private void showAllMovies() {
-		ArrayList<Movie> movieList = mc.readFile();
+		ArrayList<Movie> allMov = mc.readFile();
 		ArrayList<Movie> movies = null;
-
+		ArrayList<Movie> movieList = new ArrayList<Movie>();
+		
+		for (Movie m : allMov) {
+			if (m.getShowingStatus() != Constants.SHOWING_STATUS.EOS)
+				movieList.add(m);
+		}
+		
 		if (topFive) {
 			printHeader("Top 5 Movies (" + orderBy + ")");
 			movies = getTop5Movies(orderBy);

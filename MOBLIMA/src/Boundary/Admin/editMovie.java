@@ -3,6 +3,7 @@ package Boundary.Admin;
 import Boundary.BaseMenu;
 import Entity.Constants;
 import Entity.Movie;
+import Entity.Review_Ratings;
 import Entity.Booking;
 import Control.Movie_Controller;
 import Control.Booking_Controller;
@@ -90,6 +91,7 @@ public class editMovie extends BaseMenu {
 		ArrayList<String> DirectorList = new ArrayList<String>();
 		ArrayList<String> ActorList = new ArrayList<String>();
 		ArrayList<String> GenreList = new ArrayList<String>();
+		ArrayList<Review_Ratings> reviewList = new ArrayList<Review_Ratings>();
 		LocalDate OpeningDate, ClosingDate;
 		Duration duration;
 
@@ -171,7 +173,7 @@ public class editMovie extends BaseMenu {
 
 		duration = Duration.ofMinutes(getIntInput_Min("Enter the duration of the movie (in minutes): ", 0));
 
-		movie_controller.addMovie(title, description, age_class, DirectorList, ActorList, GenreList, null, OpeningDate,
+		movie_controller.addMovie(title, description, age_class, DirectorList, ActorList, GenreList, reviewList, OpeningDate,
 				ClosingDate, duration);
 		System.out.println("Addition success, returning to settings menu...");
 		try {

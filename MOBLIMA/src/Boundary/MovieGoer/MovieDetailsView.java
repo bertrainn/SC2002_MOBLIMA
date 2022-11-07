@@ -54,7 +54,6 @@ public class MovieDetailsView extends BaseMenu {
 		String directorsString = listToString(directorList);
 		String genreString = listToString(genreList);
 		String rating = m.getOverallRating();
-		int flag = 0;
 
 		if (rating != "N/A") {
 			rating = rating + " stars";

@@ -192,6 +192,8 @@ public class BookingMenu extends BaseMenu {
 			back();
 		else {
 			MovieSession ms = curMs.get(choice - 1);
+			String cineplexCode = ms.getCinemaCode().substring(0, 1);
+			cp = cpc.getCineplexByCode(cineplexCode);
 			printMenu("How many tickets would you like to purchase? (Enter 1 to buy 1 couple seat)");
 			int maxSeats = ms.getSeatPlan().getCol() * ms.getSeatPlan().getRow();
 			int noOfSeats = userInput(1, maxSeats);

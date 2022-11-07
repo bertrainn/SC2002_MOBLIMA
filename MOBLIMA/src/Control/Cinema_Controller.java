@@ -199,11 +199,12 @@ public class Cinema_Controller {
         ArrayList<Cineplex> Data = CineplexController.readFile();
         ArrayList<Cineplex> UpdateData = new ArrayList<Cineplex>();
         ArrayList<Cinema> temp;
-        ArrayList<Cinema> UpdatedList = new ArrayList<Cinema>();
+        
         Cineplex cineplex;
         Cinema cinema;
 
         for (int i = 0; i < Data.size(); i++) {
+        	ArrayList<Cinema> UpdatedList = new ArrayList<Cinema>();
             cineplex = Data.get(i);
             temp = cineplex.getCinemaList();
 

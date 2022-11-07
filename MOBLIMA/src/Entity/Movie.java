@@ -394,7 +394,7 @@ public class Movie implements Serializable {
      * @return the overall rating of the movie
      */
     public String getOverallRating() {
-        if (this.review_rating_List.size() == 0)
+        if (this.review_rating_List == null || this.review_rating_List.size() == 0)
             return "N/A";
 
         double total = 0;

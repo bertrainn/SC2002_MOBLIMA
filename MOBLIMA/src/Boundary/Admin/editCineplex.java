@@ -339,7 +339,7 @@ public class editCineplex extends BaseMenu {
 			cineplex = cineplex_Controller.getCineplexByCode(choice);
 		}
 
-		if (cineplex.getCinemaList().size() < 3) {
+		if (cineplex.getCinemaList().size() <= 3) {
 			System.out.println("This cineplex has 3 cinemas, unable to delete anymore, returning to settings menu...");
 			try {
 				Thread.sleep(500);
@@ -403,7 +403,7 @@ public class editCineplex extends BaseMenu {
 		System.out.println("Select the No. of the movie you want to show: ");
 		int choice = userInput(1, i);
 
-		shownMovie = movieList.get(choice);
+		shownMovie = movieList.get(choice-1);
 
 		showingDateTime = getDateTimeInput("Enter the date and time of the session (e.g 10 Nov 2022, 10:30am): ");
 

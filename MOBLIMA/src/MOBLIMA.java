@@ -7,7 +7,6 @@ public class MOBLIMA {
 
                 MainMenu menu = new MainMenu();
                 menu.load();
-
                 
         }
 }
