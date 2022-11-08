@@ -265,7 +265,7 @@ public class MoviesList extends BaseMenu {
 		}
 
 		else if (orderBy.equals("sales")) {
-			HashMap<Movie, Integer> salesList = topSales(); // fakeTopSales();
+			HashMap<Movie, Integer> salesList = topSales();
 			if (salesList.isEmpty()) {
 				for (Movie m : movies) {
 					String tit = reduceStringLength(m.getTitle(), 25);
@@ -357,8 +357,14 @@ public class MoviesList extends BaseMenu {
 				HashMap<Movie, Integer> sortedSalesList = sortHashMap(salesList);
 				for (Map.Entry<Movie, Integer> sales : sortedSalesList.entrySet()) {
 					Movie m = sales.getKey();
-					if (!m.getShowingStatus().equals(Constants.SHOWING_STATUS.EOS))
-						top5.add(m);
+					if (!m.getShowingStatus().equals(Constants.SHOWING_STATUS.EOS)) {
+						for (Movie m2 : movieList) {
+							if (m.getTitle().equals(m2.getTitle())) {
+								top5.add(m2);
+								break;
+							}
+						}
+					}
 				}
 				if (top5.size() < 5) {
 					for (Movie m : movieList) {
