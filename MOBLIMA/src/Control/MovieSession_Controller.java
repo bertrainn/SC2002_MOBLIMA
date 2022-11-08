@@ -22,12 +22,12 @@ import Entity.SeatLayout;
  * Controller for the Movie Sessions.
  */
 public class MovieSession_Controller {
-    
+
     /**
-     * Initialising Cinema Controller for Movie Session Controller. 
+     * Initialising Cinema Controller for Movie Session Controller.
      */
     private Cinema_Controller CinemaControl;
-    
+
     /**
      * The Name of the File that will be used in the Movie Session controller.
      */
@@ -268,7 +268,7 @@ public class MovieSession_Controller {
             }
         }
 
-        if (dateList.size() == 0) {
+        if (dateList.isEmpty() || dateList.size() == 1) {
             return true;
         } else {
 

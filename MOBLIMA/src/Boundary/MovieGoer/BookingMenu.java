@@ -29,7 +29,6 @@ public class BookingMenu extends BaseMenu {
 	private Cineplex_Controller cpc = new Cineplex_Controller();
 	private Cinema_Controller cc = new Cinema_Controller(cpc);
 	private MovieSession_Controller msc = new MovieSession_Controller(cc);
-	private Movie_Controller mc = new Movie_Controller();
 	
 	/**
 	 * The Cineplex that was chosen by the moviegoer.

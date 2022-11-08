@@ -219,7 +219,7 @@ public class editSettings extends BaseMenu {
 				hol_Control.updateHoliday(Holiday_Controller.CHOICE_NAME, holiday_temp.getDate(), name);
 				break;
 			case 2:
-				LocalDate date = getDateInput("Enter holiday date (e.g. 10 Aug): ");
+				LocalDate date = getDateInput_NoYear("Enter holiday date (e.g. 10 Aug): ");
 				hol_Control.updateHoliday(Holiday_Controller.CHOICE_DATE, holiday_temp.getDate(), date);
 				break;
 			case 3:

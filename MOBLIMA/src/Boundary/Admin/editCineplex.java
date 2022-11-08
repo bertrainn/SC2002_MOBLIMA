@@ -130,7 +130,8 @@ public class editCineplex extends BaseMenu {
 		System.out.println();
 
 		for (MovieSession ms : sessionList) {
-			System.out.printf("%-3d %-25s %-15s", i++, ms.getShownMovie().getTitle(), ms.getShowDateTime());
+			System.out.printf("%-3d %-25s %-15s", i++, reduceStringLength(ms.getShownMovie().getTitle(), 25),
+					ms.getShowDateTime());
 			System.out.println();
 		}
 	}
@@ -145,7 +146,8 @@ public class editCineplex extends BaseMenu {
 		System.out.println();
 
 		for (MovieSession ms : sessions) {
-			System.out.printf("%-3d %-15s %-25s %-15s", i++, ms.getCinemaCode(), ms.getShownMovie().getTitle(),
+			System.out.printf("%-3d %-15s %-25s %-15s", i++, ms.getCinemaCode(),
+					reduceStringLength(ms.getShownMovie().getTitle(), 25),
 					ms.getShowDateTime());
 			System.out.println();
 		}
@@ -397,16 +399,21 @@ public class editCineplex extends BaseMenu {
 		}
 
 		int i = 0;
-		System.out.printf("%-3s %-4s %-25s %-15s", "No.", "ID", "Name", "Showing Status");
+		System.out.printf("%-3s %-4s %-28s %-15s", "No.", "ID", "Name", "Showing Status");
 		System.out.println();
 		for (Movie m : movieList) {
-			System.out.printf("%-3d %-4d %-25s %-15s", ++i, m.getId(), m.getTitle(),
+			System.out.printf("%-3d %-4d %-28s %-15s", ++i, m.getId(), reduceStringLength(m.getTitle(), 25),
 					m.getShowingStatus().toString());
 			System.out.println();
 		}
 
+		printMenu(++i + ". Back");
 		System.out.println("Select the No. of the movie you want to show: ");
 		int choice = userInput(1, i);
+
+		if (choice == i) {
+			load();
+		}
 
 		shownMovie = movieList.get(choice - 1);
 
@@ -475,10 +482,26 @@ public class editCineplex extends BaseMenu {
 
 		switch (editChoice) {
 			case 1:
-				editMovies.ListMovies();
 				ArrayList<Movie> movieList = movie_controller.getShowingMovies();
-				int movieChoice = userInput(1, movieList.size());
-				Movie newShowingMovie = movieList.get(movieChoice - 1);
+
+				int i = 0;
+				System.out.printf("%-3s %-4s %-28s %-15s", "No.", "ID", "Name", "Showing Status");
+				System.out.println();
+				for (Movie m : movieList) {
+					System.out.printf("%-3d %-4d %-28s %-15s", ++i, m.getId(), reduceStringLength(m.getTitle(), 25),
+							m.getShowingStatus().toString());
+					System.out.println();
+				}
+
+				printMenu(++i + ". Back");
+				System.out.println("Select the No. of the movie you want to show: ");
+				choice = userInput(1, i);
+
+				if (choice == i) {
+					load();
+				}
+
+				Movie newShowingMovie = movieList.get(choice - 1);
 
 				if (movie_session_Controller.checkIfValidTime(movieSession.getShowDateTime_NonString(),
 						movieSession.getCinemaCode(), newShowingMovie)) {
