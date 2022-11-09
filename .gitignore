@@ -2,3 +2,7 @@
 *.class
 /bin/
 *.class
+/Boundary/
+/Control/
+/Entity/
+/Test/
