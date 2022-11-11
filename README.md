@@ -8,6 +8,7 @@ This is the repository for the SC2002 Object-Oriented Design &amp; Programming a
         <li><a href="#what-is-MOBLIMA">What is MOBLIMA?</a></li>
         <li><a href="#our-project">Our Project</a></li>
         <li><a href="#Collaborators">Collaborators</a></li>
+        <li><a href="#Conclusion">Conclusion</a></li>
     </ol>
 </details>
 
@@ -24,10 +25,10 @@ Through this assignment, we attempted to code this application in Java using Obj
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ## Our Collaborators
--[Bertranne Lee](https://github.com/bertrainn)
--[Anson Chan](https://github.com/ChanOSAnson)
--[Yue Zhong](https://github.com/yuezhonggg)
--[Aloysius Loh](https://github.com/cplAloysius)
--[Sheares Toh](https://github.com/shearestoh)
+- [Bertranne Lee](https://github.com/bertrainn)
+- [Anson Chan](https://github.com/ChanOSAnson)
+- [Yue Zhong](https://github.com/yuezhonggg)
+- [Aloysius Loh](https://github.com/cplAloysius)
+- [Sheares Toh](https://github.com/shearestoh)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
