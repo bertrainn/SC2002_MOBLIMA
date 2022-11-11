@@ -24,7 +24,7 @@ public class MovieGoer_Controller {
      * File name of the MovierGoer.txt file in the database to access.
      */
     public final static String FILENAME = "MOBLIMA/database/MovieGoer.txt";
-    
+
     /**
      * Assigning each choices with a value.
      */
@@ -34,12 +34,11 @@ public class MovieGoer_Controller {
     public final static int CHOICE_REVIEW = 3;
     public final static int CHOICE_BOOKING = 4;
 
-    
     public MovieGoer_Controller() {
     }
 
     /**
-     * Function to read file. 
+     * Function to read file.
      *
      * @return A new arraylist that has the movie sessions.
      */
@@ -63,14 +62,14 @@ public class MovieGoer_Controller {
     /**
      * Function to add in a new movie goer.
      *
-     * @param Username          This Moviegoer's username.
-     * @param Password          This Moviegoer's password.
-     * @param Name              This Moviegoer's name.
-     * @param Email             This Moviegoer's email.
-     * @param Phone             This Moviegoer's phone number.
-     * @param PostedReviewList  This Moviegoer's movie review list.
-     * @param BookingList       This Moviegoer's movie booking list.
-     
+     * @param Username         This Moviegoer's username.
+     * @param Password         This Moviegoer's password.
+     * @param Name             This Moviegoer's name.
+     * @param Email            This Moviegoer's email.
+     * @param Phone            This Moviegoer's phone number.
+     * @param PostedReviewList This Moviegoer's movie review list.
+     * @param BookingList      This Moviegoer's movie booking list.
+     * 
      */
     public void addMovieGoer(String Username, String Password, String Name, String Email, String Phone,
             HashMap<Movie, Review_Ratings> PostedReviewsList, ArrayList<Booking> BookingList) {
@@ -192,7 +191,7 @@ public class MovieGoer_Controller {
         }
         return false;
     }
-    
+
     /**
      * Function that will get moviegoer by this username.
      *

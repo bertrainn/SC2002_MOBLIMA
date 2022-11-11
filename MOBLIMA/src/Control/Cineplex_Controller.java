@@ -17,7 +17,7 @@ import java.util.ArrayList;
  */
 public class Cineplex_Controller {
     public final static String FILENAME = "MOBLIMA/database/Cineplex.txt";
-    
+
     /**
      * Assigning each choices with a value.
      */
@@ -29,7 +29,7 @@ public class Cineplex_Controller {
     }
 
     /**
-     * Function to read file. 
+     * Function to read file.
      *
      * @return A new arraylist that has the cineplex.
      */

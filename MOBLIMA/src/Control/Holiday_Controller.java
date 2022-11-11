@@ -16,12 +16,12 @@ import java.time.LocalDate;
  * Controller for the holiday.
  */
 public class Holiday_Controller {
-    
+
     /**
      * File name of the Holiday.txt file in the database to access.
      */
     public final static String FILENAME = "MOBLIMA/database/Holiday.txt";
-    
+
     /**
      * Assigning each choices with a value.
      */
@@ -58,7 +58,7 @@ public class Holiday_Controller {
      *
      * @param name The name of the holiday.
      * @param Date The date of the holiday.
-     */ 
+     */
     public void addHoliday(String name, LocalDate Date) {
 
         FileOutputStream fos = null;

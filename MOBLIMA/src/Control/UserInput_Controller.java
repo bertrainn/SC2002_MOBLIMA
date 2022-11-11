@@ -207,7 +207,7 @@ public class UserInput_Controller {
 	 * Function to get the date input if there is no year.
 	 *
 	 * @param message Message to be printed.
-	 * @return the parsed date of the input with no year.
+	 * @return the parsed date of the input with 2022 appended to the end. 
 	 */
 	public static LocalDate getDateInput_NoYear(String message) {
 		System.out.print(message);
@@ -230,25 +230,6 @@ public class UserInput_Controller {
 		input += sc.nextLine();
 		LocalDateTime parsedDate = LocalDateTime.parse(input, Constants.datetimeFormat);
 		return parsedDate;
-	}
-	
-	/**
-	 * Function to check the user and password of the admin account.
-	 *
-	 * @return Boolean indicating if the login is successful or a failure.
-	 */
-	public static boolean adminAuthorise() {
-		String _user = "GV";
-		String _pw = "123456";
-		System.out.print("Enter username: ");
-		String user = sc.nextLine();
-		System.out.print("Enter password: ");
-		String pw = sc.nextLine();
-
-		if (_user == user && _pw == pw)
-			return true;
-		else
-			return false;
 	}
 	
 	/**

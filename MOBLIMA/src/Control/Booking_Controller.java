@@ -19,7 +19,7 @@ import java.util.ArrayList;
  * Controller for the booking of movies.
  */
 public class Booking_Controller {
-    
+
     /**
      * File name of the booking.txt file in the database to access.
      */
@@ -29,7 +29,7 @@ public class Booking_Controller {
     }
 
     /**
-     * Function to read file. 
+     * Function to read file.
      *
      * @return A new arraylist that has the bookings of movies.
      */

@@ -10,12 +10,12 @@ import Entity.MovieGoer;
  * Controller for the Reviews.
  */
 public class Review_Controller {
-    
+
     /**
-     * Initialising Movie Controller to be used in the Review Controller. 
+     * Initialising Movie Controller to be used in the Review Controller.
      */
     private Movie_Controller MovieController;
-  
+
     /**
      * The Name of the File that will be used in the Review controller.
      */
@@ -46,7 +46,7 @@ public class Review_Controller {
     public Movie_Controller getMovieController() {
         return this.MovieController;
     }
- 
+
     /**
      * This method sets the moviecontroller.
      *
@@ -75,7 +75,7 @@ public class Review_Controller {
     }
 
     /**
-     * This method helps to create a movie review.
+     * This method helps to create a movie review and stores it in the respective objects.
      *
      * @param movie    The object movie.
      * @param username The UserName of the User.

@@ -10,6 +10,7 @@ import java.time.Duration;
 import java.time.LocalDate;
 
 public class Databasepopulate {
+    //This is a test class to populate our databases.txt files
 
     public static void main(String[] args) {
         // Movie_Controller mc = new Movie_Controller();

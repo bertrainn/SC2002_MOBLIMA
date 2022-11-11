@@ -19,12 +19,12 @@ import Entity.Constants;
  * Controller for the Cinema.
  */
 public class Cinema_Controller {
-    
+
     /**
-     * Initialising Cineplex Controller. 
+     * Initialising Cineplex Controller.
      */
     private Cineplex_Controller CineplexController;
-    
+
     /**
      * The Name of the File that will be used in the cinema controller.
      */
@@ -78,7 +78,7 @@ public class Cinema_Controller {
     }
 
     /**
-     * Function that gets the cinema. 
+     * Function that gets the cinema.
      *
      * @return Arraylist that contains the cinema needed.
      */
@@ -153,12 +153,12 @@ public class Cinema_Controller {
         ArrayList<Cineplex> Data = CineplexController.readFile();
         ArrayList<Cineplex> UpdateData = new ArrayList<Cineplex>();
         ArrayList<Cinema> temp;
-        
+
         Cineplex cineplex;
         Cinema cinema;
 
         for (int i = 0; i < Data.size(); i++) {
-        	ArrayList<Cinema> UpdatedList = new ArrayList<Cinema>();
+            ArrayList<Cinema> UpdatedList = new ArrayList<Cinema>();
             cineplex = Data.get(i);
             temp = cineplex.getCinemaList();
 
@@ -199,12 +199,12 @@ public class Cinema_Controller {
         ArrayList<Cineplex> Data = CineplexController.readFile();
         ArrayList<Cineplex> UpdateData = new ArrayList<Cineplex>();
         ArrayList<Cinema> temp;
-        
+
         Cineplex cineplex;
         Cinema cinema;
 
         for (int i = 0; i < Data.size(); i++) {
-        	ArrayList<Cinema> UpdatedList = new ArrayList<Cinema>();
+            ArrayList<Cinema> UpdatedList = new ArrayList<Cinema>();
             cineplex = Data.get(i);
             temp = cineplex.getCinemaList();
 
@@ -223,7 +223,8 @@ public class Cinema_Controller {
     }
 
     /**
-     * This function obtains the last ID for a given list of Cinemas of a given Cineplex.
+     * This function obtains the last ID for a given list of Cinemas of a given
+     * Cineplex.
      *
      * @param cineplexCode the Cinema's cineplex Code.
      * @return the last ID of a given Cinema List.

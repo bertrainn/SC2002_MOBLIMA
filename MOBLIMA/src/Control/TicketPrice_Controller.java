@@ -9,25 +9,28 @@ import Entity.Constants.TICKET_TYPE;
 import java.io.Serializable;
 
 /**
- * Represents an instance of a ticket price used in the system.
+ * Represents an instance of a ticket price controller used in the system. Which
+ * will control the calculation of ticket pricing in the application.
  */
 
 public class TicketPrice_Controller implements Serializable {
-    
+
     /**
-     * idk
+     * Initalising a hashmap to store the key value pairs to keep track of ticketing
+     * prices.
      */
     private HashMap<PriceAdjust, Double> TicketPriceMap = new HashMap<>();
 
     /**
-     * Creates a new TicketPrice controller.
+     * Constructor for the TicketPrice_Controller, where it will populate the
+     * ticketpricemap with the default values.
      */
     public TicketPrice_Controller() {
         populatePriceMap(TicketPriceMap);
     }
 
     /**
-     * Function to set the different prices out on the ticket price map.
+     * This method is used to populate the ticket price map with default values.
      *
      * @param TicketPriceMap HashMap holds the ticket price.
      */
@@ -43,63 +46,65 @@ public class TicketPrice_Controller implements Serializable {
         TicketPriceMap.put(Constants.CINEMA_TYPE.PLATIUM, 5.0);
     }
 
-    
-    /** 
-     * idk
+    /**
+     * This method returns the TicketPriceMap
      *
-     * @return HashMap<PriceAdjust, Double>
+     * @return HashMap<PriceAdjust, Double> TicketPriceMap
      */
     public HashMap<PriceAdjust, Double> getTicketPriceMap() {
         return TicketPriceMap;
     }
 
-    
-    /** 
-     * idk
+    /**
+     * This method sets the TicketPriceMap to a new HashMap
      *
-     * @param ticketPriceMap
+     * @param ticketPriceMap is the new HashMap
      */
     public void setTicketPriceMap(HashMap<PriceAdjust, Double> ticketPriceMap) {
         TicketPriceMap = ticketPriceMap;
     }
 
     /**
-     * Function to get price of the movie. 
+     * This method is used to get the price of a specific priceAdjust object in the
+     * TicketPriceMap
      *
-     * @param key Movie object.
-     * @return Double value of the ticket price.
+     * @param key the specific priceAdjust object.
+     * @return Double value of the priceAdjust key,
+     *         if the key doesn't exist return
+     *         0.00
      */
     public double getPrice(PriceAdjust key) {
         return this.TicketPriceMap.getOrDefault(key, 0.00);
     }
 
     /**
-     * Function to add the ticket price.
+     * This method is used to add a new key value pair to the TicketPriceMap.
      *
-     * @param newKey The new movie to be added into the hash table.
-     * @param price  The price of the new movie to be added into the hash table.
+     * @param newKey The new priceAdjust key to be added into the hash table.
+     * @param price  The value of the priceAdjust key to be added into the hash
+     *               table.
      */
     public void addTicketPriceItem(PriceAdjust newKey, double price) {
         this.TicketPriceMap.put(newKey, price);
     }
 
     /**
-     * Function to update the ticket price.
+     * This method is used to update the ticket price.
      *
-     * @param key      The movie that is to be updated.
-     * @param newprice The new price that is to be updated into the hash table.
+     * @param key      The priceAdjust key that is to be updated.
+     * @param newprice The value of the price that is to be updated into the hash
+     *                 table.
      */
     public void updateTicketPriceItem(PriceAdjust key, double newprice) {
         if (this.TicketPriceMap.containsKey(key)) {
             this.TicketPriceMap.replace(key, newprice);
         }
     }
-    
+
     /**
-     * Function to remove the ticket price.
+     * This method is used to remove a PriceAdjust key from the hashmap.
      *
-     * @param key Movie object.
-     * @return the string of the next input.
+     * @param key priceAdjust object.
      */
     public void removeTicketPriceItem(PriceAdjust key) {
         this.TicketPriceMap.remove(key);
