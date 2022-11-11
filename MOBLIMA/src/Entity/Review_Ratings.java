@@ -2,7 +2,7 @@ package Entity;
 import java.io.Serializable;
 
 /**
- * Represents an instance of a review rating used in the system.
+ * Represents an instance of a review and rating in the system.
  */
 
 public class Review_Ratings implements Serializable{

@@ -22,6 +22,7 @@ public class SeatLayout implements Serializable {
 
     /**
      * Constructor for the SeatLayout class.
+     * It determines if a seat is a couple seat by checking the last row of the cinema.
      * 
      * @param row row of seating layout
      * @param col column of seating layout
@@ -205,7 +206,7 @@ public class SeatLayout implements Serializable {
     /**
      * This method finds a seat based on its id and sets the value to unbook
      * 
-     * param id is the id of the seat to be unbooked
+     * @param id is the id of the seat to be unbooked
      */
     public void unassignSeats(int id) {
         int index = id / col;

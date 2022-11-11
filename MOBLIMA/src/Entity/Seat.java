@@ -101,14 +101,18 @@ public class Seat implements Serializable {
     }
 
     /**
-     * @return boolean
+     * This method returns if the seat is a couple seat or is not.
+     * 
+     * @return true if the seat is a couple seat, false otherwise
      */
     public boolean isIsCoupleSeat() {
         return IsCoupleSeat;
     }
 
     /**
-     * @param isCoupleSeat
+     * This method sets whether the seat is a couple seat
+     * 
+     * @param isCoupleSeat is the new type of seat
      */
     public void setIsCoupleSeat(boolean isCoupleSeat) {
         IsCoupleSeat = isCoupleSeat;

@@ -72,7 +72,7 @@ public class MovieSession implements Serializable {
     /**
      * This method sets the identification number of session
      * 
-     * @param id is the new identification number of session
+     * @param sessionId is the new identification number of session
      */
     public void setSessionId(int sessionId) {
         this.sessionId = sessionId;
@@ -90,23 +90,25 @@ public class MovieSession implements Serializable {
     /**
      * This method sets the movie to be shown
      * 
-     * @param id is the new movie to be shown
+     * @param shownMovie is the new movie to be shown
      */
     public void setShownMovie(Movie shownMovie) {
         this.shownMovie = shownMovie;
     }
 
     /**
-     * This method returns the date and time
+     * This method returns the date and time of the movie as a string
      * 
-     * @return the date and time
+     * @return the date and time of the movie as a string in the format "dd/MM/yyyy"
      */
     public String getShowDateTime() {
         return showDateTime.format(Constants.datetimeFormat);
     }
 
     /**
-     * @return LocalDateTime
+     * This method returns the movie session date time as a LocalDateTime object
+     * 
+     * @return showDateTime value of as a LocalDateTime object
      */
     public LocalDateTime getShowDateTime_NonString() {
         return showDateTime;
@@ -115,7 +117,7 @@ public class MovieSession implements Serializable {
     /**
      * This method sets the date and time
      * 
-     * @param id is the new date and time
+     * @param showDateTime is the new date and time
      */
     public void setShowDateTime(LocalDateTime showDateTime) {
         this.showDateTime = showDateTime;
@@ -133,16 +135,16 @@ public class MovieSession implements Serializable {
     /**
      * This method sets the seating plan
      * 
-     * @param id is the new seating plan
+     * @param seatPlan is the new seating plan
      */
     public void setSeatPlan(SeatLayout seatPlan) {
         this.seatPlan = seatPlan;
     }
 
     /**
-     * This gets the type of the movie being shown at the session
+     * This method gets the type of the movie being shown at the session
      * 
-     * @return MOVIE_TYPE
+     * @return the type of the movie being shown
      */
     public Constants.MOVIE_TYPE getMovieType() {
         return movieType;
@@ -161,7 +163,7 @@ public class MovieSession implements Serializable {
      * This method returns the unique identifier of the cinema that the session is
      * being shown at
      * 
-     * @return String
+     * @return the cinema code of the cinema that the session is being shown at.
      */
     public String getCinemaCode() {
         return CinemaCode;

@@ -219,20 +219,10 @@ public class Movie implements Serializable {
 
     /**
      * This method adds a new actor to the ArrayList
-     * Firstly it does a search on the current actorList to find if they exist in
-     * the list
-     * If they do, the method will terminate.
-     * Else, the actor is added into actorList.
      * 
      * @param actor is the new actor to be added.
      */
     public void addActor(String actor) {
-        for (int i = 0; i < this.actorList.size(); i++) {
-            if (this.actorList.get(i).toLowerCase() == actor.toLowerCase()) {
-                System.out.println("This actor already exist in the list.");
-                return;
-            }
-        }
         this.actorList.add(actor);
     }
 
