@@ -1,5 +1,5 @@
 # SC2002_MOBLIMA
-This is the repository for the SC2002 Object-Oriented Design &amp; Programming assignment for the MOvie Booking and LIsting Management Application (MOBLIMA) system
+This is the repository for the SC2002 Object-Oriented Design &amp; Programming assignment for the MOvie Booking and LIsting Management Application (MOBLIMA) system. Lab SS1 Group 4.
 
 <!-- TABLE OF CONTENTS -->
 <details>
