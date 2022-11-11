@@ -27,32 +27,32 @@ public class MovieGoerRegistration extends BaseMenu {
 	 * Intialising the controller for the MovieGoer's Registration menu.
 	 */
 	private MovieGoer_Controller mgc = new MovieGoer_Controller();
-	
+
 	/**
 	 * The Moviesession that was chosen by the moviegoer.
 	 */
 	private MovieSession ms;
-	
+
 	/**
 	 * The Movie that was chosen by the moviegoer.
 	 */
 	private Movie m;
-	
+
 	/**
 	 * The Seats that was chosen by the moviegoer.
 	 */
 	private ArrayList<Seat> chosenSeats;
-	
+
 	/**
 	 * The Seats that was chosen by the moviegoer.
 	 */
 	private Cineplex cp;
 
-	//Default constructor
+	// Default constructor
 	public MovieGoerRegistration() {
-		
+
 	}
-	
+
 	/**
 	 * Creates a New MovieGoerRegistration Menu to redirect
 	 * to review page after registration.
@@ -78,8 +78,8 @@ public class MovieGoerRegistration extends BaseMenu {
 	}
 
 	/**
-         * Loads the MovieGoer Registration Menu.
-         */
+	 * Loads the MovieGoer Registration Menu.
+	 */
 	@Override
 	public void load() {
 		ArrayList<MovieGoer> movieGoerList = mgc.readFile();
@@ -92,7 +92,7 @@ public class MovieGoerRegistration extends BaseMenu {
 		name = getStringInput("Enter your name: ");
 		email = getStringInput("Enter your email address: ");
 		num = getStringInput("Enter your phone number: ");
-		
+
 		if (mgc.MovieGoerExist(username)) {
 			printMenu(
 					"Username taken, press 0 to return to main menu, press any other number to try again.");
@@ -105,8 +105,7 @@ public class MovieGoerRegistration extends BaseMenu {
 				navigate(this, new MovieGoerRegistration(ms, chosenSeats, cp));
 			else
 				navigate(this, new MovieGoerRegistration());
-		}
-		else {
+		} else {
 			HashMap<Movie, Review_Ratings> PostedReviewsList = new HashMap<Movie, Review_Ratings>();
 			ArrayList<Booking> BookingList = new ArrayList<Booking>();
 			mgc.addMovieGoer(username, pw, name, email, num, PostedReviewsList, BookingList);

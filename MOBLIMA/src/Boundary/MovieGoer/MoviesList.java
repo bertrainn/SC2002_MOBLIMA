@@ -158,17 +158,16 @@ public class MoviesList extends BaseMenu {
 			printMenuWithoutSpace(++i + ". " + cp.getName());
 		}
 		printMenu(++i + ". Book by movie instead",
-				  ++i + ". Back");
+				++i + ". Back");
 
 		int choice = userInput(1, i);
 
 		if (choice == i)
 			showMenu();
-		else if (choice == i-1) {
+		else if (choice == i - 1) {
 			Cineplex cp = null;
 			navigate(this, new BookingMenu(cust, cp));
-		}
-		else {
+		} else {
 			Cineplex cp = cineplexList.get(choice - 1);
 			navigate(this, new BookingMenu(cust, cp));
 		}
@@ -183,13 +182,13 @@ public class MoviesList extends BaseMenu {
 		ArrayList<Movie> showingMov = mc.readFile();
 		ArrayList<Movie> searching = new ArrayList<Movie>();
 		ArrayList<Movie> searchResults = new ArrayList<Movie>();
-		
+
 		for (Movie m : showingMov) {
 			String resultTitle = m.getTitle().toUpperCase();
 			if (resultTitle.contains(searchInput.toUpperCase()))
 				searching.add(m);
 		}
-		
+
 		for (Movie m : searching) {
 			if (m.getShowingStatus() != Constants.SHOWING_STATUS.EOS)
 				searchResults.add(m);
@@ -232,12 +231,12 @@ public class MoviesList extends BaseMenu {
 		ArrayList<Movie> allMov = mc.readFile();
 		ArrayList<Movie> movies = null;
 		ArrayList<Movie> movieList = new ArrayList<Movie>();
-		
+
 		for (Movie m : allMov) {
 			if (m.getShowingStatus() != Constants.SHOWING_STATUS.EOS)
 				movieList.add(m);
 		}
-		
+
 		if (topFive) {
 			printHeader("Top 5 Movies (" + orderBy + ")");
 			movies = getTop5Movies(orderBy);

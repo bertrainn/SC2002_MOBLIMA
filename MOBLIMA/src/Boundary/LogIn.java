@@ -22,43 +22,43 @@ import java.util.ArrayList;
 public class LogIn extends BaseMenu {
 
     /**
-	 * Intialising the controllers for the confirmed booking menu.
-	 */
+     * Intialising the controllers for the confirmed booking menu.
+     */
     private Admin_Controller adminController = new Admin_Controller();
     private MovieGoer_Controller movieGoerController = new MovieGoer_Controller();
-    
+
     /**
-	 * The MovieSession selected at the login Page.
-	 */
+     * The MovieSession selected at the login Page.
+     */
     private MovieSession ms;
-    
+
     /**
-	 * The Movie selected at the login Page.
-	 */
+     * The Movie selected at the login Page.
+     */
     private Movie m;
-    
+
     /**
-	 * The seats chosen at the login Page.
-	 */
+     * The seats chosen at the login Page.
+     */
     private ArrayList<Seat> chosenSeats;
-    
+
     /**
-	 * The cineplex chosen at the login Page.
-	 */
+     * The cineplex chosen at the login Page.
+     */
     private Cineplex cp;
 
-    //Default constructor
+    // Default constructor
     public LogIn() {
 
     }
-    
+
     /**
      * Creates a new Login Menu that redirect back to the review page after login..
      *
      * @param m This Login Menu's Movie.
      */
     public LogIn(Movie m) {
-    	this.m = m;
+        this.m = m;
     }
 
     /**
@@ -83,10 +83,11 @@ public class LogIn extends BaseMenu {
         User temp;
         BaseMenu next;
         if (m != null)
-        	next = new LogIn(m);
+            next = new LogIn(m);
         else if (ms != null)
-        	next = new LogIn(ms, chosenSeats, cp);
-        else next = new LogIn();
+            next = new LogIn(ms, chosenSeats, cp);
+        else
+            next = new LogIn();
         int choice = 1;
 
         printHeader("Login");
@@ -118,7 +119,7 @@ public class LogIn extends BaseMenu {
                             next = new BookingConfirmationMenu(movieGoerController.getMovieGoerByUsername(user), ms,
                                     chosenSeats, cp);
                         else if (m != null)
-                        	next = new ReviewView(m, movieGoerController.getMovieGoerByUsername(user), false);
+                            next = new ReviewView(m, movieGoerController.getMovieGoerByUsername(user), false);
                         else
                             next = new MovieGoerMainMenu(movieGoerController.getMovieGoerByUsername(user));
                         break;
@@ -135,7 +136,7 @@ public class LogIn extends BaseMenu {
         if (choice == 0)
             navigate(this, new MainMenu());
         else {
-        	navigate(this, next);
+            navigate(this, next);
         }
     }
 }

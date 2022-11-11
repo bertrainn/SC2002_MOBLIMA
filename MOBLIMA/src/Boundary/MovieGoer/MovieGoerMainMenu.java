@@ -17,17 +17,17 @@ public class MovieGoerMainMenu extends BaseMenu {
 	private MovieGoer cust;
 
 	/**
-         * Creates a new Main Menu for the MovieGoer with the given parameters.
+	 * Constructor for the MovieGoerMainMenu class
 	 *
-         * @param m This MovieGoerMainMenu's MovieGoer.
-         */
+	 * @param m This MovieGoerMainMenu's MovieGoer.
+	 */
 	public MovieGoerMainMenu(MovieGoer m) {
 		cust = m;
 	}
 
 	/**
-         * Loads the MovieGoer's Main Menu.
-         */
+	 * Loads the MovieGoer's Main Menu.
+	 */
 	@Override
 	public void load() {
 		printHeader("Welcome to customer main menu, " + cust.getName());
